@@ -7,15 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DDXMLElement;
+@class EAGLESchematic;
 
-/**
- * Abstract base object for all EAGLE objects.
- */
 @interface EAGLEObject : NSObject
 
-//- (id)initFromXMLFragment:(id)xmlFragment;
-//- (id)xmlFragment;
+@property (readonly, weak) EAGLESchematic *schematic;
 
-+ (NSArray *)layersFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
+- (id)initFromXMLElement:(DDXMLElement*)element;
+- (id)initFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
 
 @end
+
+// Error macro
+#if DEBUG
+#define EAGLE_XML_PARSE_ERROR( error ) NSLog( @"Error parsing xml in -[%@ %@]: %@", NSStringFromClass( [self class] ), NSStringFromSelector( _cmd ), [error localizedDescription] )
+#else
+#define EAGLE_XML_PARSE_ERROR( error )
+#endif
+
+#if DEBUG
+#define EAGLE_XML_PARSE_ERROR_RETURN_NIL( error ) if( error ) {NSLog( @"Error parsing xml in -[%@ %@]: %@", NSStringFromClass( [self class] ), NSStringFromSelector( _cmd ), [error localizedDescription] ); return nil; }
+#else
+#define EAGLE_XML_PARSE_ERROR_RETURN_NIL( error )
+#endif

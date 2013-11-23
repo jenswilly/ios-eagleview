@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "EAGLEObject.h"
+#import "EAGLELayer.h"
+#import "EAGLESchematic.h"
 
 @interface ViewController ()
 
@@ -17,13 +20,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	NSError *error = nil;
+	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
+
+	DEBUG_LOG( @"Schematic: %@", schematic );
 }
 
 @end
