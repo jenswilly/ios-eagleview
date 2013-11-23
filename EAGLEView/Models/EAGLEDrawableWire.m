@@ -8,6 +8,8 @@
 
 #import "EAGLEDrawableWire.h"
 #import "DDXML.h"
+#import "EAGLESchematic.h"
+#import "EAGLELayer.h"
 
 @implementation EAGLEDrawableWire
 
@@ -32,6 +34,16 @@
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"Wire: layer %@ from %@ to %@, width %.1f", self.layerNumber , NSStringFromCGPoint( self.point1 ), NSStringFromCGPoint( self.point2 ), self.width];
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+	[self setStrokeColorFromLayerInContext:context];
+    CGContextBeginPath( context );
+	CGContextSetLineWidth( context, self.width );
+    CGContextMoveToPoint( context, self.point1.x, self.point1.y );
+    CGContextAddLineToPoint( context, self.point2.x, self.point2.y );
+    CGContextStrokePath( context );
 }
 
 @end

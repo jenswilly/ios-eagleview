@@ -49,6 +49,8 @@
 		4739034E18411D5E0092D025 /* EAGLEDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739034D18411D5E0092D025 /* EAGLEDrawable.m */; };
 		4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035018411D7E0092D025 /* EAGLEDrawableWire.m */; };
 		4739035418411D8C0092D025 /* EAGLEDrawableText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035318411D8C0092D025 /* EAGLEDrawableText.m */; };
+		4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035718414CB60092D025 /* EAGLESchematicView.m */; };
+		4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035A184155530092D025 /* EAGLEDrawablePin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +131,10 @@
 		4739035018411D7E0092D025 /* EAGLEDrawableWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableWire.m; sourceTree = "<group>"; };
 		4739035218411D8C0092D025 /* EAGLEDrawableText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableText.h; sourceTree = "<group>"; };
 		4739035318411D8C0092D025 /* EAGLEDrawableText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableText.m; sourceTree = "<group>"; };
+		4739035618414CB60092D025 /* EAGLESchematicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLESchematicView.h; sourceTree = "<group>"; };
+		4739035718414CB60092D025 /* EAGLESchematicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLESchematicView.m; sourceTree = "<group>"; };
+		47390359184155530092D025 /* EAGLEDrawablePin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePin.h; sourceTree = "<group>"; };
+		4739035A184155530092D025 /* EAGLEDrawablePin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 		4739027D1840D9930092D025 = {
 			isa = PBXGroup;
 			children = (
+				4739035518414C8E0092D025 /* Views */,
 				473903241840DD360092D025 /* External */,
 				473902C21840DC5C0092D025 /* View Controllers */,
 				473902BE1840D9990092D025 /* Models */,
@@ -221,6 +228,8 @@
 				4739035018411D7E0092D025 /* EAGLEDrawableWire.m */,
 				4739035218411D8C0092D025 /* EAGLEDrawableText.h */,
 				4739035318411D8C0092D025 /* EAGLEDrawableText.m */,
+				47390359184155530092D025 /* EAGLEDrawablePin.h */,
+				4739035A184155530092D025 /* EAGLEDrawablePin.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -352,6 +361,16 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		4739035518414C8E0092D025 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4739035618414CB60092D025 /* EAGLESchematicView.h */,
+				4739035718414CB60092D025 /* EAGLESchematicView.m */,
+			);
+			name = Views;
+			path = EAGLEView/Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +459,8 @@
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
+				4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */,
+				4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */,
 				4739033C1840E2590092D025 /* DDXMLElement.m in Sources */,
 				473902F11840DD070092D025 /* GPStorageRoom.m in Sources */,
 				4739033D1840E2590092D025 /* DDXMLNode.m in Sources */,

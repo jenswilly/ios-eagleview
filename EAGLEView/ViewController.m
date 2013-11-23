@@ -10,6 +10,7 @@
 #import "EAGLEObject.h"
 #import "EAGLELayer.h"
 #import "EAGLESchematic.h"
+#import "EAGLESchematicView.h"
 
 @interface ViewController ()
 
@@ -24,7 +25,9 @@
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
 
-	DEBUG_LOG( @"Schematic: %@", schematic );
+	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:CGRectMake( 0, 0, 300, 300 )];
+	schematicView.schematic = schematic;
+	[self.view addSubview:schematicView];
 }
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "EAGLEDrawable.h"
+#import "EAGLESchematic.h"
+#import "EAGLELayer.h"
 #import "EAGLEDrawableText.h"
 #import "EAGLEDrawableWire.h"
+#import "EAGLEDrawablePin.h"
 #import "DDXML.h"
 
 @implementation EAGLEDrawable
@@ -31,8 +34,25 @@
 	if( [elementName isEqualToString:@"text"] )
 		return [[EAGLEDrawableText alloc] initFromXMLElement:element inSchematic:schematic];
 
+	if( [elementName isEqualToString:@"pin"] )
+		return [[EAGLEDrawablePin alloc] initFromXMLElement:element inSchematic:schematic];
+
 	// Unknown element name
 	return nil;
+}
+
+- (void)setStrokeColorFromLayerInContext:(CGContextRef)context
+{
+	// Set color to layer's color
+	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	CGContextSetStrokeColorWithColor( context, [currentLayer.color CGColor] );
+}
+
+- (void)setFillColorFromLayerInContext:(CGContextRef)context
+{
+	// Set color to layer's color
+	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	CGContextSetFillColorWithColor( context, [currentLayer.color CGColor] );
 }
 
 - (void)drawInContext:(CGContextRef)context

@@ -10,4 +10,8 @@
 
 @interface EAGLEDrawableText : EAGLEDrawable
 
+@property (readonly) CGPoint point;
+@property (readonly, strong) NSString *text;
+@property (readonly) CGFloat size;
+
 @end
