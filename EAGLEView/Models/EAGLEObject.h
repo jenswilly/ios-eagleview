@@ -13,7 +13,9 @@
  */
 @interface EAGLEObject : NSObject
 
-- (id)initFromXMLFragment:(id)xmlFragment;
-- (id)xmlFragment;
+//- (id)initFromXMLFragment:(id)xmlFragment;
+//- (id)xmlFragment;
+
++ (NSArray *)layersFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 
 @end

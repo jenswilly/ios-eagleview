@@ -17,6 +17,26 @@
 		473902A01840D9930092D025 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739029F1840D9930092D025 /* ViewController.m */; };
 		473902A21840D9930092D025 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473902A11840D9930092D025 /* Images.xcassets */; };
 		473902C11840DA180092D025 /* EAGLEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902C01840DA180092D025 /* EAGLEObject.m */; };
+		473902E61840DD070092D025 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 473902C61840DD070092D025 /* .gitignore */; };
+		473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473902C71840DD070092D025 /* GP App Icon.xcassets */; };
+		473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902C91840DD070092D025 /* GPAsyncImageView.m */; };
+		473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902CB1840DD070092D025 /* GPAsyncURLConnection.m */; };
+		473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902CD1840DD070092D025 /* GPCoreDataController.m */; };
+		473902EB1840DD070092D025 /* GPFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902CF1840DD070092D025 /* GPFileCache.m */; };
+		473902EC1840DD070092D025 /* GPImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902D11840DD070092D025 /* GPImageDownloadOperation.m */; };
+		473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902D31840DD070092D025 /* GPImageDownloadQueue.m */; };
+		473902EE1840DD070092D025 /* GPNetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902D51840DD070092D025 /* GPNetworkIndicator.m */; };
+		473902EF1840DD070092D025 /* GPPods.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902D71840DD070092D025 /* GPPods.m */; };
+		473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902D91840DD070092D025 /* GPPodsManagedObject.m */; };
+		473902F11840DD070092D025 /* GPStorageRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902DB1840DD070092D025 /* GPStorageRoom.m */; };
+		473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902DD1840DD070092D025 /* GPStorageRoomManagedObject.m */; };
+		473902F31840DD070092D025 /* CBLJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902E01840DD070092D025 /* CBLJSONValidator.m */; };
+		473902F41840DD070092D025 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473902E11840DD070092D025 /* CouchbaseLite.framework */; };
+		473902F51840DD070092D025 /* GPJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902E31840DD070092D025 /* GPJSONValidator.m */; };
+		473902F61840DD070092D025 /* UIImage+Scaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902E51840DD070092D025 /* UIImage+Scaling.m */; };
+		473903131840DD110092D025 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 473902FD1840DD110092D025 /* TBXML.m */; };
+		473903271840DED90092D025 /* LED_resistor.brd in Resources */ = {isa = PBXBuildFile; fileRef = 473903251840DED90092D025 /* LED_resistor.brd */; };
+		473903281840DED90092D025 /* LED_resistor.sch in Resources */ = {isa = PBXBuildFile; fileRef = 473903261840DED90092D025 /* LED_resistor.sch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +57,41 @@
 		473902A81840D9930092D025 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		473902BF1840DA180092D025 /* EAGLEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEObject.h; sourceTree = "<group>"; };
 		473902C01840DA180092D025 /* EAGLEObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEObject.m; sourceTree = "<group>"; };
+		473902C61840DD070092D025 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		473902C71840DD070092D025 /* GP App Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "GP App Icon.xcassets"; sourceTree = "<group>"; };
+		473902C81840DD070092D025 /* GPAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPAsyncImageView.h; sourceTree = "<group>"; };
+		473902C91840DD070092D025 /* GPAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPAsyncImageView.m; sourceTree = "<group>"; };
+		473902CA1840DD070092D025 /* GPAsyncURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPAsyncURLConnection.h; sourceTree = "<group>"; };
+		473902CB1840DD070092D025 /* GPAsyncURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPAsyncURLConnection.m; sourceTree = "<group>"; };
+		473902CC1840DD070092D025 /* GPCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPCoreDataController.h; sourceTree = "<group>"; };
+		473902CD1840DD070092D025 /* GPCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPCoreDataController.m; sourceTree = "<group>"; };
+		473902CE1840DD070092D025 /* GPFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPFileCache.h; sourceTree = "<group>"; };
+		473902CF1840DD070092D025 /* GPFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPFileCache.m; sourceTree = "<group>"; };
+		473902D01840DD070092D025 /* GPImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPImageDownloadOperation.h; sourceTree = "<group>"; };
+		473902D11840DD070092D025 /* GPImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPImageDownloadOperation.m; sourceTree = "<group>"; };
+		473902D21840DD070092D025 /* GPImageDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPImageDownloadQueue.h; sourceTree = "<group>"; };
+		473902D31840DD070092D025 /* GPImageDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPImageDownloadQueue.m; sourceTree = "<group>"; };
+		473902D41840DD070092D025 /* GPNetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPNetworkIndicator.h; sourceTree = "<group>"; };
+		473902D51840DD070092D025 /* GPNetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPNetworkIndicator.m; sourceTree = "<group>"; };
+		473902D61840DD070092D025 /* GPPods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPods.h; sourceTree = "<group>"; };
+		473902D71840DD070092D025 /* GPPods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPPods.m; sourceTree = "<group>"; };
+		473902D81840DD070092D025 /* GPPodsManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPodsManagedObject.h; sourceTree = "<group>"; };
+		473902D91840DD070092D025 /* GPPodsManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPPodsManagedObject.m; sourceTree = "<group>"; };
+		473902DA1840DD070092D025 /* GPStorageRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPStorageRoom.h; sourceTree = "<group>"; };
+		473902DB1840DD070092D025 /* GPStorageRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPStorageRoom.m; sourceTree = "<group>"; };
+		473902DC1840DD070092D025 /* GPStorageRoomManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPStorageRoomManagedObject.h; sourceTree = "<group>"; };
+		473902DD1840DD070092D025 /* GPStorageRoomManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPStorageRoomManagedObject.m; sourceTree = "<group>"; };
+		473902DF1840DD070092D025 /* CBLJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSONValidator.h; sourceTree = "<group>"; };
+		473902E01840DD070092D025 /* CBLJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLJSONValidator.m; sourceTree = "<group>"; };
+		473902E11840DD070092D025 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		473902E21840DD070092D025 /* GPJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPJSONValidator.h; sourceTree = "<group>"; };
+		473902E31840DD070092D025 /* GPJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPJSONValidator.m; sourceTree = "<group>"; };
+		473902E41840DD070092D025 /* UIImage+Scaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scaling.h"; sourceTree = "<group>"; };
+		473902E51840DD070092D025 /* UIImage+Scaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scaling.m"; sourceTree = "<group>"; };
+		473902FD1840DD110092D025 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		473903011840DD110092D025 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		473903251840DED90092D025 /* LED_resistor.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LED_resistor.brd; sourceTree = "<group>"; };
+		473903261840DED90092D025 /* LED_resistor.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LED_resistor.sch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +101,7 @@
 			files = (
 				4739028C1840D9930092D025 /* CoreGraphics.framework in Frameworks */,
 				4739028E1840D9930092D025 /* UIKit.framework in Frameworks */,
+				473902F41840DD070092D025 /* CouchbaseLite.framework in Frameworks */,
 				4739028A1840D9930092D025 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +112,7 @@
 		4739027D1840D9930092D025 = {
 			isa = PBXGroup;
 			children = (
+				473903241840DD360092D025 /* Submodules */,
 				473902C21840DC5C0092D025 /* View Controllers */,
 				473902BE1840D9990092D025 /* Models */,
 				4739028F1840D9930092D025 /* EAGLEView */,
@@ -129,6 +186,8 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				473903251840DED90092D025 /* LED_resistor.brd */,
+				473903261840DED90092D025 /* LED_resistor.sch */,
 				4739029B1840D9930092D025 /* Main.storyboard */,
 				473902C41840DC9E0092D025 /* XIB */,
 			);
@@ -140,6 +199,86 @@
 			children = (
 			);
 			name = XIB;
+			sourceTree = "<group>";
+		};
+		473902C51840DD070092D025 /* ios-library */ = {
+			isa = PBXGroup;
+			children = (
+				473902C61840DD070092D025 /* .gitignore */,
+				473902C71840DD070092D025 /* GP App Icon.xcassets */,
+				473902C81840DD070092D025 /* GPAsyncImageView.h */,
+				473902C91840DD070092D025 /* GPAsyncImageView.m */,
+				473902CA1840DD070092D025 /* GPAsyncURLConnection.h */,
+				473902CB1840DD070092D025 /* GPAsyncURLConnection.m */,
+				473902CC1840DD070092D025 /* GPCoreDataController.h */,
+				473902CD1840DD070092D025 /* GPCoreDataController.m */,
+				473902CE1840DD070092D025 /* GPFileCache.h */,
+				473902CF1840DD070092D025 /* GPFileCache.m */,
+				473902D01840DD070092D025 /* GPImageDownloadOperation.h */,
+				473902D11840DD070092D025 /* GPImageDownloadOperation.m */,
+				473902D21840DD070092D025 /* GPImageDownloadQueue.h */,
+				473902D31840DD070092D025 /* GPImageDownloadQueue.m */,
+				473902D41840DD070092D025 /* GPNetworkIndicator.h */,
+				473902D51840DD070092D025 /* GPNetworkIndicator.m */,
+				473902D61840DD070092D025 /* GPPods.h */,
+				473902D71840DD070092D025 /* GPPods.m */,
+				473902D81840DD070092D025 /* GPPodsManagedObject.h */,
+				473902D91840DD070092D025 /* GPPodsManagedObject.m */,
+				473902DA1840DD070092D025 /* GPStorageRoom.h */,
+				473902DB1840DD070092D025 /* GPStorageRoom.m */,
+				473902DC1840DD070092D025 /* GPStorageRoomManagedObject.h */,
+				473902DD1840DD070092D025 /* GPStorageRoomManagedObject.m */,
+				473902DE1840DD070092D025 /* JSONValidator */,
+				473902E41840DD070092D025 /* UIImage+Scaling.h */,
+				473902E51840DD070092D025 /* UIImage+Scaling.m */,
+			);
+			path = "ios-library";
+			sourceTree = "<group>";
+		};
+		473902DE1840DD070092D025 /* JSONValidator */ = {
+			isa = PBXGroup;
+			children = (
+				473902DF1840DD070092D025 /* CBLJSONValidator.h */,
+				473902E01840DD070092D025 /* CBLJSONValidator.m */,
+				473902E11840DD070092D025 /* CouchbaseLite.framework */,
+				473902E21840DD070092D025 /* GPJSONValidator.h */,
+				473902E31840DD070092D025 /* GPJSONValidator.m */,
+			);
+			path = JSONValidator;
+			sourceTree = "<group>";
+		};
+		473902F71840DD110092D025 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				473902FA1840DD110092D025 /* TBXML-Code */,
+				473902FE1840DD110092D025 /* TBXML-Headers */,
+			);
+			path = TBXML;
+			sourceTree = "<group>";
+		};
+		473902FA1840DD110092D025 /* TBXML-Code */ = {
+			isa = PBXGroup;
+			children = (
+				473902FD1840DD110092D025 /* TBXML.m */,
+			);
+			path = "TBXML-Code";
+			sourceTree = "<group>";
+		};
+		473902FE1840DD110092D025 /* TBXML-Headers */ = {
+			isa = PBXGroup;
+			children = (
+				473903011840DD110092D025 /* TBXML.h */,
+			);
+			path = "TBXML-Headers";
+			sourceTree = "<group>";
+		};
+		473903241840DD360092D025 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				473902F71840DD110092D025 /* TBXML */,
+				473902C51840DD070092D025 /* ios-library */,
+			);
+			name = Submodules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +333,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473902E61840DD070092D025 /* .gitignore in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
+				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
+				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
+				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,9 +351,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				473902A01840D9930092D025 /* ViewController.m in Sources */,
+				473902EE1840DD070092D025 /* GPNetworkIndicator.m in Sources */,
 				473902C11840DA180092D025 /* EAGLEObject.m in Sources */,
+				473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */,
+				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
+				473903131840DD110092D025 /* TBXML.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
+				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
+				473902EF1840DD070092D025 /* GPPods.m in Sources */,
+				473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */,
+				473902F51840DD070092D025 /* GPJSONValidator.m in Sources */,
+				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
+				473902F11840DD070092D025 /* GPStorageRoom.m in Sources */,
+				473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */,
+				473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */,
+				473902F31840DD070092D025 /* CBLJSONValidator.m in Sources */,
+				473902EC1840DD070092D025 /* GPImageDownloadOperation.m in Sources */,
+				473902F61840DD070092D025 /* UIImage+Scaling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,8 +472,11 @@
 		473902B91840D9930092D025 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = GPAppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EAGLEView/EAGLEView-Prefix.pch";
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
@@ -327,8 +488,11 @@
 		473902BA1840D9930092D025 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = GPAppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EAGLEView/EAGLEView-Prefix.pch";
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";

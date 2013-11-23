@@ -14,3 +14,27 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 #endif
+
+
+#import "AppDelegate.h"
+
+#if !defined( DEBUG_LOG ) && defined( DEBUG )
+#define DEBUG_LOG( msg, ... ) NSLog( msg,  ##__VA_ARGS__ )
+#define DEBUG_POSITION                NSLog( @"-> %@ - %@", NSStringFromClass( [self class] ), NSStringFromSelector(_cmd) )
+#elif !defined( DEBUG_LOG ) && !defined( DEBUG )
+#define DEBUG_LOG( msg, ... )
+#define DEBUG_POSITION
+#endif
+
+// Add this preprocessor macro: USER=@\""$(USER)"\"
+// And use the macro like this: USER_LOG( @"jenswilly", @"Index is %i", i );
+#if !defined( USER_LOG ) && defined( DEBUG )
+#define USER_LOG( user, ... ) if( [user isEqualToString:USER] ) NSLog(@"@%@: %s -> %@", USER, __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define USER_LOG( user, ... )
+#endif
+
+// macros
+#define APP ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBHEX( rgb ) [UIColor colorWithRed:(rgb >> 16)/255.0 green:((rgb >> 8) & 0xFF)/255.0 blue:(rgb & 0xFF)/255.0 alpha:1.0]
