@@ -1,0 +1,44 @@
+# Mac OS X Finder and whatnot
+.DS_Store
+
+# XCode (and ancestors) per-user config (very noisy, and not relevant)
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+xcuserdata
+xcshareddata
+*.xcbkptlist
+xcschememanagement.plist
+*.xccheckout
+
+# Ignore SVN
+.svn
+
+# Ignore build
+build
+
+# Ignore object files etc.
+*.o
+*.hex
+*.elf
+*.bin
+*.axf
+*.map
+*.d
+*.launch
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Ignore Icon.png in root folder (for Tower)
+/Icon.png
