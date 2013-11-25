@@ -14,5 +14,6 @@
 @property (readonly, strong) NSString *text;
 @property (readonly) CGFloat size;
 @property (readonly) CGFloat rotation;
+@property (weak) NSString *valueText;
 
 @end

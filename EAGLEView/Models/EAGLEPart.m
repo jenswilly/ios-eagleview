@@ -10,6 +10,8 @@
 #import "DDXML.h"
 
 @implementation EAGLEPart
+@synthesize name = _name;
+@synthesize value = _value;
 
 - (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
 {
@@ -29,4 +31,21 @@
 {
 	return [NSString stringWithFormat:@"Part %@ – value: %@, library: %@, deviceset: %@, device: %@", self.name, self.value, self.library_name, self.deviceset_name, self.device_name];
 }
+
+- (NSString *)name
+{
+	if( _name == nil )
+		return @"";
+	else
+		return _name;
+}
+
+- (NSString *)value
+{
+	if( _value == nil )
+		return @"";
+	else
+		return _value;
+}
+
 @end

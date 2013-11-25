@@ -17,6 +17,7 @@
 	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
+		_prefix = [[element attributeForName:@"prefix"] stringValue];
 
 		// Gates
 		NSError *error = nil;

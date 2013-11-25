@@ -12,6 +12,7 @@
 
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) id components;
+@property (strong) NSDictionary *textsForPlaceholders;
 
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context;
 

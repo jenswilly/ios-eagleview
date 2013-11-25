@@ -12,6 +12,7 @@
 @interface EAGLEDeviceset : EAGLEObject
 
 @property (readonly, strong) NSString *name;
+@property (readonly, strong) NSString *prefix;
 @property (readonly, strong) NSArray *gates;	// Contains EAGLEGate objects
 @property (readonly, strong) NSArray *devices;	// Contains EAGLEDevice objects
 

@@ -9,6 +9,7 @@
 #import "EAGLESymbol.h"
 #import "DDXML.h"
 #import "EAGLEDrawableObject.h"
+#import "EAGLEDrawableText.h"
 
 @implementation EAGLESymbol
 
@@ -51,7 +52,18 @@
 
 	// Iterate and draw all components
 	for( EAGLEDrawableObject *drawable in self.components )
+	{
+		// If it's a text, check to see if we should set custom value
+		if( [drawable isKindOfClass:[EAGLEDrawableText class]] )
+		{
+			NSString *placeholder = ((EAGLEDrawableText*)drawable).text;
+			if( self.textsForPlaceholders[ placeholder ] != nil )
+				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
+		}
+
+		// Draw it
 		[drawable drawInContext:context];
+	}
 
 	// Restore coordinate system
 	CGContextRestoreGState( context );

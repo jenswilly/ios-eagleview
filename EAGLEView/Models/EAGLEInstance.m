@@ -66,7 +66,18 @@
 	EAGLEGate *gate = [deviceset gateWithName:self.gate_name];
 
 	// Symbol
+	// For the value string, check if value is empty. If so _and_ part' prefix matches the deviceset's prefix, use the deviceset's name. If not empty, use the value
+	NSString *valueText;
+	if( [part.value length] == 0  )
+	{
+		valueText = deviceset.name;
+	}
+	else
+		valueText = part.value;
+
 	EAGLESymbol *symbol = [library symbolWithName:gate.symbol_name];
+	symbol.textsForPlaceholders = @{ @">NAME": part.name,
+									 @">VALUE": valueText };
 	return symbol;
 }
 

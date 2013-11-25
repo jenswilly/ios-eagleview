@@ -11,6 +11,8 @@
 #import "EAGLESchematic.h"
 #import "EAGLELayer.h"
 
+static const CGFloat kFontSizeFactor = 1.3;	// Font size is multiplied by this factor to get the point size
+
 @implementation EAGLEDrawableText
 
 - (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
@@ -48,14 +50,18 @@
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
 	CGContextRotateCTM( context, self.rotation );
-	CGContextTranslateCTM( context, 0, self.size );
+	CGContextTranslateCTM( context, 0, self.size * kFontSizeFactor );
 	CGContextScaleCTM( context, 1, -1 );
 
 	// Set font and color
 	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
-	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size],
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
 								  NSForegroundColorAttributeName: currentLayer.color };
-	[self.text drawAtPoint:CGPointZero withAttributes:attributes];
+
+	if( self.valueText )
+		[self.valueText drawAtPoint:CGPointZero withAttributes:attributes];
+	else
+		[self.text drawAtPoint:CGPointZero withAttributes:attributes];
 
 	CGContextRestoreGState( context );
 }
