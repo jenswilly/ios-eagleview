@@ -28,7 +28,7 @@
 {
 	/// TEMP: test code to draw a single symbol.
 	/// Need to add origin point to each symbol (actually to the parts)
-	EAGLELibrary *library = self.schematic.libraries[ 0 ];
+	EAGLELibrary *library = self.schematic.libraries[ 1 ];
 	EAGLESymbol *symbol = library.symbols[ 0 ];
 
 	// Fix the coordinate system so 0,0 is at bottom-left

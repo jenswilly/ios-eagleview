@@ -48,4 +48,28 @@
 	
 }
 
+- (UIImage*)image
+{
+	UIGraphicsBeginImageContextWithOptions( CGSizeMake( 200, 200 ), NO, [UIScreen mainScreen].scale );
+	CGContextRef context = UIGraphicsGetCurrentContext();
+
+	// Fix the coordinate system so 0,0 is at bottom-left
+	CGContextTranslateCTM( context, 100, 100 );
+
+	// Set zoom level
+	CGContextScaleCTM( context, 10, 10 );
+
+	// Iterate drawables
+	for( EAGLEDrawable *drawable in self.components )
+	{
+		[drawable drawInContext:context];
+	}
+	
+	// Get the image
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	return image;
+}
+
 @end

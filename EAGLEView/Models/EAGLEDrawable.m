@@ -12,6 +12,7 @@
 #import "EAGLEDrawableText.h"
 #import "EAGLEDrawableWire.h"
 #import "EAGLEDrawablePin.h"
+#import "EAGLEDrawablePolygon.h"
 #import "DDXML.h"
 
 @implementation EAGLEDrawable
@@ -37,7 +38,11 @@
 	if( [elementName isEqualToString:@"pin"] )
 		return [[EAGLEDrawablePin alloc] initFromXMLElement:element inSchematic:schematic];
 
+	if( [elementName isEqualToString:@"polygon"] )
+		return [[EAGLEDrawablePolygon alloc] initFromXMLElement:element inSchematic:schematic];
+
 	// Unknown element name
+	DEBUG_LOG( @"Unknown drawable element: %@", elementName );
 	return nil;
 }
 

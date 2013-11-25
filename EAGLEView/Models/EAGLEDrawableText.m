@@ -8,6 +8,8 @@
 
 #import "EAGLEDrawableText.h"
 #import "DDXML.h"
+#import "EAGLESchematic.h"
+#import "EAGLELayer.h"
 
 @implementation EAGLEDrawableText
 
@@ -23,6 +25,18 @@
 
 		CGFloat size = [[[element attributeForName:@"size"] stringValue] floatValue];
 		_size = size;
+
+		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
+		if( rotString == nil )
+			_rotation = 0;
+		else if( [rotString isEqualToString:@"R90"] )
+			_rotation = M_PI_2;
+		else if( [rotString isEqualToString:@"R270"] )
+			_rotation = M_PI_2 * 3;
+		else if( [rotString isEqualToString:@"R180"] )
+			_rotation = M_PI;
+		else
+			[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotString];
 	}
 
 	return self;
@@ -30,17 +44,20 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
-//	[self setFillColorFromLayerInContext:context];
-	CGContextSetFillColorWithColor( context, [[UIColor whiteColor] CGColor] );
+	// Flip and translate coordinate system for text drawing
+	CGContextSaveGState( context );
+	CGContextTranslateCTM( context, self.point.x, self.point.y );
+	CGContextRotateCTM( context, self.rotation );
+	CGContextTranslateCTM( context, 0, self.size );
+	CGContextScaleCTM( context, 1, -1 );
 
-	// Set font
-	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:10] };
-	[self.text drawAtPoint:self.point withAttributes:attributes];
+	// Set font and color
+	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size],
+								  NSForegroundColorAttributeName: currentLayer.color };
+	[self.text drawAtPoint:CGPointZero withAttributes:attributes];
 
-	CGContextSetFillColorWithColor( context, [[UIColor whiteColor] CGColor] );
-	NSString *tst = @"TEST";
-	[tst drawAtPoint:CGPointMake(0, 0) withAttributes:attributes];
-
+	CGContextRestoreGState( context );
 }
 
 @end

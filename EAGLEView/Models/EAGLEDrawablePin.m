@@ -66,12 +66,13 @@
 
 	// Rotate
 	CGContextSaveGState( context );
-	CGContextRotateCTM( context, self.rotation );
+	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
+	CGContextRotateCTM( context, self.rotation );					// Now rotate. Otherwise, rotation center would be offset
 
 	// Draw line
     CGContextBeginPath( context );
 	CGContextSetLineWidth( context, 0.1524 );
-    CGContextMoveToPoint( context, self.point.x, self.point.y );
+    CGContextMoveToPoint( context, 0, 0);
     CGContextAddLineToPoint( context, [EAGLEDrawablePin lengthForPinLength:self.length], 0 );
     CGContextStrokePath( context );
 

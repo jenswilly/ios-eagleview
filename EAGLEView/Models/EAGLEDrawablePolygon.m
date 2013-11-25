@@ -1,0 +1,69 @@
+//
+//  EAGLEDrawablePolygon.m
+//  EAGLEView
+//
+//  Created by Jens Willy Johannsen on 25/11/13.
+//  Copyright (c) 2013 Greener Pastures. All rights reserved.
+//
+
+#import "EAGLEDrawablePolygon.h"
+#import "DDXML.h"
+
+@implementation EAGLEDrawablePolygon
+
+- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+{
+	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	{
+		// Width
+		CGFloat width = [[[element attributeForName:@"width"] stringValue] floatValue];
+		_width = width;
+
+		// Vertices
+		NSError *error = nil;
+		NSArray *vertices = [element nodesForXPath:@"vertex" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+
+		NSMutableArray *tmpVertices = [[NSMutableArray alloc] initWithCapacity:[vertices count]];
+		for( DDXMLElement *childeElement in vertices )
+		{
+			CGFloat x = [[[childeElement attributeForName:@"x"] stringValue] floatValue];
+			CGFloat y = [[[childeElement attributeForName:@"y"] stringValue] floatValue];
+			[tmpVertices addObject:[NSValue valueWithCGPoint:CGPointMake( x, y )]];
+		}
+		_vertices = [NSArray arrayWithArray:tmpVertices];
+	}
+
+	return self;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Polygon – width: %.2f, %d vertices", self.width, [self.vertices count]];
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+	// If no points, return immediately
+	if( [self.vertices count] == 0 )
+		return;
+
+	[self setStrokeColorFromLayerInContext:context];
+	[self setFillColorFromLayerInContext:context];
+	CGContextSetLineWidth( context, self.width );
+
+	// Move to first point
+	CGPoint firstPoint = [self.vertices[ 0 ] CGPointValue];
+    CGContextMoveToPoint( context, firstPoint.x, firstPoint.y );
+
+	// Iterate rest of the points
+	for( int i = 1; i < [self.vertices count]; i++ )
+	{
+		CGPoint nextPoint = [self.vertices[ i ] CGPointValue];
+		CGContextAddLineToPoint(context, nextPoint.x, nextPoint.y );
+	}
+
+	// Fill polygon
+    CGContextFillPath(context);
+}
+@end
