@@ -25,10 +25,10 @@
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 
 		NSMutableArray *tmpVertices = [[NSMutableArray alloc] initWithCapacity:[vertices count]];
-		for( DDXMLElement *childeElement in vertices )
+		for( DDXMLElement *childElement in vertices )
 		{
-			CGFloat x = [[[childeElement attributeForName:@"x"] stringValue] floatValue];
-			CGFloat y = [[[childeElement attributeForName:@"y"] stringValue] floatValue];
+			CGFloat x = [[[childElement attributeForName:@"x"] stringValue] floatValue];
+			CGFloat y = [[[childElement attributeForName:@"y"] stringValue] floatValue];
 			[tmpVertices addObject:[NSValue valueWithCGPoint:CGPointMake( x, y )]];
 		}
 		_vertices = [NSArray arrayWithArray:tmpVertices];

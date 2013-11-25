@@ -9,6 +9,7 @@
 #import "EAGLELibrary.h"
 #import "DDXML.h"
 #import "EAGLESymbol.h"
+#import "EAGLEDeviceset.h"
 
 @implementation EAGLELibrary
 
@@ -33,8 +34,6 @@
 		}
 		_symbols = [NSArray arrayWithArray:tmpSymbols];
 
-		// ...
-
 		// Devicesets
 		NSArray *devicesets = [element nodesForXPath:@"devicesets/deviceset" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
@@ -43,7 +42,9 @@
 		for( DDXMLElement *childElement in devicesets )
 		{
 			// Deviceset
-			// ...
+			EAGLEDeviceset *deviceset = [[EAGLEDeviceset alloc] initFromXMLElement:childElement inSchematic:schematic];
+			if( deviceset )
+				[tmpDevicesets addObject:deviceset];
 		}
 		_devicesets = [NSArray arrayWithArray:tmpDevicesets];
 	}
@@ -53,7 +54,26 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Library %@, symbols: %@, %d devicesets", self.name, self.symbols, [self.devicesets count]];
+	return [NSString stringWithFormat:@"Library %@ – %d symbols, %d devicesets", self.name, [self.symbols count], [self.devicesets count]];
 }
 
+- (EAGLEDeviceset *)devicesetWithName:(NSString *)name
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+	NSArray *found = [self.devicesets filteredArrayUsingPredicate:predicate];
+	if( [found count] > 0 )
+		return found[ 0 ];
+	else
+		return nil;
+}
+
+- (EAGLESymbol *)symbolWithName:(NSString *)name
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+	NSArray *found = [self.symbols filteredArrayUsingPredicate:predicate];
+	if( [found count] > 0 )
+		return found[ 0 ];
+	else
+		return nil;
+}
 @end

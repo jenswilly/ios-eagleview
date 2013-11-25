@@ -53,6 +53,10 @@
 		4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035A184155530092D025 /* EAGLEDrawablePin.m */; };
 		4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035D184343610092D025 /* EAGLEDrawablePolygon.m */; };
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
+		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
+		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
+		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
+		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +144,14 @@
 		4739035C184343610092D025 /* EAGLEDrawablePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePolygon.h; sourceTree = "<group>"; };
 		4739035D184343610092D025 /* EAGLEDrawablePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePolygon.m; sourceTree = "<group>"; };
 		473903601843557A0092D025 /* Application.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Application.xcassets; sourceTree = "<group>"; };
+		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
+		4782AB6618438B120022F660 /* EAGLEInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstance.m; sourceTree = "<group>"; };
+		4782AB6818438C6D0022F660 /* EAGLEGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEGate.h; sourceTree = "<group>"; };
+		4782AB6918438C6D0022F660 /* EAGLEGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEGate.m; sourceTree = "<group>"; };
+		4782AB6B18438D100022F660 /* EAGLEDeviceset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDeviceset.h; sourceTree = "<group>"; };
+		4782AB6C18438D100022F660 /* EAGLEDeviceset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDeviceset.m; sourceTree = "<group>"; };
+		4782AB6E18439E190022F660 /* EAGLEPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEPart.h; sourceTree = "<group>"; };
+		4782AB6F18439E190022F660 /* EAGLEPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEPart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +249,14 @@
 				4739035A184155530092D025 /* EAGLEDrawablePin.m */,
 				4739035C184343610092D025 /* EAGLEDrawablePolygon.h */,
 				4739035D184343610092D025 /* EAGLEDrawablePolygon.m */,
+				4782AB6518438B120022F660 /* EAGLEInstance.h */,
+				4782AB6618438B120022F660 /* EAGLEInstance.m */,
+				4782AB6818438C6D0022F660 /* EAGLEGate.h */,
+				4782AB6918438C6D0022F660 /* EAGLEGate.m */,
+				4782AB6B18438D100022F660 /* EAGLEDeviceset.h */,
+				4782AB6C18438D100022F660 /* EAGLEDeviceset.m */,
+				4782AB6E18439E190022F660 /* EAGLEPart.h */,
+				4782AB6F18439E190022F660 /* EAGLEPart.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -466,6 +486,8 @@
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
+				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
+				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
 				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
 				473902EF1840DD070092D025 /* GPPods.m in Sources */,
@@ -474,12 +496,14 @@
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
 				473902F51840DD070092D025 /* GPJSONValidator.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
+				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
 				4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */,
 				4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */,
 				4739033C1840E2590092D025 /* DDXMLElement.m in Sources */,
 				473902F11840DD070092D025 /* GPStorageRoom.m in Sources */,
+				4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */,
 				4739033D1840E2590092D025 /* DDXMLNode.m in Sources */,
 				4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */,
 				473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */,
@@ -651,6 +675,7 @@
 				473902BA1840D9930092D025 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

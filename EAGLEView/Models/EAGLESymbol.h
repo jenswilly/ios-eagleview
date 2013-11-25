@@ -14,6 +14,5 @@
 @property (readonly, strong) id components;
 
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context;
-- (UIImage*)image;
 
 @end

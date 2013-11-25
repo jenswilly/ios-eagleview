@@ -10,6 +10,7 @@
 #import "EAGLESymbol.h"
 #import "EAGLELibrary.h"
 #import "EAGLEDrawable.h"
+#import "EAGLEInstance.h"
 
 @implementation EAGLESchematicView
 
@@ -24,28 +25,34 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+	_zoomFactor = 10;
+}
+
 - (void)drawRect:(CGRect)rect
 {
-	/// TEMP: test code to draw a single symbol.
-	/// Need to add origin point to each symbol (actually to the parts)
-	EAGLELibrary *library = self.schematic.libraries[ 1 ];
-	EAGLESymbol *symbol = library.symbols[ 0 ];
-
 	// Fix the coordinate system so 0,0 is at bottom-left
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM( context, 0, self.bounds.size.height );
 	CGContextScaleCTM( context, 1, -1 );
 
-	CGContextTranslateCTM( context, 50, 50 );
-
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
 
-	// Iterate drawables
-	for( EAGLEDrawable *drawable in symbol.components )
-	{
-		[drawable drawInContext:context];
-	}
+	/*
+	/// TEMP: draw two symbols at hardcoded locations
+	EAGLESymbol *symbol_3V3 = sparkFunLibrary.symbols[ 0 ];
+	EAGLESymbol *symbol_GND = sparkFunLibrary.symbols[ 1 ];
+
+	[symbol_GND drawAtPoint:CGPointMake( 2.54, 2.54 ) context:context];
+	[symbol_3V3 drawAtPoint:CGPointMake( 2.54, 5.08 ) context:context];
+	 */
+
+	/// TEMP: draw all instances
+	DEBUG_POSITION;
+	for( EAGLEInstance *instance in self.schematic.instances )
+		[instance drawInContext:context];
 }
 
 @end

@@ -7,11 +7,16 @@
 //
 
 #import "EAGLEObject.h"
+@class EAGLEDeviceset;
+@class EAGLESymbol;
 
 @interface EAGLELibrary : EAGLEObject
 
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) NSArray *symbols;
 @property (readonly, strong) NSArray *devicesets;
+
+- (EAGLEDeviceset*)devicesetWithName:(NSString*)name;
+- (EAGLESymbol*)symbolWithName:(NSString*)name;
 
 @end

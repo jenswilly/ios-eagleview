@@ -45,31 +45,16 @@
 
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context
 {
-	
-}
+	// Offset to point
+	CGContextSaveGState( context );
+	CGContextTranslateCTM( context, origin.x, origin.y );
 
-- (UIImage*)image
-{
-	UIGraphicsBeginImageContextWithOptions( CGSizeMake( 200, 200 ), NO, [UIScreen mainScreen].scale );
-	CGContextRef context = UIGraphicsGetCurrentContext();
-
-	// Fix the coordinate system so 0,0 is at bottom-left
-	CGContextTranslateCTM( context, 100, 100 );
-
-	// Set zoom level
-	CGContextScaleCTM( context, 10, 10 );
-
-	// Iterate drawables
+	// Iterate and draw all components
 	for( EAGLEDrawable *drawable in self.components )
-	{
 		[drawable drawInContext:context];
-	}
-	
-	// Get the image
-	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
 
-	return image;
+	// Restore coordinate system
+	CGContextRestoreGState( context );
 }
 
 @end

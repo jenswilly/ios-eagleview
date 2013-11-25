@@ -14,6 +14,7 @@
 
 + (EAGLEDrawable*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
 - (void)drawInContext:(CGContextRef)context;
+
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context;
 - (void)setFillColorFromLayerInContext:(CGContextRef)context;
 

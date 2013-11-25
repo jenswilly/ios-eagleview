@@ -16,6 +16,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet EAGLESchematicView *schematicView;
+
 @end
 
 @implementation ViewController
@@ -26,11 +28,14 @@
 
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
+	self.schematicView.schematic = schematic;
+	DEBUG_POSITION;
 
-	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:CGRectMake( 0, 0, 300, 300 )];
-	schematicView.schematic = schematic;
+//	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:self.view.bounds];
+//	schematicView.schematic = schematic;
 //	[self.view addSubview:schematicView];
 
+	/*
 	EAGLELibrary *library = schematic.libraries[ 0 ];
 	EAGLESymbol *symbol = library.symbols[ 0 ];
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[symbol image]];
@@ -47,6 +52,7 @@
 	frame.origin = CGPointMake( 400, 400 );
 	imageView.frame = frame;
 	[self.view addSubview:imageView];
+	 */
 }
 
 @end
