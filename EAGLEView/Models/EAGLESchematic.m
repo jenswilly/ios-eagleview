@@ -12,6 +12,7 @@
 #import "EAGLELayer.h"
 #import "EAGLEPart.h"
 #import "EAGLEInstance.h"
+#import "EAGLENet.h"
 
 @implementation EAGLESchematic
 
@@ -116,6 +117,18 @@
 				[tmpInstances addObject:instance];
 		}
 		_instances = [NSArray arrayWithArray:tmpInstances];
+
+		// Nets
+		NSArray *nets = [element nodesForXPath:@"sheets/sheet/nets/net" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		NSMutableArray *tmpNets = [[NSMutableArray alloc] initWithCapacity:[nets count]];
+		for( DDXMLElement *childElement in nets )
+		{
+			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inSchematic:self];
+			if( net )
+				[tmpNets addObject:net];
+		}
+		_nets = [NSArray arrayWithArray:tmpNets];
 }
 
 	return self;
@@ -123,7 +136,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances", self.libraries, self.parts, [self.instances count]];
+	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets", self.libraries, self.parts, [self.instances count], [self.nets count]];
 }
 
 - (EAGLEPart *)partWithName:(NSString *)name

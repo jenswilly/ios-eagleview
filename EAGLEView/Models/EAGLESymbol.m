@@ -8,7 +8,7 @@
 
 #import "EAGLESymbol.h"
 #import "DDXML.h"
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 
 @implementation EAGLESymbol
 
@@ -27,7 +27,7 @@
 		for( DDXMLElement *childElement in components )
 		{
 			// Drawable
-			EAGLEDrawable *drawable = [EAGLEDrawable drawableFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:schematic];
 			if( drawable )
 				[tmpComponents addObject:drawable];
 		}
@@ -50,7 +50,7 @@
 	CGContextTranslateCTM( context, origin.x, origin.y );
 
 	// Iterate and draw all components
-	for( EAGLEDrawable *drawable in self.components )
+	for( EAGLEDrawableObject *drawable in self.components )
 		[drawable drawInContext:context];
 
 	// Restore coordinate system

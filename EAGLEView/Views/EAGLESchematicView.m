@@ -9,8 +9,9 @@
 #import "EAGLESchematicView.h"
 #import "EAGLESymbol.h"
 #import "EAGLELibrary.h"
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 #import "EAGLEInstance.h"
+#import "EAGLENet.h"
 
 @implementation EAGLESchematicView
 
@@ -49,10 +50,12 @@
 	[symbol_3V3 drawAtPoint:CGPointMake( 2.54, 5.08 ) context:context];
 	 */
 
-	/// TEMP: draw all instances
+	/// TEMP: draw all instances and nets
 	DEBUG_POSITION;
 	for( EAGLEInstance *instance in self.schematic.instances )
 		[instance drawInContext:context];
+	for( EAGLENet *net in self.schematic.nets )
+		[net drawInContext:context];	
 }
 
 @end

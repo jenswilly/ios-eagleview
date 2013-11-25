@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 
-@interface EAGLEDrawablePolygon : EAGLEDrawable
+@interface EAGLEDrawablePolygon : EAGLEDrawableObject
 
 @property (readonly) CGFloat width;
 @property (readonly, strong) NSArray *vertices;		// Contains NSValues with CGPoints

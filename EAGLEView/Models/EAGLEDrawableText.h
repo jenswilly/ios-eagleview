@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 
-@interface EAGLEDrawableText : EAGLEDrawable
+@interface EAGLEDrawableText : EAGLEDrawableObject
 
 @property (readonly) CGPoint point;
 @property (readonly, strong) NSString *text;

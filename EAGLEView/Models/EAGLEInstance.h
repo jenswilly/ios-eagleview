@@ -7,9 +7,10 @@
 //
 
 #import "EAGLEObject.h"
+#import "EAGLEDrawableObject.h"
 @class EAGLESymbol;
 
-@interface EAGLEInstance : EAGLEObject
+@interface EAGLEInstance : EAGLEObject <EAGLEDrawable>
 
 @property (readonly, strong) NSString *part_name;
 @property (readonly, strong) NSString *gate_name;
@@ -18,6 +19,5 @@
 @property (readonly) CGFloat rotation;
 
 - (EAGLESymbol*)symbol;
-- (void)drawInContext:(CGContextRef)context;
 
 @end

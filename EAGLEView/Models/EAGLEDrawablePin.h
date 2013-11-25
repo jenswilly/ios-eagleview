@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 
 typedef enum
 {
@@ -15,7 +15,7 @@ typedef enum
 	EAGLEDrawablePinLength_Long
 } EAGLEDrawablePinLength;
 
-@interface EAGLEDrawablePin : EAGLEDrawable
+@interface EAGLEDrawablePin : EAGLEDrawableObject
 
 @property (readonly) CGPoint point;
 @property (readonly, strong) NSString *name;

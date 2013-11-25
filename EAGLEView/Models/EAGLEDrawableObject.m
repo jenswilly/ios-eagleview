@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 #import "EAGLESchematic.h"
 #import "EAGLELayer.h"
 #import "EAGLEDrawableText.h"
@@ -15,7 +15,7 @@
 #import "EAGLEDrawablePolygon.h"
 #import "DDXML.h"
 
-@implementation EAGLEDrawable
+@implementation EAGLEDrawableObject
 
 - (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
 {
@@ -25,7 +25,7 @@
 	return self;
 }
 
-+ (EAGLEDrawable*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic
++ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic
 {
 	NSString *elementName = [element localName];
 

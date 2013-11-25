@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawable.h"
+#import "EAGLEDrawableObject.h"
 
-@interface EAGLEDrawableWire : EAGLEDrawable
+@interface EAGLEDrawableWire : EAGLEDrawableObject
 
 @property (readonly) CGPoint point1;
 @property (readonly) CGPoint point2;

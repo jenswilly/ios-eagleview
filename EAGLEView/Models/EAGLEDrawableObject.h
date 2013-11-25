@@ -8,11 +8,17 @@
 
 #import "EAGLEObject.h"
 
-@interface EAGLEDrawable : EAGLEObject
+@protocol EAGLEDrawable <NSObject>
+
+- (void)drawInContext:(CGContextRef)context;
+
+@end
+
+@interface EAGLEDrawableObject : EAGLEObject  <EAGLEDrawable>
 
 @property (nonatomic, readonly) NSNumber *layerNumber;
 
-+ (EAGLEDrawable*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
++ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
 - (void)drawInContext:(CGContextRef)context;
 
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context;

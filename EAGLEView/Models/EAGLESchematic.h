@@ -9,6 +9,7 @@
 #import "EAGLEObject.h"
 @class EAGLEPart;
 @class EAGLELibrary;
+@class EAGLENet;
 
 @interface EAGLESchematic : EAGLEObject
 
@@ -16,6 +17,7 @@
 @property (readonly, strong) NSArray *libraries;
 @property (readonly, strong) NSArray *parts;		// Contains EAGLEPart objects
 @property (readonly, strong) NSArray *instances;	// Contains EAGLEInstance objects
+@property (readonly, strong) NSArray *nets;			// Contains EAGLENet objects
 
 + (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;
