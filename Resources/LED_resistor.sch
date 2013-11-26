@@ -3666,6 +3666,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <plain>
 <text x="30.48" y="22.86" size="1.778" layer="97" rot="R90">Simple
 text</text>
+<circle x="30.48" y="12.7" radius="2.54" width="0.1524" layer="92"/>
 </plain>
 <instances>
 <instance part="P+1" gate="G$1" x="10.16" y="38.1"/>

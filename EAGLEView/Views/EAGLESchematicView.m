@@ -41,16 +41,7 @@
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
 
-	/*
-	/// TEMP: draw two symbols at hardcoded locations
-	EAGLESymbol *symbol_3V3 = sparkFunLibrary.symbols[ 0 ];
-	EAGLESymbol *symbol_GND = sparkFunLibrary.symbols[ 1 ];
-
-	[symbol_GND drawAtPoint:CGPointMake( 2.54, 2.54 ) context:context];
-	[symbol_3V3 drawAtPoint:CGPointMake( 2.54, 5.08 ) context:context];
-	 */
-
-	/// TEMP: draw all instances and nets
+	/// TEMP: draw all instances, nets, busses and plain objects
 	for( id<EAGLEDrawable> drawable in self.schematic.instances )
 		[drawable drawInContext:context];
 	for( id<EAGLEDrawable> drawable in self.schematic.nets )
