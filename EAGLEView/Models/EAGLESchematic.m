@@ -81,54 +81,67 @@
 		NSError *error = nil;
 
 		// Libraries
-		NSArray *libraries = [element nodesForXPath:@"libraries/library" error:&error];
+		NSArray *elements = [element nodesForXPath:@"libraries/library" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 
 		// Iterate and initialize objects
-		NSMutableArray *tmpLibraries = [[NSMutableArray alloc] initWithCapacity:[libraries count]];
-		for( DDXMLElement *libraryElement in libraries )
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
 		{
-			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:libraryElement inSchematic:self];
+			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inSchematic:self];
 			if( library )
-				[tmpLibraries addObject:library];
+				[tmpElements addObject:library];
 		}
-		_libraries = [NSArray arrayWithArray:tmpLibraries];
+		_libraries = [NSArray arrayWithArray:tmpElements];
 
 		// Parts
-		NSArray *parts = [element nodesForXPath:@"parts/part" error:&error];
+		elements = [element nodesForXPath:@"parts/part" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		NSMutableArray *tmpParts = [[NSMutableArray alloc] initWithCapacity:[parts count]];
-		for( DDXMLElement *childElement in parts )
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
 		{
 			EAGLEPart *part = [[EAGLEPart alloc] initFromXMLElement:childElement inSchematic:self];
 			if( part )
-				[tmpParts addObject:part];
+				[tmpElements addObject:part];
 		}
-		_parts = [NSArray arrayWithArray:tmpParts];
+		_parts = [NSArray arrayWithArray:tmpElements];
 
 		// Instances
-		NSArray *instances = [element nodesForXPath:@"sheets/sheet/instances/instance" error:&error];
+		elements = [element nodesForXPath:@"sheets/sheet/instances/instance" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		NSMutableArray *tmpInstances = [[NSMutableArray alloc] initWithCapacity:[instances count]];
-		for( DDXMLElement *childElement in instances )
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
 		{
 			EAGLEInstance *instance = [[EAGLEInstance alloc] initFromXMLElement:childElement inSchematic:self];
 			if( instance )
-				[tmpInstances addObject:instance];
+				[tmpElements addObject:instance];
 		}
-		_instances = [NSArray arrayWithArray:tmpInstances];
+		_instances = [NSArray arrayWithArray:tmpElements];
 
 		// Nets
-		NSArray *nets = [element nodesForXPath:@"sheets/sheet/nets/net" error:&error];
+		elements = [element nodesForXPath:@"sheets/sheet/nets/net" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		NSMutableArray *tmpNets = [[NSMutableArray alloc] initWithCapacity:[nets count]];
-		for( DDXMLElement *childElement in nets )
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
 		{
 			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inSchematic:self];
 			if( net )
-				[tmpNets addObject:net];
+				[tmpElements addObject:net];
 		}
-		_nets = [NSArray arrayWithArray:tmpNets];
+		_nets = [NSArray arrayWithArray:tmpElements];
+
+
+		// Busses
+		elements = [element nodesForXPath:@"sheets/sheet/busses/bus" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inSchematic:self];
+			if( net )
+				[tmpElements addObject:net];
+		}
+		_busses = [NSArray arrayWithArray:tmpElements];
 }
 
 	return self;
@@ -136,7 +149,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets", self.libraries, self.parts, [self.instances count], [self.nets count]];
+	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets, %d busses", self.libraries, self.parts, [self.instances count], [self.nets count], [self.busses count]];
 }
 
 - (EAGLEPart *)partWithName:(NSString *)name

@@ -51,10 +51,12 @@
 	 */
 
 	/// TEMP: draw all instances and nets
-	for( EAGLEInstance *instance in self.schematic.instances )
-		[instance drawInContext:context];
-	for( EAGLENet *net in self.schematic.nets )
-		[net drawInContext:context];	
+	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+		[drawable drawInContext:context];
+	for( id<EAGLEDrawable> drawable in self.schematic.nets )
+		[drawable drawInContext:context];
+	for( id<EAGLEDrawable> drawable in self.schematic.busses )
+		[drawable drawInContext:context];
 }
 
 @end

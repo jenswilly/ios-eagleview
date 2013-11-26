@@ -3674,6 +3674,11 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </instance>
 </instances>
 <busses>
+<bus name="BUS">
+<segment>
+<wire x1="22.86" y1="15.24" x2="22.86" y2="22.86" width="0.762" layer="92"/>
+</segment>
+</bus>
 </busses>
 <nets>
 <net name="3.3V" class="0">

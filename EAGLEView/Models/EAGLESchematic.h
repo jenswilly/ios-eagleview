@@ -18,6 +18,7 @@
 @property (readonly, strong) NSArray *parts;		// Contains EAGLEPart objects
 @property (readonly, strong) NSArray *instances;	// Contains EAGLEInstance objects
 @property (readonly, strong) NSArray *nets;			// Contains EAGLENet objects
+@property (readonly, strong) NSArray *busses;		// NOTE: also contains EAGLENet objects since they are conceptually identical
 
 + (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;

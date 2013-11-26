@@ -35,6 +35,9 @@
 
 	switch( color )
 	{
+		case 1: // Busses: blue
+			return RGB( 75, 75, 165 );
+			
 		case 2: // Nets
 			return RGB( 75, 165, 75 );
 
