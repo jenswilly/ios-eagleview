@@ -57,6 +57,8 @@
 		[drawable drawInContext:context];
 	for( id<EAGLEDrawable> drawable in self.schematic.busses )
 		[drawable drawInContext:context];
+	for( id<EAGLEDrawable> drawable in self.schematic.plainObjects )
+		[drawable drawInContext:context];
 }
 
 @end

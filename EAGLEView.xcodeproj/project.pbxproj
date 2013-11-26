@@ -59,6 +59,7 @@
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
+		47D3CD081844C17100F58240 /* EAGLEJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEJunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,8 @@
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
+		47D3CD061844C17100F58240 /* EAGLEJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEJunction.h; sourceTree = "<group>"; };
+		47D3CD071844C17100F58240 /* EAGLEJunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEJunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 				4784FF051843FE000005C290 /* EAGLENet.m */,
 				47D3CD03184499B600F58240 /* EAGLEAttribute.h */,
 				47D3CD04184499B600F58240 /* EAGLEAttribute.m */,
+				47D3CD061844C17100F58240 /* EAGLEJunction.h */,
+				47D3CD071844C17100F58240 /* EAGLEJunction.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -505,6 +510,7 @@
 				473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */,
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
 				473902F51840DD070092D025 /* GPJSONValidator.m in Sources */,
+				47D3CD081844C17100F58240 /* EAGLEJunction.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
 				47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */,
 				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,

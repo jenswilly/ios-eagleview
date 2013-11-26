@@ -3664,6 +3664,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <sheets>
 <sheet>
 <plain>
+<text x="30.48" y="22.86" size="1.778" layer="97" rot="R90">Simple
+text</text>
 </plain>
 <instances>
 <instance part="P+1" gate="G$1" x="10.16" y="38.1"/>
@@ -3700,12 +3702,15 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="10.16" y1="10.16" x2="10.16" y2="5.08" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<wire x1="22.86" y1="5.08" x2="22.86" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="10.16" x2="10.16" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="7.62" x2="10.16" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="5.08" x2="22.86" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="7.62" x2="22.86" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="12.7" x2="30.48" y2="12.7" width="0.1524" layer="91"/>
 <label x="25.4" y="5.08" size="1.778" layer="95" rot="R90"/>
+<wire x1="10.16" y1="7.62" x2="22.86" y2="7.62" width="0.1524" layer="91"/>
+<junction x="10.16" y="7.62"/>
+<junction x="22.86" y="7.62"/>
 </segment>
 <segment>
 <wire x1="30.48" y1="15.24" x2="30.48" y2="22.86" width="0.1524" layer="91"/>
@@ -3716,4 +3721,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

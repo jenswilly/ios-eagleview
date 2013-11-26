@@ -10,6 +10,7 @@
 #import "DDXML.h"
 #import "EAGLEDrawableWire.h"
 #import "EAGLEDrawableText.h"
+#import "EAGLEJunction.h"
 
 @implementation EAGLENet
 
@@ -46,6 +47,18 @@
 			}
 		}
 		_labels = [NSArray arrayWithArray:tmpElements];
+
+		// Junctions
+		elements = [element nodesForXPath:@"segment/junction" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLEJunction *junction = [[EAGLEJunction alloc] initFromXMLElement:childElement inSchematic:schematic];
+			if( junction )
+				[tmpElements addObject:junction];
+		}
+		_junctions = [NSArray arrayWithArray:tmpElements];
 	}
 
 	return self;
@@ -65,6 +78,10 @@
 	// And texts
 	for( EAGLEDrawableText *label in self.labels )
 		[label drawInContext:context];
+
+	// And junctions
+	for( EAGLEJunction *junction in self.junctions )
+		[junction drawInContext:context];
 }
 
 @end

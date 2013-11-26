@@ -11,7 +11,7 @@
 #import "EAGLESchematic.h"
 #import "EAGLELayer.h"
 
-const CGFloat kFontSizeFactor = 1.36;	// Font size is multiplied by this factor to get the point size
+const CGFloat kFontSizeFactor = 1.30;	// Font size is multiplied by this factor to get the point size
 
 @implementation EAGLEDrawableText
 
@@ -50,18 +50,27 @@ const CGFloat kFontSizeFactor = 1.36;	// Font size is multiplied by this factor 
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
 	CGContextRotateCTM( context, self.rotation );
-	CGContextTranslateCTM( context, 0, self.size * kFontSizeFactor );
+
+	// Set color
+	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+
+	// Set font properties
+	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	paragraphStyle.lineSpacing = 0;
+
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
+								  NSForegroundColorAttributeName: currentLayer.color,
+								  NSParagraphStyleAttributeName: paragraphStyle };
+
+	// Calculate text size and offset coordinate system
+	NSString *stringToDraw = (self.valueText ? self.valueText : self.text);
+	CGSize textSize = [stringToDraw sizeWithAttributes:attributes];
+	CGContextTranslateCTM( context, 0, textSize.height );
 	CGContextScaleCTM( context, 1, -1 );
 
-	// Set font and color
-	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
-	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
-								  NSForegroundColorAttributeName: currentLayer.color };
-
-	if( self.valueText )
-		[self.valueText drawAtPoint:CGPointZero withAttributes:attributes];
-	else
-		[self.text drawAtPoint:CGPointZero withAttributes:attributes];
+	// Draw string
+	[stringToDraw drawAtPoint:CGPointZero withAttributes:attributes];
 
 	CGContextRestoreGState( context );
 }

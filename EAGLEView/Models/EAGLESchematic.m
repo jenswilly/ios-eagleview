@@ -13,6 +13,7 @@
 #import "EAGLEPart.h"
 #import "EAGLEInstance.h"
 #import "EAGLENet.h"
+#import "EAGLEDrawableObject.h"
 
 @implementation EAGLESchematic
 
@@ -142,6 +143,20 @@
 				[tmpElements addObject:net];
 		}
 		_busses = [NSArray arrayWithArray:tmpElements];
+
+		// Plain
+		elements = [element nodesForXPath:@"sheets/sheet/plain/*" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			// Drawable
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:self];
+			if( drawable )
+				[tmpElements addObject:drawable];
+		}
+		_plainObjects = [NSArray arrayWithArray:tmpElements];
+
 }
 
 	return self;
