@@ -57,7 +57,15 @@
 		if( [drawable isKindOfClass:[EAGLEDrawableText class]] )
 		{
 			NSString *placeholder = ((EAGLEDrawableText*)drawable).text;
+
+			// Should this text be skipped (because it is smashed and the symbol object will draw it)?
+			if( [self.placeholdersToSkip containsObject:placeholder] )
+				// Yes: ignore this element
+				continue;
+
+			// Do we have a custom value for this text?
 			if( self.textsForPlaceholders[ placeholder ] != nil )
+				// Yes: set it
 				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
 		}
 

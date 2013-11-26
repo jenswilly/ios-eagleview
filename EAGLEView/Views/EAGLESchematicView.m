@@ -51,7 +51,6 @@
 	 */
 
 	/// TEMP: draw all instances and nets
-	DEBUG_POSITION;
 	for( EAGLEInstance *instance in self.schematic.instances )
 		[instance drawInContext:context];
 	for( EAGLENet *net in self.schematic.nets )

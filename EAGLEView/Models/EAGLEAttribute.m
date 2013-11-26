@@ -1,32 +1,30 @@
 //
-//  EAGLEDrawableText.m
+//  EAGLEAttribute.m
 //  EAGLEView
 //
-//  Created by Jens Willy Johannsen on 23/11/13.
+//  Created by Jens Willy Johannsen on 26/11/13.
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEDrawableText.h"
+#import "EAGLEAttribute.h"
 #import "DDXML.h"
-#import "EAGLESchematic.h"
+#import "EAGLEDrawableText.h"	// For kFontSizeFactor
 #import "EAGLELayer.h"
+#import "EAGLESchematic.h"
 
-const CGFloat kFontSizeFactor = 1.36;	// Font size is multiplied by this factor to get the point size
-
-@implementation EAGLEDrawableText
+@implementation EAGLEAttribute
 
 - (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
 {
 	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
 	{
-		_text = [element stringValue];
+		_name = [[element attributeForName:@"name"] stringValue];
 
 		CGFloat x = [[[element attributeForName:@"x"] stringValue] floatValue];
 		CGFloat y = [[[element attributeForName:@"y"] stringValue] floatValue];
 		_point = CGPointMake( x, y );
 
-		CGFloat size = [[[element attributeForName:@"size"] stringValue] floatValue];
-		_size = size;
+		_size = [[[element attributeForName:@"size"] stringValue] floatValue];
 
 		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
 		if( rotString == nil )
@@ -39,9 +37,14 @@ const CGFloat kFontSizeFactor = 1.36;	// Font size is multiplied by this factor 
 			_rotation = M_PI;
 		else
 			[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotString];
-	}
+}
 
 	return self;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Attribute %@ – at %@, size %.2f", self.name, NSStringFromCGPoint( self.point ), self.size];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -58,10 +61,7 @@ const CGFloat kFontSizeFactor = 1.36;	// Font size is multiplied by this factor 
 	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
 								  NSForegroundColorAttributeName: currentLayer.color };
 
-	if( self.valueText )
-		[self.valueText drawAtPoint:CGPointZero withAttributes:attributes];
-	else
-		[self.text drawAtPoint:CGPointZero withAttributes:attributes];
+	[self.text drawAtPoint:CGPointZero withAttributes:attributes];
 
 	CGContextRestoreGState( context );
 }

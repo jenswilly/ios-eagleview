@@ -3669,7 +3669,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="P+1" gate="G$1" x="10.16" y="38.1"/>
 <instance part="D1" gate="G$1" x="10.16" y="27.94"/>
 <instance part="R1" gate="G$1" x="10.16" y="15.24" rot="R90"/>
-<instance part="GND1" gate="1" x="10.16" y="2.54"/>
+<instance part="GND1" gate="1" x="10.16" y="2.54" smashed="yes">
+<attribute name="VALUE" x="10.16" y="0" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -3693,6 +3695,13 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="GND1" gate="1" pin="GND"/>
 <wire x1="10.16" y1="10.16" x2="10.16" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="22.86" y1="5.08" x2="22.86" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="12.7" x2="30.48" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="30.48" y1="15.24" x2="30.48" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

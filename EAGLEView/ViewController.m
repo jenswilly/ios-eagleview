@@ -29,7 +29,6 @@
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
 	self.schematicView.schematic = schematic;
-	DEBUG_POSITION;
 
 //	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:self.view.bounds];
 //	schematicView.schematic = schematic;

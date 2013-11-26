@@ -8,6 +8,8 @@
 
 #import "EAGLEDrawableObject.h"
 
+extern const CGFloat kFontSizeFactor;
+
 @interface EAGLEDrawableText : EAGLEDrawableObject
 
 @property (readonly) CGPoint point;

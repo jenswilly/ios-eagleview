@@ -58,6 +58,7 @@
 		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
+		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +156,8 @@
 		4782AB6F18439E190022F660 /* EAGLEPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEPart.m; sourceTree = "<group>"; };
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
+		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
+		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +265,8 @@
 				4782AB6F18439E190022F660 /* EAGLEPart.m */,
 				4784FF041843FE000005C290 /* EAGLENet.h */,
 				4784FF051843FE000005C290 /* EAGLENet.m */,
+				47D3CD03184499B600F58240 /* EAGLEAttribute.h */,
+				47D3CD04184499B600F58240 /* EAGLEAttribute.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -501,6 +506,7 @@
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
 				473902F51840DD070092D025 /* GPJSONValidator.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
+				47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */,
 				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
