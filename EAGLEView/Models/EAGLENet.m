@@ -9,6 +9,7 @@
 #import "EAGLENet.h"
 #import "DDXML.h"
 #import "EAGLEDrawableWire.h"
+#import "EAGLEDrawableText.h"
 
 @implementation EAGLENet
 
@@ -29,6 +30,22 @@
 				[tmpWires addObject:wire];
 		}
 		_wires = [NSArray arrayWithArray:tmpWires];
+
+		// Get labels
+		NSArray *elements = [element nodesForXPath:@"segment/label" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLEDrawableText *label = [[EAGLEDrawableText alloc] initFromXMLElement:childElement inSchematic:schematic];
+			if( label )
+			{
+				// Set text to the name of the bus
+				label.valueText = _name;
+				[tmpElements addObject:label];
+			}
+		}
+		_labels = [NSArray arrayWithArray:tmpElements];
 	}
 
 	return self;
@@ -36,7 +53,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Net %@ – %d wires", self.name, [self.wires count]];
+	return [NSString stringWithFormat:@"Net %@ – %d wires, %d labels", self.name, [self.wires count], [self.labels count]];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -44,6 +61,10 @@
 	// Iterate and draw all wires
 	for( EAGLEDrawableWire *wire in self.wires )
 		[wire drawInContext:context];
+
+	// And texts
+	for( EAGLEDrawableText *label in self.labels )
+		[label drawInContext:context];
 }
 
 @end

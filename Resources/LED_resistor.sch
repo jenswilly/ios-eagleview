@@ -3677,6 +3677,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <bus name="BUS">
 <segment>
 <wire x1="22.86" y1="15.24" x2="22.86" y2="22.86" width="0.762" layer="92"/>
+<label x="22.352" y="18.288" size="1.778" layer="95" rot="R90"/>
 </segment>
 </bus>
 </busses>
@@ -3704,6 +3705,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <segment>
 <wire x1="22.86" y1="5.08" x2="22.86" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="12.7" x2="30.48" y2="12.7" width="0.1524" layer="91"/>
+<label x="25.4" y="5.08" size="1.778" layer="95" rot="R90"/>
 </segment>
 <segment>
 <wire x1="30.48" y1="15.24" x2="30.48" y2="22.86" width="0.1524" layer="91"/>

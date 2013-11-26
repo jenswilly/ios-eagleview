@@ -13,5 +13,6 @@
 
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) NSArray *wires;	// Contains EAGLENet objects. NOTE: segments have abstracted away from the model
+@property (readonly, strong) NSArray *labels;	// Contains EAGLEDrawableText objects where the valueText property has been set to the name of the net/bus
 
 @end
