@@ -3667,6 +3667,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <text x="30.48" y="22.86" size="1.778" layer="97" rot="R90">Simple
 text</text>
 <circle x="30.48" y="12.7" radius="2.54" width="0.1524" layer="92"/>
+<wire x1="22.86" y1="5.08" x2="20.32" y2="2.54" width="0.1524" layer="97" curve="-270"/>
 </plain>
 <instances>
 <instance part="P+1" gate="G$1" x="10.16" y="38.1"/>
@@ -3715,6 +3716,11 @@ text</text>
 </segment>
 <segment>
 <wire x1="30.48" y1="15.24" x2="30.48" y2="22.86" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<wire x1="53.34" y1="25.4" x2="63.5" y2="20.32" width="0.1524" layer="91" curve="-180"/>
 </segment>
 </net>
 </nets>

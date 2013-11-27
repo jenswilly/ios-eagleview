@@ -30,8 +30,13 @@
 {
 	NSString *elementName = [element localName];
 
-	if( [elementName isEqualToString:@"wire"] )
+	// Only use a wire object if there is no "curve" attribute
+	if( [elementName isEqualToString:@"wire"] && [element attributeForName:@"curve"] == nil )
 		return [[EAGLEDrawableWire alloc] initFromXMLElement:element inSchematic:schematic];
+
+	// A "wire" _with_ a "curve" attribute is an arc
+	if( [elementName isEqualToString:@"wire"] && [element attributeForName:@"curve"] != nil )
+		return nil;
 
 	if( [elementName isEqualToString:@"text"] )
 		return [[EAGLEDrawableText alloc] initFromXMLElement:element inSchematic:schematic];
