@@ -14,6 +14,7 @@
 #import "EAGLEDrawablePin.h"
 #import "EAGLEDrawablePolygon.h"
 #import "EAGLEDrawableCircle.h"
+#import "EAGLEDrawableArc.h"
 #import "DDXML.h"
 
 @implementation EAGLEDrawableObject
@@ -36,7 +37,7 @@
 
 	// A "wire" _with_ a "curve" attribute is an arc
 	if( [elementName isEqualToString:@"wire"] && [element attributeForName:@"curve"] != nil )
-		return nil;
+		return [[EAGLEDrawableArc alloc] initFromXMLElement:element inSchematic:schematic];
 
 	if( [elementName isEqualToString:@"text"] )
 		return [[EAGLEDrawableText alloc] initFromXMLElement:element inSchematic:schematic];
