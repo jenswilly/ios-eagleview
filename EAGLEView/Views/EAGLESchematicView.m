@@ -20,6 +20,8 @@
     self = [super initWithFrame:frame];
     if (self)
 	{
+		_minZoomFactor = 1;
+		_maxZoomFactor = 100;
 		_zoomFactor = 15;	// Default zoom factor
     }
 
@@ -28,7 +30,15 @@
 
 - (void)awakeFromNib
 {
+	_minZoomFactor = 1;
+	_maxZoomFactor = 100;
 	_zoomFactor = 15;
+}
+
+- (void)setRelativeZoomFactor:(CGFloat)relativeFactor
+{
+	CGFloat span = _maxZoomFactor - _minZoomFactor;
+	self.zoomFactor = _minZoomFactor + relativeFactor * span;
 }
 
 - (CGSize)intrinsicContentSize

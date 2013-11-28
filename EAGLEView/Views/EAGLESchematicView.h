@@ -13,5 +13,9 @@
 
 @property (strong) EAGLESchematic *schematic;
 @property (assign) CGFloat zoomFactor;
+@property (assign) CGFloat minZoomFactor;
+@property (assign) CGFloat maxZoomFactor;
+
+- (void)setRelativeZoomFactor:(CGFloat)relativeFactor;	// Sets the zoom factor between min. and max. by specifying a number between 0 and 1.
 
 @end

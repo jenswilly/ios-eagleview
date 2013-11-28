@@ -31,6 +31,8 @@
 
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
+
+	[self.schematicView setRelativeZoomFactor:0.5];
 	self.schematicView.schematic = schematic;
 
 //	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:self.view.bounds];
@@ -59,7 +61,7 @@
 
 - (IBAction)sliderChangedValueAction:(UISlider*)sender
 {
-	self.schematicView.zoomFactor = sender.value * 50;
+	[self.schematicView setRelativeZoomFactor:sender.value];
 	[self.schematicView invalidateIntrinsicContentSize];
 	[self.schematicView setNeedsDisplay];
 }
