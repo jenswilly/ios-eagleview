@@ -20,7 +20,7 @@
     self = [super initWithFrame:frame];
     if (self)
 	{
-		_zoomFactor = 10;	// Default zoom factor
+		_zoomFactor = 5;	// Default zoom factor
     }
 
     return self;
@@ -28,7 +28,7 @@
 
 - (void)awakeFromNib
 {
-	_zoomFactor = 10;
+	_zoomFactor = 5;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -37,6 +37,8 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM( context, 0, self.bounds.size.height );
 	CGContextScaleCTM( context, 1, -1 );
+
+	CGContextTranslateCTM( context, 100, 100 );
 
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );

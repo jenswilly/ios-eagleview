@@ -26,9 +26,9 @@
 		NSMutableArray *tmpWires = [[NSMutableArray alloc] initWithCapacity:[wires count]];
 		for( DDXMLElement *childElement in wires )
 		{
-			EAGLEDrawableWire *wire = [[EAGLEDrawableWire alloc] initFromXMLElement:childElement inSchematic:schematic];
-			if( wire )
-				[tmpWires addObject:wire];
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:schematic];
+			if( drawable )
+				[tmpWires addObject:drawable];
 		}
 		_wires = [NSArray arrayWithArray:tmpWires];
 

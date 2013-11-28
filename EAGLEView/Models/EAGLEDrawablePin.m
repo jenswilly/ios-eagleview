@@ -37,6 +37,8 @@
 		NSString *lengthString = [[element attributeForName:@"length"] stringValue];
 		if( [lengthString isEqualToString:@"short"] )
 			_length = EAGLEDrawablePinLength_Short;
+		else if( [lengthString isEqualToString:@"middle"] )
+			_length = EAGLEDrawablePinLength_Medium;
 		else
 			[NSException raise:@"Unknown length string" format:@"Unknown length: %@", lengthString];
 	}
