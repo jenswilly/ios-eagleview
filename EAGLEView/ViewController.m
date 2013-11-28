@@ -51,5 +51,4 @@
 		_lastZoom = zoom;
 }
 
-
 @end

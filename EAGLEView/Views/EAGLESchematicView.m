@@ -85,12 +85,10 @@
 	CGContextTranslateCTM( context, 0, self.bounds.size.height );
 	CGContextScaleCTM( context, 1, -1 );
 
-//	CGContextTranslateCTM( context, 100, 100 );
-
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
 
-	/// TEMP: draw all instances, nets, busses and plain objects
+	// Draw all instances, nets, busses and plain objects
 	for( id<EAGLEDrawable> drawable in self.schematic.instances )
 		[drawable drawInContext:context];
 	for( id<EAGLEDrawable> drawable in self.schematic.nets )
