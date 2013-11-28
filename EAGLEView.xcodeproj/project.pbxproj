@@ -58,6 +58,7 @@
 		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
+		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -159,6 +160,7 @@
 		4782AB6F18439E190022F660 /* EAGLEPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEPart.m; sourceTree = "<group>"; };
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
+		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEJunction.h; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableCircle.m; sourceTree = "<group>"; };
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
 		47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableArc.m; sourceTree = "<group>"; };
+		47FF32CC1847382F00E711C7 /* To-do.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To-do.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,7 @@
 		4739027D1840D9930092D025 = {
 			isa = PBXGroup;
 			children = (
+				47FF32CC1847382F00E711C7 /* To-do.txt */,
 				4739035518414C8E0092D025 /* Views */,
 				473903241840DD360092D025 /* External */,
 				473902C21840DC5C0092D025 /* View Controllers */,
@@ -300,6 +304,7 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47A474921846B21C00C9FDFD /* iBeacon.sch */,
 				473903251840DED90092D025 /* LED_resistor.brd */,
 				473903261840DED90092D025 /* LED_resistor.sch */,
 				473902C41840DC9E0092D025 /* XIB */,
@@ -485,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				473902E61840DD070092D025 /* .gitignore in Resources */,
+				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,

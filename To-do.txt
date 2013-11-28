@@ -1,0 +1,6 @@
+- Drawable: rectangle
+- Drawable: description
+- Drawable: description
+- Scroll
+- Zoom
+√ Arcs in net/segment/wire or bus/segment/wire
