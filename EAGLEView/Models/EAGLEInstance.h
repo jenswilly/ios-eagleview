@@ -16,7 +16,7 @@
 @property (readonly, strong) NSString *gate_name;
 @property (readonly) CGPoint point;
 @property (readonly) BOOL smashed;
-@property (readonly) CGFloat rotation;
+@property (readonly) Rotation rotation;
 
 - (EAGLESymbol*)symbol;
 

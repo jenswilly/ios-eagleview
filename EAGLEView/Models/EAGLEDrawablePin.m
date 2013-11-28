@@ -8,6 +8,12 @@
 
 #import "EAGLEDrawablePin.h"
 #import "DDXML.h"
+#import "EAGLELayer.h"
+#import "EAGLESchematic.h"
+#import "EAGLEDrawableText.h"
+
+static const CGFloat kPinNameTextSize = 1.8;
+static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 @implementation EAGLEDrawablePin
 
@@ -21,19 +27,10 @@
 		CGFloat y = [[[element attributeForName:@"y"] stringValue] floatValue];
 		_point = CGPointMake( x, y );
 
-		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
-		if( rotString == nil )
-			_rotation = 0;
-		else if( [rotString isEqualToString:@"R90"] )
-			_rotation = M_PI_2;
-		else if( [rotString isEqualToString:@"R270"] )
-			_rotation = M_PI_2 * 3;
-		else if( [rotString isEqualToString:@"R180"] )
-			_rotation = M_PI;
-		else
-			[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotString];
+		NSString *rotationString = [[element attributeForName:@"rot"] stringValue];
+		_rotation = [EAGLEDrawableObject rotationForString:rotationString];
 
-
+		// Length
 		NSString *lengthString = [[element attributeForName:@"length"] stringValue];
 		if( [lengthString isEqualToString:@"short"] )
 			_length = EAGLEDrawablePinLength_Short;
@@ -41,6 +38,10 @@
 			_length = EAGLEDrawablePinLength_Medium;
 		else
 			[NSException raise:@"Unknown length string" format:@"Unknown length: %@", lengthString];
+
+		// Visible pin/pad text
+		NSString *visible = [[element attributeForName:@"visible"] stringValue];
+		_pinVisible = ( [visible isEqualToString:@"pin"] || [visible isEqualToString:@"both"] );
 	}
 
 	return self;
@@ -73,8 +74,8 @@
 
 	// Rotate
 	CGContextSaveGState( context );
-	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
-	CGContextRotateCTM( context, self.rotation );					// Now rotate. Otherwise, rotation center would be offset
+	CGContextTranslateCTM( context, self.point.x, self.point.y );			// Translate so origin point is 0,0
+	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
 	// Draw line
     CGContextBeginPath( context );
@@ -82,6 +83,26 @@
     CGContextMoveToPoint( context, 0, 0);
     CGContextAddLineToPoint( context, [EAGLEDrawablePin lengthForPinLength:self.length], 0 );
     CGContextStrokePath( context );
+
+	// Draw pin
+	if( _pinVisible )
+	{
+		EAGLELayer *currentLayer = self.schematic.layers[ @96 ];	// Hardcoded layer for pin names
+		NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:kPinNameTextSize * kFontSizeFactor],
+									  NSForegroundColorAttributeName: currentLayer.color };
+
+		CGSize textSize = [self.name sizeWithAttributes:attributes];
+		CGContextTranslateCTM( context, [EAGLEDrawablePin lengthForPinLength:self.length] + kPinNamePadding, textSize.height/2 );
+		CGContextScaleCTM( context, 1, -1 );
+
+		if( _rotation == Rotation_R180 )
+		{
+			CGContextTranslateCTM( context, textSize.width, textSize.height );
+			CGContextScaleCTM( context, -1, -1 );
+		}
+
+		[self.name drawAtPoint:CGPointZero withAttributes:attributes];
+	}
 
 	CGContextRestoreGState( context );
 }

@@ -14,7 +14,7 @@
 @property (readonly, strong) NSString *name;
 @property (readonly) CGPoint point;
 @property (readonly) CGFloat size;
-@property (readonly) CGFloat rotation;
+@property (readonly) Rotation rotation;
 @property (strong) NSString *text;
 
 @end

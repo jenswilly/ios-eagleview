@@ -44,7 +44,7 @@
 	return [NSString stringWithFormat:@"Symbol %@, components: %@", self.name, [self.components description]];
 }
 
-- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context
+- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts
 {
 	// Offset to point
 	CGContextSaveGState( context );
@@ -67,10 +67,13 @@
 			if( self.textsForPlaceholders[ placeholder ] != nil )
 				// Yes: set it
 				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
-		}
 
-		// Draw it
-		[drawable drawInContext:context];
+			// We need to call a special method since the text might need to be flipped
+			[(EAGLEDrawableText*)drawable drawInContext:context flipText:flipTexts];
+		}
+		else
+			// Draw it
+			[drawable drawInContext:context];
 	}
 
 	// Restore coordinate system

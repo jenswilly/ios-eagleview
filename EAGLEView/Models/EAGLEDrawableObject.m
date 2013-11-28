@@ -61,6 +61,40 @@
 	return nil;
 }
 
++ (CGFloat)radiansForRotation:(Rotation)rotation
+{
+	switch( rotation )
+	{
+		case Rotation_R90:
+			return M_PI_2;
+
+		case Rotation_R180:
+			return M_PI;
+
+		case Rotation_R270:
+			return M_PI_2 * 3;
+
+		default:
+			return 0;
+	}
+}
+
++ (Rotation)rotationForString:(NSString*)rotationString
+{
+	if( rotationString == nil )
+		return Rotation_0;
+	else if( [rotationString isEqualToString:@"R90"] )
+		return Rotation_R90;
+	else if( [rotationString isEqualToString:@"R270"] )
+		return Rotation_R270;
+	else if( [rotationString isEqualToString:@"R180"] )
+		return Rotation_R180;
+	else
+		[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotationString];
+
+	return 0;
+}
+
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context
 {
 	// Set color to layer's color

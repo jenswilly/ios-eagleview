@@ -15,7 +15,7 @@
 @property (strong) NSDictionary *textsForPlaceholders;
 @property (strong) NSArray *placeholdersToSkip;	// Array of placeholder texts to ignore. This is used when an attribute is smashed which means we'll draw it directly from the symbol
 
-- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context;
+- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
 

@@ -20,6 +20,7 @@ typedef enum
 @property (readonly) CGPoint point;
 @property (readonly, strong) NSString *name;
 @property (readonly) EAGLEDrawablePinLength length;
-@property (readonly) CGFloat rotation;
+@property (readonly) Rotation rotation;
+@property (readonly) BOOL pinVisible;
 
 @end

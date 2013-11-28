@@ -27,16 +27,7 @@
 		_size = [[[element attributeForName:@"size"] stringValue] floatValue];
 
 		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
-		if( rotString == nil )
-			_rotation = 0;
-		else if( [rotString isEqualToString:@"R90"] )
-			_rotation = M_PI_2;
-		else if( [rotString isEqualToString:@"R270"] )
-			_rotation = M_PI_2 * 3;
-		else if( [rotString isEqualToString:@"R180"] )
-			_rotation = M_PI;
-		else
-			[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotString];
+		_rotation = [EAGLEDrawableObject rotationForString:rotString];
 }
 
 	return self;
@@ -52,7 +43,7 @@
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
-	CGContextRotateCTM( context, self.rotation );
+	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
 	CGContextTranslateCTM( context, 0, self.size * kFontSizeFactor );
 	CGContextScaleCTM( context, 1, -1 );
 
@@ -73,7 +64,7 @@
 
 	// Rotate if necessary
 	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
-	dummyView.transform = CGAffineTransformMakeRotation( self.rotation );
+	dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
 	return self.point.x + dummyView.bounds.size.width;
 }
@@ -85,7 +76,7 @@
 
 	// Rotate if necessary
 	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
-	dummyView.transform = CGAffineTransformMakeRotation( self.rotation );
+	dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
 	return self.point.y + dummyView.bounds.size.height;
 }

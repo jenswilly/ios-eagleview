@@ -15,7 +15,9 @@ extern const CGFloat kFontSizeFactor;
 @property (readonly) CGPoint point;
 @property (readonly, strong) NSString *text;
 @property (readonly) CGFloat size;
-@property (readonly) CGFloat rotation;
+@property (readonly) Rotation rotation;
 @property (weak) NSString *valueText;
+
+- (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText;
 
 @end
