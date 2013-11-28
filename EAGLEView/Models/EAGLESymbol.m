@@ -77,4 +77,22 @@
 	CGContextRestoreGState( context );
 }
 
+- (CGFloat)maxX
+{
+	CGFloat maxX = -MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.components )
+		maxX = MAX( maxX, [drawable maxX] );
+
+	return maxX;
+}
+
+- (CGFloat)maxY
+{
+	CGFloat maxY = -MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.components )
+		maxY = MAX( maxY, [drawable maxY] );
+
+	return maxY;
+}
+
 @end

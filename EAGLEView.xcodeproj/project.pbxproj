@@ -60,7 +60,7 @@
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
-		47D3CD081844C17100F58240 /* EAGLEJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEJunction.m */; };
+		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
 		47D3CD0E1845375B00F58240 /* EAGLEDrawableArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */; };
 /* End PBXBuildFile section */
@@ -163,8 +163,8 @@
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
-		47D3CD061844C17100F58240 /* EAGLEJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEJunction.h; sourceTree = "<group>"; };
-		47D3CD071844C17100F58240 /* EAGLEJunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEJunction.m; sourceTree = "<group>"; };
+		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
+		47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableJunction.m; sourceTree = "<group>"; };
 		47D3CD091844C46D00F58240 /* EAGLEDrawableCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableCircle.h; sourceTree = "<group>"; };
 		47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableCircle.m; sourceTree = "<group>"; };
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
@@ -268,6 +268,12 @@
 				4739035A184155530092D025 /* EAGLEDrawablePin.m */,
 				4739035C184343610092D025 /* EAGLEDrawablePolygon.h */,
 				4739035D184343610092D025 /* EAGLEDrawablePolygon.m */,
+				47D3CD091844C46D00F58240 /* EAGLEDrawableCircle.h */,
+				47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */,
+				47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */,
+				47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */,
+				47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */,
+				47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */,
 				4782AB6518438B120022F660 /* EAGLEInstance.h */,
 				4782AB6618438B120022F660 /* EAGLEInstance.m */,
 				4782AB6818438C6D0022F660 /* EAGLEGate.h */,
@@ -280,12 +286,6 @@
 				4784FF051843FE000005C290 /* EAGLENet.m */,
 				47D3CD03184499B600F58240 /* EAGLEAttribute.h */,
 				47D3CD04184499B600F58240 /* EAGLEAttribute.m */,
-				47D3CD061844C17100F58240 /* EAGLEJunction.h */,
-				47D3CD071844C17100F58240 /* EAGLEJunction.m */,
-				47D3CD091844C46D00F58240 /* EAGLEDrawableCircle.h */,
-				47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */,
-				47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */,
-				47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -526,7 +526,7 @@
 				473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */,
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
 				473902F51840DD070092D025 /* GPJSONValidator.m in Sources */,
-				47D3CD081844C17100F58240 /* EAGLEJunction.m in Sources */,
+				47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
 				47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */,
 				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,

@@ -46,6 +46,11 @@
 	return self;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Pin – length: %d, at %@", self.length, NSStringFromCGPoint( self.point )];
+}
+
 + (CGFloat)lengthForPinLength:(EAGLEDrawablePinLength)pinLength
 {
 	switch( pinLength )
@@ -80,4 +85,16 @@
 
 	CGContextRestoreGState( context );
 }
+
+- (CGFloat)maxX
+{
+	return self.point.x + [EAGLEDrawablePin lengthForPinLength:self.length];
+}
+
+- (CGFloat)maxY
+{
+	return self.point.y + [EAGLEDrawablePin lengthForPinLength:self.length];
+}
+
+
 @end

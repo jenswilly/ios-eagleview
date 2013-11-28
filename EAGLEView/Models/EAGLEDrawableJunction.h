@@ -8,7 +8,7 @@
 
 #import "EAGLEDrawableObject.h"
 
-@interface EAGLEJunction : EAGLEDrawableObject
+@interface EAGLEDrawableJunction : EAGLEDrawableObject
 
 @property (readonly) CGPoint point;
 

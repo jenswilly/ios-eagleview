@@ -123,4 +123,15 @@
 	CGContextDrawPath( context, kCGPathStroke );
 }
 
+- (CGFloat)maxX
+{
+	return _center.x + _radius;
+}
+
+- (CGFloat)maxY
+{
+	return _center.y + _radius;
+}
+
+
 @end

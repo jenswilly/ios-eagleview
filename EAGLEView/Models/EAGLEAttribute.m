@@ -66,4 +66,28 @@
 	CGContextRestoreGState( context );
 }
 
+- (CGFloat)maxX
+{
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor] };
+	CGSize textSize = [self.text sizeWithAttributes:attributes];
+
+	// Rotate if necessary
+	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
+	dummyView.transform = CGAffineTransformMakeRotation( self.rotation );
+
+	return self.point.x + dummyView.bounds.size.width;
+}
+
+- (CGFloat)maxY
+{
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor] };
+	CGSize textSize = [self.text sizeWithAttributes:attributes];
+
+	// Rotate if necessary
+	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
+	dummyView.transform = CGAffineTransformMakeRotation( self.rotation );
+
+	return self.point.y + dummyView.bounds.size.height;
+}
+
 @end

@@ -44,4 +44,14 @@
 	CGContextStrokeEllipseInRect( context, enclosingRect );
 }
 
+- (CGFloat)maxX
+{
+	return self.center.x + self.radius;
+}
+
+- (CGFloat)maxY
+{
+	return self.center.y + self.radius;
+}
+
 @end

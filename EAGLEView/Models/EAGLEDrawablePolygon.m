@@ -66,4 +66,29 @@
 	// Fill polygon
     CGContextFillPath(context);
 }
+
+- (CGFloat)maxX
+{
+	CGFloat maxX = -MAXFLOAT;
+	for( NSValue *vertex in self.vertices )
+	{
+		CGPoint point = [vertex CGPointValue];
+		maxX = MAX( maxX, point.x );
+	}
+
+	return maxX;
+}
+
+- (CGFloat)maxY
+{
+	CGFloat maxY = -MAXFLOAT;
+	for( NSValue *vertex in self.vertices )
+	{
+		CGPoint point = [vertex CGPointValue];
+		maxY = MAX( maxY, point.y );
+	}
+
+	return maxY;
+}
+
 @end

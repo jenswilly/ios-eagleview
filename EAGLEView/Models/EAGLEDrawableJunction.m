@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEJunction.h"
+#import "EAGLEDrawableJunction.h"
 #import "DDXML.h"
 
 static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 
-@implementation EAGLEJunction
+@implementation EAGLEDrawableJunction
 
 - (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
 {
@@ -42,6 +42,16 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 	// Draw filled circle
 	CGRect enclosingRect = CGRectMake( self.point.x - kJunctionDiameter/2, self.point.y - kJunctionDiameter/2, kJunctionDiameter, kJunctionDiameter );
 	CGContextFillEllipseInRect( context, enclosingRect);
+}
+
+- (CGFloat)maxX
+{
+	return self.point.x + kJunctionDiameter/2;
+}
+
+- (CGFloat)maxY
+{
+	return self.point.y + kJunctionDiameter/2;
 }
 
 @end

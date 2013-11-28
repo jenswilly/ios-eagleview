@@ -47,4 +47,14 @@
     CGContextStrokePath( context );
 }
 
+- (CGFloat)maxX
+{
+	return MAX( self.point1.x, self.point2.x );
+}
+
+- (CGFloat)maxY
+{
+	return MAX( self.point1.y, self.point2.y );
+}
+
 @end

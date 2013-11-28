@@ -10,7 +10,7 @@
 #import "DDXML.h"
 #import "EAGLEDrawableWire.h"
 #import "EAGLEDrawableText.h"
-#import "EAGLEJunction.h"
+#import "EAGLEDrawableJunction.h"
 
 @implementation EAGLENet
 
@@ -54,7 +54,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEJunction *junction = [[EAGLEJunction alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableJunction *junction = [[EAGLEDrawableJunction alloc] initFromXMLElement:childElement inSchematic:schematic];
 			if( junction )
 				[tmpElements addObject:junction];
 		}
@@ -80,8 +80,44 @@
 		[label drawInContext:context];
 
 	// And junctions
-	for( EAGLEJunction *junction in self.junctions )
+	for( EAGLEDrawableJunction *junction in self.junctions )
 		[junction drawInContext:context];
+}
+
+- (CGFloat)maxX
+{
+	CGFloat maxX = -MAXFLOAT;
+
+	for( EAGLEDrawableWire *wire in self.wires )
+		maxX = MAX( maxX, [wire maxX] );
+
+	// And texts
+	for( EAGLEDrawableText *label in self.labels )
+		maxX = MAX( maxX, [label maxX] );
+
+	// And junctions
+	for( EAGLEDrawableJunction *junction in self.junctions )
+		maxX = MAX( maxX, [junction maxX] );
+
+	return maxX;
+}
+
+- (CGFloat)maxY
+{
+	CGFloat maxY = -MAXFLOAT;
+
+	for( EAGLEDrawableWire *wire in self.wires )
+		maxY = MAX( maxY, [wire maxY] );
+
+	// And texts
+	for( EAGLEDrawableText *label in self.labels )
+		maxY = MAX( maxY, [label maxY] );
+
+	// And junctions
+	for( EAGLEDrawableJunction *junction in self.junctions )
+		maxY = MAX( maxY, [junction maxY] );
+
+	return maxY;
 }
 
 @end

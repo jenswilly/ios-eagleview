@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EAGLEDrawableObject.h"
 
-@interface EAGLEAttribute : EAGLEDrawableObject
+@interface EAGLEAttribute : EAGLEDrawableObject <EAGLEDrawable>
 
 @property (readonly, strong) NSString *name;
 @property (readonly) CGPoint point;

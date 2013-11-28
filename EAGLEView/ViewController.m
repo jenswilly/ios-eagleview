@@ -17,6 +17,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet EAGLESchematicView *schematicView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -25,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+//	self.scrollView.zoomScale = 0.3;
 
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
@@ -52,6 +55,20 @@
 	imageView.frame = frame;
 	[self.view addSubview:imageView];
 	 */
+}
+
+- (IBAction)sliderChangedValueAction:(UISlider*)sender
+{
+	self.schematicView.zoomFactor = sender.value * 50;
+	[self.schematicView invalidateIntrinsicContentSize];
+	[self.schematicView setNeedsDisplay];
+}
+
+#pragma mark UIScrollView delegate methods
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+	return self.schematicView;
 }
 
 @end

@@ -11,6 +11,8 @@
 @protocol EAGLEDrawable <NSObject>
 
 - (void)drawInContext:(CGContextRef)context;
+- (CGFloat)maxX;
+- (CGFloat)maxY;
 
 @end
 

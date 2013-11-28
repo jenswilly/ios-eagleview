@@ -20,7 +20,7 @@
     self = [super initWithFrame:frame];
     if (self)
 	{
-		_zoomFactor = 5;	// Default zoom factor
+		_zoomFactor = 15;	// Default zoom factor
     }
 
     return self;
@@ -28,7 +28,40 @@
 
 - (void)awakeFromNib
 {
-	_zoomFactor = 5;
+	_zoomFactor = 15;
+}
+
+- (CGSize)intrinsicContentSize
+{
+	CGFloat maxX = -MAXFLOAT;
+	CGFloat maxY = -MAXFLOAT;
+
+	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+	{
+		maxX = MAX( maxX, [drawable maxX] );
+		maxY = MAX( maxY, [drawable maxY] );
+	}
+
+	for( id<EAGLEDrawable> drawable in self.schematic.nets )
+	{
+		maxX = MAX( maxX, [drawable maxX] );
+		maxY = MAX( maxY, [drawable maxY] );
+	}
+
+	for( id<EAGLEDrawable> drawable in self.schematic.busses )
+	{
+		maxX = MAX( maxX, [drawable maxX] );
+		maxY = MAX( maxY, [drawable maxY] );
+	}
+
+	for( id<EAGLEDrawable> drawable in self.schematic.plainObjects )
+	{
+		maxX = MAX( maxX, [drawable maxX] );
+		maxY = MAX( maxY, [drawable maxY] );
+	}
+
+	CGSize contentSize = CGSizeMake( maxX * _zoomFactor, maxY * _zoomFactor );
+	return contentSize;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -38,7 +71,7 @@
 	CGContextTranslateCTM( context, 0, self.bounds.size.height );
 	CGContextScaleCTM( context, 1, -1 );
 
-	CGContextTranslateCTM( context, 100, 100 );
+//	CGContextTranslateCTM( context, 100, 100 );
 
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );

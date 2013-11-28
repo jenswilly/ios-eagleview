@@ -165,4 +165,26 @@
 	}
 }
 
+- (CGFloat)maxX
+{
+	CGFloat maxX = [[self symbol] maxX];
+
+	if( _smashedAttributes )
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			maxX = MAX( maxX, [attribute maxX] );
+
+	return maxX + self.point.x;
+}
+
+- (CGFloat)maxY
+{
+	CGFloat maxY = [[self symbol] maxY];
+
+	if( _smashedAttributes )
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			maxY = MAX( maxY, [attribute maxY] );
+
+	return maxY + self.point.y;
+}
+
 @end

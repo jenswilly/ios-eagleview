@@ -44,6 +44,11 @@ const CGFloat kFontSizeFactor = 1.30;	// Font size is multiplied by this factor 
 	return self;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Text '%@' – at %@", self.text, NSStringFromCGPoint( self.point )];
+}
+
 - (void)drawInContext:(CGContextRef)context
 {
 	// Flip and translate coordinate system for text drawing
@@ -74,5 +79,41 @@ const CGFloat kFontSizeFactor = 1.30;	// Font size is multiplied by this factor 
 
 	CGContextRestoreGState( context );
 }
+
+- (CGFloat)maxX
+{
+	// Calculate size with same properties as when drawing
+	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	paragraphStyle.lineSpacing = 0;
+
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
+								  NSParagraphStyleAttributeName: paragraphStyle };
+
+	// Calculate text size and offset coordinate system
+	NSString *stringToDraw = (self.valueText ? self.valueText : self.text);
+	CGSize textSize = [stringToDraw sizeWithAttributes:attributes];
+
+	return self.point.x + textSize.width;
+}
+
+- (CGFloat)maxY
+{
+	// Calculate size with same properties as when drawing
+	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	paragraphStyle.lineSpacing = 0;
+
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
+								  NSParagraphStyleAttributeName: paragraphStyle };
+
+	// Calculate text size and offset coordinate system
+	NSString *stringToDraw = (self.valueText ? self.valueText : self.text);
+	CGSize textSize = [stringToDraw sizeWithAttributes:attributes];
+
+	return self.point.y + textSize.height;
+}
+
+
 
 @end
