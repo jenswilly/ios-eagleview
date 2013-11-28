@@ -20,8 +20,8 @@
                                 <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-iT-9LS" customClass="EAGLESchematicView">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-iT-9LS" customClass="EAGLESchematicView">
+                                        <rect key="frame" x="462" y="324" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -31,10 +31,12 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="7OV-iT-9LS" firstAttribute="top" secondItem="vWF-Sb-KVW" secondAttribute="top" id="Kr7-lH-m4u"/>
-                                    <constraint firstAttribute="trailing" secondItem="7OV-iT-9LS" secondAttribute="trailing" constant="20" symbolic="YES" id="lZX-z4-lJ9"/>
-                                    <constraint firstItem="7OV-iT-9LS" firstAttribute="leading" secondItem="vWF-Sb-KVW" secondAttribute="leading" id="mbL-cR-Whp"/>
-                                    <constraint firstAttribute="bottom" secondItem="7OV-iT-9LS" secondAttribute="bottom" constant="20" symbolic="YES" id="zeu-4Y-7Hk"/>
+                                    <constraint firstAttribute="centerX" secondItem="7OV-iT-9LS" secondAttribute="centerX" priority="900" id="Irg-eM-fNf"/>
+                                    <constraint firstItem="7OV-iT-9LS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWF-Sb-KVW" secondAttribute="top" id="Kr7-lH-m4u"/>
+                                    <constraint firstAttribute="trailing" secondItem="7OV-iT-9LS" secondAttribute="trailing" priority="800" constant="20" symbolic="YES" id="lZX-z4-lJ9"/>
+                                    <constraint firstItem="7OV-iT-9LS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vWF-Sb-KVW" secondAttribute="leading" id="mbL-cR-Whp"/>
+                                    <constraint firstAttribute="centerY" secondItem="7OV-iT-9LS" secondAttribute="centerY" priority="900" id="p40-vG-DVI"/>
+                                    <constraint firstAttribute="bottom" secondItem="7OV-iT-9LS" secondAttribute="bottom" priority="800" constant="20" symbolic="YES" id="zeu-4Y-7Hk"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="e29-27-vw9"/>

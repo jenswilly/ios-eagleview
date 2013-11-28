@@ -66,11 +66,22 @@
 	[self.schematicView setNeedsDisplay];
 }
 
+- (void)keepImageCentered
+{
+	// Width
+	if( self.schematicView.bounds.size.width < self.scrollView.bounds.size.width )
+	{
+		CGFloat offset = -(self.scrollView.bounds.size.width - self.schematicView.bounds.size.width)/2;
+		[self.scrollView setContentOffset:CGPointMake( offset, self.scrollView.contentOffset.y ) animated:NO];
+	}
+}
+
 #pragma mark UIScrollView delegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
 	return self.schematicView;
 }
+
 
 @end
