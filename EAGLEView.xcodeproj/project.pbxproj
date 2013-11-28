@@ -59,6 +59,7 @@
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
+		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -161,6 +162,8 @@
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
+		47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableRectangle.h; sourceTree = "<group>"; };
+		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				4784FF051843FE000005C290 /* EAGLENet.m */,
 				47D3CD03184499B600F58240 /* EAGLEAttribute.h */,
 				47D3CD04184499B600F58240 /* EAGLEAttribute.m */,
+				47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */,
+				47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -548,6 +553,7 @@
 				473902F31840DD070092D025 /* CBLJSONValidator.m in Sources */,
 				473902EC1840DD070092D025 /* GPImageDownloadOperation.m in Sources */,
 				473902F61840DD070092D025 /* UIImage+Scaling.m in Sources */,
+				47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */,
 				4739033A1840E2590092D025 /* NSString+DDXML.m in Sources */,
 				473903451840E9430092D025 /* EAGLESchematic.m in Sources */,
 			);

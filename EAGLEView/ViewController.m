@@ -31,10 +31,10 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
+	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
 
-	[self.schematicView setRelativeZoomFactor:0.5];
-	_lastZoom = 0.5;
+	[self.schematicView setRelativeZoomFactor:0.1];
+	_lastZoom = 0.1;
 	self.schematicView.schematic = schematic;
 }
 
