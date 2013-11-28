@@ -39,6 +39,10 @@
 {
 	CGFloat span = _maxZoomFactor - _minZoomFactor;
 	self.zoomFactor = _minZoomFactor + relativeFactor * span;
+
+	// Invalidate size and drawing
+	[self invalidateIntrinsicContentSize];
+	[self setNeedsDisplay];
 }
 
 - (CGSize)intrinsicContentSize

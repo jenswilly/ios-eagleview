@@ -30,6 +30,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="7OV-iT-9LS" secondAttribute="centerX" priority="900" id="Irg-eM-fNf"/>
                                     <constraint firstItem="7OV-iT-9LS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWF-Sb-KVW" secondAttribute="top" id="Kr7-lH-m4u"/>
@@ -40,27 +41,17 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="e29-27-vw9"/>
+                                    <outletCollection property="gestureRecognizers" destination="jpc-YY-LeP" appends="YES" id="6xs-sJ-Bph"/>
                                 </connections>
                             </scrollView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tMF-yJ-Rp6">
-                                <rect key="frame" x="359" y="727" width="304" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="GbD-3c-vEN"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="sliderChangedValueAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="FXd-IE-O9b"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="G4r-WP-cBd" firstAttribute="top" secondItem="tMF-yJ-Rp6" secondAttribute="bottom" constant="20" symbolic="YES" id="Ano-6K-O7v"/>
                             <constraint firstAttribute="trailing" secondItem="vWF-Sb-KVW" secondAttribute="trailing" id="R4e-xc-jF5"/>
                             <constraint firstItem="vWF-Sb-KVW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gd3-rg-WUe"/>
                             <constraint firstItem="G4r-WP-cBd" firstAttribute="top" secondItem="vWF-Sb-KVW" secondAttribute="bottom" id="mtI-hI-AS5"/>
                             <constraint firstItem="vWF-Sb-KVW" firstAttribute="top" secondItem="jUu-hd-ewM" secondAttribute="bottom" id="oZh-MD-Rcn"/>
-                            <constraint firstAttribute="centerX" secondItem="tMF-yJ-Rp6" secondAttribute="centerX" constant="0.5" id="wa8-lx-cZO"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -71,6 +62,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="jpc-YY-LeP">
+                    <connections>
+                        <action selector="handlePinchGesture:" destination="BYZ-38-t0r" id="I6x-Dh-MJZ"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
         </scene>
     </scenes>

@@ -1,10 +1,12 @@
 - Drawable: rectangle
 - Drawable: description
-- Drawable: description
-- Scroll
-- Zoom
+- Drawable: frame
+- Zoom around pinch center
 - Dropbox + Document chooser
 - Fix rotation of texts when instance is rotated (text should still be right side up for 180° rotations)
-- Instrinsic content size on schematic view
+
 
 √ Arcs in net/segment/wire or bus/segment/wire
+√ Scroll
+√ Zoom
+√ Instrinsic content size on schematic view

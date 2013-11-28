@@ -22,6 +22,9 @@
 @end
 
 @implementation ViewController
+{
+	CGFloat _lastZoom;
+}
 
 - (void)viewDidLoad
 {
@@ -33,6 +36,7 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"LED_resistor" error:&error];
 
 	[self.schematicView setRelativeZoomFactor:0.5];
+	_lastZoom = 0.5;
 	self.schematicView.schematic = schematic;
 
 //	EAGLESchematicView *schematicView = [[EAGLESchematicView alloc] initWithFrame:self.view.bounds];
@@ -58,29 +62,17 @@
 	[self.view addSubview:imageView];
 	 */
 }
-
-- (IBAction)sliderChangedValueAction:(UISlider*)sender
+- (IBAction)handlePinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
-	[self.schematicView setRelativeZoomFactor:sender.value];
-	[self.schematicView invalidateIntrinsicContentSize];
-	[self.schematicView setNeedsDisplay];
-}
+	// Add gesture's zoom to previous zoom
+	CGFloat zoom = _lastZoom * recognizer.scale;
+	if( zoom > 1 )
+		zoom = 1;
 
-- (void)keepImageCentered
-{
-	// Width
-	if( self.schematicView.bounds.size.width < self.scrollView.bounds.size.width )
-	{
-		CGFloat offset = -(self.scrollView.bounds.size.width - self.schematicView.bounds.size.width)/2;
-		[self.scrollView setContentOffset:CGPointMake( offset, self.scrollView.contentOffset.y ) animated:NO];
-	}
-}
+	[self.schematicView setRelativeZoomFactor:zoom];
 
-#pragma mark UIScrollView delegate methods
-
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-	return self.schematicView;
+	if( recognizer.state == UIGestureRecognizerStateEnded )
+		_lastZoom = zoom;
 }
 
 
