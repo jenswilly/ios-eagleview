@@ -35,6 +35,14 @@
 	_zoomFactor = 15;
 }
 
+- (CGFloat)relativeZoomFactor
+{
+	CGFloat span = _maxZoomFactor - _minZoomFactor;
+	CGFloat position = _zoomFactor - _minZoomFactor;
+
+	return position/span;
+}
+
 - (void)setRelativeZoomFactor:(CGFloat)relativeFactor
 {
 	CGFloat span = _maxZoomFactor - _minZoomFactor;
@@ -75,7 +83,27 @@
 	}
 
 	CGSize contentSize = CGSizeMake( maxX * _zoomFactor, maxY * _zoomFactor );
+
+	// Update property and return
+	_calculatedContentSize = contentSize;
 	return contentSize;
+}
+
+/**
+ * Sets the zoom factor so the content fills the specified size.
+ */
+- (void)zoomToFitSize:(CGSize)fitSize
+{
+	CGSize contentSize = _calculatedContentSize;	// We trust that intrinsicContentSize has been called.
+	contentSize.width /= _zoomFactor;
+	contentSize.height /= _zoomFactor;
+	CGFloat widthFactor = fitSize.width / contentSize.width;
+	CGFloat heightFactor = fitSize.height / contentSize.height;
+
+	// Set zoom factor and invalidate content size and drawing
+	self.zoomFactor = MIN( widthFactor, heightFactor );
+	[self invalidateIntrinsicContentSize];
+	[self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect

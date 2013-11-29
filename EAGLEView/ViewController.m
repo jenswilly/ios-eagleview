@@ -40,6 +40,10 @@
 
 - (IBAction)handlePinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
+	if( recognizer.state == UIGestureRecognizerStateBegan )
+		// Get current relative zoom
+		_lastZoom = self.schematicView.relativeZoomFactor;
+		
 	// Add gesture's zoom to previous zoom
 	CGFloat zoom = _lastZoom * recognizer.scale;
 	if( zoom > 1 )
@@ -49,6 +53,11 @@
 
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 		_lastZoom = zoom;
+}
+
+- (IBAction)zoomToFitAction:(id)sender
+{
+	[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
 }
 
 @end

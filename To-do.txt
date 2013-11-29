@@ -3,8 +3,8 @@
 - Zoom around pinch center
 - Dropbox + Document chooser
 - Fix pin names with @ (e.g. "GND@2")
-- Impement zoomToFit on schematic view
 
+√ Impement zoomToFit on schematic view
 √ Fix rotation of texts when instance is rotated (text should still be right side up for 180° rotations)
 √ Drawable: rectangle
 √ Arcs in net/segment/wire or bus/segment/wire
