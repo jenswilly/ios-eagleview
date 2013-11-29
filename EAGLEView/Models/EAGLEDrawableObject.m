@@ -81,13 +81,13 @@
 
 + (Rotation)rotationForString:(NSString*)rotationString
 {
-	if( rotationString == nil )
+	if( rotationString == nil || [rotationString isEqualToString:@"SR0"] )
 		return Rotation_0;
 	else if( [rotationString isEqualToString:@"R90"] )
 		return Rotation_R90;
 	else if( [rotationString isEqualToString:@"R270"] )
 		return Rotation_R270;
-	else if( [rotationString isEqualToString:@"R180"] )
+	else if( [rotationString isEqualToString:@"R180"] || [rotationString isEqualToString:@"MR180"] )
 		return Rotation_R180;
 	else
 		[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotationString];

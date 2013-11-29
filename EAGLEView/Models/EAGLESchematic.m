@@ -17,10 +17,10 @@
 
 @implementation EAGLESchematic
 
-+ (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error
++ (instancetype)schematicFromSchematicAtPath:(NSString*)path error:(NSError *__autoreleasing *)error
 {
 	NSError *err = nil;
-	NSURL *fileURL = [[NSBundle mainBundle] URLForResource:schematicFileName withExtension:@"sch"];
+	NSURL *fileURL = [NSURL fileURLWithPath:path];
 	NSData *xmlData = [NSData dataWithContentsOfURL:fileURL options:0 error:&err];
 	if( err )
 	{
@@ -73,6 +73,12 @@
 	schematic.layers = [NSDictionary dictionaryWithDictionary:tmpLayers];
 
 	return schematic;
+}
+
++ (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:schematicFileName ofType:@"sch"];
+	return [self schematicFromSchematicAtPath:path error:error];
 }
 
 - (id)initFromXMLElement:(DDXMLElement *)element

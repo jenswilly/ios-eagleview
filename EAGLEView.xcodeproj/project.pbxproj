@@ -60,6 +60,13 @@
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
+		47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B60184939500041C4C4 /* DropboxSDK.framework */; };
+		47C73B631849395C0041C4C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B621849395C0041C4C4 /* Security.framework */; };
+		47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B64184939620041C4C4 /* QuartzCore.framework */; };
+		47C73B6818493B3B0041C4C4 /* DocumentChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */; };
+		47C73B6B18493DDB0041C4C4 /* Dropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6A18493DDB0041C4C4 /* Dropbox.m */; };
+		47C73B7018494E4B0041C4C4 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47C73B6D18494E4B0041C4C4 /* ProgressHUD.bundle */; };
+		47C73B7118494E4B0041C4C4 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6F18494E4B0041C4C4 /* ProgressHUD.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -164,6 +171,16 @@
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableRectangle.h; sourceTree = "<group>"; };
 		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
+		47C73B60184939500041C4C4 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		47C73B621849395C0041C4C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		47C73B64184939620041C4C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		47C73B6618493B3B0041C4C4 /* DocumentChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentChooserViewController.h; sourceTree = "<group>"; };
+		47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentChooserViewController.m; sourceTree = "<group>"; };
+		47C73B6918493DDB0041C4C4 /* Dropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dropbox.h; sourceTree = "<group>"; };
+		47C73B6A18493DDB0041C4C4 /* Dropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dropbox.m; sourceTree = "<group>"; };
+		47C73B6D18494E4B0041C4C4 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		47C73B6E18494E4B0041C4C4 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		47C73B6F18494E4B0041C4C4 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -180,6 +197,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */,
+				47C73B631849395C0041C4C4 /* Security.framework in Frameworks */,
+				47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */,
 				4739033F1840E28B0092D025 /* libxml2.dylib in Frameworks */,
 				4739028C1840D9930092D025 /* CoreGraphics.framework in Frameworks */,
 				4739028E1840D9930092D025 /* UIKit.framework in Frameworks */,
@@ -217,6 +237,9 @@
 		473902881840D9930092D025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47C73B64184939620041C4C4 /* QuartzCore.framework */,
+				47C73B621849395C0041C4C4 /* Security.framework */,
+				47C73B60184939500041C4C4 /* DropboxSDK.framework */,
 				4739033E1840E28B0092D025 /* libxml2.dylib */,
 				473902891840D9930092D025 /* Foundation.framework */,
 				4739028B1840D9930092D025 /* CoreGraphics.framework */,
@@ -233,6 +256,8 @@
 				473902991840D9930092D025 /* AppDelegate.m */,
 				473902A11840D9930092D025 /* Images.xcassets */,
 				473902901840D9930092D025 /* Supporting Files */,
+				47C73B6918493DDB0041C4C4 /* Dropbox.h */,
+				47C73B6A18493DDB0041C4C4 /* Dropbox.m */,
 			);
 			path = EAGLEView;
 			sourceTree = "<group>";
@@ -301,6 +326,8 @@
 			children = (
 				4739029E1840D9930092D025 /* ViewController.h */,
 				4739029F1840D9930092D025 /* ViewController.m */,
+				47C73B6618493B3B0041C4C4 /* DocumentChooserViewController.h */,
+				47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */,
 			);
 			name = "View Controllers";
 			path = EAGLEView;
@@ -427,6 +454,7 @@
 		4739035518414C8E0092D025 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47C73B6C18494E4B0041C4C4 /* ProgressHUD */,
 				4739035618414CB60092D025 /* EAGLESchematicView.h */,
 				4739035718414CB60092D025 /* EAGLESchematicView.m */,
 			);
@@ -440,6 +468,16 @@
 				473903601843557A0092D025 /* Application.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		47C73B6C18494E4B0041C4C4 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				47C73B6D18494E4B0041C4C4 /* ProgressHUD.bundle */,
+				47C73B6E18494E4B0041C4C4 /* ProgressHUD.h */,
+				47C73B6F18494E4B0041C4C4 /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +540,7 @@
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
+				47C73B7018494E4B0041C4C4 /* ProgressHUD.bundle in Resources */,
 				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +560,7 @@
 				473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */,
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
+				47C73B7118494E4B0041C4C4 /* ProgressHUD.m in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
@@ -536,6 +576,7 @@
 				47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */,
 				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
+				47C73B6B18493DDB0041C4C4 /* Dropbox.m in Sources */,
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
 				47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */,
 				4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */,
@@ -552,6 +593,7 @@
 				473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */,
 				473902F31840DD070092D025 /* CBLJSONValidator.m in Sources */,
 				473902EC1840DD070092D025 /* GPImageDownloadOperation.m in Sources */,
+				47C73B6818493B3B0041C4C4 /* DocumentChooserViewController.m in Sources */,
 				473902F61840DD070092D025 /* UIImage+Scaling.m in Sources */,
 				47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */,
 				4739033A1840E2590092D025 /* NSString+DDXML.m in Sources */,
@@ -663,6 +705,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
+					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EAGLEView/EAGLEView-Prefix.pch";
@@ -684,6 +727,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
+					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EAGLEView/EAGLEView-Prefix.pch";

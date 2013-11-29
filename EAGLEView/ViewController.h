@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DocumentChooserViewController.h"
 
-@interface ViewController : UIViewController <UIScrollViewDelegate>
+@interface ViewController : UIViewController <UIScrollViewDelegate, DocumentChooserDelegate>
 
 @end

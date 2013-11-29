@@ -13,6 +13,10 @@
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
 #import "EAGLESchematicView.h"
+#import <DropboxSDK/DropboxSDK.h>
+#import "Dropbox.h"
+#import "DocumentChooserViewController.h"
+#import "ProgressHUD.h"
 
 @interface ViewController ()
 
@@ -24,6 +28,7 @@
 @implementation ViewController
 {
 	CGFloat _lastZoom;
+	__block UIPopoverController *_popover;
 }
 
 - (void)viewDidLoad
@@ -55,9 +60,68 @@
 		_lastZoom = zoom;
 }
 
+- (IBAction)chooseDocumentAction:(UIBarButtonItem*)sender
+{
+	// Authenticate if necessary
+	if( ![[DBSession sharedSession] isLinked] )
+	{
+        [[DBSession sharedSession] linkFromController:self];
+		return;
+    }
+
+	DEBUG_LOG( @"Dropbox already authenticated" );
+	[ProgressHUD show:nil];
+	[[Dropbox sharedInstance] loadContentsForFolder:@"/" completion:^(BOOL success, NSArray *contents) {
+
+		[ProgressHUD dismiss];
+		DEBUG_LOG( @"Dropbox load metadata %@", (success ? @"successful" : @"FAILED") );
+
+		UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
+		_popover = nil;
+		_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
+
+		DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
+		documentChooserViewController.title = @"/";
+		documentChooserViewController.contents = contents;
+		documentChooserViewController.delegate = self;
+
+		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+	}];
+
+}
+
 - (IBAction)zoomToFitAction:(id)sender
 {
-	[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
+	[UIView animateWithDuration:0.3 animations:^{
+		[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
+	}];
+}
+
+#pragma mark - Document Chooser Delegate methods
+
+- (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata
+{
+	DEBUG_LOG( @"Picked file: %@", [metadata description] );
+	[_popover dismissPopoverAnimated:YES];
+
+	[[Dropbox sharedInstance] loadFileAtPath:metadata.path completion:^(BOOL success, NSString *filePath) {
+
+		if( success )
+		{
+			NSError *error = nil;
+			EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+			NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
+
+			self.schematicView.schematic = schematic;
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
+			});
+			[ProgressHUD showSuccess:nil];
+		}
+		else
+			[ProgressHUD showError:nil];
+	}];
 }
 
 @end

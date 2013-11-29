@@ -10,6 +10,7 @@
 
 typedef enum
 {
+	EAGLEDrawablePinLength_Point,
 	EAGLEDrawablePinLength_Short,
 	EAGLEDrawablePinLength_Medium,
 	EAGLEDrawablePinLength_Long

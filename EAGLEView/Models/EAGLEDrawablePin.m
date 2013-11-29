@@ -36,6 +36,8 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 			_length = EAGLEDrawablePinLength_Short;
 		else if( [lengthString isEqualToString:@"middle"] )
 			_length = EAGLEDrawablePinLength_Medium;
+		else if( [lengthString isEqualToString:@"point"] )
+			_length = EAGLEDrawablePinLength_Point;
 		else
 			[NSException raise:@"Unknown length string" format:@"Unknown length: %@", lengthString];
 
@@ -56,6 +58,9 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 {
 	switch( pinLength )
 	{
+		case EAGLEDrawablePinLength_Point:
+			return 0;
+			
 		case EAGLEDrawablePinLength_Short:
 			return 2.54;
 
