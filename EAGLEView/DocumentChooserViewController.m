@@ -9,15 +9,57 @@
 #import "DocumentChooserViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
-#import "ProgressHUD.h"
+#import "MBProgressHUD.h"
 
 @interface DocumentChooserViewController ()
+
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @end
 
 @implementation DocumentChooserViewController
+{
+	NSArray *_contents;	// Contains DBMetadata objects
+}
 
-#pragma mark - Table methods
+- (void)setPath:(NSString *)path
+{
+	_path = path;
+
+	// Make sure view has been loaded
+	[self view];
+	
+	// Set title
+	self.navigationItem.title = _path;
+
+	// Show HUD if not cached contents
+	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
+		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+	// Load from Dropbox
+	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
+
+		// Remove HUD (whether it is there or not)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+		if( success )
+		{
+			// Set contents
+			_contents = contents;
+
+			// Reload table on main thread
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_table reloadData];
+			});
+		}
+		else
+		{
+			// Error loading
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+	}];
+}
 
 #pragma mark - Table view methods
 
@@ -56,20 +98,10 @@
 	if( metadata.isDirectory )
 	{
 		// Folder: push new view controller onto the stack
-		[ProgressHUD show:nil];
-		[[Dropbox sharedInstance] loadContentsForFolder:metadata.path completion:^(BOOL success, NSArray *contents) {
-
-			[ProgressHUD dismiss];
-			DEBUG_LOG( @"Dropbox load metadata %@", (success ? @"successful" : @"FAILED") );
-			if( success )
-			{
-				DocumentChooserViewController *documentChooserViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserViewController"];
-				documentChooserViewController.title = metadata.filename;
-				documentChooserViewController.contents = contents;
-				documentChooserViewController.delegate = _delegate;
-				[self.navigationController pushViewController:documentChooserViewController animated:YES];
-			}
-		}];
+		DocumentChooserViewController *documentChooserViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserViewController"];
+		documentChooserViewController.path = metadata.path;
+		documentChooserViewController.delegate = _delegate;
+		[self.navigationController pushViewController:documentChooserViewController animated:YES];
 	}
 	else
 	{

@@ -19,5 +19,6 @@ typedef void(^fileCompletionBlock_t)(BOOL success, NSString *filePath);
 - (BOOL)isBusy;
 - (BOOL)loadContentsForFolder:(NSString*)path completion:(foldercompletionBlock_t)completion;
 - (BOOL)loadFileAtPath:(NSString*)path completion:(fileCompletionBlock_t)completion;
+- (BOOL)hasCachedContentsForFolder:(NSString*)path;
 
 @end

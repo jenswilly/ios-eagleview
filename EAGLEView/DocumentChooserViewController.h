@@ -18,6 +18,6 @@
 @interface DocumentChooserViewController : UIViewController
 
 @property (weak) id<DocumentChooserDelegate> delegate;
-@property (strong) NSArray *contents;
+@property (strong, nonatomic) NSString *path;	// The Dropbox path to show contents for
 
 @end

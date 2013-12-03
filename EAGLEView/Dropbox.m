@@ -49,10 +49,9 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	return _isBusy;
 }
 
-- (NSDictionary*)contentsForFolder:(NSString*)folderName
+- (BOOL)hasCachedContentsForFolder:(NSString*)path
 {
-
-	return nil;
+	return ( _contents[ path ] ? YES : NO );
 }
 
 - (BOOL)loadContentsForFolder:(NSString*)path completion:(foldercompletionBlock_t)completion

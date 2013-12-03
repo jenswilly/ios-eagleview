@@ -16,7 +16,6 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
 #import "DocumentChooserViewController.h"
-#import "ProgressHUD.h"
 
 @interface ViewController ()
 
@@ -70,10 +69,18 @@
     }
 
 	DEBUG_LOG( @"Dropbox already authenticated" );
-	[ProgressHUD show:nil];
+	UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
+	_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
+
+	DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
+	documentChooserViewController.delegate = self;
+	documentChooserViewController.path = @"/";
+
+	[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+	/*
 	[[Dropbox sharedInstance] loadContentsForFolder:@"/" completion:^(BOOL success, NSArray *contents) {
 
-		[ProgressHUD dismiss];
 		DEBUG_LOG( @"Dropbox load metadata %@", (success ? @"successful" : @"FAILED") );
 
 		UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
@@ -88,6 +95,7 @@
 		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 
 	}];
+	 */
 
 }
 
@@ -117,10 +125,7 @@
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
 			});
-			[ProgressHUD showSuccess:nil];
 		}
-		else
-			[ProgressHUD showError:nil];
 	}];
 }
 
