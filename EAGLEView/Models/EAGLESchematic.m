@@ -170,7 +170,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets, %d busses", self.libraries, self.parts, [self.instances count], [self.nets count], [self.busses count]];
+	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets, %d busses", self.libraries, self.parts, (int)[self.instances count], (int)[self.nets count], (int)[self.busses count]];
 }
 
 - (EAGLEPart *)partWithName:(NSString *)name

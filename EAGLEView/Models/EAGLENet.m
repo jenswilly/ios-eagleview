@@ -66,7 +66,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Net %@ – %d wires, %d labels", self.name, [self.wires count], [self.labels count]];
+	return [NSString stringWithFormat:@"Net %@ – %d wires, %d labels", self.name, (int)[self.wires count], (int)[self.labels count]];
 }
 
 - (void)drawInContext:(CGContextRef)context

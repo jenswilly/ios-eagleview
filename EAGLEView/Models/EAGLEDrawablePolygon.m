@@ -39,7 +39,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Polygon – width: %.2f, %d vertices", self.width, [self.vertices count]];
+	return [NSString stringWithFormat:@"Polygon – width: %.2f, %d vertices", self.width, (int)[self.vertices count]];
 }
 
 - (void)drawInContext:(CGContextRef)context

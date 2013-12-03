@@ -54,7 +54,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Library %@ – %d symbols, %d devicesets", self.name, [self.symbols count], [self.devicesets count]];
+	return [NSString stringWithFormat:@"Library %@ – %d symbols, %d devicesets", self.name, (int)[self.symbols count], (int)[self.devicesets count]];
 }
 
 - (EAGLEDeviceset *)devicesetWithName:(NSString *)name

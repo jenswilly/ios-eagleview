@@ -39,7 +39,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Deviceset %@ – %d gates, %d devices", self.name, [self.gates count], [self.devices count]];
+	return [NSString stringWithFormat:@"Deviceset %@ – %d gates, %d devices", self.name, (int)[self.gates count], (int)[self.devices count]];
 }
 
 - (EAGLEGate *)gateWithName:(NSString *)name

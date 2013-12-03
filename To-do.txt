@@ -2,7 +2,7 @@
 - Drawable: frame
 - Zoom around pinch center
 - Fix pin names with @ (e.g. "GND@2")
-- Fix arcs: e.g. US polarized caps
+- Fix arcs: e.g. US polarized caps (e.g. Thermemeter)
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Fix zoom-to-fit (cuts off lines); add padding
 
