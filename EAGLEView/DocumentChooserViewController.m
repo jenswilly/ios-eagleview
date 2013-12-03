@@ -22,25 +22,76 @@
 	NSArray *_contents;	// Contains DBMetadata objects
 }
 
+- (void)setItem:(DBMetadata *)item
+{
+	_item = item;
+
+	// Make sure view has been loaded
+	[self view];
+	
+	// Show HUD if not cached contents
+	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_item.path] )
+	{
+		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+		// Set title to Loading…
+		self.navigationItem.title = @"Loading…";
+	}
+	else
+		// Set title immediately
+		self.navigationItem.title = _item.filename;
+
+	// Load from Dropbox
+	[[Dropbox sharedInstance] loadContentsForFolder:_item.path completion:^(BOOL success, NSArray *contents) {
+
+		// Remove HUD (whether it is there or not) and set title (possibly again)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+		self.navigationItem.title = _item.filename;
+
+		if( success )
+		{
+			// Set contents
+			_contents = contents;
+
+			// Reload table on main thread
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_table reloadData];
+			});
+		}
+		else
+		{
+			// Error loading
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+	}];
+}
+
 - (void)setPath:(NSString *)path
 {
 	_path = path;
 
 	// Make sure view has been loaded
 	[self view];
-	
-	// Set title
-	self.navigationItem.title = _path;
 
 	// Show HUD if not cached contents
 	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
+	{
 		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+		// Set title to Loading…
+		self.navigationItem.title = @"Loading…";
+	}
+	else
+		// Set title immediately
+		self.navigationItem.title = _path;
 
 	// Load from Dropbox
 	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
 
-		// Remove HUD (whether it is there or not)
+		// Remove HUD (whether it is there or not) and set title (possibly again)
 		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+		self.navigationItem.title = _path;
 
 		if( success )
 		{
@@ -99,7 +150,7 @@
 	{
 		// Folder: push new view controller onto the stack
 		DocumentChooserViewController *documentChooserViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserViewController"];
-		documentChooserViewController.path = metadata.path;
+		documentChooserViewController.item = metadata;
 		documentChooserViewController.delegate = _delegate;
 		[self.navigationController pushViewController:documentChooserViewController animated:YES];
 	}

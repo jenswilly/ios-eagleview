@@ -19,6 +19,6 @@
 @property (assign, nonatomic) CGFloat relativeZoomFactor;	// Relative zoom between 0 and 1
 @property (readonly) CGPoint origin;
 
-- (void)zoomToFitSize:(CGSize)fitSize;
+- (void)zoomToFitSize:(CGSize)fitSize animated:(BOOL)animated;
 
 @end

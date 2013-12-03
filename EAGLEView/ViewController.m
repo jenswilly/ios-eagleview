@@ -16,6 +16,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
 #import "DocumentChooserViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()
 
@@ -77,32 +78,12 @@
 	documentChooserViewController.path = @"/";
 
 	[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
-	/*
-	[[Dropbox sharedInstance] loadContentsForFolder:@"/" completion:^(BOOL success, NSArray *contents) {
-
-		DEBUG_LOG( @"Dropbox load metadata %@", (success ? @"successful" : @"FAILED") );
-
-		UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
-		_popover = nil;
-		_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
-
-		DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
-		documentChooserViewController.title = @"/";
-		documentChooserViewController.contents = contents;
-		documentChooserViewController.delegate = self;
-
-		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
-	}];
-	 */
-
 }
 
 - (IBAction)zoomToFitAction:(id)sender
 {
 	[UIView animateWithDuration:0.3 animations:^{
-		[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
+		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 	}];
 }
 
@@ -112,6 +93,11 @@
 {
 	DEBUG_LOG( @"Picked file: %@", [metadata description] );
 	[_popover dismissPopoverAnimated:YES];
+
+	// Show HUD and start loading
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	});
 
 	[[Dropbox sharedInstance] loadFileAtPath:metadata.path completion:^(BOOL success, NSString *filePath) {
 
@@ -123,7 +109,8 @@
 
 			self.schematicView.schematic = schematic;
 			dispatch_async(dispatch_get_main_queue(), ^{
-				[self.schematicView zoomToFitSize:self.scrollView.bounds.size];
+				[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+				[MBProgressHUD hideHUDForView:self.view animated:YES];
 			});
 		}
 	}];

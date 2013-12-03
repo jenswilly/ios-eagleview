@@ -106,7 +106,7 @@
 /**
  * Sets the zoom factor so the content fills the specified size.
  */
-- (void)zoomToFitSize:(CGSize)fitSize
+- (void)zoomToFitSize:(CGSize)fitSize animated:(BOOL)animated
 {
 	CGSize contentSize = _calculatedContentSize;	// We trust that intrinsicContentSize has been called.
 	contentSize.width /= _zoomFactor;
@@ -118,6 +118,13 @@
 	self.zoomFactor = MIN( widthFactor, heightFactor );
 	[self invalidateIntrinsicContentSize];
 	[self setNeedsDisplay];
+
+	if( animated )
+	{
+		[UIView animateWithDuration:0.3f animations:^{
+			[self layoutIfNeeded];
+		}];
+	}
 }
 
 - (void)drawRect:(CGRect)rect

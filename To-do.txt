@@ -1,12 +1,13 @@
 - Drawable: description
 - Drawable: frame
 - Zoom around pinch center
-- Dropbox + Document chooser
 - Fix pin names with @ (e.g. "GND@2")
-- Animated zoom to fit
 - Fix arcs: e.g. US polarized caps
 - Fix patterened (not filled) rectangles (ROV TSC)
+- Fix zoom-to-fit (cuts off lines); add padding
 
+√ Animated zoom to fit
+√ Dropbox + Document chooser
 √ Attach progress HUD to Dropbox contents table instead of window
 √ Fix loading sequence for Dropbox view controller
 √ Handle schematics with negative coordinates (offset all)

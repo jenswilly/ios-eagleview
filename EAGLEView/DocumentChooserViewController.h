@@ -18,6 +18,7 @@
 @interface DocumentChooserViewController : UIViewController
 
 @property (weak) id<DocumentChooserDelegate> delegate;
-@property (strong, nonatomic) NSString *path;	// The Dropbox path to show contents for
+@property (strong, nonatomic) DBMetadata *item;	// The Dropbox item to show contents for
+@property (strong, nonatomic) NSString *path;	// Dropbox path to show contents for
 
 @end

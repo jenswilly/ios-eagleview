@@ -51,6 +51,9 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 
 - (BOOL)hasCachedContentsForFolder:(NSString*)path
 {
+	if( path == nil )
+		path = @"/";
+	
 	return ( _contents[ path ] ? YES : NO );
 }
 
@@ -99,13 +102,11 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	// Make sure the folder exists
 	if( ![[NSFileManager defaultManager] fileExistsAtPath:dropboxFolderPath] )
 	{
-		DEBUG_LOG( @"Creating documents folder at %@", dropboxFolderPath );
+		DEBUG_LOG( @"Creating folder at %@", dropboxFolderPath );
 		NSError *error = nil;
 		[[NSFileManager defaultManager] createDirectoryAtPath:dropboxFolderPath withIntermediateDirectories:YES attributes:nil error:&error];
 		NSAssert( error == nil, @"Error creating documents folder: %@", [error localizedDescription] );
 	}
-
-	// Append path
 
 	// Start loading
 	_isBusy = YES;
