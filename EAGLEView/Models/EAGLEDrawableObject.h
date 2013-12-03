@@ -13,6 +13,8 @@
 - (void)drawInContext:(CGContextRef)context;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
+- (CGFloat)minX;
+- (CGFloat)minY;
 
 @end
 

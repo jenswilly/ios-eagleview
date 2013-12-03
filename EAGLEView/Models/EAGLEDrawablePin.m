@@ -122,5 +122,14 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 	return self.point.y + [EAGLEDrawablePin lengthForPinLength:self.length];
 }
 
+- (CGFloat)minX
+{
+	return self.point.x;
+}
+
+- (CGFloat)minY
+{
+	return self.point.y;
+}
 
 @end

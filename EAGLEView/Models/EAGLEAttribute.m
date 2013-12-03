@@ -81,4 +81,14 @@
 	return self.point.y + dummyView.bounds.size.height;
 }
 
+- (CGFloat)minX
+{
+	return self.point.x;
+}
+
+- (CGFloat)minY
+{
+	return self.point.y;
+}
+
 @end

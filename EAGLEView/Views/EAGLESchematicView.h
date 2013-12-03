@@ -17,6 +17,7 @@
 @property (assign) CGFloat maxZoomFactor;
 @property (readonly) CGSize calculatedContentSize;	// Returns the value from the last time instrinsicContentSize was called.
 @property (assign, nonatomic) CGFloat relativeZoomFactor;	// Relative zoom between 0 and 1
+@property (readonly) CGPoint origin;
 
 - (void)zoomToFitSize:(CGSize)fitSize;
 

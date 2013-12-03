@@ -18,5 +18,7 @@
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
+- (CGFloat)minX;
+- (CGFloat)minY;
 
 @end

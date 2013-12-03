@@ -117,6 +117,14 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 	return self.point.y + textSize.height;
 }
 
+- (CGFloat)minX
+{
+	return self.point.x;
+}
 
+- (CGFloat)minY
+{
+	return self.point.y;
+}
 
 @end

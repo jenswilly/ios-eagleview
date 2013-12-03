@@ -120,4 +120,40 @@
 	return maxY;
 }
 
+- (CGFloat)minX
+{
+	CGFloat minX = MAXFLOAT;
+
+	for( EAGLEDrawableWire *wire in self.wires )
+		minX = MIN( minX, [wire minX] );
+
+	// And texts
+	for( EAGLEDrawableText *label in self.labels )
+		minX = MIN( minX, [label minX] );
+
+	// And junctions
+	for( EAGLEDrawableJunction *junction in self.junctions )
+		minX = MIN( minX, [junction minX] );
+
+	return minX;
+}
+
+- (CGFloat)minY
+{
+	CGFloat minY = MAXFLOAT;
+
+	for( EAGLEDrawableWire *wire in self.wires )
+		minY = MIN( minY, [wire minY] );
+
+	// And texts
+	for( EAGLEDrawableText *label in self.labels )
+		minY = MIN( minY, [label minY] );
+
+	// And junctions
+	for( EAGLEDrawableJunction *junction in self.junctions )
+		minY = MIN( minY, [junction minY] );
+
+	return minY;
+}
+
 @end

@@ -54,4 +54,13 @@
 	return self.center.y + self.radius;
 }
 
+- (CGFloat)minX
+{
+	return self.center.x - self.radius;
+}
+
+- (CGFloat)minY
+{
+	return self.center.y - self.radius;
+}
 @end

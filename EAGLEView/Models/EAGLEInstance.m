@@ -178,4 +178,26 @@
 	return maxY + self.point.y;
 }
 
+- (CGFloat)minX
+{
+	CGFloat minX = [[self symbol] minX];
+
+	if( _smashedAttributes )
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			minX = MIN( minX, [attribute minX] );
+
+	return minX + self.point.x;
+}
+
+- (CGFloat)minY
+{
+	CGFloat minY = [[self symbol] minY];
+
+	if( _smashedAttributes )
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			minY = MAX( minY, [attribute minY] );
+
+	return minY + self.point.y;
+}
+
 @end

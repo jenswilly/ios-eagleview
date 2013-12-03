@@ -55,5 +55,15 @@
 	return MAX( self.point1.y, self.point2.y );
 }
 
+- (CGFloat)minX
+{
+	return MIN( self.point1.x, self.point2.x );
+}
+
+- (CGFloat)minY
+{
+	return MIN( self.point1.y, self.point2.y );
+}
+
 
 @end

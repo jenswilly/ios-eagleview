@@ -54,4 +54,14 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 	return self.point.y + kJunctionDiameter/2;
 }
 
+- (CGFloat)minX
+{
+	return self.point.x - kJunctionDiameter/2;
+}
+
+- (CGFloat)minY
+{
+	return self.point.y - kJunctionDiameter/2;
+}
+
 @end

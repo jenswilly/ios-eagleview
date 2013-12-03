@@ -57,34 +57,48 @@
 {
 	CGFloat maxX = -MAXFLOAT;
 	CGFloat maxY = -MAXFLOAT;
+	CGFloat minX = MAXFLOAT;
+	CGFloat minY = MAXFLOAT;
 
 	for( id<EAGLEDrawable> drawable in self.schematic.instances )
 	{
 		maxX = MAX( maxX, [drawable maxX] );
 		maxY = MAX( maxY, [drawable maxY] );
+		minX = MIN( minX, [drawable minX] );
+		minY = MIN( minY, [drawable minY] );
 	}
 
 	for( id<EAGLEDrawable> drawable in self.schematic.nets )
 	{
 		maxX = MAX( maxX, [drawable maxX] );
 		maxY = MAX( maxY, [drawable maxY] );
+		minX = MIN( minX, [drawable minX] );
+		minY = MIN( minY, [drawable minY] );
 	}
 
 	for( id<EAGLEDrawable> drawable in self.schematic.busses )
 	{
 		maxX = MAX( maxX, [drawable maxX] );
 		maxY = MAX( maxY, [drawable maxY] );
+		minX = MIN( minX, [drawable minX] );
+		minY = MIN( minY, [drawable minY] );
 	}
 
 	for( id<EAGLEDrawable> drawable in self.schematic.plainObjects )
 	{
 		maxX = MAX( maxX, [drawable maxX] );
 		maxY = MAX( maxY, [drawable maxY] );
+		minX = MIN( minX, [drawable minX] );
+		minY = MIN( minY, [drawable minY] );
 	}
 
+	// Adjust for negative origin
+	maxX -= minX;
+	maxY -= minY;
 	CGSize contentSize = CGSizeMake( maxX * _zoomFactor, maxY * _zoomFactor );
 
-	// Update property and return
+	// Update properties and return
+	_origin = CGPointMake( minX, minY );
 	_calculatedContentSize = contentSize;
 	return contentSize;
 }
@@ -115,6 +129,9 @@
 
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
+
+	// Adjust for origin (minimum coordinates)
+	CGContextTranslateCTM( context, -_origin.x, -_origin.y );
 
 	// Draw all instances, nets, busses and plain objects
 	for( id<EAGLEDrawable> drawable in self.schematic.instances )

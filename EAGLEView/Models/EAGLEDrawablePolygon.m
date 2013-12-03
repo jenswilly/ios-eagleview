@@ -91,4 +91,28 @@
 	return maxY;
 }
 
+- (CGFloat)minX
+{
+	CGFloat minX = MAXFLOAT;
+	for( NSValue *vertex in self.vertices )
+	{
+		CGPoint point = [vertex CGPointValue];
+		minX = MIN( minX, point.x );
+	}
+
+	return minX;
+}
+
+- (CGFloat)minY
+{
+	CGFloat minY = MAXFLOAT;
+	for( NSValue *vertex in self.vertices )
+	{
+		CGPoint point = [vertex CGPointValue];
+		minY = MIN( minY, point.y );
+	}
+
+	return minY;
+}
+
 @end

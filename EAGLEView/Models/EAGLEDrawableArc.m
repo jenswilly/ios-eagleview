@@ -133,5 +133,15 @@
 	return _center.y + _radius;
 }
 
+- (CGFloat)minX
+{
+	return _center.x - _radius;
+}
+
+- (CGFloat)minY
+{
+	return _center.y - _radius;
+}
+
 
 @end

@@ -98,4 +98,22 @@
 	return maxY;
 }
 
+- (CGFloat)minX
+{
+	CGFloat minX = MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.components )
+		minX = MIN( minX, [drawable minX] );
+
+	return minX;
+}
+
+- (CGFloat)minY
+{
+	CGFloat minY = MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.components )
+		minY = MIN( minY, [drawable minY] );
+
+	return minY;
+}
+
 @end
