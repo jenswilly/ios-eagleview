@@ -27,7 +27,7 @@
 
 @implementation ViewController
 {
-	CGFloat _lastZoom;
+	CGFloat _initialZoom;
 	__block UIPopoverController *_popover;
 }
 
@@ -39,25 +39,30 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
 
 	[self.schematicView setRelativeZoomFactor:0.1];
-	_lastZoom = 0.1;
+	_initialZoom = 0.1;
 	self.schematicView.schematic = schematic;
+
+	/// TEST: yellow bg color
+	self.schematicView.backgroundColor = [UIColor yellowColor];
 }
 
 - (IBAction)handlePinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
+	// Remember schematic view's zoom factor when we begin zooming
 	if( recognizer.state == UIGestureRecognizerStateBegan )
-		// Get current relative zoom
-		_lastZoom = self.schematicView.relativeZoomFactor;
-		
-	// Add gesture's zoom to previous zoom
-	CGFloat zoom = _lastZoom * recognizer.scale;
-	if( zoom > 1 )
-		zoom = 1;
+		_initialZoom = self.schematicView.zoomFactor;
 
-	[self.schematicView setRelativeZoomFactor:zoom];
+	// Scale layer without recalculating or redrawing
+	self.schematicView.layer.transform = CATransform3DMakeScale( recognizer.scale, recognizer.scale, 1 );
 
+	// When pinch ends, multiply initial zoom factor by the gesture's scale to get final scale
 	if( recognizer.state == UIGestureRecognizerStateEnded )
-		_lastZoom = zoom;
+	{
+		CGFloat finalZoom = _initialZoom * recognizer.scale;
+
+		self.schematicView.layer.transform = CATransform3DIdentity;	// Reset transform since we're now changing the zoom factor to make a pretty redraw
+		[self.schematicView setZoomFactor:finalZoom];				// And set new zoom factor
+	}
 }
 
 - (IBAction)chooseDocumentAction:(UIBarButtonItem*)sender
@@ -82,8 +87,10 @@
 
 - (IBAction)zoomToFitAction:(id)sender
 {
+	self.schematicView.layer.transform = CATransform3DIdentity;
 	[UIView animateWithDuration:0.3 animations:^{
 		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[self.view layoutIfNeeded];
 	}];
 }
 

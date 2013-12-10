@@ -2,11 +2,13 @@
 - Drawable: frame
 - Zoom around pinch center
 - Fix pin names with @ (e.g. "GND@2")
-- Fix arcs: e.g. US polarized caps (e.g. Thermemeter)
+- Fix arcs: e.g. US polarized caps (e.g. Thermometer)
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Fix zoom-to-fit (cuts off lines); add padding
 
+√ Fix zoom: pinch=normal zoom; when ends, zoomScale is set (uses CATransform3D)
 √ Implement "Open in…" functionality for .sch files
+√ Implement "Open in…" functionality for .zip files
 √ Animated zoom to fit
 √ Dropbox + Document chooser
 √ Attach progress HUD to Dropbox contents table instead of window

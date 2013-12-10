@@ -12,7 +12,7 @@
 @interface EAGLESchematicView : UIView
 
 @property (strong) EAGLESchematic *schematic;
-@property (assign) CGFloat zoomFactor;
+@property (nonatomic, assign) CGFloat zoomFactor;
 @property (assign) CGFloat minZoomFactor;
 @property (assign) CGFloat maxZoomFactor;
 @property (readonly) CGSize calculatedContentSize;	// Returns the value from the last time instrinsicContentSize was called.

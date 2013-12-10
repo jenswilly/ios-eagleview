@@ -14,6 +14,9 @@
 #import "EAGLENet.h"
 
 @implementation EAGLESchematicView
+{
+	BOOL _needsCalculateIntrinsicContentSize;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,17 +25,26 @@
 	{
 		_minZoomFactor = 1;
 		_maxZoomFactor = 100;
-		_zoomFactor = 15;	// Default zoom factor
+		self.zoomFactor = 15;	// Default zoom factor
+///		_needsCalculateIntrinsicContentSize = YES;
     }
 
     return self;
+}
+
+- (void)setZoomFactor:(CGFloat)zoomFactor
+{
+	_zoomFactor = zoomFactor;
+	[self invalidateIntrinsicContentSize];
+	[self setNeedsDisplay];
 }
 
 - (void)awakeFromNib
 {
 	_minZoomFactor = 1;
 	_maxZoomFactor = 100;
-	_zoomFactor = 15;
+	self.zoomFactor = 15;
+///	_needsCalculateIntrinsicContentSize = YES;
 }
 
 - (CGFloat)relativeZoomFactor
@@ -55,6 +67,11 @@
 
 - (CGSize)intrinsicContentSize
 {
+	/* ///
+	if( !_needsCalculateIntrinsicContentSize )
+		return _calculatedContentSize;
+	*/
+
 	CGFloat maxX = -MAXFLOAT;
 	CGFloat maxY = -MAXFLOAT;
 	CGFloat minX = MAXFLOAT;
@@ -100,8 +117,17 @@
 	// Update properties and return
 	_origin = CGPointMake( minX, minY );
 	_calculatedContentSize = contentSize;
+///	_needsCalculateIntrinsicContentSize = NO;
 	return contentSize;
 }
+
+/* ///
+- (void)invalidateIntrinsicContentSize
+{
+	_needsCalculateIntrinsicContentSize = YES;
+	[super invalidateIntrinsicContentSize];
+}
+*/
 
 /**
  * Sets the zoom factor so the content fills the specified size.
