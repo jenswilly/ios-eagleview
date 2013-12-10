@@ -6,6 +6,7 @@
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Fix zoom-to-fit (cuts off lines); add padding
 
+√ Implement "Open in…" functionality for .sch files
 √ Animated zoom to fit
 √ Dropbox + Document chooser
 √ Attach progress HUD to Dropbox contents table instead of window

@@ -11,4 +11,6 @@
 
 @interface ViewController : UIViewController <UIScrollViewDelegate, DocumentChooserDelegate>
 
+- (void)openFileFromURL:(NSURL*)fileURL;
+
 @end

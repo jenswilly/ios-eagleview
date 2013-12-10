@@ -87,6 +87,24 @@
 	}];
 }
 
+- (void)openFileFromURL:(NSURL*)fileURL
+{
+	// Make sure it's a file URL
+	if( ![fileURL isFileURL] )
+		[NSException raise:@"Invalid URL" format:@"Expected file URL: %@", [fileURL absoluteString]];
+
+	NSString *filePath = [fileURL path];
+	NSError *error = nil;
+	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+	NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
+
+	self.schematicView.schematic = schematic;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[MBProgressHUD hideHUDForView:self.view animated:YES];
+	});
+}
+
 #pragma mark - Document Chooser Delegate methods
 
 - (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata

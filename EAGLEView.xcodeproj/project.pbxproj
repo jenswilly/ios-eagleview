@@ -58,6 +58,8 @@
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
+		47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB118571A0700A1D530 /* ico_schematic-64.png */; };
+		47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB218571A0700A1D530 /* ico_schematic-320.png */; };
 		47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B60184939500041C4C4 /* DropboxSDK.framework */; };
 		47C73B631849395C0041C4C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B621849395C0041C4C4 /* Security.framework */; };
 		47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B64184939620041C4C4 /* QuartzCore.framework */; };
@@ -164,6 +166,8 @@
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableRectangle.h; sourceTree = "<group>"; };
 		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
+		47C5ABB118571A0700A1D530 /* ico_schematic-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_schematic-64.png"; sourceTree = "<group>"; };
+		47C5ABB218571A0700A1D530 /* ico_schematic-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_schematic-320.png"; sourceTree = "<group>"; };
 		47C73B60184939500041C4C4 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		47C73B621849395C0041C4C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		47C73B64184939620041C4C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -442,6 +446,8 @@
 		4739035F184355570092D025 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				47C5ABB118571A0700A1D530 /* ico_schematic-64.png */,
+				47C5ABB218571A0700A1D530 /* ico_schematic-320.png */,
 				473903601843557A0092D025 /* Application.xcassets */,
 			);
 			name = Images;
@@ -504,10 +510,12 @@
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
+				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
 				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
+				47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

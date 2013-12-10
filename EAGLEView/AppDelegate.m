@@ -8,22 +8,37 @@
 
 #import "AppDelegate.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	// Get reference to main view controller
+	_viewController = (ViewController*)self.window.rootViewController;
+
 	// Start Dropbox session
 	DBSession* dbSession = [[DBSession alloc] initWithAppKey:DROPBOX_APP_KEY appSecret:DROPBOX_APP_SECRET root:kDBRootDropbox];
 	[DBSession setSharedSession:dbSession];
 
+	// Are we opened in response to a "Open in…"?
+	NSURL *url = launchOptions[ UIApplicationLaunchOptionsURLKey ];
+	if( [url isFileURL] )
+		// Yes: open the file
+		[self.viewController openFileFromURL:url];
+	
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-	if( [[DBSession sharedSession] handleOpenURL:url] )
+	// Is it a file URL?
+	if( [url isFileURL] )
+		// Yes: open schematic file
+		[self.viewController openFileFromURL:url];
+	else if( [[DBSession sharedSession] handleOpenURL:url] )
 	{
+		// Otherwise, check if it is a Dropbox authentication URL
 		if( [[DBSession sharedSession] isLinked] )
 			DEBUG_LOG( @"Dropbox authenticated" );
 
