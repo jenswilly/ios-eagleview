@@ -17,6 +17,7 @@
 #import "Dropbox.h"
 #import "DocumentChooserViewController.h"
 #import "MBProgressHUD.h"
+#import "UIView+AnchorPoint.h"
 
 @interface ViewController ()
 
@@ -27,7 +28,6 @@
 
 @implementation ViewController
 {
-	CGFloat _initialZoom;
 	__block UIPopoverController *_popover;
 }
 
@@ -39,18 +39,47 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
 
 	[self.schematicView setRelativeZoomFactor:0.1];
-	_initialZoom = 0.1;
 	self.schematicView.schematic = schematic;
 
 	/// TEST: yellow bg color
-	self.schematicView.backgroundColor = [UIColor yellowColor];
+	//self.schematicView.backgroundColor = [UIColor yellowColor];
 }
 
 - (IBAction)handlePinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
+	static CGFloat initialZoom;					// Static because we need this across several invocations of this method
+	static CGPoint relativeTouchInContent;		// ʺ (that's right: a proper "double prime" character and not just a "straight quote")
+	static CGPoint relativeTouchInScrollView;	// ʺ
+
 	// Remember schematic view's zoom factor when we begin zooming
 	if( recognizer.state == UIGestureRecognizerStateBegan )
-		_initialZoom = self.schematicView.zoomFactor;
+	{
+		initialZoom = self.schematicView.zoomFactor;
+
+		// Get coordinate in schematic view and convert to relative location (from 0-1 on both axes)
+		CGPoint touchPoint = [recognizer locationInView:self.schematicView];
+		relativeTouchInContent = CGPointMake( touchPoint.x / self.schematicView.bounds.size.width, touchPoint.y / self.schematicView.bounds.size.height);
+
+		// Also remember pinch point in scroll view so we can set correct content offset when zooming ends
+		touchPoint = [recognizer locationInView:self.scrollView];
+		touchPoint.x -= self.scrollView.contentOffset.x;
+		touchPoint.y -= self.scrollView.contentOffset.y;
+		relativeTouchInScrollView = CGPointMake( touchPoint.x / self.scrollView.bounds.size.width, touchPoint.y / self.scrollView.bounds.size.height );
+
+		DEBUG_LOG( @"Relative touch in content: %@, relative touch in scroll view: %@", NSStringFromCGPoint( relativeTouchInContent ), NSStringFromCGPoint( relativeTouchInScrollView ));
+
+		///
+		DEBUG_LOG( @"Actual content offset: %@", NSStringFromCGPoint( self.scrollView.contentOffset ));
+		CGSize contentSize = [self.schematicView intrinsicContentSize];
+		CGPoint contentPoint = CGPointMake( relativeTouchInContent.x * contentSize.width, relativeTouchInContent.y * contentSize.height );
+		CGPoint scrollPoint = CGPointMake( relativeTouchInScrollView.x * self.scrollView.bounds.size.width, relativeTouchInScrollView.y * self.scrollView.bounds.size.height );
+		CGPoint contentOffset = CGPointMake( contentPoint.x - scrollPoint.x, contentPoint.y - scrollPoint.y );
+		DEBUG_LOG( @"Calculated content offset: %@", NSStringFromCGPoint( contentOffset ));
+		///
+
+		// Set layer's origin so scale transforms occur from this point
+		[self.schematicView setAnchorPoint:relativeTouchInContent];
+	}
 
 	// Scale layer without recalculating or redrawing
 	self.schematicView.layer.transform = CATransform3DMakeScale( recognizer.scale, recognizer.scale, 1 );
@@ -58,11 +87,27 @@
 	// When pinch ends, multiply initial zoom factor by the gesture's scale to get final scale
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
-		CGFloat finalZoom = _initialZoom * recognizer.scale;
+		CGFloat finalZoom = initialZoom * recognizer.scale;
 
+		[self.schematicView setAnchorPoint:CGPointMake( 0.5, 0.5 )];
 		self.schematicView.layer.transform = CATransform3DIdentity;	// Reset transform since we're now changing the zoom factor to make a pretty redraw
 		[self.schematicView setZoomFactor:finalZoom];				// And set new zoom factor
+
+		// Adjust content offset
+		CGSize contentSize = [self.schematicView intrinsicContentSize];
+		CGPoint contentPoint = CGPointMake( relativeTouchInContent.x * contentSize.width, relativeTouchInContent.y * contentSize.height );
+		CGPoint scrollPoint = CGPointMake( relativeTouchInScrollView.x * self.scrollView.bounds.size.width, relativeTouchInScrollView.y * self.scrollView.bounds.size.height );
+		CGPoint contentOffset = CGPointMake( contentPoint.x - scrollPoint.x, contentPoint.y - scrollPoint.y );
+		DEBUG_LOG( @"New calculated content offset: %@", NSStringFromCGPoint( contentOffset ));
+		self.scrollView.contentOffset = contentOffset;
+
+		[self.view layoutIfNeeded];
 	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	DEBUG_LOG( @"Content offset: %@", NSStringFromCGPoint( self.scrollView.contentOffset ));
 }
 
 - (IBAction)chooseDocumentAction:(UIBarButtonItem*)sender

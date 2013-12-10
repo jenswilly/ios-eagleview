@@ -66,6 +66,7 @@
 		47C5ABC51857243800A1D530 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABBE1857243800A1D530 /* zip.c */; };
 		47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABC11857243800A1D530 /* SSZipArchive.m */; };
 		47C5ABC81857244700A1D530 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C5ABC71857244700A1D530 /* libz.dylib */; };
+		47C5ABCC18574EBE00A1D530 /* UIView+AnchorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABCB18574EBE00A1D530 /* UIView+AnchorPoint.m */; };
 		47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B60184939500041C4C4 /* DropboxSDK.framework */; };
 		47C73B631849395C0041C4C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B621849395C0041C4C4 /* Security.framework */; };
 		47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B64184939620041C4C4 /* QuartzCore.framework */; };
@@ -186,6 +187,8 @@
 		47C5ABC01857243800A1D530 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		47C5ABC11857243800A1D530 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		47C5ABC71857244700A1D530 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		47C5ABCA18574EBE00A1D530 /* UIView+AnchorPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnchorPoint.h"; sourceTree = "<group>"; };
+		47C5ABCB18574EBE00A1D530 /* UIView+AnchorPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnchorPoint.m"; sourceTree = "<group>"; };
 		47C73B60184939500041C4C4 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		47C73B621849395C0041C4C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		47C73B64184939620041C4C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -231,6 +234,7 @@
 				473903241840DD360092D025 /* External */,
 				473902C21840DC5C0092D025 /* View Controllers */,
 				473902BE1840D9990092D025 /* Models */,
+				47C5ABC918574EA500A1D530 /* Categories */,
 				4739028F1840D9930092D025 /* EAGLEView */,
 				473902C31840DC890092D025 /* Resources */,
 				473902881840D9930092D025 /* Frameworks */,
@@ -501,6 +505,16 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		47C5ABC918574EA500A1D530 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				47C5ABCA18574EBE00A1D530 /* UIView+AnchorPoint.h */,
+				47C5ABCB18574EBE00A1D530 /* UIView+AnchorPoint.m */,
+			);
+			name = Categories;
+			path = EAGLEView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -586,6 +600,7 @@
 				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
+				47C5ABCC18574EBE00A1D530 /* UIView+AnchorPoint.m in Sources */,
 				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,

@@ -121,14 +121,6 @@
 	return contentSize;
 }
 
-/* ///
-- (void)invalidateIntrinsicContentSize
-{
-	_needsCalculateIntrinsicContentSize = YES;
-	[super invalidateIntrinsicContentSize];
-}
-*/
-
 /**
  * Sets the zoom factor so the content fills the specified size.
  */
