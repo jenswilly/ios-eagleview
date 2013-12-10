@@ -3,9 +3,9 @@
 - Fix pin names with @ (e.g. "GND@2")
 - Fix arcs: e.g. US polarized caps (e.g. Thermometer)
 - Fix patterened (not filled) rectangles (ROV TSC)
-- Fix zoom-to-fit (cuts off lines); add padding
 - Dropbox: remember last used folder
 
+√ Fix zoom-to-fit (cuts off lines); add padding
 √ Zoom around pinch center
 √ Fix zoom: pinch=normal zoom; when ends, zoomScale is set (uses CATransform3D)
 √ Implement "Open in…" functionality for .sch files

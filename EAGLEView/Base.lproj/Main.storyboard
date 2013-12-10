@@ -34,10 +34,10 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="7OV-iT-9LS" secondAttribute="centerX" priority="900" id="Irg-eM-fNf"/>
                                     <constraint firstItem="7OV-iT-9LS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWF-Sb-KVW" secondAttribute="top" id="Kr7-lH-m4u"/>
-                                    <constraint firstAttribute="trailing" secondItem="7OV-iT-9LS" secondAttribute="trailing" priority="800" constant="20" symbolic="YES" id="lZX-z4-lJ9"/>
+                                    <constraint firstAttribute="trailing" secondItem="7OV-iT-9LS" secondAttribute="trailing" priority="800" id="lZX-z4-lJ9"/>
                                     <constraint firstItem="7OV-iT-9LS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vWF-Sb-KVW" secondAttribute="leading" id="mbL-cR-Whp"/>
                                     <constraint firstAttribute="centerY" secondItem="7OV-iT-9LS" secondAttribute="centerY" priority="900" id="p40-vG-DVI"/>
-                                    <constraint firstAttribute="bottom" secondItem="7OV-iT-9LS" secondAttribute="bottom" priority="800" constant="20" symbolic="YES" id="zeu-4Y-7Hk"/>
+                                    <constraint firstAttribute="bottom" secondItem="7OV-iT-9LS" secondAttribute="bottom" priority="800" id="zeu-4Y-7Hk"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="e29-27-vw9"/>

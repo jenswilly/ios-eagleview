@@ -13,6 +13,8 @@
 #import "EAGLEInstance.h"
 #import "EAGLENet.h"
 
+static const CGFloat kSchematicPadding = 5;
+
 @implementation EAGLESchematicView
 {
 	BOOL _needsCalculateIntrinsicContentSize;
@@ -26,7 +28,6 @@
 		_minZoomFactor = 1;
 		_maxZoomFactor = 100;
 		self.zoomFactor = 15;	// Default zoom factor
-///		_needsCalculateIntrinsicContentSize = YES;
     }
 
     return self;
@@ -44,7 +45,6 @@
 	_minZoomFactor = 1;
 	_maxZoomFactor = 100;
 	self.zoomFactor = 15;
-///	_needsCalculateIntrinsicContentSize = YES;
 }
 
 - (CGFloat)relativeZoomFactor
@@ -67,11 +67,6 @@
 
 - (CGSize)intrinsicContentSize
 {
-	/* ///
-	if( !_needsCalculateIntrinsicContentSize )
-		return _calculatedContentSize;
-	*/
-
 	CGFloat maxX = -MAXFLOAT;
 	CGFloat maxY = -MAXFLOAT;
 	CGFloat minX = MAXFLOAT;
@@ -112,12 +107,16 @@
 	// Adjust for negative origin
 	maxX -= minX;
 	maxY -= minY;
+
+	// Add padding
+	maxX += kSchematicPadding;
+	maxY += kSchematicPadding;
+
 	CGSize contentSize = CGSizeMake( maxX * _zoomFactor, maxY * _zoomFactor );
 
 	// Update properties and return
 	_origin = CGPointMake( minX, minY );
 	_calculatedContentSize = contentSize;
-///	_needsCalculateIntrinsicContentSize = NO;
 	return contentSize;
 }
 
@@ -151,6 +150,9 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM( context, 0, self.bounds.size.height );
 	CGContextScaleCTM( context, 1, -1 );
+
+	// Offset by half the padding
+	CGContextTranslateCTM( context, kSchematicPadding/2, kSchematicPadding/2 );
 
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
