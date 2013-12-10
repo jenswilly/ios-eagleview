@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "ViewController.h"
+#import "SSZipArchive.h"
+#import "EAGLESchematic.h"
 
 @implementation AppDelegate
 
@@ -25,8 +27,8 @@
 	NSURL *url = launchOptions[ UIApplicationLaunchOptionsURLKey ];
 	if( [url isFileURL] )
 		// Yes: open the file
-		[self.viewController openFileFromURL:url];
-	
+		[self openFileURL:url];
+
     return YES;
 }
 
@@ -35,7 +37,7 @@
 	// Is it a file URL?
 	if( [url isFileURL] )
 		// Yes: open schematic file
-		[self.viewController openFileFromURL:url];
+		[self openFileURL:url];
 	else if( [[DBSession sharedSession] handleOpenURL:url] )
 	{
 		// Otherwise, check if it is a Dropbox authentication URL
@@ -47,6 +49,67 @@
 	
 	// Add whatever other url handling code your app requires here
 	return NO;
+}
+
+- (void)openFileURL:(NSURL*)fileURL
+{
+	NSURL *fileURLToOpen = nil;
+	NSString *destinationPath = nil;
+
+	// Is it a .sch file?
+	if( [[[fileURL pathExtension] lowercaseString] isEqualToString:@"sch"] )
+		// Yes: open it directly
+		fileURLToOpen = fileURL;
+	else if( [[[fileURL pathExtension] lowercaseString] isEqualToString:@"zip"] )
+	{
+		// It is a zip file: extract and see if we can find a .sch file in the archive
+		NSString *sourceFilePath = [fileURL path];
+		destinationPath = [NSTemporaryDirectory() stringByAppendingString:@"unzip"];
+		DEBUG_LOG( @"Unzipping to %@", destinationPath );
+		[SSZipArchive unzipFileAtPath:sourceFilePath toDestination:destinationPath];
+
+		// Iterate files in archive
+		NSError *error;
+		NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:destinationPath error:&error];
+		if( files == nil )
+		{
+			NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
+			return;
+		}
+
+		for( NSString *file in files )
+		{
+			if( [[file.pathExtension lowercaseString] isEqualToString:@"sch"] )
+			{
+				// Found one: open it (if there are more than one, the rest will be ignored)
+				fileURLToOpen = [NSURL fileURLWithPath:[destinationPath stringByAppendingPathComponent:file]];
+				break;
+			}
+		}
+
+	}
+
+	// Read schematic
+	NSError *error = nil;
+	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:[fileURLToOpen path] error:&error];
+	if( error )
+		NSLog( @"Error reading schematic from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+
+	// Delete file from inbox
+	[[NSFileManager defaultManager] removeItemAtPath:[fileURL path] error:&error];
+	if( error )
+		NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
+
+	// Remove unzipped directory if present
+	if( destinationPath )
+	{
+		[[NSFileManager defaultManager] removeItemAtPath:destinationPath error:&error];
+		if( error )
+			NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
+	}
+
+	// Show the schematic
+	[self.viewController openSchematic:schematic];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

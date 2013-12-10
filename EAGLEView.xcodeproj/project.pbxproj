@@ -60,6 +60,12 @@
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
 		47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB118571A0700A1D530 /* ico_schematic-64.png */; };
 		47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB218571A0700A1D530 /* ico_schematic-320.png */; };
+		47C5ABC21857243800A1D530 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABB81857243800A1D530 /* ioapi.c */; };
+		47C5ABC31857243800A1D530 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABBA1857243800A1D530 /* mztools.c */; };
+		47C5ABC41857243800A1D530 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABBC1857243800A1D530 /* unzip.c */; };
+		47C5ABC51857243800A1D530 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABBE1857243800A1D530 /* zip.c */; };
+		47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C5ABC11857243800A1D530 /* SSZipArchive.m */; };
+		47C5ABC81857244700A1D530 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C5ABC71857244700A1D530 /* libz.dylib */; };
 		47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B60184939500041C4C4 /* DropboxSDK.framework */; };
 		47C73B631849395C0041C4C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B621849395C0041C4C4 /* Security.framework */; };
 		47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B64184939620041C4C4 /* QuartzCore.framework */; };
@@ -168,6 +174,18 @@
 		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
 		47C5ABB118571A0700A1D530 /* ico_schematic-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_schematic-64.png"; sourceTree = "<group>"; };
 		47C5ABB218571A0700A1D530 /* ico_schematic-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_schematic-320.png"; sourceTree = "<group>"; };
+		47C5ABB71857243800A1D530 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		47C5ABB81857243800A1D530 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		47C5ABB91857243800A1D530 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		47C5ABBA1857243800A1D530 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		47C5ABBB1857243800A1D530 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		47C5ABBC1857243800A1D530 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		47C5ABBD1857243800A1D530 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		47C5ABBE1857243800A1D530 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		47C5ABBF1857243800A1D530 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		47C5ABC01857243800A1D530 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		47C5ABC11857243800A1D530 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		47C5ABC71857244700A1D530 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		47C73B60184939500041C4C4 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		47C73B621849395C0041C4C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		47C73B64184939620041C4C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -191,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C5ABC81857244700A1D530 /* libz.dylib in Frameworks */,
 				47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */,
 				47C73B631849395C0041C4C4 /* Security.framework in Frameworks */,
 				47C73B61184939500041C4C4 /* DropboxSDK.framework in Frameworks */,
@@ -230,6 +249,7 @@
 		473902881840D9930092D025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47C5ABC71857244700A1D530 /* libz.dylib */,
 				47C73B64184939620041C4C4 /* QuartzCore.framework */,
 				47C73B621849395C0041C4C4 /* Security.framework */,
 				47C73B60184939500041C4C4 /* DropboxSDK.framework */,
@@ -382,6 +402,7 @@
 		473903241840DD360092D025 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				47C5ABB51857240A00A1D530 /* SSZipArchive */,
 				473903291840E2590092D025 /* KissXML */,
 				473902C51840DD070092D025 /* ios-library */,
 			);
@@ -451,6 +472,33 @@
 				473903601843557A0092D025 /* Application.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		47C5ABB51857240A00A1D530 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				47C5ABB61857243800A1D530 /* minizip */,
+				47C5ABC01857243800A1D530 /* SSZipArchive.h */,
+				47C5ABC11857243800A1D530 /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = EAGLEView/SSZipArchive;
+			sourceTree = "<group>";
+		};
+		47C5ABB61857243800A1D530 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				47C5ABB71857243800A1D530 /* crypt.h */,
+				47C5ABB81857243800A1D530 /* ioapi.c */,
+				47C5ABB91857243800A1D530 /* ioapi.h */,
+				47C5ABBA1857243800A1D530 /* mztools.c */,
+				47C5ABBB1857243800A1D530 /* mztools.h */,
+				47C5ABBC1857243800A1D530 /* unzip.c */,
+				47C5ABBD1857243800A1D530 /* unzip.h */,
+				47C5ABBE1857243800A1D530 /* zip.c */,
+				47C5ABBF1857243800A1D530 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,6 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				473902A01840D9930092D025 /* ViewController.m in Sources */,
+				47C5ABC41857243800A1D530 /* unzip.c in Sources */,
 				473902EE1840DD070092D025 /* GPNetworkIndicator.m in Sources */,
 				4739034E18411D5E0092D025 /* EAGLEDrawableObject.m in Sources */,
 				4739035418411D8C0092D025 /* EAGLEDrawableText.m in Sources */,
@@ -534,12 +583,15 @@
 				473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */,
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
+				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
+				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
 				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
 				473902EF1840DD070092D025 /* GPPods.m in Sources */,
+				47C5ABC31857243800A1D530 /* mztools.c in Sources */,
 				4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */,
 				473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */,
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
@@ -550,6 +602,7 @@
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
 				47C73B6B18493DDB0041C4C4 /* Dropbox.m in Sources */,
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
+				47C5ABC21857243800A1D530 /* ioapi.c in Sources */,
 				4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */,
 				47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */,
 				4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */,

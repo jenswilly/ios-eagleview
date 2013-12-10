@@ -16,7 +16,7 @@
 #endif
 
 
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 
 #if !defined( DEBUG_LOG ) && defined( DEBUG )
 #define DEBUG_LOG( msg, ... ) NSLog( msg,  ##__VA_ARGS__ )

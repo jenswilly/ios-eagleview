@@ -105,6 +105,15 @@
 	});
 }
 
+- (void)openSchematic:(EAGLESchematic*)schematic
+{
+	self.schematicView.schematic = schematic;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[MBProgressHUD hideHUDForView:self.view animated:YES];
+	});
+}
+
 #pragma mark - Document Chooser Delegate methods
 
 - (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata
