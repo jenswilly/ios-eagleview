@@ -29,6 +29,7 @@
 @implementation ViewController
 {
 	__block UIPopoverController *_popover;
+	NSString *_lastDropboxPath;		// Used to remember which Dropbox path the user was in last
 }
 
 - (void)viewDidLoad
@@ -125,7 +126,7 @@
 
 	DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
 	documentChooserViewController.delegate = self;
-	documentChooserViewController.path = @"/";
+	[documentChooserViewController setInitialPath:(_lastDropboxPath ? _lastDropboxPath : @"/" )];
 
 	[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
@@ -168,10 +169,13 @@
 
 #pragma mark - Document Chooser Delegate methods
 
-- (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata
+- (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata lastPath:(NSString*)lastPath
 {
-	DEBUG_LOG( @"Picked file: %@", [metadata description] );
+	DEBUG_LOG( @"Picked file: %@ from path: %@", [metadata description], lastPath );
 	[_popover dismissPopoverAnimated:YES];
+
+	// Remember last used path
+	_lastDropboxPath = [lastPath copy];
 
 	// Show HUD and start loading
 	dispatch_async(dispatch_get_main_queue(), ^{

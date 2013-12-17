@@ -67,6 +67,35 @@
 	}];
 }
 
+/**
+ * Sets the initial path to display contents for.
+ * This method will create view controllers for all the individual path components from / up to the current path and
+ * push them on the navigation stack.
+ *
+ * If you want to just display contents for a single, specific folder, use -[DocumentChooserViewController setPath:] instead.
+ *
+ * @param	path	The path to navigate to.
+ */
+- (void)setInitialPath:(NSString*)path
+{
+	// Split path into components
+	NSArray *pathComponents = [path pathComponents];
+	DEBUG_LOG( @"Navigating to %@", [pathComponents description] );
+
+	// Set first path on self
+	self.path = [pathComponents firstObject];
+
+	// If we have more, iterate them and create and push new instances
+	for( int i = 1; i < [pathComponents count]; i++ )
+	{
+		// Construct full path for this element
+		NSString *path = [@"/" stringByAppendingString:[[pathComponents subarrayWithRange:NSMakeRange( 1, i )] componentsJoinedByString:@"/"]];
+		DocumentChooserViewController *documentChooseViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserViewController"];
+		documentChooseViewController.path = path;
+		[self.navigationController pushViewController:documentChooseViewController animated:NO];
+	}
+}
+
 - (void)setPath:(NSString *)path
 {
 	_path = path;
@@ -75,16 +104,22 @@
 	[self view];
 
 	// Show HUD if not cached contents
+	DEBUG_LOG( @"Checking for cached contents for %@", _path );
 	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
 	{
+		DEBUG_LOG( @"Contents *not* cached for %@", _path );
 		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 		// Set title to Loading…
 		self.navigationItem.title = @"Loading…";
 	}
 	else
+	{
+		DEBUG_LOG( @"Contents *not* cached for %@", _path );
+
 		// Set title immediately
 		self.navigationItem.title = _path;
+	}
 
 	// Load from Dropbox
 	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
@@ -106,7 +141,7 @@
 		else
 		{
 			// Error loading
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
 			[alert show];
 		}
 	}];
@@ -157,7 +192,7 @@
 	else
 	{
 		// File: pass metadata back to view controller
-		[_delegate documentChooserPickedDropboxFile:metadata];
+		[_delegate documentChooserPickedDropboxFile:metadata lastPath:[metadata.path stringByDeletingLastPathComponent]];
 	}
 }
 

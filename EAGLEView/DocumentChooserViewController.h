@@ -11,7 +11,7 @@
 
 @protocol DocumentChooserDelegate <NSObject>
 
-- (void)documentChooserPickedDropboxFile:(DBMetadata*)metadata;
+- (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata lastPath:(NSString*)lastPath;
 
 @end
 
@@ -20,5 +20,7 @@
 @property (weak) id<DocumentChooserDelegate> delegate;
 @property (strong, nonatomic) DBMetadata *item;	// The Dropbox item to show contents for
 @property (strong, nonatomic) NSString *path;	// Dropbox path to show contents for
+
+- (void)setInitialPath:(NSString*)path;	// See comments in .m file for usage
 
 @end

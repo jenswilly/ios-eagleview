@@ -51,34 +51,40 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 
 - (BOOL)hasCachedContentsForFolder:(NSString*)path
 {
-	if( path == nil )
-		path = @"/";
-	
-	return ( _contents[ path ] ? YES : NO );
+	@synchronized( self )
+	{
+		if( path == nil )
+			path = @"/";
+		
+		return ( _contents[ [path lowercaseString] ] ? YES : NO );
+	}
 }
 
 - (BOOL)loadContentsForFolder:(NSString*)path completion:(foldercompletionBlock_t)completion
 {
-	// Do we already have contents for the specified folder path?
-	if( _contents[ path ] )
+	@synchronized( self )
 	{
-		// Yes: return it immediately in the completion block
-		DEBUG_LOG( @"Contents already loaded for %@", path );
-		completion( YES, _contents[ path ] );
+		// Do we already have contents for the specified folder path?
+		if( _contents[ [path lowercaseString] ] )
+		{
+			// Yes: return it immediately in the completion block
+			DEBUG_LOG( @"Contents already loaded for %@", path );
+			completion( YES, _contents[ [path lowercaseString] ] );
+			return YES;
+		}
+		
+		// Return NO if already busy
+		if( _isBusy )
+			return NO;
+
+		// Remember completion block
+		_completionBlock = completion;
+
+		// Start loading
+		_isBusy = YES;
+		[_restClient loadMetadata:path];
 		return YES;
 	}
-	
-	// Return NO if already busy
-	if( _isBusy )
-		return NO;
-
-	// Remember completion block
-	_completionBlock = completion;
-
-	// Start loading
-	_isBusy = YES;
-	[_restClient loadMetadata:path];
-	return YES;
 }
 
 - (BOOL)loadFileAtPath:(NSString*)path completion:(fileCompletionBlock_t)completion
@@ -133,7 +139,8 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
 {
 	// Set contents
-	_contents[ metadata.path ] = metadata.contents;
+	_contents[ [metadata.path lowercaseString] ] = metadata.contents;
+	DEBUG_LOG( @"Caching contents for %@", metadata.path );
 
 	// Call completion block
 	_completionBlock( YES, metadata.contents );
