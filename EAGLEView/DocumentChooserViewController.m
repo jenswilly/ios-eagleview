@@ -80,7 +80,6 @@
 {
 	// Split path into components
 	NSArray *pathComponents = [path pathComponents];
-	DEBUG_LOG( @"Navigating to %@", [pathComponents description] );
 
 	// Set first path on self
 	self.path = [pathComponents firstObject];
@@ -104,22 +103,16 @@
 	[self view];
 
 	// Show HUD if not cached contents
-	DEBUG_LOG( @"Checking for cached contents for %@", _path );
 	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
 	{
-		DEBUG_LOG( @"Contents *not* cached for %@", _path );
 		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 		// Set title to Loading…
 		self.navigationItem.title = @"Loading…";
 	}
 	else
-	{
-		DEBUG_LOG( @"Contents *not* cached for %@", _path );
-
 		// Set title immediately
 		self.navigationItem.title = _path;
-	}
 
 	// Load from Dropbox
 	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {

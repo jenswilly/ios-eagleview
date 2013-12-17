@@ -68,7 +68,6 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 		if( _contents[ [path lowercaseString] ] )
 		{
 			// Yes: return it immediately in the completion block
-			DEBUG_LOG( @"Contents already loaded for %@", path );
 			completion( YES, _contents[ [path lowercaseString] ] );
 			return YES;
 		}
@@ -140,7 +139,6 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 {
 	// Set contents
 	_contents[ [metadata.path lowercaseString] ] = metadata.contents;
-	DEBUG_LOG( @"Caching contents for %@", metadata.path );
 
 	// Call completion block
 	_completionBlock( YES, metadata.contents );
