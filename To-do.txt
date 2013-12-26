@@ -4,6 +4,7 @@
 - Fix arcs: e.g. US polarized caps (e.g. Thermometer)
 - Fix patterened (not filled) rectangles (ROV TSC)
 
+√ Add icons to Dropbox chooser
 √ Dropbox: Display .sch files in different style
 √ Dropbox: Disable selecting non-sch files
 √ Dropbox: remember last used folder

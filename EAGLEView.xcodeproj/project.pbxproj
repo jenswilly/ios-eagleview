@@ -57,6 +57,7 @@
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
+		47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */; };
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
 		47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB118571A0700A1D530 /* ico_schematic-64.png */; };
 		47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C5ABB218571A0700A1D530 /* ico_schematic-320.png */; };
@@ -171,6 +172,7 @@
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
+		47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FileIcons.xcassets; sourceTree = "<group>"; };
 		47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableRectangle.h; sourceTree = "<group>"; };
 		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
 		47C5ABB118571A0700A1D530 /* ico_schematic-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_schematic-64.png"; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				47C5ABB118571A0700A1D530 /* ico_schematic-64.png */,
 				47C5ABB218571A0700A1D530 /* ico_schematic-320.png */,
 				473903601843557A0092D025 /* Application.xcassets */,
+				47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
+				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,

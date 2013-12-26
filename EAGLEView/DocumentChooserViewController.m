@@ -165,7 +165,7 @@
 		// Directory
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.textLabel.textColor = [UIColor blackColor];
-
+		cell.imageView.image = [[UIImage imageNamed:@"ico_folder"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	}
 	else
 	{
@@ -174,10 +174,17 @@
 
 		// Set cell style based on file extension
 		if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"sch"] )
+		{
 			// Schematic file
 			cell.textLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
+			cell.imageView.image = [[UIImage imageNamed:@"ico_file_schematic"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+		}
 		else
+		{
 			cell.textLabel.textColor = [UIColor grayColor];
+			cell.imageView.image = [[UIImage imageNamed:@"ico_file_generic"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+		}
 	}
 
 
