@@ -92,6 +92,7 @@
 		NSString *path = [@"/" stringByAppendingString:[[pathComponents subarrayWithRange:NSMakeRange( 1, i )] componentsJoinedByString:@"/"]];
 		DocumentChooserViewController *documentChooseViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserViewController"];
 		documentChooseViewController.path = path;
+		documentChooseViewController.delegate = _delegate;
 		[self.navigationController pushViewController:documentChooseViewController animated:NO];
 	}
 }

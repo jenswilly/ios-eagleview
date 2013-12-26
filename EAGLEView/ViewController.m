@@ -67,17 +67,6 @@
 		touchPoint.y -= self.scrollView.contentOffset.y;
 		relativeTouchInScrollView = CGPointMake( touchPoint.x / self.scrollView.bounds.size.width, touchPoint.y / self.scrollView.bounds.size.height );
 
-		DEBUG_LOG( @"Relative touch in content: %@, relative touch in scroll view: %@", NSStringFromCGPoint( relativeTouchInContent ), NSStringFromCGPoint( relativeTouchInScrollView ));
-
-		///
-		DEBUG_LOG( @"Actual content offset: %@", NSStringFromCGPoint( self.scrollView.contentOffset ));
-		CGSize contentSize = [self.schematicView intrinsicContentSize];
-		CGPoint contentPoint = CGPointMake( relativeTouchInContent.x * contentSize.width, relativeTouchInContent.y * contentSize.height );
-		CGPoint scrollPoint = CGPointMake( relativeTouchInScrollView.x * self.scrollView.bounds.size.width, relativeTouchInScrollView.y * self.scrollView.bounds.size.height );
-		CGPoint contentOffset = CGPointMake( contentPoint.x - scrollPoint.x, contentPoint.y - scrollPoint.y );
-		DEBUG_LOG( @"Calculated content offset: %@", NSStringFromCGPoint( contentOffset ));
-		///
-
 		// Set layer's origin so scale transforms occur from this point
 		[self.schematicView setAnchorPoint:relativeTouchInContent];
 	}
@@ -99,7 +88,6 @@
 		CGPoint contentPoint = CGPointMake( relativeTouchInContent.x * contentSize.width, relativeTouchInContent.y * contentSize.height );
 		CGPoint scrollPoint = CGPointMake( relativeTouchInScrollView.x * self.scrollView.bounds.size.width, relativeTouchInScrollView.y * self.scrollView.bounds.size.height );
 		CGPoint contentOffset = CGPointMake( contentPoint.x - scrollPoint.x, contentPoint.y - scrollPoint.y );
-		DEBUG_LOG( @"New calculated content offset: %@", NSStringFromCGPoint( contentOffset ));
 		self.scrollView.contentOffset = contentOffset;
 
 		[self.view layoutIfNeeded];
@@ -108,7 +96,6 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-	DEBUG_LOG( @"Content offset: %@", NSStringFromCGPoint( self.scrollView.contentOffset ));
 }
 
 - (IBAction)chooseDocumentAction:(UIBarButtonItem*)sender
