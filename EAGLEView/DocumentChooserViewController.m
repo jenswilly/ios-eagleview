@@ -166,6 +166,7 @@
 		// Directory
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.textLabel.textColor = [UIColor blackColor];
+		cell.imageView.tintColor = RGBHEX( GLOBAL_TINT_COLOR );
 		cell.imageView.image = [[UIImage imageNamed:@"ico_folder"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	}
 	else
@@ -178,13 +179,21 @@
 		{
 			// Schematic file
 			cell.textLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
+			cell.imageView.tintColor = RGBHEX( GLOBAL_TINT_COLOR );
 			cell.imageView.image = [[UIImage imageNamed:@"ico_file_schematic"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+		}
+		else if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"brd"] )
+		{
+			// Board file (can't be selected yet)
+			cell.textLabel.textColor = [UIColor grayColor];
+			cell.imageView.tintColor = [UIColor grayColor];
+			cell.imageView.image = [[UIImage imageNamed:@"ico_file_board"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		}
 		else
 		{
 			cell.textLabel.textColor = [UIColor grayColor];
+			cell.imageView.tintColor = [UIColor grayColor];
 			cell.imageView.image = [[UIImage imageNamed:@"ico_file_generic"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-
 		}
 	}
 

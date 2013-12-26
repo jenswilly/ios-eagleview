@@ -4,6 +4,7 @@
 - Fix arcs: e.g. US polarized caps (e.g. Thermometer)
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
+- New board file icon
 
 √ Add icons to Dropbox chooser
 √ Dropbox: Display .sch files in different style
