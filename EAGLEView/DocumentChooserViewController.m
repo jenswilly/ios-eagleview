@@ -10,6 +10,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface DocumentChooserViewController ()
 
@@ -160,13 +161,49 @@
     // Configure the cell
     cell.textLabel.text = metadata.filename;
 	if( metadata.isDirectory )
+	{
+		// Directory
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.textLabel.textColor = [UIColor blackColor];
+
+	}
 	else
+	{
+		// File
 		cell.accessoryType = UITableViewCellAccessoryNone;
+
+		// Set cell style based on file extension
+		if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"sch"] )
+			// Schematic file
+			cell.textLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
+		else
+			cell.textLabel.textColor = [UIColor grayColor];
+	}
+
 
     return cell;
 }
 
+- (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	// Get the item
+	DBMetadata *metadata = _contents[ indexPath.row ];
+
+	// File or directory
+	if( metadata.isDirectory )
+		// Directory: go ahead and select
+		return indexPath;
+	else
+	{
+		// File: check extension
+		if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"sch"] )
+			// Schematic file: OK
+			return indexPath;
+		else
+			// Other file: cannot select
+			return nil;
+	}
+}
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {

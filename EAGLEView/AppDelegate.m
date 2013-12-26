@@ -19,6 +19,8 @@
 	// Get reference to main view controller
 	_viewController = (ViewController*)self.window.rootViewController;
 
+	[self setAppearance];
+
 	// Start Dropbox session
 	DBSession* dbSession = [[DBSession alloc] initWithAppKey:DROPBOX_APP_KEY appSecret:DROPBOX_APP_SECRET root:kDBRootDropbox];
 	[DBSession setSharedSession:dbSession];
@@ -138,5 +140,15 @@
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)setAppearance
+{
+	self.window.backgroundColor = [UIColor whiteColor];
+
+	// Global tint color
+	self.window.tintColor = RGBHEX( GLOBAL_TINT_COLOR );
+	[[UISwitch appearance] setOnTintColor:RGBHEX( GLOBAL_TINT_COLOR )];
+}
+
 
 @end
