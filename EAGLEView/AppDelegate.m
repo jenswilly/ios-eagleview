@@ -95,9 +95,13 @@
 	NSError *error = nil;
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:[fileURLToOpen path] error:&error];
 	if( error )
+	{
 		NSLog( @"Error reading schematic from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open schematic file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		[alert show];
+	}
 
-	// Delete file from inbox
+	// Delete zip file from inbox
 	[[NSFileManager defaultManager] removeItemAtPath:[fileURL path] error:&error];
 	if( error )
 		NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
@@ -111,7 +115,8 @@
 	}
 
 	// Show the schematic
-	[self.viewController openSchematic:schematic];
+	if( schematic )
+		[self.viewController openSchematic:schematic];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
