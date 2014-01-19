@@ -23,6 +23,11 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 
+		// Remove the @x part of the name ("GND@2" -> "GND")
+		NSRange range = [_name rangeOfString:@"@"];
+		if( range.location != NSNotFound )
+			_name = [_name substringToIndex:range.location];
+
 		CGFloat x = [[[element attributeForName:@"x"] stringValue] floatValue];
 		CGFloat y = [[[element attributeForName:@"y"] stringValue] floatValue];
 		_point = CGPointMake( x, y );
@@ -43,7 +48,7 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 		// Visible pin/pad text
 		NSString *visible = [[element attributeForName:@"visible"] stringValue];
-		_pinVisible = ( [visible isEqualToString:@"pin"] || [visible isEqualToString:@"both"] );
+		_pinVisible = ( [visible isEqualToString:@"pin"] || [visible isEqualToString:@"both"] || visible == nil );	// NB: if no "visible" property, show the name
 	}
 
 	return self;

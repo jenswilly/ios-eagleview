@@ -16,6 +16,7 @@
 #import "EAGLEDrawableCircle.h"
 #import "EAGLEDrawableArc.h"
 #import "EAGLEDrawableRectangle.h"
+#import "EAGLEDrawableFrame.h"
 
 #import "DDXML.h"
 
@@ -55,6 +56,9 @@
 
 	if( [elementName isEqualToString:@"rectangle"] )
 		return [[EAGLEDrawableRectangle alloc] initFromXMLElement:element inSchematic:schematic];
+
+	if( [elementName isEqualToString:@"frame"] )
+		return [[EAGLEDrawableFrame alloc] initFromXMLElement:element inSchematic:schematic];
 
 	// Unknown element name
 	DEBUG_LOG( @"Unknown drawable element: %@", elementName );
