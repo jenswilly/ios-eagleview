@@ -18,6 +18,6 @@ extern const CGFloat kFontSizeFactor;
 @property (readonly) Rotation rotation;
 @property (weak) NSString *valueText;
 
-- (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText;
+- (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText isMirrored:(BOOL)isMirrored;
 
 @end

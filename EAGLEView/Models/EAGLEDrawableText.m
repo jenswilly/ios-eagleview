@@ -41,7 +41,7 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 	return [NSString stringWithFormat:@"Text '%@' – at %@", self.text, NSStringFromCGPoint( self.point )];
 }
 
-- (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText
+- (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText isMirrored:(BOOL)isMirrored
 {
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
@@ -72,6 +72,12 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 		CGContextScaleCTM( context, -1, -1 );
 	}
 
+	if( isMirrored )
+	{
+		CGContextTranslateCTM( context, textSize.width, 0 );
+		CGContextScaleCTM( context, -1, 1 );
+	}
+
 	// Draw string
 	[stringToDraw drawAtPoint:CGPointZero withAttributes:attributes];
 
@@ -80,7 +86,7 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 
 - (void)drawInContext:(CGContextRef)context
 {
-	[self drawInContext:context flipText:NO];
+	[self drawInContext:context flipText:NO isMirrored:NO];
 }
 
 - (CGFloat)maxX

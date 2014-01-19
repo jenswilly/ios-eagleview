@@ -23,8 +23,10 @@ typedef enum
 	Rotation_0,
 	Rotation_R90,
 	Rotation_R180,
-	Rotation_R270
+	Rotation_R270,
+	Rotation_Mirror_MR0
 } Rotation;
+
 
 @interface EAGLEDrawableObject : EAGLEObject  <EAGLEDrawable>
 

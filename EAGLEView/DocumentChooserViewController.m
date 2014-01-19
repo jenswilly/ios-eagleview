@@ -23,6 +23,15 @@
 	NSArray *_contents;	// Contains DBMetadata objects
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+	// Fix table separator
+	self.table.separatorColor = RGBHEX( GLOBAL_TINT_COLOR );
+	self.table.separatorInset = UIEdgeInsetsMake( 0, 15, 0, 15 );
+
+}
 - (void)setItem:(DBMetadata *)item
 {
 	_item = item;
@@ -161,6 +170,9 @@
 
     // Configure the cell
     cell.textLabel.text = metadata.filename;
+//	self.table.separatorColor = RGBHEX( GLOBAL_TINT_COLOR );
+//	return cell;
+	
 	if( metadata.isDirectory )
 	{
 		// Directory

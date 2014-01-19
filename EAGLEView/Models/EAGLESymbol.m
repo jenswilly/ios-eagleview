@@ -44,7 +44,7 @@
 	return [NSString stringWithFormat:@"Symbol %@, components: %@", self.name, [self.components description]];
 }
 
-- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts
+- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts isMirrored:(BOOL)isMirrored
 {
 	// Offset to point
 	CGContextSaveGState( context );
@@ -69,7 +69,7 @@
 				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
 
 			// We need to call a special method since the text might need to be flipped
-			[(EAGLEDrawableText*)drawable drawInContext:context flipText:flipTexts];
+			[(EAGLEDrawableText*)drawable drawInContext:context flipText:flipTexts isMirrored:isMirrored];
 		}
 		else
 			// Draw it

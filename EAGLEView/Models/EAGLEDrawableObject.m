@@ -74,6 +74,9 @@
 		case Rotation_R270:
 			return M_PI_2 * 3;
 
+		case Rotation_Mirror_MR0:
+			[NSException raise:@"Invalid rotation" format:@"This should be mirrored and not rotated!"];
+			
 		default:
 			return 0;
 	}
@@ -89,6 +92,8 @@
 		return Rotation_R270;
 	else if( [rotationString isEqualToString:@"R180"] || [rotationString isEqualToString:@"MR180"] )
 		return Rotation_R180;
+	else if( [rotationString isEqualToString:@"MR0"] )
+		return Rotation_Mirror_MR0;
 	else
 		[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotationString];
 

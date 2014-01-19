@@ -5,7 +5,9 @@
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
 - New board file icon
+- Pin names in symbols (U1 in Gift Card)
 
+√ Mirrored components (Q1 in Gift Card) – NB: not text
 √ Add icons to Dropbox chooser
 √ Dropbox: Display .sch files in different style
 √ Dropbox: Disable selecting non-sch files
