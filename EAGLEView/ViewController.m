@@ -169,12 +169,17 @@
 		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	});
 
+	// Remember file data
+	NSDate *fileDate = metadata.lastModifiedDate;
+	NSString *fileName = [metadata.path lastPathComponent];
 	[[Dropbox sharedInstance] loadFileAtPath:metadata.path completion:^(BOOL success, NSString *filePath) {
 
 		if( success )
 		{
 			NSError *error = nil;
 			EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+			schematic.fileName = fileName;
+			schematic.fileDate = fileDate;
 			NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
 
 			self.schematicView.schematic = schematic;

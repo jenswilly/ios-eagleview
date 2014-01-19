@@ -193,4 +193,31 @@
 		return nil;
 }
 
+- (NSString *)textForPlaceholder:(NSString *)placeholder
+{
+	if( [placeholder isEqualToString:@">DRAWING_NAME"] )
+	{
+		// Substitute file name
+		return _fileName;
+	}
+	else if( [placeholder isEqualToString:@">LAST_DATE_TIME"] )
+	{
+		// Substitute file's date
+		static NSDateFormatter *dateFormatter = nil;
+		if( dateFormatter == nil )
+		{
+			dateFormatter = [[NSDateFormatter alloc] init];
+			dateFormatter.dateFormat = @"dd/MM/yy HH.mm";
+		}
+		return [dateFormatter stringFromDate:_fileDate];
+	}
+	else
+	{
+		DEBUG_LOG( @"Unknown placeholder: %@", placeholder );
+		return placeholder;
+	}
+
+	return nil;		// Fall-through to keep the compiler happy
+}
+
 @end

@@ -21,9 +21,13 @@
 @property (readonly, strong) NSArray *busses;		// NOTE: also contains EAGLENet objects since they are conceptually identical
 @property (readonly, strong) NSArray *plainObjects;	// Contains id<EAGLEDrawable> objects. This represents "plain" objects like texts or lines
 
+@property (copy) NSString *fileName;
+@property (copy) NSDate *fileDate;
+
 + (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 + (instancetype)schematicFromSchematicAtPath:(NSString*)path error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;
 - (EAGLELibrary*)libraryWithName:(NSString*)name;
+- (NSString*)textForPlaceholder:(NSString*)placeholder;
 
 @end

@@ -3,8 +3,8 @@
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
 - New board file icon
-- "Placeholder" texts >DRAWING_NAME, >LAST_DATE_TIME
 
+√ "Placeholder" texts >DRAWING_NAME, >LAST_DATE_TIME
 √ Drawable: frame
 √ Fix pin names with @ (e.g. "GND@2")
 √ Pin names in symbols (U1 in Gift Card)
