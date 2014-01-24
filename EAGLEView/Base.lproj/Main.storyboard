@@ -24,10 +24,14 @@
                                         <rect key="frame" x="462" y="302" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="100" constant="100" id="eMo-kQ-FGT"/>
                                             <constraint firstAttribute="width" priority="100" constant="100" id="jg9-nb-g5q"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="jDc-86-l4q" appends="YES" id="Ack-D1-t96"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <gestureRecognizers/>
@@ -48,12 +52,13 @@
                                 <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Open" id="1oy-AO-dmp">
+                                    <barButtonItem image="ico_dropbox" id="1oy-AO-dmp">
                                         <connections>
                                             <action selector="chooseDocumentAction:" destination="BYZ-38-t0r" id="TKx-BE-bXv"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Fit" id="NuY-bw-d6W">
+                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="S1c-ZS-kt1"/>
+                                    <barButtonItem image="ico_fit" id="NuY-bw-d6W">
                                         <connections>
                                             <action selector="zoomToFitAction:" destination="BYZ-38-t0r" id="nha-bx-bJy"/>
                                         </connections>
@@ -86,6 +91,11 @@
                         <action selector="handlePinchGesture:" destination="BYZ-38-t0r" id="I6x-Dh-MJZ"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <tapGestureRecognizer id="jDc-86-l4q">
+                    <connections>
+                        <action selector="handleTapGesture:" destination="BYZ-38-t0r" id="5k7-gP-Vuz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
         <!--Document Chooser View Controller-->
@@ -162,6 +172,10 @@
             <point key="canvasLocation" x="1271" y="71"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ico_dropbox" width="40" height="40"/>
+        <image name="ico_fit" width="40" height="40"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -28,6 +28,6 @@
 + (instancetype)schematicFromSchematicAtPath:(NSString*)path error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;
 - (EAGLELibrary*)libraryWithName:(NSString*)name;
-- (NSString*)textForPlaceholder:(NSString*)placeholder;
+- (NSString*)dateString;
 
 @end

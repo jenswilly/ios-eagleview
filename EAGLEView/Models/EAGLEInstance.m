@@ -128,7 +128,9 @@
 	// Symbol
 	EAGLESymbol *symbol = [library symbolWithName:gate.symbol_name];
 	symbol.textsForPlaceholders = @{ @">NAME": part.name,
-									 @">VALUE": [self valueText] };
+									 @">VALUE": [self valueText],
+									 @">DRAWING_NAME": (self.schematic.fileName ? self.schematic.fileName : @""),
+									 @">LAST_DATE_TIME": [self.schematic dateString] };
 
 	// Set list of smashed attributes which should _not_ be drawn by the symbol
 	symbol.placeholdersToSkip = [_smashedAttributes allKeys];

@@ -41,9 +41,14 @@
 
 	[self.schematicView setRelativeZoomFactor:0.1];
 	self.schematicView.schematic = schematic;
+}
 
-	/// TEST: yellow bg color
-	//self.schematicView.backgroundColor = [UIColor yellowColor];
+- (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
+{
+	if( recognizer.state == UIGestureRecognizerStateEnded )
+	{
+		DEBUG_POSITION;
+	}
 }
 
 - (IBAction)handlePinchGesture:(UIPinchGestureRecognizer*)recognizer

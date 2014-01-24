@@ -78,6 +78,7 @@
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
 		47D3CD0E1845375B00F58240 /* EAGLEDrawableArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */; };
+		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,7 @@
 		47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableCircle.m; sourceTree = "<group>"; };
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
 		47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableArc.m; sourceTree = "<group>"; };
+		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47FF32CC1847382F00E711C7 /* To-do.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To-do.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -482,6 +484,7 @@
 				47C5ABB218571A0700A1D530 /* ico_schematic-320.png */,
 				473903601843557A0092D025 /* Application.xcassets */,
 				47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */,
+				47F920F31892A1150025CF70 /* Images.xcassets */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				473902E61840DD070092D025 /* .gitignore in Resources */,
 				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
+				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
