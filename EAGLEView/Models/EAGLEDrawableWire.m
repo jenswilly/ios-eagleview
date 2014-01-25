@@ -67,4 +67,9 @@
 	return MIN( self.point1.y, self.point2.y );
 }
 
+- (CGPoint)origin
+{
+	return CGPointMake( self.point2.x - self.point1.x, self.point2.y - self.point1.y );
+}
+
 @end

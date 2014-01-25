@@ -28,7 +28,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Gate %@ – symbol: %@", self.name, self.symbol_name ];
+	return [NSString stringWithFormat:@"Gate %@ - symbol: %@", self.name, self.symbol_name ];
 }
 
 @end

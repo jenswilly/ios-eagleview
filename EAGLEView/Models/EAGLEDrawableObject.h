@@ -15,6 +15,7 @@
 - (CGFloat)maxY;
 - (CGFloat)minX;
 - (CGFloat)minY;
+- (CGPoint)origin;
 
 @end
 

@@ -19,5 +19,6 @@
 @property (readonly) Rotation rotation;
 
 - (EAGLESymbol*)symbol;
+- (NSString*)infoString;
 
 @end

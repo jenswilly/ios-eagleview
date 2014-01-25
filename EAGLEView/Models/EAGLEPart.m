@@ -29,7 +29,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Part %@ – value: %@, library: %@, deviceset: %@, device: %@", self.name, self.value, self.library_name, self.deviceset_name, self.device_name];
+	return [NSString stringWithFormat:@"Part %@ - value: %@, library: %@, deviceset: %@, device: %@", self.name, self.value, self.library_name, self.deviceset_name, self.device_name];
 }
 
 - (NSString *)name

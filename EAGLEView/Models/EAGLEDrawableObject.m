@@ -147,4 +147,10 @@
 	return 0;
 }
 
+- (CGPoint)origin
+{
+	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	return CGPointZero;
+}
+
 @end

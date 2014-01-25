@@ -20,5 +20,6 @@
 @property (readonly) CGPoint origin;
 
 - (void)zoomToFitSize:(CGSize)fitSize animated:(BOOL)animated;
+- (id)objectsAtPoint:(CGPoint)point;
 
 @end

@@ -13,6 +13,7 @@
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
 #import "EAGLESchematicView.h"
+#import "EAGLEInstance.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
 #import "DocumentChooserViewController.h"
@@ -47,7 +48,18 @@
 {
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
-		DEBUG_POSITION;
+		// Find instance/net from schematic
+		NSArray *objects = [self.schematicView objectsAtPoint:[recognizer locationInView:self.schematicView]];
+//		DEBUG_LOG( @"Touched %@", objects );
+
+		id clickedObject = objects[ 0 ];
+		DEBUG_LOG( @"Clicked %@", clickedObject );
+
+		if( [clickedObject isKindOfClass:[EAGLEInstance class]] )
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clicked" message:[(EAGLEInstance*)clickedObject infoString] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
 	}
 }
 

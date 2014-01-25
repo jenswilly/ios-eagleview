@@ -143,5 +143,9 @@
 	return _center.y - _radius;
 }
 
+- (CGPoint)origin
+{
+	return _center;
+}
 
 @end

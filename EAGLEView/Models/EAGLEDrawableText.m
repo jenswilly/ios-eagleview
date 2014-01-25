@@ -38,7 +38,7 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Text '%@' – at %@", self.text, NSStringFromCGPoint( self.point )];
+	return [NSString stringWithFormat:@"Text '%@' - at %@", self.text, NSStringFromCGPoint( self.point )];
 }
 
 - (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText isMirrored:(BOOL)isMirrored
@@ -131,6 +131,11 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 - (CGFloat)minY
 {
 	return self.point.y;
+}
+
+- (CGPoint)origin
+{
+	return _point;
 }
 
 @end

@@ -31,7 +31,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Circle – center %@, radius: %.2f, width: %.2f", NSStringFromCGPoint( self.center ), self.radius, self.width];
+	return [NSString stringWithFormat:@"Circle - center %@, radius: %.2f, width: %.2f", NSStringFromCGPoint( self.center ), self.radius, self.width];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -63,4 +63,10 @@
 {
 	return self.center.y - self.radius;
 }
+
+- (CGPoint)origin
+{
+	return _center;
+}
+
 @end

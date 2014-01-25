@@ -171,4 +171,75 @@ static const CGFloat kSchematicPadding = 5;
 		[drawable drawInContext:context];
 }
 
+- (NSArray*)objectsAtPoint:(CGPoint)point
+{
+	// <junction x="5.08" y="60.96"/>
+	// - padding Coordinate: {5.1012878, 60.886848}
+	// + padding Coordinate: {5.2144775, 60.996956}
+	
+	// Adjust coordinate for zoom factor, origin and padding
+
+	// Flip Y axis
+	CGPoint coordinate = point;
+	coordinate.y = self.frame.size.height - point.y;
+
+	// De-pad
+	coordinate.x -= kSchematicPadding/2;
+	coordinate.y -= kSchematicPadding/2;
+
+	// Scale
+	coordinate.x /= self.zoomFactor;
+	coordinate.y /= self.zoomFactor;
+
+	// Adjust for offset origin
+	coordinate.x += _origin.x;
+	coordinate.y += _origin.y;
+
+	// Iterate all objects and find those with rect that encompass the point. Use the distance form the touch point to the center of the object as the key so we can sort by distance
+	NSMutableDictionary *objectsAtCoordinate = [NSMutableDictionary dictionary];
+
+	// Instances
+	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+	{
+		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+	}
+
+	// Nets
+	for( id<EAGLEDrawable> drawable in self.schematic.nets )
+	{
+		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+	}
+
+	// Busses
+	for( id<EAGLEDrawable> drawable in self.schematic.busses )
+	{
+		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+	}
+
+	// Sort the objects by distance
+	NSArray *sortedKeys = [[objectsAtCoordinate allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	NSArray *sortedValues = [objectsAtCoordinate objectsForKeys:sortedKeys notFoundMarker:[NSNull null]];
+
+	return sortedValues;
+}
+
+NSNumber* distance( id<EAGLEDrawable> drawable, CGPoint coordinate )
+{
+	CGFloat midX = ([drawable minX] + [drawable maxX]) / 2;
+	CGFloat midY = ([drawable minY] + [drawable maxY]) / 2;
+
+	midX = [drawable origin].x;
+	midY = [drawable origin].y;
+	
+	CGFloat distance = sqrtf( powf( coordinate.x - midX, 2) + powf( coordinate.y - midY, 2 ));
+	return @( distance );
+}
+
+
 @end

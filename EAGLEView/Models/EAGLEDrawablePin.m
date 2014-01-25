@@ -56,7 +56,7 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Pin – length: %d, at %@", self.length, NSStringFromCGPoint( self.point )];
+	return [NSString stringWithFormat:@"Pin - length: %d, at %@", self.length, NSStringFromCGPoint( self.point )];
 }
 
 + (CGFloat)lengthForPinLength:(EAGLEDrawablePinLength)pinLength
@@ -135,6 +135,11 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 - (CGFloat)minY
 {
 	return self.point.y;
+}
+
+- (CGPoint)origin
+{
+	return self.point;
 }
 
 @end

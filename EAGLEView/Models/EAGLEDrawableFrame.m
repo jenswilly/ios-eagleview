@@ -64,6 +64,9 @@ static CGFloat frameLineWidth = 0.508;
 	return MIN( self.point1.y, self.point2.y );
 }
 
-
+- (CGPoint)origin
+{
+	return self.point1;
+}
 
 @end

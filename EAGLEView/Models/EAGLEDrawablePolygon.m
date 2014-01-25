@@ -39,7 +39,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Polygon – width: %.2f, %d vertices", self.width, (int)[self.vertices count]];
+	return [NSString stringWithFormat:@"Polygon - width: %.2f, %d vertices", self.width, (int)[self.vertices count]];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -113,6 +113,11 @@
 	}
 
 	return minY;
+}
+
+- (CGPoint)origin
+{
+	return [_vertices[ 0 ] CGPointValue];
 }
 
 @end

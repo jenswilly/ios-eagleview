@@ -31,7 +31,7 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Junction – at %@", NSStringFromCGPoint( self.point )];
+	return [NSString stringWithFormat:@"Junction - at %@", NSStringFromCGPoint( self.point )];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -62,6 +62,11 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 - (CGFloat)minY
 {
 	return self.point.y - kJunctionDiameter/2;
+}
+
+- (CGPoint)origin
+{
+	return self.point;
 }
 
 @end

@@ -66,7 +66,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Net %@ – %d wires, %d labels", self.name, (int)[self.wires count], (int)[self.labels count]];
+	return [NSString stringWithFormat:@"Net %@ - %d wires, %d labels", self.name, (int)[self.wires count], (int)[self.labels count]];
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -154,6 +154,11 @@
 		minY = MIN( minY, [junction minY] );
 
 	return minY;
+}
+
+- (CGPoint)origin
+{
+	return CGPointMake( ([self maxX] - [self minX]) / 2, ([self maxY] - [self minY]) / 2 );
 }
 
 @end

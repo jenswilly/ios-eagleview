@@ -35,7 +35,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Attribute %@ – at %@, size %.2f", self.name, NSStringFromCGPoint( self.point ), self.size];
+	return [NSString stringWithFormat:@"Attribute %@ - at %@, size %.2f", self.name, NSStringFromCGPoint( self.point ), self.size];
 }
 
 - (void)drawInContext:(CGContextRef)context
