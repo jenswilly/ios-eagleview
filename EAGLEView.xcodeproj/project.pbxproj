@@ -55,6 +55,8 @@
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
 		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
+		4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686A1893E83D0031977E /* DetailPopupViewController.m */; };
+		4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686D1893F33A0031977E /* EAGLEInstanceView.m */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */; };
@@ -171,6 +173,10 @@
 		4782AB6C18438D100022F660 /* EAGLEDeviceset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDeviceset.m; sourceTree = "<group>"; };
 		4782AB6E18439E190022F660 /* EAGLEPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEPart.h; sourceTree = "<group>"; };
 		4782AB6F18439E190022F660 /* EAGLEPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEPart.m; sourceTree = "<group>"; };
+		478368691893E83D0031977E /* DetailPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPopupViewController.h; sourceTree = "<group>"; };
+		4783686A1893E83D0031977E /* DetailPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPopupViewController.m; sourceTree = "<group>"; };
+		4783686C1893F33A0031977E /* EAGLEInstanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstanceView.h; sourceTree = "<group>"; };
+		4783686D1893F33A0031977E /* EAGLEInstanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstanceView.m; sourceTree = "<group>"; };
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
@@ -354,6 +360,8 @@
 				4739029F1840D9930092D025 /* ViewController.m */,
 				47C73B6618493B3B0041C4C4 /* DocumentChooserViewController.h */,
 				47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */,
+				478368691893E83D0031977E /* DetailPopupViewController.h */,
+				4783686A1893E83D0031977E /* DetailPopupViewController.m */,
 			);
 			name = "View Controllers";
 			path = EAGLEView;
@@ -472,6 +480,8 @@
 				47112069184E009D00BAB3B2 /* MBProgressHUD.m */,
 				4739035618414CB60092D025 /* EAGLESchematicView.h */,
 				4739035718414CB60092D025 /* EAGLESchematicView.m */,
+				4783686C1893F33A0031977E /* EAGLEInstanceView.h */,
+				4783686D1893F33A0031977E /* EAGLEInstanceView.m */,
 			);
 			name = Views;
 			path = EAGLEView/Views;
@@ -619,6 +629,7 @@
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
 				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
+				4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */,
 				473902EF1840DD070092D025 /* GPPods.m in Sources */,
 				47C5ABC31857243800A1D530 /* mztools.c in Sources */,
 				4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */,
@@ -645,6 +656,7 @@
 				4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */,
 				473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */,
 				473903421840E4F10092D025 /* EAGLELayer.m in Sources */,
+				4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */,
 				473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */,
 				473902EC1840DD070092D025 /* GPImageDownloadOperation.m in Sources */,
 				47C73B6818493B3B0041C4C4 /* DocumentChooserViewController.m in Sources */,

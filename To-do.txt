@@ -3,7 +3,10 @@
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
 - New board file icon
+- Nets/busses details popup
+- Fix instance hit test for rotated parts (e.g. USB connector in Gift Card)
 
+√ Instance details popup
 √ "Placeholder" texts >DRAWING_NAME, >LAST_DATE_TIME
 √ Drawable: frame
 √ Fix pin names with @ (e.g. "GND@2")

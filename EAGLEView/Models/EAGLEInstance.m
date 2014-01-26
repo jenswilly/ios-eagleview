@@ -165,22 +165,6 @@
 	}
 }
 
-- (NSString*)infoString
-{
-	// Get part
-	EAGLEPart *part = [self.schematic partWithName:self.part_name];
-
-	NSString *deviceString;
-	if( [part.device_name length] > 0 )
-		deviceString = [NSString stringWithFormat:@"%@ (%@)", part.deviceset_name, part.device_name];
-	else
-		deviceString = part.deviceset_name;
-
-	NSString *infoString = [NSString stringWithFormat:@"Name: %@\rValue: %@\r\rLibrary: %@\rDevice: %@", self.part_name, [self valueText], part.library_name, deviceString];
-
-	return infoString;
-}
-
 - (CGFloat)maxX
 {
 	CGFloat maxX = [[self symbol] maxX];

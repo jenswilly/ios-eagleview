@@ -19,6 +19,7 @@
 #import "DocumentChooserViewController.h"
 #import "MBProgressHUD.h"
 #import "UIView+AnchorPoint.h"
+#import "DetailPopupViewController.h"
 
 @interface ViewController ()
 
@@ -50,15 +51,19 @@
 	{
 		// Find instance/net from schematic
 		NSArray *objects = [self.schematicView objectsAtPoint:[recognizer locationInView:self.schematicView]];
-//		DEBUG_LOG( @"Touched %@", objects );
+		DEBUG_LOG( @"Touched %@", objects );
 
+		if( [objects count] == 0 )
+			return;
+		
 		id clickedObject = objects[ 0 ];
-		DEBUG_LOG( @"Clicked %@", clickedObject );
+//		DEBUG_LOG( @"Clicked %@", clickedObject );
 
 		if( [clickedObject isKindOfClass:[EAGLEInstance class]] )
 		{
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clicked" message:[(EAGLEInstance*)clickedObject infoString] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-			[alert show];
+			DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
+			detailPopupViewController.instance = clickedObject;
+			[detailPopupViewController showAddedToViewController:self];
 		}
 	}
 }
