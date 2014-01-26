@@ -106,6 +106,11 @@
 	}
 }
 
+- (IBAction)dismiss:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)setPath:(NSString *)path
 {
 	_path = path;
@@ -252,6 +257,11 @@
 	{
 		// File: pass metadata back to view controller
 		[_delegate documentChooserPickedDropboxFile:metadata lastPath:[metadata.path stringByDeletingLastPathComponent]];
+
+		// iPhone or iPad?
+		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+			// iPhone: dismiss modal
+			[self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 

@@ -5,6 +5,8 @@
 - New board file icon
 - Nets/busses details popup
 - Fix instance hit test for rotated parts (e.g. USB connector in Gift Card)
+- iPhone
+- Search for components
 
 √ Instance details popup
 √ "Placeholder" texts >DRAWING_NAME, >LAST_DATE_TIME

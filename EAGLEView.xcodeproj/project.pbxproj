@@ -57,6 +57,7 @@
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686A1893E83D0031977E /* DetailPopupViewController.m */; };
 		4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686D1893F33A0031977E /* EAGLEInstanceView.m */; };
+		4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4783686F18958CE70031977E /* Main-iPhone.storyboard */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */; };
@@ -177,6 +178,7 @@
 		4783686A1893E83D0031977E /* DetailPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPopupViewController.m; sourceTree = "<group>"; };
 		4783686C1893F33A0031977E /* EAGLEInstanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstanceView.h; sourceTree = "<group>"; };
 		4783686D1893F33A0031977E /* EAGLEInstanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstanceView.m; sourceTree = "<group>"; };
+		4783686F18958CE70031977E /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPhone.storyboard"; sourceTree = "<group>"; };
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				4739029B1840D9930092D025 /* Main.storyboard */,
+				4783686F18958CE70031977E /* Main-iPhone.storyboard */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */,
 				473902E61840DD070092D025 /* .gitignore in Resources */,
 				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
@@ -782,6 +786,7 @@
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -804,6 +809,7 @@
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

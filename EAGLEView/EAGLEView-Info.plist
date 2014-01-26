@@ -6,6 +6,28 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>ico_schematic-320.png</string>
+				<string>ico_schematic-64.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>CadSoft EAGLE schematic file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.cadsoft.eagle.sch</string>
+				<string>public.url</string>
+				<string>com.pkware.zip-archive</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -34,64 +56,48 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
+	<string>Main-iPhone</string>
+	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-
-<key>UTExportedTypeDeclarations</key>
-<array>
-    <dict>
-        <key>UTTypeConformsTo</key>
-        <array>
-            <string>public.text</string>
-            <string>public.plain-text</string>
-            <string>public.utf16-plain-text</string>
-            <string>public.utf16-external-plain-text</string>
-            <string>public.utf8-plain-text</string>
-        </array>
-        <key>UTTypeDescription</key>
-        <string>CadSoft EAGLE schematic file</string>
-        <key>UTTypeIdentifier</key>
-        <string>com.cadsoft.eagle.sch</string>
-        <key>UTTypeTagSpecification</key>
-        <dict>
-            <key>public.filename-extension</key>
-            <string>sch</string>
-            <key>public.mime-type</key>
-            <string>text/plain</string>
-        </dict>
-    </dict>
-</array>
-
-<key>CFBundleDocumentTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeIconFiles</key>
-        <array>
-            <string>ico_schematic-320.png</string>
-            <string>ico_schematic-64.png</string>
-        </array>
-        <key>CFBundleTypeName</key>
-        <string>CadSoft EAGLE schematic file</string>
-        <key>CFBundleTypeRole</key>
-        <string>Viewer</string>
-        <key>LSHandlerRank</key>
-        <string>Owner</string>
-        <key>LSItemContentTypes</key>
-        <array>
-            <string>com.cadsoft.eagle.sch</string>
-			<string>public.url</string>
-			<string>com.pkware.zip-archive</string>
-        </array>
-    </dict>
-</array>
-
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+				<string>public.plain-text</string>
+				<string>public.utf16-plain-text</string>
+				<string>public.utf16-external-plain-text</string>
+				<string>public.utf8-plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CadSoft EAGLE schematic file</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.cadsoft.eagle.sch</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>sch</string>
+				<key>public.mime-type</key>
+				<string>text/plain</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

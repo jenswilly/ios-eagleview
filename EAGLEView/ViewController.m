@@ -131,13 +131,23 @@
 
 	DEBUG_LOG( @"Dropbox already authenticated" );
 	UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
-	_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
-
 	DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
 	documentChooserViewController.delegate = self;
 	[documentChooserViewController setInitialPath:(_lastDropboxPath ? _lastDropboxPath : @"/" )];
 
-	[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+	{
+		// iPad: show as popover
+		_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
+		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else
+	{
+		// iPhone: show modal
+		[self presentViewController:navController animated:YES completion:nil];
+	}
+
 }
 
 - (IBAction)zoomToFitAction:(id)sender
@@ -181,7 +191,10 @@
 - (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata lastPath:(NSString*)lastPath
 {
 	DEBUG_LOG( @"Picked file: %@ from path: %@", [metadata description], lastPath );
-	[_popover dismissPopoverAnimated:YES];
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+		// iPad: dismiss popover
+		[_popover dismissPopoverAnimated:YES];
 
 	// Remember last used path
 	_lastDropboxPath = [lastPath copy];
