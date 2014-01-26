@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 47112069184E009D00BAB3B2 /* MBProgressHUD.m */; };
+		471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 471E51EE18959BE700FC3B95 /* Default-568h@2x.png */; };
 		4739028A1840D9930092D025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473902891840D9930092D025 /* Foundation.framework */; };
 		4739028C1840D9930092D025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4739028B1840D9930092D025 /* CoreGraphics.framework */; };
 		4739028E1840D9930092D025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4739028D1840D9930092D025 /* UIKit.framework */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		47112068184E009D00BAB3B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		47112069184E009D00BAB3B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		471E51EE18959BE700FC3B95 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		473902861840D9930092D025 /* EAGLEView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAGLEView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473902891840D9930092D025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4739028B1840D9930092D025 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -244,6 +246,7 @@
 		4739027D1840D9930092D025 = {
 			isa = PBXGroup;
 			children = (
+				471E51EE18959BE700FC3B95 /* Default-568h@2x.png */,
 				47FF32CC1847382F00E711C7 /* To-do.txt */,
 				4739035518414C8E0092D025 /* Views */,
 				473903241840DD360092D025 /* External */,
@@ -599,6 +602,7 @@
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
+				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
