@@ -11,7 +11,7 @@
 
 #define DROPBOX_APP_KEY @"j6eochke254gdsj"
 #define DROPBOX_APP_SECRET @"pgvi4d7y3gt2lx0"
-#define GLOBAL_TINT_COLOR 0xff8d3a //0x9b3aff
+#define GLOBAL_TINT_COLOR 0xe25454 // 0xff8d3a //0x9b3aff
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
