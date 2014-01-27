@@ -12,6 +12,7 @@
 #import "EAGLELibrary.h"
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
+#import "EAGLEBoard.h"
 #import "EAGLESchematicView.h"
 #import "EAGLEInstance.h"
 #import <DropboxSDK/DropboxSDK.h>
@@ -39,10 +40,12 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+//	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+	EAGLEBoard *board = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
+	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self.schematicView setRelativeZoomFactor:0.1];
-	self.schematicView.file = schematic;
+	self.schematicView.file = board;
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
@@ -211,13 +214,21 @@
 
 		if( success )
 		{
-			NSError *error = nil;
-			EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
-			schematic.fileName = fileName;
-			schematic.fileDate = fileDate;
-			NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
+			NSError *error;
+			EAGLEFile *eagleFile;
 
-			self.schematicView.file = schematic;
+			// Schematic or board?
+			if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"sch"] )
+				eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+			else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
+				eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
+
+			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
+
+			eagleFile.fileName = fileName;
+			eagleFile.fileDate = fileDate;
+
+			self.schematicView.file = eagleFile;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 				[MBProgressHUD hideHUDForView:self.view animated:YES];

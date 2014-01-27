@@ -1,4 +1,3 @@
-- Drawable: description
 - Fix arcs: e.g. US polarized caps (e.g. Thermometer)
 - Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
@@ -6,6 +5,13 @@
 - Nets/busses details popup
 - Hit test for nets/busses
 - Search for components
+- Layers: icon, show/hide selector
+- Drawable: description
+- Drawable: smd
+- Drawable: pad
+- Drawable: via
+- Boards: signals
+
 
 √ iPhone
 √ Fix instance hit test for rotated parts (e.g. USB connector in Gift Card)

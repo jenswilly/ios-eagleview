@@ -69,11 +69,17 @@
 {
 	switch( rotation )
 	{
+		case Rotation_R45:
+			return M_PI_4;
+
 		case Rotation_R90:
 			return M_PI_2;
 
 		case Rotation_R180:
 			return M_PI;
+
+		case Rotation_R225:
+			return M_PI_4 * 5;
 
 		case Rotation_R270:
 			return M_PI_2 * 3;
@@ -90,8 +96,12 @@
 {
 	if( rotationString == nil || [rotationString isEqualToString:@"SR0"] )
 		return Rotation_0;
+	else if( [rotationString isEqualToString:@"R45"] )
+		return Rotation_R45;
 	else if( [rotationString isEqualToString:@"R90"] )
 		return Rotation_R90;
+	else if( [rotationString isEqualToString:@"R225"] )
+		return Rotation_R225;
 	else if( [rotationString isEqualToString:@"R270"] )
 		return Rotation_R270;
 	else if( [rotationString isEqualToString:@"R180"] || [rotationString isEqualToString:@"MR180"] )

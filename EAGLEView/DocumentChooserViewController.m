@@ -202,8 +202,8 @@
 		else if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"brd"] )
 		{
 			// Board file (can't be selected yet)
-			cell.textLabel.textColor = [UIColor grayColor];
-			cell.imageView.tintColor = [UIColor grayColor];
+			cell.textLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
+			cell.imageView.tintColor = RGBHEX( GLOBAL_TINT_COLOR );
 			cell.imageView.image = [[UIImage imageNamed:@"ico_file_board"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		}
 		else
@@ -230,8 +230,8 @@
 	else
 	{
 		// File: check extension
-		if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"sch"] )
-			// Schematic file: OK
+		if( [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"sch"] || [[[metadata.filename pathExtension] lowercaseString] isEqualToString:@"brd"] )
+			// Schematic or board file: OK
 			return indexPath;
 		else
 			// Other file: cannot select

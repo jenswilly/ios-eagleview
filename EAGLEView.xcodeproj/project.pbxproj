@@ -58,6 +58,9 @@
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4782C77D1896A50F00704F10 /* EAGLEFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C77C1896A50F00704F10 /* EAGLEFile.m */; };
 		4782C7801896A87900704F10 /* EAGLEBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C77F1896A87900704F10 /* EAGLEBoard.m */; };
+		4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4782C7811896FF9F00704F10 /* iBeacon.brd */; };
+		4782C785189701FB00704F10 /* EAGLEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C784189701FB00704F10 /* EAGLEElement.m */; };
+		4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C7871897039D00704F10 /* EAGLEPackage.m */; };
 		4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686A1893E83D0031977E /* DetailPopupViewController.m */; };
 		4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686D1893F33A0031977E /* EAGLEInstanceView.m */; };
 		4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4783686F18958CE70031977E /* Main-iPhone.storyboard */; };
@@ -182,6 +185,11 @@
 		4782C77C1896A50F00704F10 /* EAGLEFile.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEFile.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; wrapsLines = 1; };
 		4782C77E1896A87900704F10 /* EAGLEBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEBoard.h; sourceTree = "<group>"; };
 		4782C77F1896A87900704F10 /* EAGLEBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEBoard.m; sourceTree = "<group>"; };
+		4782C7811896FF9F00704F10 /* iBeacon.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.brd; sourceTree = "<group>"; };
+		4782C783189701FB00704F10 /* EAGLEElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEElement.h; sourceTree = "<group>"; };
+		4782C784189701FB00704F10 /* EAGLEElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEElement.m; sourceTree = "<group>"; };
+		4782C7861897039D00704F10 /* EAGLEPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEPackage.h; sourceTree = "<group>"; };
+		4782C7871897039D00704F10 /* EAGLEPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEPackage.m; sourceTree = "<group>"; };
 		478368691893E83D0031977E /* DetailPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPopupViewController.h; sourceTree = "<group>"; };
 		4783686A1893E83D0031977E /* DetailPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPopupViewController.m; sourceTree = "<group>"; };
 		4783686C1893F33A0031977E /* EAGLEInstanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstanceView.h; sourceTree = "<group>"; };
@@ -363,6 +371,10 @@
 				473903441840E9430092D025 /* EAGLESchematic.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
+				4782C783189701FB00704F10 /* EAGLEElement.h */,
+				4782C784189701FB00704F10 /* EAGLEElement.m */,
+				4782C7861897039D00704F10 /* EAGLEPackage.h */,
+				4782C7871897039D00704F10 /* EAGLEPackage.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -386,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				47A474921846B21C00C9FDFD /* iBeacon.sch */,
+				4782C7811896FF9F00704F10 /* iBeacon.brd */,
 				473903251840DED90092D025 /* LED_resistor.brd */,
 				473903261840DED90092D025 /* LED_resistor.sch */,
 				473902C41840DC9E0092D025 /* XIB */,
@@ -606,6 +619,7 @@
 			files = (
 				4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */,
 				473902E61840DD070092D025 /* .gitignore in Resources */,
+				4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */,
 				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
@@ -639,6 +653,7 @@
 				473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */,
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
+				4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */,
 				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
@@ -646,6 +661,7 @@
 				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
+				4782C785189701FB00704F10 /* EAGLEElement.m in Sources */,
 				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
 				4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */,
 				473902EF1840DD070092D025 /* GPPods.m in Sources */,

@@ -13,6 +13,7 @@
 #import "EAGLEInstance.h"
 #import "EAGLENet.h"
 #import "EAGLESchematic.h"
+#import "EAGLEBoard.h"
 
 static const CGFloat kViewPadding = 5;
 
@@ -182,6 +183,15 @@ static const CGFloat kViewPadding = 5;
 		for( id<EAGLEDrawable> drawable in schematic.busses )
 			[drawable drawInContext:context];
 	}
+	// Board-only objects
+	else if( [self.file isMemberOfClass:[EAGLEBoard class]] )
+	{
+		EAGLEBoard *board = (EAGLEBoard*)self.file;
+
+		// Instances
+		for( id<EAGLEDrawable> drawable in board.elements )
+			[drawable drawInContext:context];
+	}
 }
 
 - (NSArray*)objectsAtPoint:(CGPoint)point
@@ -241,6 +251,20 @@ static const CGFloat kViewPadding = 5;
 	//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
 	}
+
+	// Board-only objects
+	else if( [self.file isMemberOfClass:[EAGLEBoard class]] )
+	{
+		EAGLEBoard *board = (EAGLEBoard*)self.file;
+
+		// Instances
+		for( id<EAGLEDrawable> drawable in board.elements )
+		{
+			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
+				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		}
+	}
+
 
 	// Sort the objects by distance
 	NSArray *sortedKeys = [[objectsAtCoordinate allKeys] sortedArrayUsingSelector:@selector(compare:)];

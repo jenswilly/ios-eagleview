@@ -43,7 +43,13 @@
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
-	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
+
+	if( self.rotation == Rotation_Mirror_MR0 )
+		// Mirror, not rotate
+		CGContextScaleCTM( context, -1, 1 );
+	else
+		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
+
 	CGContextTranslateCTM( context, 0, self.size * kFontSizeFactor );
 	CGContextScaleCTM( context, 1, -1 );
 

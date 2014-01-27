@@ -10,6 +10,7 @@
 #import "DDXML.h"
 #import "EAGLESymbol.h"
 #import "EAGLEDeviceset.h"
+#import "EAGLEPackage.h"
 
 @implementation EAGLELibrary
 
@@ -25,28 +26,41 @@
 		NSArray *symbols = [element nodesForXPath:@"symbols/symbol" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 
-		NSMutableArray *tmpSymbols = [[NSMutableArray alloc] initWithCapacity:[symbols count]];
+		NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:[symbols count]];
 		for( DDXMLElement *childElement in symbols )
 		{
 			EAGLESymbol *symbol = [[EAGLESymbol alloc] initFromXMLElement:childElement inFile:file];
 			if( symbol )
-				[tmpSymbols addObject:symbol];
+				[tmpArray addObject:symbol];
 		}
-		_symbols = [NSArray arrayWithArray:tmpSymbols];
+		_symbols = [NSArray arrayWithArray:tmpArray];
 
 		// Devicesets
 		NSArray *devicesets = [element nodesForXPath:@"devicesets/deviceset" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 
-		NSMutableArray *tmpDevicesets = [[NSMutableArray alloc] initWithCapacity:[devicesets count]];
+		tmpArray = [[NSMutableArray alloc] initWithCapacity:[devicesets count]];
 		for( DDXMLElement *childElement in devicesets )
 		{
 			// Deviceset
 			EAGLEDeviceset *deviceset = [[EAGLEDeviceset alloc] initFromXMLElement:childElement inFile:file];
 			if( deviceset )
-				[tmpDevicesets addObject:deviceset];
+				[tmpArray addObject:deviceset];
 		}
-		_devicesets = [NSArray arrayWithArray:tmpDevicesets];
+		_devicesets = [NSArray arrayWithArray:tmpArray];
+
+		// Packages
+		NSArray *packages = [element nodesForXPath:@"packages/package" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpArray = [[NSMutableArray alloc] initWithCapacity:[devicesets count]];
+		for( DDXMLElement *childElement in packages )
+		{
+			// Package
+			EAGLEPackage *package = [[EAGLEPackage alloc] initFromXMLElement:childElement inFile:file];
+			if( package )
+				[tmpArray addObject:package];
+		}
+		_packages = [NSArray arrayWithArray:tmpArray];
 	}
 
 	return self;
@@ -54,7 +68,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Library %@ - %d symbols, %d devicesets", self.name, (int)[self.symbols count], (int)[self.devicesets count]];
+	return [NSString stringWithFormat:@"Library %@ - %d symbols, %d devicesets, %d packages", self.name, (int)[self.symbols count], (int)[self.devicesets count], (int)[self.packages count]];
 }
 
 - (EAGLEDeviceset *)devicesetWithName:(NSString *)name
@@ -71,6 +85,16 @@
 {
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
 	NSArray *found = [self.symbols filteredArrayUsingPredicate:predicate];
+	if( [found count] > 0 )
+		return found[ 0 ];
+	else
+		return nil;
+}
+
+- (EAGLEPackage*)packageWithName:(NSString *)name
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+	NSArray *found = [self.packages filteredArrayUsingPredicate:predicate];
 	if( [found count] > 0 )
 		return found[ 0 ];
 	else

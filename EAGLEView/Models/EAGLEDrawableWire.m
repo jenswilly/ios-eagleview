@@ -40,8 +40,19 @@
 {
 	[self setStrokeColorFromLayerInContext:context];
     CGContextBeginPath( context );
-	CGContextSetLineWidth( context, self.width );
-	CGContextSetLineCap( context, kCGLineCapRound );
+
+	// "Hairline" width if width=0
+	if( self.width == 0 )
+	{
+		CGAffineTransform transform = CGContextGetCTM( context );
+		CGFloat scale = sqrt( transform.a * transform.a + transform.c * transform.c );
+		CGContextSetLineWidth( context, 1.0f/scale );
+	}
+	else
+	{
+		CGContextSetLineWidth( context, self.width );
+		CGContextSetLineCap( context, kCGLineCapRound );
+	}
     CGContextMoveToPoint( context, self.point1.x, self.point1.y );
     CGContextAddLineToPoint( context, self.point2.x, self.point2.y );
     CGContextStrokePath( context );

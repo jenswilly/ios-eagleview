@@ -11,6 +11,8 @@
 #import "EAGLELibrary.h"
 #import "EAGLELayer.h"
 #import "EAGLEDrawableObject.h"
+#import "EAGLEPackage.h"
+#import "EAGLEElement.h"
 
 @implementation EAGLEBoard
 
@@ -97,11 +99,25 @@
 				[tmpElements addObject:library];
 		}
 		_libraries = [NSArray arrayWithArray:tmpElements];
-		
+
+		// Parts
+		elements = [element nodesForXPath:@"elements/element" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			// Drawable
+			EAGLEElement *element = [[EAGLEElement alloc] initFromXMLElement:childElement inFile:self];
+			if( element )
+				[tmpElements addObject:element];
+		}
+		_elements = [NSArray arrayWithArray:tmpElements];
+
 		/// ...
 
+
 		// Plain
-		elements = [element nodesForXPath:@"sheets/sheet/plain/*" error:&error];
+		elements = [element nodesForXPath:@"plain/*" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
@@ -118,5 +134,12 @@
 	return self;
 }
 
+- (EAGLEPackage*)packageNamed:(NSString*)packageName inLibraryNamed:(NSString*)libraryName
+{
+	// Find library
+	EAGLELibrary *library = [self libraryWithName:libraryName];
+
+	return [library packageWithName:packageName];
+}
 
 @end
