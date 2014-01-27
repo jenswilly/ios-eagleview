@@ -13,13 +13,13 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 
 @implementation EAGLEDrawableJunction
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
 	// Add layer attribute so we'll get the correct color since junction elements have no layer attribute
 	DDXMLNode *layerAttribute = [DDXMLNode attributeWithName:@"layer" stringValue:@"91"];
 	[element addAttribute:layerAttribute];
 
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		CGFloat x = [[[element attributeForName:@"x"] stringValue] floatValue];
 		CGFloat y = [[[element attributeForName:@"y"] stringValue] floatValue];

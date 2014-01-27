@@ -9,7 +9,7 @@
 #import "EAGLEDrawablePin.h"
 #import "DDXML.h"
 #import "EAGLELayer.h"
-#import "EAGLESchematic.h"
+#import "EAGLEFile.h"
 #import "EAGLEDrawableText.h"
 
 static const CGFloat kPinNameTextSize = 1.8;
@@ -17,9 +17,9 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 @implementation EAGLEDrawablePin
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 
@@ -97,7 +97,7 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 	// Draw pin
 	if( _pinVisible )
 	{
-		EAGLELayer *currentLayer = self.schematic.layers[ @96 ];	// Hardcoded layer for pin names
+		EAGLELayer *currentLayer = self.file.layers[ @96 ];	// Hardcoded layer for pin names
 		NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:kPinNameTextSize * kFontSizeFactor],
 									  NSForegroundColorAttributeName: currentLayer.color };
 

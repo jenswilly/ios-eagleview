@@ -8,14 +8,14 @@
 
 #import "EAGLEDrawableWire.h"
 #import "DDXML.h"
-#import "EAGLESchematic.h"
+#import "EAGLEFile.h"
 #import "EAGLELayer.h"
 
 @implementation EAGLEDrawableWire
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		CGFloat x = [[[element attributeForName:@"x1"] stringValue] floatValue];
 		CGFloat y = [[[element attributeForName:@"y1"] stringValue] floatValue];

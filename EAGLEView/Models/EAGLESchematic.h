@@ -6,28 +6,22 @@
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLEObject.h"
+#import "EAGLEFile.h"
 @class EAGLEPart;
 @class EAGLELibrary;
 @class EAGLENet;
 
-@interface EAGLESchematic : EAGLEObject
 
-@property (strong) NSDictionary *layers;
-@property (readonly, strong) NSArray *libraries;
-@property (readonly, strong) NSArray *parts;		// Contains EAGLEPart objects
-@property (readonly, strong) NSArray *instances;	// Contains EAGLEInstance objects
-@property (readonly, strong) NSArray *nets;			// Contains EAGLENet objects
-@property (readonly, strong) NSArray *busses;		// NOTE: also contains EAGLENet objects since they are conceptually identical
-@property (readonly, strong) NSArray *plainObjects;	// Contains id<EAGLEDrawable> objects. This represents "plain" objects like texts or lines
+@interface EAGLESchematic : EAGLEFile
 
-@property (copy) NSString *fileName;
-@property (copy) NSDate *fileDate;
+@property (readonly, strong) NSArray *parts;		// Schematic: Contains EAGLEPart objects
+@property (readonly, strong) NSArray *instances;	// Schematic: Contains EAGLEInstance objects
+@property (readonly, strong) NSArray *nets;			// Schematic: Contains EAGLENet objects
+@property (readonly, strong) NSArray *busses;		// Schematic: NOTE: also contains EAGLENet objects since they are conceptually identical
+@property (readonly, strong) NSArray *elements;		// Boards: elements
 
 + (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 + (instancetype)schematicFromSchematicAtPath:(NSString*)path error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;
-- (EAGLELibrary*)libraryWithName:(NSString*)name;
-- (NSString*)dateString;
 
 @end

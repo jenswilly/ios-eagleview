@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 @class DDXMLElement;
 @class EAGLESchematic;
+@class EAGLEBoard;
+@class EAGLEFile;
 
 @interface EAGLEObject : NSObject
 
-@property (readonly, weak) EAGLESchematic *schematic;
+@property (readonly, weak) EAGLEFile *file;
+@property (readonly, nonatomic) EAGLESchematic *schematic;
+@property (readonly, nonatomic) EAGLEBoard *board;
 
 - (id)initFromXMLElement:(DDXMLElement*)element;
-- (id)initFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
+//- (id)initFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
+- (id)initFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile*)file;
 
 @end
 

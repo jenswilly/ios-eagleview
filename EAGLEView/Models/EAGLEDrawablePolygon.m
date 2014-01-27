@@ -11,9 +11,9 @@
 
 @implementation EAGLEDrawablePolygon
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		// Width
 		CGFloat width = [[[element attributeForName:@"width"] stringValue] floatValue];

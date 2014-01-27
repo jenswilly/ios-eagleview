@@ -11,9 +11,9 @@
 
 @implementation EAGLEGate
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 		_symbol_name = [[element attributeForName:@"symbol"] stringValue];

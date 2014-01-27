@@ -66,7 +66,7 @@
 	NSMutableDictionary *tmpLayers = [[NSMutableDictionary alloc] initWithCapacity:[layers count]];
 	for( DDXMLElement *element in layers )
 	{
-		EAGLELayer *layer = [[EAGLELayer alloc] initFromXMLElement:element inSchematic:schematic];
+		EAGLELayer *layer = [[EAGLELayer alloc] initFromXMLElement:element inFile:schematic];
 		if( layer )
 			tmpLayers[ layer.number ] = layer;
 	}
@@ -95,7 +95,7 @@
 		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inSchematic:self];
+			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inFile:self];
 			if( library )
 				[tmpElements addObject:library];
 		}
@@ -107,7 +107,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEPart *part = [[EAGLEPart alloc] initFromXMLElement:childElement inSchematic:self];
+			EAGLEPart *part = [[EAGLEPart alloc] initFromXMLElement:childElement inFile:self];
 			if( part )
 				[tmpElements addObject:part];
 		}
@@ -119,7 +119,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEInstance *instance = [[EAGLEInstance alloc] initFromXMLElement:childElement inSchematic:self];
+			EAGLEInstance *instance = [[EAGLEInstance alloc] initFromXMLElement:childElement inFile:self];
 			if( instance )
 				[tmpElements addObject:instance];
 		}
@@ -131,7 +131,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inSchematic:self];
+			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inFile:self];
 			if( net )
 				[tmpElements addObject:net];
 		}
@@ -144,7 +144,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inSchematic:self];
+			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inFile:self];
 			if( net )
 				[tmpElements addObject:net];
 		}
@@ -157,7 +157,7 @@
 		for( DDXMLElement *childElement in elements )
 		{
 			// Drawable
-			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:self];
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inFile:self];
 			if( drawable )
 				[tmpElements addObject:drawable];
 		}
@@ -181,32 +181,6 @@
 		return found[ 0 ];
 	else
 		return nil;
-}
-
-- (EAGLELibrary *)libraryWithName:(NSString *)name
-{
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-	NSArray *found = [self.libraries filteredArrayUsingPredicate:predicate];
-	if( [found count] > 0 )
-		return found[ 0 ];
-	else
-		return nil;
-}
-
-- (NSString*)dateString
-{
-	// If no date has been set, return an empty string
-	if( !_fileDate )
-		return @"";
-	
-	// Substitute file's date
-	static NSDateFormatter *dateFormatter = nil;
-	if( dateFormatter == nil )
-	{
-		dateFormatter = [[NSDateFormatter alloc] init];
-		dateFormatter.dateFormat = @"dd/MM/yy HH.mm";
-	}
-	return [dateFormatter stringFromDate:_fileDate];
 }
 
 @end

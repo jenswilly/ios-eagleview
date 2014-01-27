@@ -26,14 +26,24 @@
 	return nil;
 }
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
 	if( (self = [super init]) )
-	{
-		_schematic = schematic;	// Keep (weak) pointer to schematic
-	}
+		_file = file;	// Keep (weak) pointer to file (schematic/board)
 
 	return self;
+}
+
+// Returns self.file typecasted to an EAGLESchematic object
+- (EAGLESchematic *)schematic
+{
+	return (EAGLESchematic*)_file;
+}
+
+// Returns self.file typecasted to an EAGLEBoard object
+- (EAGLEBoard *)board
+{
+	return (EAGLEBoard*)_file;
 }
 
 @end

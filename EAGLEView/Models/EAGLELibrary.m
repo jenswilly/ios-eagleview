@@ -13,9 +13,9 @@
 
 @implementation EAGLELibrary
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		// Name
 		_name = [[element attributeForName:@"name"] stringValue];
@@ -28,7 +28,7 @@
 		NSMutableArray *tmpSymbols = [[NSMutableArray alloc] initWithCapacity:[symbols count]];
 		for( DDXMLElement *childElement in symbols )
 		{
-			EAGLESymbol *symbol = [[EAGLESymbol alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLESymbol *symbol = [[EAGLESymbol alloc] initFromXMLElement:childElement inFile:file];
 			if( symbol )
 				[tmpSymbols addObject:symbol];
 		}
@@ -42,7 +42,7 @@
 		for( DDXMLElement *childElement in devicesets )
 		{
 			// Deviceset
-			EAGLEDeviceset *deviceset = [[EAGLEDeviceset alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDeviceset *deviceset = [[EAGLEDeviceset alloc] initFromXMLElement:childElement inFile:file];
 			if( deviceset )
 				[tmpDevicesets addObject:deviceset];
 		}

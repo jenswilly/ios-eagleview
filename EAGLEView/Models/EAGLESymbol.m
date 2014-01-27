@@ -13,9 +13,9 @@
 
 @implementation EAGLESymbol
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 
@@ -28,7 +28,7 @@
 		for( DDXMLElement *childElement in components )
 		{
 			// Drawable
-			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inFile:file];
 			if( drawable )
 				[tmpComponents addObject:drawable];
 		}

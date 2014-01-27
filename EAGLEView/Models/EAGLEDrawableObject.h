@@ -34,7 +34,7 @@ typedef enum
 
 @property (nonatomic, readonly) NSNumber *layerNumber;
 
-+ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic;
++ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile*)file;
 - (void)drawInContext:(CGContextRef)context;
 
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context;

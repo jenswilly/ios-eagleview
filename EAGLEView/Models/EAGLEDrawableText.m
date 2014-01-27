@@ -8,7 +8,7 @@
 
 #import "EAGLEDrawableText.h"
 #import "DDXML.h"
-#import "EAGLESchematic.h"
+#import "EAGLEFile.h"
 #import "EAGLELayer.h"
 
 const CGFloat kFontSizeFactor = 1.30;	// Font size is multiplied by this factor to get the point size
@@ -16,9 +16,9 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 
 @implementation EAGLEDrawableText
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_text = [element stringValue];
 
@@ -49,7 +49,7 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
 	// Set color
-	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 
 	// Set font properties
 	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];

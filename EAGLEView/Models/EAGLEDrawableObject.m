@@ -22,43 +22,43 @@
 
 @implementation EAGLEDrawableObject
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 		_layerNumber = @( [[[element attributeForName:@"layer"] stringValue] intValue] );
 
 	return self;
 }
 
-+ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inSchematic:(EAGLESchematic*)schematic
++ (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile *)file
 {
 	NSString *elementName = [element localName];
 
 	// Only use a wire object if there is no "curve" attribute
 	if( [elementName isEqualToString:@"wire"] && [element attributeForName:@"curve"] == nil )
-		return [[EAGLEDrawableWire alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableWire alloc] initFromXMLElement:element inFile:file];
 
 	// A "wire" _with_ a "curve" attribute is an arc
 	if( [elementName isEqualToString:@"wire"] && [element attributeForName:@"curve"] != nil )
-		return [[EAGLEDrawableArc alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableArc alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"text"] )
-		return [[EAGLEDrawableText alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableText alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"pin"] )
-		return [[EAGLEDrawablePin alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawablePin alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"polygon"] )
-		return [[EAGLEDrawablePolygon alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawablePolygon alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"circle"] )
-		return [[EAGLEDrawableCircle alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableCircle alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"rectangle"] )
-		return [[EAGLEDrawableRectangle alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableRectangle alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"frame"] )
-		return [[EAGLEDrawableFrame alloc] initFromXMLElement:element inSchematic:schematic];
+		return [[EAGLEDrawableFrame alloc] initFromXMLElement:element inFile:file];
 
 	// Unknown element name
 	DEBUG_LOG( @"Unknown drawable element: %@", elementName );

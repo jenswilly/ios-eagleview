@@ -14,9 +14,9 @@
 
 @implementation EAGLENet
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 
@@ -26,7 +26,7 @@
 		NSMutableArray *tmpWires = [[NSMutableArray alloc] initWithCapacity:[wires count]];
 		for( DDXMLElement *childElement in wires )
 		{
-			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inFile:file];
 			if( drawable )
 				[tmpWires addObject:drawable];
 		}
@@ -38,7 +38,7 @@
 		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEDrawableText *label = [[EAGLEDrawableText alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableText *label = [[EAGLEDrawableText alloc] initFromXMLElement:childElement inFile:file];
 			if( label )
 			{
 				// Set text to the name of the bus
@@ -54,7 +54,7 @@
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEDrawableJunction *junction = [[EAGLEDrawableJunction alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLEDrawableJunction *junction = [[EAGLEDrawableJunction alloc] initFromXMLElement:childElement inFile:file];
 			if( junction )
 				[tmpElements addObject:junction];
 		}

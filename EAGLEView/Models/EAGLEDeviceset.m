@@ -12,9 +12,9 @@
 
 @implementation EAGLEDeviceset
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 		_prefix = [[element attributeForName:@"prefix"] stringValue];
@@ -27,7 +27,7 @@
 		NSMutableArray *tmpGates = [[NSMutableArray alloc] initWithCapacity:[gates count]];
 		for( DDXMLElement *childElement in gates )
 		{
-			EAGLEGate *gate = [[EAGLEGate alloc] initFromXMLElement:childElement inSchematic:schematic];
+			EAGLEGate *gate = [[EAGLEGate alloc] initFromXMLElement:childElement inFile:file];
 			if( gate )
 				[tmpGates addObject:gate];
 		}

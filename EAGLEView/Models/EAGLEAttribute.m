@@ -10,13 +10,13 @@
 #import "DDXML.h"
 #import "EAGLEDrawableText.h"	// For kFontSizeFactor
 #import "EAGLELayer.h"
-#import "EAGLESchematic.h"
+#import "EAGLEFile.h"
 
 @implementation EAGLEAttribute
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 
@@ -48,7 +48,7 @@
 	CGContextScaleCTM( context, 1, -1 );
 
 	// Set font and color
-	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
 								  NSForegroundColorAttributeName: currentLayer.color };
 

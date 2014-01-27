@@ -21,9 +21,9 @@
 	NSDictionary *_smashedAttributes;
 }
 
-- (id)initFromXMLElement:(DDXMLElement *)element inSchematic:(EAGLESchematic *)schematic
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
-	if( (self = [super initFromXMLElement:element inSchematic:schematic]) )
+	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_part_name = [[element attributeForName:@"part"] stringValue];
 		_gate_name = [[element attributeForName:@"gate"] stringValue];
@@ -45,7 +45,7 @@
 			NSMutableDictionary *tmpSmashedAttributes = [[NSMutableDictionary alloc] init];
 			for( DDXMLElement *childElement in attributes )
 			{
-				EAGLEAttribute *attribute = [[EAGLEAttribute alloc] initFromXMLElement:childElement inSchematic:schematic];
+				EAGLEAttribute *attribute = [[EAGLEAttribute alloc] initFromXMLElement:childElement inFile:file];
 				if( !attribute )
 				{
 					NSLog( @"Could not create EAGLEAttribute from element: %@", [childElement XMLString] );
@@ -94,7 +94,7 @@
 	EAGLEPart *part = [self.schematic partWithName:self.part_name];
 
 	// Library
-	EAGLELibrary *library = [self.schematic libraryWithName:part.library_name];
+	EAGLELibrary *library = [self.file libraryWithName:part.library_name];
 
 	// Deviceset
 	EAGLEDeviceset *deviceset = [library devicesetWithName:part.deviceset_name];
@@ -117,7 +117,7 @@
 	EAGLEPart *part = [self.schematic partWithName:self.part_name];
 
 	// Library
-	EAGLELibrary *library = [self.schematic libraryWithName:part.library_name];
+	EAGLELibrary *library = [self.file libraryWithName:part.library_name];
 
 	// Deviceset
 	EAGLEDeviceset *deviceset = [library devicesetWithName:part.deviceset_name];
@@ -131,8 +131,8 @@
 									 @">Name": part.name,
 									 @">VALUE": [self valueText],
 									 @">Value": [self valueText],
-									 @">DRAWING_NAME": (self.schematic.fileName ? self.schematic.fileName : @""),
-									 @">LAST_DATE_TIME": [self.schematic dateString] };
+									 @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
+									 @">LAST_DATE_TIME": [self.file dateString] };
 
 	// Set list of smashed attributes which should _not_ be drawn by the symbol
 	symbol.placeholdersToSkip = [_smashedAttributes allKeys];
