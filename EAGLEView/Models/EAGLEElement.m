@@ -73,6 +73,17 @@
 			_smashedAttributes = [NSDictionary dictionaryWithDictionary:tmpSmashedAttributes];
 		}
 
+		// Set texts for placeholders on the package
+		_package.textsForPlaceholders = @{ @">NAME": _name,
+										   @">Name": _name,
+										   @">VALUE": _value,
+										   @">Value": _value,
+										   @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
+										   @">LAST_DATE_TIME": [self.file dateString] };
+
+		// Set list of smashed attributes which should _not_ be drawn by the symbol
+		_package.placeholdersToSkip = [_smashedAttributes allKeys];
+
 		// Rotation
 		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
 		_rotation = [EAGLEDrawableObject rotationForString:rotString];
@@ -93,7 +104,7 @@
 	else
 		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
-	[self.package drawInContext:context];
+	[self.package drawInContext:context smashed:self.smashed];
 
 	CGContextRestoreGState( context );
 

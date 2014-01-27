@@ -152,7 +152,7 @@
 	else
 		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
-	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:( self.rotation == Rotation_Mirror_MR0 )];		// Draw at point 0,0 since coordinate system has been moved to point
+	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:( self.rotation == Rotation_Mirror_MR0 ) smashed:self.smashed];		// Draw at point 0,0 since coordinate system has been moved to point
 
 	CGContextRestoreGState( context );
 

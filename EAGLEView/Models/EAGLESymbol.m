@@ -43,7 +43,7 @@
 	return [NSString stringWithFormat:@"Symbol %@, components: %@", self.name, [self.components description]];
 }
 
-- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts isMirrored:(BOOL)isMirrored
+- (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context flipTexts:(BOOL)flipTexts isMirrored:(BOOL)isMirrored smashed:(BOOL)smashed
 {
 	// Offset to point
 	CGContextSaveGState( context );
@@ -58,7 +58,7 @@
 			NSString *placeholder = ((EAGLEDrawableText*)drawable).text;
 
 			// Should this text be skipped (because it is smashed and the symbol object will draw it)?
-			if( [self.placeholdersToSkip containsObject:placeholder] )
+			if( [self.placeholdersToSkip containsObject:placeholder] || smashed )
 				// Yes: ignore this element
 				continue;
 

@@ -13,8 +13,10 @@
 
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) NSArray *components;
+@property (strong) NSDictionary *textsForPlaceholders;
+@property (strong) NSArray *placeholdersToSkip;	// Array of placeholder texts to ignore. This is used when an attribute is smashed which means we'll draw it directly from the symbol
 
-- (void)drawInContext:(CGContextRef)context;
+- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
 - (CGFloat)minX;
