@@ -201,25 +201,26 @@ static const CGFloat kSchematicPadding = 5;
 	// Instances
 	for( id<EAGLEDrawable> drawable in self.schematic.instances )
 	{
-		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+		if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
 			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 	}
 
 	// Nets
 	for( id<EAGLEDrawable> drawable in self.schematic.nets )
 	{
-		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		/// TODO
+//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 	}
 
 	// Busses
 	for( id<EAGLEDrawable> drawable in self.schematic.busses )
 	{
-		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		/// TODO
+//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 	}
 
 	// Sort the objects by distance

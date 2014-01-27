@@ -16,6 +16,7 @@
 - (CGFloat)minX;
 - (CGFloat)minY;
 - (CGPoint)origin;
+- (CGRect)boundingRect;
 
 @end
 

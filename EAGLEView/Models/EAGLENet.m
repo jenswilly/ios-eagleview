@@ -161,4 +161,10 @@
 	return CGPointMake( ([self maxX] - [self minX]) / 2, ([self maxY] - [self minY]) / 2 );
 }
 
+- (CGRect)boundingRect
+{
+	/// TODO
+	return CGRectZero;
+}
+
 @end

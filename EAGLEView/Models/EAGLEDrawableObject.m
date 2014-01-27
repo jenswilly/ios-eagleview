@@ -153,4 +153,11 @@
 	return CGPointZero;
 }
 
+- (CGRect)boundingRect
+{
+	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	return CGRectZero;
+}
+
+
 @end
