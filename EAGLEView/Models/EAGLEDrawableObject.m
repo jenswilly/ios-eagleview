@@ -107,14 +107,14 @@
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context
 {
 	// Set color to layer's color
-	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	CGContextSetStrokeColorWithColor( context, [currentLayer.color CGColor] );
 }
 
 - (void)setFillColorFromLayerInContext:(CGContextRef)context
 {
 	// Set color to layer's color
-	EAGLELayer *currentLayer = self.schematic.layers[ self.layerNumber ];
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	CGContextSetFillColorWithColor( context, [currentLayer.color CGColor] );
 }
 

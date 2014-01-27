@@ -12,8 +12,9 @@
 #import "EAGLEDrawableObject.h"
 #import "EAGLEInstance.h"
 #import "EAGLENet.h"
+#import "EAGLESchematic.h"
 
-static const CGFloat kSchematicPadding = 5;
+static const CGFloat kViewPadding = 5;
 
 @implementation EAGLESchematicView
 {
@@ -72,7 +73,7 @@ static const CGFloat kSchematicPadding = 5;
 	CGFloat minX = MAXFLOAT;
 	CGFloat minY = MAXFLOAT;
 
-	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+	for( id<EAGLEDrawable> drawable in self.file.plainObjects )
 	{
 		maxX = MAX( maxX, [drawable maxX] );
 		maxY = MAX( maxY, [drawable maxY] );
@@ -80,28 +81,33 @@ static const CGFloat kSchematicPadding = 5;
 		minY = MIN( minY, [drawable minY] );
 	}
 
-	for( id<EAGLEDrawable> drawable in self.schematic.nets )
+	// Schematic-only objects
+	if( [self.file isMemberOfClass:[EAGLESchematic class]] )
 	{
-		maxX = MAX( maxX, [drawable maxX] );
-		maxY = MAX( maxY, [drawable maxY] );
-		minX = MIN( minX, [drawable minX] );
-		minY = MIN( minY, [drawable minY] );
-	}
+		EAGLESchematic *schematic = (EAGLESchematic*)self.file;
+		for( id<EAGLEDrawable> drawable in schematic.instances )
+		{
+			maxX = MAX( maxX, [drawable maxX] );
+			maxY = MAX( maxY, [drawable maxY] );
+			minX = MIN( minX, [drawable minX] );
+			minY = MIN( minY, [drawable minY] );
+		}
 
-	for( id<EAGLEDrawable> drawable in self.schematic.busses )
-	{
-		maxX = MAX( maxX, [drawable maxX] );
-		maxY = MAX( maxY, [drawable maxY] );
-		minX = MIN( minX, [drawable minX] );
-		minY = MIN( minY, [drawable minY] );
-	}
+		for( id<EAGLEDrawable> drawable in schematic.nets )
+		{
+			maxX = MAX( maxX, [drawable maxX] );
+			maxY = MAX( maxY, [drawable maxY] );
+			minX = MIN( minX, [drawable minX] );
+			minY = MIN( minY, [drawable minY] );
+		}
 
-	for( id<EAGLEDrawable> drawable in self.schematic.plainObjects )
-	{
-		maxX = MAX( maxX, [drawable maxX] );
-		maxY = MAX( maxY, [drawable maxY] );
-		minX = MIN( minX, [drawable minX] );
-		minY = MIN( minY, [drawable minY] );
+		for( id<EAGLEDrawable> drawable in schematic.busses )
+		{
+			maxX = MAX( maxX, [drawable maxX] );
+			maxY = MAX( maxY, [drawable maxY] );
+			minX = MIN( minX, [drawable minX] );
+			minY = MIN( minY, [drawable minY] );
+		}
 	}
 
 	// Adjust for negative origin
@@ -109,8 +115,8 @@ static const CGFloat kSchematicPadding = 5;
 	maxY -= minY;
 
 	// Add padding
-	maxX += kSchematicPadding;
-	maxY += kSchematicPadding;
+	maxX += kViewPadding;
+	maxY += kViewPadding;
 
 	CGSize contentSize = CGSizeMake( maxX * _zoomFactor, maxY * _zoomFactor );
 
@@ -152,7 +158,7 @@ static const CGFloat kSchematicPadding = 5;
 	CGContextScaleCTM( context, 1, -1 );
 
 	// Offset by half the padding
-	CGContextTranslateCTM( context, kSchematicPadding/2, kSchematicPadding/2 );
+	CGContextTranslateCTM( context, kViewPadding/2, kViewPadding/2 );
 
 	// Set zoom level
 	CGContextScaleCTM( context, self.zoomFactor, self.zoomFactor );
@@ -161,14 +167,21 @@ static const CGFloat kSchematicPadding = 5;
 	CGContextTranslateCTM( context, -_origin.x, -_origin.y );
 
 	// Draw all instances, nets, busses and plain objects
-	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+	for( id<EAGLEDrawable> drawable in self.file.plainObjects )
 		[drawable drawInContext:context];
-	for( id<EAGLEDrawable> drawable in self.schematic.nets )
-		[drawable drawInContext:context];
-	for( id<EAGLEDrawable> drawable in self.schematic.busses )
-		[drawable drawInContext:context];
-	for( id<EAGLEDrawable> drawable in self.schematic.plainObjects )
-		[drawable drawInContext:context];
+
+	// Schematic-only objects
+	if( [self.file isMemberOfClass:[EAGLESchematic class]] )
+	{
+		EAGLESchematic *schematic = (EAGLESchematic*)self.file;
+
+		for( id<EAGLEDrawable> drawable in schematic.instances )
+			[drawable drawInContext:context];
+		for( id<EAGLEDrawable> drawable in schematic.nets )
+			[drawable drawInContext:context];
+		for( id<EAGLEDrawable> drawable in schematic.busses )
+			[drawable drawInContext:context];
+	}
 }
 
 - (NSArray*)objectsAtPoint:(CGPoint)point
@@ -184,8 +197,8 @@ static const CGFloat kSchematicPadding = 5;
 	coordinate.y = self.frame.size.height - point.y;
 
 	// De-pad
-	coordinate.x -= kSchematicPadding/2;
-	coordinate.y -= kSchematicPadding/2;
+	coordinate.x -= kViewPadding/2;
+	coordinate.y -= kViewPadding/2;
 
 	// Scale
 	coordinate.x /= self.zoomFactor;
@@ -198,29 +211,35 @@ static const CGFloat kSchematicPadding = 5;
 	// Iterate all objects and find those with rect that encompass the point. Use the distance form the touch point to the center of the object as the key so we can sort by distance
 	NSMutableDictionary *objectsAtCoordinate = [NSMutableDictionary dictionary];
 
-	// Instances
-	for( id<EAGLEDrawable> drawable in self.schematic.instances )
+	// Schematic-only objects
+	if( [self.file isMemberOfClass:[EAGLESchematic class]] )
 	{
-		if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
-			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
-	}
+		EAGLESchematic *schematic = (EAGLESchematic*)self.file;
 
-	// Nets
-	for( id<EAGLEDrawable> drawable in self.schematic.nets )
-	{
-		/// TODO
-//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
-	}
+		// Instances
+		for( id<EAGLEDrawable> drawable in schematic.instances )
+		{
+			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
+				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		}
 
-	// Busses
-	for( id<EAGLEDrawable> drawable in self.schematic.busses )
-	{
-		/// TODO
-//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		// Nets
+		for( id<EAGLEDrawable> drawable in schematic.nets )
+		{
+			/// TODO
+	//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+	//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+	//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		}
+
+		// Busses
+		for( id<EAGLEDrawable> drawable in schematic.busses )
+		{
+			/// TODO
+	//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
+	//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
+	//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		}
 	}
 
 	// Sort the objects by distance

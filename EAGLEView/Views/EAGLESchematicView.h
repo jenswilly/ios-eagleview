@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EAGLESchematic.h"
+#import "EAGLEFile.h"
 
 @interface EAGLESchematicView : UIView
 
-@property (strong) EAGLESchematic *schematic;
+@property (strong) EAGLEFile *file;
 @property (nonatomic, assign) CGFloat zoomFactor;
 @property (assign) CGFloat minZoomFactor;
 @property (assign) CGFloat maxZoomFactor;

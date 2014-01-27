@@ -42,7 +42,7 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
 
 	[self.schematicView setRelativeZoomFactor:0.1];
-	self.schematicView.schematic = schematic;
+	self.schematicView.file = schematic;
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
@@ -170,7 +170,7 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
 	NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
 
-	self.schematicView.schematic = schematic;
+	self.schematicView.file = schematic;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -179,7 +179,7 @@
 
 - (void)openSchematic:(EAGLESchematic*)schematic
 {
-	self.schematicView.schematic = schematic;
+	self.schematicView.file = schematic;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -217,7 +217,7 @@
 			schematic.fileDate = fileDate;
 			NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
 
-			self.schematicView.schematic = schematic;
+			self.schematicView.file = schematic;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 				[MBProgressHUD hideHUDForView:self.view animated:YES];
