@@ -30,8 +30,8 @@
 	// Fix table separator
 	self.table.separatorColor = RGBHEX( GLOBAL_TINT_COLOR );
 	self.table.separatorInset = UIEdgeInsetsMake( 0, 15, 0, 15 );
-
 }
+
 - (void)setItem:(DBMetadata *)item
 {
 	_item = item;

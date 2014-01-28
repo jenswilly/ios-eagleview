@@ -21,6 +21,7 @@
 #import "MBProgressHUD.h"
 #import "UIView+AnchorPoint.h"
 #import "DetailPopupViewController.h"
+#import "LayersViewController.h"
 
 @interface ViewController ()
 
@@ -33,6 +34,7 @@
 {
 	__block UIPopoverController *_popover;
 	NSString *_lastDropboxPath;		// Used to remember which Dropbox path the user was in last
+	EAGLEFile *_eagleFile;
 }
 
 - (void)viewDidLoad
@@ -40,12 +42,12 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-//	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
-	EAGLEBoard *board = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
+//	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self.schematicView setRelativeZoomFactor:0.1];
-	self.schematicView.file = board;
+	self.schematicView.file = _eagleFile;
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
@@ -123,6 +125,28 @@
 {
 }
 
+- (IBAction)showLayersAction:(UIBarButtonItem*)sender
+{
+	LayersViewController *layersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LayersViewController"];
+	layersViewController.eagleFile = _eagleFile;
+	
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+	{
+		// iPad: show as popover
+		if( _popover )
+			[_popover dismissPopoverAnimated:YES];
+		
+		_popover = [[UIPopoverController alloc] initWithContentViewController:layersViewController];
+		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else
+	{
+		// iPhone: show modal
+		[self presentViewController:layersViewController animated:YES completion:nil];
+	}
+}
+
 - (IBAction)chooseDocumentAction:(UIBarButtonItem*)sender
 {
 	// Authenticate if necessary
@@ -142,6 +166,9 @@
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 	{
 		// iPad: show as popover
+		if( _popover )
+			[_popover dismissPopoverAnimated:YES];
+
 		_popover = [[UIPopoverController alloc] initWithContentViewController:navController];
 		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
@@ -150,7 +177,6 @@
 		// iPhone: show modal
 		[self presentViewController:navController animated:YES completion:nil];
 	}
-
 }
 
 - (IBAction)zoomToFitAction:(id)sender

@@ -83,6 +83,8 @@
 		47C73B65184939620041C4C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C73B64184939620041C4C4 /* QuartzCore.framework */; };
 		47C73B6818493B3B0041C4C4 /* DocumentChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */; };
 		47C73B6B18493DDB0041C4C4 /* Dropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6A18493DDB0041C4C4 /* Dropbox.m */; };
+		47D3C2FB1898051700BB4E33 /* LayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FA1898051700BB4E33 /* LayersViewController.m */; };
+		47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FD1898096200BB4E33 /* UIImage+Color.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -226,6 +228,10 @@
 		47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentChooserViewController.m; sourceTree = "<group>"; };
 		47C73B6918493DDB0041C4C4 /* Dropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dropbox.h; sourceTree = "<group>"; };
 		47C73B6A18493DDB0041C4C4 /* Dropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dropbox.m; sourceTree = "<group>"; };
+		47D3C2F91898051700BB4E33 /* LayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayersViewController.h; sourceTree = "<group>"; };
+		47D3C2FA1898051700BB4E33 /* LayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayersViewController.m; sourceTree = "<group>"; };
+		47D3C2FC1898096200BB4E33 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		47D3C2FD1898096200BB4E33 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -389,6 +395,8 @@
 				47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */,
 				478368691893E83D0031977E /* DetailPopupViewController.h */,
 				4783686A1893E83D0031977E /* DetailPopupViewController.m */,
+				47D3C2F91898051700BB4E33 /* LayersViewController.h */,
+				47D3C2FA1898051700BB4E33 /* LayersViewController.m */,
 			);
 			name = "View Controllers";
 			path = EAGLEView;
@@ -558,6 +566,8 @@
 		47C5ABC918574EA500A1D530 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				47D3C2FC1898096200BB4E33 /* UIImage+Color.h */,
+				47D3C2FD1898096200BB4E33 /* UIImage+Color.m */,
 				47C5ABCA18574EBE00A1D530 /* UIView+AnchorPoint.h */,
 				47C5ABCB18574EBE00A1D530 /* UIView+AnchorPoint.m */,
 			);
@@ -659,6 +669,7 @@
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
 				47C5ABCC18574EBE00A1D530 /* UIView+AnchorPoint.m in Sources */,
 				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,
+				47D3C2FB1898051700BB4E33 /* LayersViewController.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
 				473902961840D9930092D025 /* main.m in Sources */,
 				4782C785189701FB00704F10 /* EAGLEElement.m in Sources */,
@@ -671,6 +682,7 @@
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
 				47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
+				47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */,
 				47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */,
 				4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */,
 				473903391840E2590092D025 /* DDXMLElementAdditions.m in Sources */,
