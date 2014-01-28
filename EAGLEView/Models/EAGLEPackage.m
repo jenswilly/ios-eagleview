@@ -40,7 +40,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Package %@ - %d components", _name, [_components count]];
+	return [NSString stringWithFormat:@"Package %@ - %d components", _name, (int)[_components count]];
 }
 
 - (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored
