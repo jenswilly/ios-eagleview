@@ -36,6 +36,8 @@ static CGFloat kJunctionDiameter = 0.8f;	// Diameter of junction circle
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	[super setStrokeColorFromLayerInContext:context];
 	[super setFillColorFromLayerInContext:context];
 

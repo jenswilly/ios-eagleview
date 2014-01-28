@@ -38,6 +38,8 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	[self setStrokeColorFromLayerInContext:context];
     CGContextBeginPath( context );
 

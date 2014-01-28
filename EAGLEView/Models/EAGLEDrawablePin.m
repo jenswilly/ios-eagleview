@@ -79,7 +79,10 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 - (void)drawInContext:(CGContextRef)context
 {
-	CGColorRef pinColor = [RGB( 165, 75, 75 ) CGColor];
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
+	// Pin is drawn with same color as the "symbols" layer (layer 94)
+	CGColorRef pinColor = ((EAGLELayer*)self.file.layers[ @94 ]).color.CGColor;
 	CGContextSetStrokeColorWithColor( context, pinColor );
 
 	// Rotate

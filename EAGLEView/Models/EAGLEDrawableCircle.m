@@ -36,6 +36,8 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	[super setStrokeColorFromLayerInContext:context];
 	CGContextSetLineWidth( context, self.width );
 

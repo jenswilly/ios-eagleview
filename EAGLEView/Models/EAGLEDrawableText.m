@@ -43,6 +43,8 @@ static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted 
 
 - (void)drawInContext:(CGContextRef)context flipText:(BOOL)flipText isMirrored:(BOOL)isMirrored
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );

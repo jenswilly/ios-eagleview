@@ -40,6 +40,8 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+	
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );

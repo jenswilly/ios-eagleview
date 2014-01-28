@@ -85,6 +85,7 @@
 		47C73B6B18493DDB0041C4C4 /* Dropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C73B6A18493DDB0041C4C4 /* Dropbox.m */; };
 		47D3C2FB1898051700BB4E33 /* LayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FA1898051700BB4E33 /* LayersViewController.m */; };
 		47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FD1898096200BB4E33 /* UIImage+Color.m */; };
+		47D3C30118983ED300BB4E33 /* EAGLEDrawablePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -232,6 +233,8 @@
 		47D3C2FA1898051700BB4E33 /* LayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayersViewController.m; sourceTree = "<group>"; };
 		47D3C2FC1898096200BB4E33 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		47D3C2FD1898096200BB4E33 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		47D3C2FF18983ED300BB4E33 /* EAGLEDrawablePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePad.h; sourceTree = "<group>"; };
+		47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePad.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				4782C784189701FB00704F10 /* EAGLEElement.m */,
 				4782C7861897039D00704F10 /* EAGLEPackage.h */,
 				4782C7871897039D00704F10 /* EAGLEPackage.m */,
+				47D3C2FF18983ED300BB4E33 /* EAGLEDrawablePad.h */,
+				47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -663,6 +668,7 @@
 				473902E81840DD070092D025 /* GPAsyncImageView.m in Sources */,
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
+				47D3C30118983ED300BB4E33 /* EAGLEDrawablePad.m in Sources */,
 				4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */,
 				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,

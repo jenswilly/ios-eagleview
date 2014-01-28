@@ -17,6 +17,7 @@
 #import "EAGLEDrawableArc.h"
 #import "EAGLEDrawableRectangle.h"
 #import "EAGLEDrawableFrame.h"
+#import "EAGLEDrawablePad.h"
 
 #import "DDXML.h"
 
@@ -59,6 +60,9 @@
 
 	if( [elementName isEqualToString:@"frame"] )
 		return [[EAGLEDrawableFrame alloc] initFromXMLElement:element inFile:file];
+
+	if( [elementName isEqualToString:@"pad"] )
+		return [[EAGLEDrawablePad alloc] initFromXMLElement:element inFile:file];
 
 	// Unknown element name
 	DEBUG_LOG( @"Unknown drawable element: %@", elementName );

@@ -7,6 +7,10 @@
 //
 
 #import "EAGLEObject.h"
+#import "EAGLELayer.h"
+#import "EAGLEFile.h"
+
+#define RETURN_IF_NOT_LAYER_VISIBLE if( !((EAGLELayer*)self.file.layers[ self.layerNumber ]).visible ) return
 
 @protocol EAGLEDrawable <NSObject>
 
@@ -31,8 +35,10 @@ typedef enum
 	Rotation_Mirror_MR0
 } Rotation;
 
-
 @interface EAGLEDrawableObject : EAGLEObject  <EAGLEDrawable>
+{
+	NSNumber *_layerNumber;
+}
 
 @property (nonatomic, readonly) NSNumber *layerNumber;
 

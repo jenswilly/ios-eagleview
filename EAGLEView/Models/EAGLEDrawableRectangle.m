@@ -36,12 +36,12 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	[super setStrokeColorFromLayerInContext:context];
 	[super setFillColorFromLayerInContext:context];
 	CGContextSetLineWidth( context, self.width );
 
-//	CGContextBeginPath( context );
-//	CGContextAddRect( context, CGRectMake( self.point1.x, self.point1.y, self.point2.x - self.point1.x, self.point2.y - self.point1.y ));
 	CGContextFillRect( context, CGRectMake( self.point1.x, self.point1.y, self.point2.x - self.point1.x, self.point2.y - self.point1.y ));
 }
 

@@ -38,6 +38,8 @@ static CGFloat frameLineWidth = 0.508;
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	[super setStrokeColorFromLayerInContext:context];
 	[super setFillColorFromLayerInContext:context];
 	CGContextSetLineWidth( context, self.width );

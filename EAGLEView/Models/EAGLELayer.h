@@ -13,5 +13,8 @@
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) NSNumber *number;
 @property (readonly, strong) UIColor *color;
+@property (assign) BOOL visible;
+
++ (UIColor*)colorForColorString:(NSString*)colorString;
 
 @end

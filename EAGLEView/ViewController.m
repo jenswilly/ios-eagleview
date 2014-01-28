@@ -129,6 +129,7 @@
 {
 	LayersViewController *layersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LayersViewController"];
 	layersViewController.eagleFile = _eagleFile;
+	layersViewController.fileView = self.schematicView;
 	
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

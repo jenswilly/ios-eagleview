@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class EAGLEFile;
+@class EAGLESchematicView;
 
 @interface LayersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) EAGLEFile *eagleFile;
+@property (weak) EAGLESchematicView *fileView;
 
 @end

@@ -44,6 +44,8 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+	RETURN_IF_NOT_LAYER_VISIBLE;
+
 	// If no points, return immediately
 	if( [self.vertices count] == 0 )
 		return;
