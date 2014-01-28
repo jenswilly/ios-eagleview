@@ -137,6 +137,28 @@
 	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
 }
 
+/**
+ * This method temporarily changes the layer if it is a top layer with a corresponding bottom layer and
+ * then calls [self drawInContext:context] and then resets the layer number.
+ */
+- (void)drawOnBottomInContext:(CGContextRef)context
+{
+	// Override layer if necessary
+	int layer = [self.layerNumber intValue];
+
+	// Switch Top to Bottom layer
+	if( layer == 1 )
+		_layerNumber = @16;
+	else if( layer == 21 || layer == 23 || layer == 25 || layer == 27 || layer == 29 || layer == 31 || layer == 33 || layer == 35 || layer == 37 || layer == 39 || layer == 41 || layer == 51 || layer == 105 || layer == 121 || layer == 123 || layer == 131 )
+		// "top" layers prefixed by "t"
+		_layerNumber = @( layer + 1 );
+
+	[self drawInContext:context];
+
+	// Reset layer
+	_layerNumber = @( layer );
+}
+
 - (CGFloat)maxX
 {
 	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];

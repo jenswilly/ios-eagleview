@@ -104,7 +104,7 @@
 	else
 		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
-	[self.package drawInContext:context smashed:self.smashed];
+	[self.package drawInContext:context smashed:self.smashed mirrored:( self.rotation == Rotation_Mirror_MR0 )];
 
 	CGContextRestoreGState( context );
 

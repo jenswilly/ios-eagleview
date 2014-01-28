@@ -12,8 +12,8 @@
 - Boards: signals
 - Fill patterns for layers (fill property on <layer>)
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
-- Use bottom layers (place, name, value, stop, keepout, restrict etc.) for mirrored elements
 
+√ Use bottom layers (place, name, value, stop, keepout, restrict etc.) for mirrored elements
 √ Drawable: pad
 √ iPhone
 √ Fix instance hit test for rotated parts (e.g. USB connector in Gift Card)

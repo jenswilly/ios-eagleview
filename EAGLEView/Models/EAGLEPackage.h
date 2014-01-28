@@ -16,7 +16,7 @@
 @property (strong) NSDictionary *textsForPlaceholders;
 @property (strong) NSArray *placeholdersToSkip;	// Array of placeholder texts to ignore. This is used when an attribute is smashed which means we'll draw it directly from the symbol
 
-- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed;
+- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
 - (CGFloat)minX;

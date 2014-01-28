@@ -43,7 +43,7 @@
 	return [NSString stringWithFormat:@"Package %@ - %d components", _name, [_components count]];
 }
 
-- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed
+- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored
 {
 	// Iterate and draw all components
 	for( EAGLEDrawableObject *drawable in self.components )
@@ -66,8 +66,13 @@
 			[(EAGLEDrawableText*)drawable drawInContext:context flipText:NO isMirrored:NO];
 		}
 		else
+		{
 			// Draw it
-			[drawable drawInContext:context];
+			if( mirrored )
+				[drawable drawOnBottomInContext:context];
+			else
+				[drawable drawInContext:context];
+		}
 }
 
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context
