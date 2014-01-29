@@ -86,6 +86,7 @@
 		47D3C2FB1898051700BB4E33 /* LayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FA1898051700BB4E33 /* LayersViewController.m */; };
 		47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FD1898096200BB4E33 /* UIImage+Color.m */; };
 		47D3C30118983ED300BB4E33 /* EAGLEDrawablePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */; };
+		47D3C30418990D7600BB4E33 /* EAGLEDrawableSmd.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C30318990D7600BB4E33 /* EAGLEDrawableSmd.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -235,6 +236,8 @@
 		47D3C2FD1898096200BB4E33 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		47D3C2FF18983ED300BB4E33 /* EAGLEDrawablePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePad.h; sourceTree = "<group>"; };
 		47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePad.m; sourceTree = "<group>"; };
+		47D3C30218990D7600BB4E33 /* EAGLEDrawableSmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableSmd.h; sourceTree = "<group>"; };
+		47D3C30318990D7600BB4E33 /* EAGLEDrawableSmd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableSmd.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				4739035D184343610092D025 /* EAGLEDrawablePolygon.m */,
 				47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */,
 				47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */,
+				47D3C30218990D7600BB4E33 /* EAGLEDrawableSmd.h */,
+				47D3C30318990D7600BB4E33 /* EAGLEDrawableSmd.m */,
 				4739035218411D8C0092D025 /* EAGLEDrawableText.h */,
 				4739035318411D8C0092D025 /* EAGLEDrawableText.m */,
 				4739034F18411D7E0092D025 /* EAGLEDrawableWire.h */,
@@ -672,6 +677,7 @@
 				4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */,
 				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
+				47D3C30418990D7600BB4E33 /* EAGLEDrawableSmd.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
 				47C5ABCC18574EBE00A1D530 /* UIView+AnchorPoint.m in Sources */,
 				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,

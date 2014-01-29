@@ -7,11 +7,12 @@
 - Search for components
 - Layers: icon, show/hide selector
 - Drawable: description
-- Drawable: smd
 - Drawable: via
 - Boards: signals
 - Fill patterns for layers (fill property on <layer>)
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
+
+~ Drawable: smd: roundness
 
 √ Use bottom layers (place, name, value, stop, keepout, restrict etc.) for mirrored elements
 √ Drawable: pad
