@@ -17,6 +17,7 @@
 @property (readonly) CGPoint point;
 @property (readonly) BOOL smashed;
 @property (readonly) Rotation rotation;
+@property (readonly, strong) NSString *library_name;
 @property (readonly, strong) EAGLEPackage *package;
 
 @end

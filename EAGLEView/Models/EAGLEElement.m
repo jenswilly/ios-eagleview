@@ -32,9 +32,9 @@
 		_point = CGPointMake( x, y );
 
 		// Package
-		NSString *libraryName = [[element attributeForName:@"library"] stringValue];
+		_library_name = [[element attributeForName:@"library"] stringValue];
 		NSString *packageName = [[element attributeForName:@"package"] stringValue];
-		_package = [self.board packageNamed:packageName inLibraryNamed:libraryName];
+		_package = [self.board packageNamed:packageName inLibraryNamed:_library_name];
 		
 		// Smashed?
 		_smashed = [[[element attributeForName:@"smashed"] stringValue] boolValue];
