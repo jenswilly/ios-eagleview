@@ -55,7 +55,7 @@
 	}
 
 	// Get layers
-	NSArray *layers = [xmlDocument nodesForXPath:@"/eagle/drawing/layers/layer" error:error];
+	NSArray *layers = [xmlDocument nodesForXPath:@"/eagle/drawing/layers/layer[ @active=\"yes\" ]" error:error];
 	if( err )
 	{
 		*error = err;
