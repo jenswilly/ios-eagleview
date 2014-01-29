@@ -46,6 +46,11 @@
 	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
+	if( [_eagleFile isKindOfClass:[EAGLESchematic class]] )
+		self.scrollView.backgroundColor = [UIColor whiteColor];
+	else
+		self.scrollView.backgroundColor = [UIColor blackColor];
+
 	[self.schematicView setRelativeZoomFactor:0.1];
 	self.schematicView.file = _eagleFile;
 }
@@ -264,9 +269,15 @@
 
 			// Schematic or board?
 			if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"sch"] )
+			{
 				_eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+				self.scrollView.backgroundColor = [UIColor whiteColor];
+			}
 			else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
+			{
 				_eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
+				self.scrollView.backgroundColor = [UIColor blackColor];
+			}
 
 			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 

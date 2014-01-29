@@ -9,6 +9,7 @@
 - Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
+- Add show/hide top/bottom layers from layers chooser view controller
 
 
 √ Fix order of drawing on boards: bottom signals, bottom elements, top signals, top elements
