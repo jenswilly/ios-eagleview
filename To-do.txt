@@ -11,9 +11,10 @@
 - Boards: signals
 - Fill patterns for layers (fill property on <layer>)
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
+- Placeholder view when no schematic/board is selected
 
-~ Drawable: smd: roundness
 
+√ Drawable: smd
 √ Use bottom layers (place, name, value, stop, keepout, restrict etc.) for mirrored elements
 √ Drawable: pad
 √ iPhone

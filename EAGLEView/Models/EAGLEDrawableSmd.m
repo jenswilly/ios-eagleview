@@ -45,10 +45,18 @@
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
 	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
-	/// TODO: roundness
-
+	CGRect rect = CGRectMake( -_size.width / 2, -_size.height / 2, _size.width, _size.height );
 	[super setFillColorFromLayerInContext:context];
-	CGContextFillRect( context, CGRectMake( -_size.width / 2, -_size.height / 2, _size.width, _size.height ));
+
+	if( _roundness > 0 )
+	{
+		// Rounded corners. Use UIBezierPath instead of a simple rectangle.
+		// Roundness is from 0 to 100. 0 means no round corners, 100 means rounded corners with a radius of half the smallest dimension (so the smallest side is a complete half-circle)
+		UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:MIN( _size.width, _size.height ) / 2 * _roundness / 100];
+		[roundedRectPath fill];
+	}
+	else
+		CGContextFillRect( context, rect );
 
 	CGContextRestoreGState( context );
 }
