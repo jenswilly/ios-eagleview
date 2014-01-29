@@ -48,12 +48,7 @@ const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted by this
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
-
-	if( self.rotation == Rotation_Mirror_MR0 )
-		// Mirror, not rotate
-		CGContextScaleCTM( context, -1, 1 );
-	else
-		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
+	[EAGLEDrawableObject transformContext:context forRotation:self.rotation];
 
 	// Set color
 	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];

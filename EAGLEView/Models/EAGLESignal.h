@@ -14,5 +14,6 @@
 @property (readonly, strong) NSString *name;
 @property (readonly, strong) NSArray *wires;	// Contains EAGLEDrawableWire og -Arc objects
 @property (readonly, strong) NSArray *vias;		// Contains EAGLEDrawableVia objects
+@property (strong) NSPredicate *filterPredicateForDrawing;
 
 @end

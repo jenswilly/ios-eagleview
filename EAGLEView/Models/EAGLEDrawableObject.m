@@ -77,6 +77,11 @@
 	return nil;
 }
 
++ (BOOL)rotationIsMirrored:(Rotation)rotation
+{
+	return (rotation == Rotation_Mirror_MR0 || rotation == Rotation_Mirror_MR270 || rotation == Rotation_Mirror_MR180 || rotation == Rotation_Mirror_MR90 );
+}
+
 + (CGFloat)radiansForRotation:(Rotation)rotation
 {
 	switch( rotation )
@@ -85,6 +90,7 @@
 			return M_PI_4;
 
 		case Rotation_R90:
+		case Rotation_Mirror_MR90:
 			return M_PI_2;
 
 		case Rotation_R180:
@@ -94,6 +100,7 @@
 			return M_PI_4 * 5;
 
 		case Rotation_R270:
+		case Rotation_Mirror_MR270:
 			return M_PI_2 * 3;
 
 		case Rotation_Mirror_MR0:
@@ -116,14 +123,38 @@
 		return Rotation_R225;
 	else if( [rotationString isEqualToString:@"R270"] )
 		return Rotation_R270;
-	else if( [rotationString isEqualToString:@"R180"] || [rotationString isEqualToString:@"MR180"] )
+	else if( [rotationString isEqualToString:@"R180"] )
 		return Rotation_R180;
 	else if( [rotationString isEqualToString:@"MR0"] )
 		return Rotation_Mirror_MR0;
+	else if( [rotationString isEqualToString:@"MR90"] )
+		return Rotation_Mirror_MR90;
+	else if( [rotationString isEqualToString:@"MR180"] )
+		return Rotation_Mirror_MR180;
+	else if( [rotationString isEqualToString:@"MR270"] )
+		return Rotation_Mirror_MR270;
 	else
 		[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotationString];
 
 	return 0;
+}
+
++ (void)transformContext:(CGContextRef)context forRotation:(Rotation)rotation
+{
+	if( rotation == Rotation_Mirror_MR180 )
+	{
+		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
+	}
+	else if( rotation == Rotation_Mirror_MR90 )
+	{
+		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
+		CGContextScaleCTM( context, 1, -1 );
+	}
+	else if( [self rotationIsMirrored:rotation] )
+		// Mirror, not rotate
+		CGContextScaleCTM( context, -1, 1 );
+	else
+		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
 }
 
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context

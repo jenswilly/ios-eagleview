@@ -42,8 +42,8 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
-//	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
+//	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self.schematicView setRelativeZoomFactor:0.1];

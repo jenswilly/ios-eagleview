@@ -32,7 +32,10 @@ typedef enum
 	Rotation_R180,
 	Rotation_R225,
 	Rotation_R270,
-	Rotation_Mirror_MR0
+	Rotation_Mirror_MR0,
+	Rotation_Mirror_MR90,
+	Rotation_Mirror_MR180,
+	Rotation_Mirror_MR270
 } Rotation;
 
 @interface EAGLEDrawableObject : EAGLEObject  <EAGLEDrawable>
@@ -50,5 +53,7 @@ typedef enum
 - (void)setFillColorFromLayerInContext:(CGContextRef)context;
 + (CGFloat)radiansForRotation:(Rotation)rotation;
 + (Rotation)rotationForString:(NSString*)rotationString;
++ (BOOL)rotationIsMirrored:(Rotation)rotation;
++ (void)transformContext:(CGContextRef)context forRotation:(Rotation)rotation;
 
 @end

@@ -145,14 +145,9 @@
 	// Rotate if necessary. First offset coordinate system to origin point then rotate. State is pushed/popped.
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
+	[EAGLEDrawableObject transformContext:context forRotation:self.rotation];
 
-	if( self.rotation == Rotation_Mirror_MR0 )
-		// Mirror, not rotate
-		CGContextScaleCTM( context, -1, 1 );
-	else
-		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
-
-	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:( self.rotation == Rotation_Mirror_MR0 ) smashed:self.smashed];		// Draw at point 0,0 since coordinate system has been moved to point
+	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:[EAGLEDrawableObject rotationIsMirrored:self.rotation] smashed:self.smashed];		// Draw at point 0,0 since coordinate system has been moved to point
 
 	CGContextRestoreGState( context );
 

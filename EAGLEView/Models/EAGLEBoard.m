@@ -101,7 +101,7 @@
 		}
 		_libraries = [NSArray arrayWithArray:tmpElements];
 
-		// Parts
+		// Elements
 		elements = [element nodesForXPath:@"elements/element" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
@@ -112,6 +112,14 @@
 			if( element )
 				[tmpElements addObject:element];
 		}
+
+		// Sort elements
+		[tmpElements sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+			if( [EAGLEDrawableObject rotationIsMirrored:((EAGLEElement*)obj1).rotation] && ![EAGLEDrawableObject rotationIsMirrored:((EAGLEElement*)obj2).rotation] )
+				return NSOrderedAscending;
+			else
+				return NSOrderedDescending;
+		}];
 		_elements = [NSArray arrayWithArray:tmpElements];
 
 		// Signals

@@ -53,11 +53,16 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
-	// Iterate and draw all wires (or arcs)
-	for( id<EAGLEDrawable> wire in self.wires )
-		[wire drawInContext:context];
+	// Filter wires if there is a filter predicate
+	NSArray *activeWires;
+	if( self.filterPredicateForDrawing )
+		activeWires = [self.wires filteredArrayUsingPredicate:self.filterPredicateForDrawing];
+	else
+		activeWires = self.wires;
 
-	// And vias
+	for( EAGLEDrawableObject *drawable in activeWires )
+		[drawable drawInContext:context];
+
 	for( EAGLEDrawableVia *via in self.vias )
 		[via drawInContext:context];
 }

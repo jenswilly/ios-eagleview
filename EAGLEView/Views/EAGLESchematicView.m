@@ -15,6 +15,7 @@
 #import "EAGLESchematic.h"
 #import "EAGLEBoard.h"
 #import "EAGLESignal.h"
+#import "EAGLEElement.h"
 
 static const CGFloat kViewPadding = 5;
 
@@ -224,13 +225,31 @@ static const CGFloat kViewPadding = 5;
 	{
 		EAGLEBoard *board = (EAGLEBoard*)self.file;
 
-		// Signals
+		// First bottom signals and elements
+		NSPredicate *bottomPredicate = [NSPredicate predicateWithFormat:@"layerNumber = 16"];
 		for( EAGLESignal *signal in board.signals )
+		{
+			signal.filterPredicateForDrawing = bottomPredicate;
 			[signal drawInContext:context];
+		}
 
-		// Elements
-		for( id<EAGLEDrawable> drawable in board.elements )
-			[drawable drawInContext:context];
+		// Bottom elements
+		for( EAGLEElement *drawable in board.elements )
+			if( [EAGLEDrawableObject rotationIsMirrored:drawable.rotation] )
+				[drawable drawInContext:context];
+
+		// Then top signals
+		NSPredicate *topPredicate = [NSPredicate predicateWithFormat:@"layerNumber = 1"];
+		for( EAGLESignal *signal in board.signals )
+		{
+			signal.filterPredicateForDrawing = topPredicate;
+			[signal drawInContext:context];
+		}
+
+		// Top elements
+		for( EAGLEElement *drawable in board.elements )
+			if( ![EAGLEDrawableObject rotationIsMirrored:drawable.rotation] )
+				[drawable drawInContext:context];
 	}
 }
 
