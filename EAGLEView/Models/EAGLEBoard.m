@@ -13,6 +13,7 @@
 #import "EAGLEDrawableObject.h"
 #import "EAGLEPackage.h"
 #import "EAGLEElement.h"
+#import "EAGLESignal.h"
 
 @implementation EAGLEBoard
 
@@ -112,6 +113,18 @@
 				[tmpElements addObject:element];
 		}
 		_elements = [NSArray arrayWithArray:tmpElements];
+
+		// Signals
+		elements = [element nodesForXPath:@"signals/signal" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLESignal *signal = [[EAGLESignal alloc] initFromXMLElement:childElement inFile:self];
+			if( signal )
+				[tmpElements addObject:signal];
+		}
+		_signals = [NSArray arrayWithArray:tmpElements];
 
 		/// ...
 

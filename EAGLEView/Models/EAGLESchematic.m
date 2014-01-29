@@ -136,7 +136,17 @@
 				[tmpElements addObject:net];
 		}
 		_nets = [NSArray arrayWithArray:tmpElements];
-
+		// Nets
+		elements = [element nodesForXPath:@"sheets/sheet/nets/net" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inFile:self];
+			if( net )
+				[tmpElements addObject:net];
+		}
+		_nets = [NSArray arrayWithArray:tmpElements];
 
 		// Busses
 		elements = [element nodesForXPath:@"sheets/sheet/busses/bus" error:&error];

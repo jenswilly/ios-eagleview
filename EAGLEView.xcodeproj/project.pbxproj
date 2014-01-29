@@ -87,6 +87,8 @@
 		47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C2FD1898096200BB4E33 /* UIImage+Color.m */; };
 		47D3C30118983ED300BB4E33 /* EAGLEDrawablePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */; };
 		47D3C30418990D7600BB4E33 /* EAGLEDrawableSmd.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C30318990D7600BB4E33 /* EAGLEDrawableSmd.m */; };
+		47D3C3071899460000BB4E33 /* EAGLEDrawableVia.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C3061899460000BB4E33 /* EAGLEDrawableVia.m */; };
+		47D3C30A189947DD00BB4E33 /* EAGLESignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3C309189947DD00BB4E33 /* EAGLESignal.m */; };
 		47D3CD05184499B600F58240 /* EAGLEAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD04184499B600F58240 /* EAGLEAttribute.m */; };
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
@@ -238,6 +240,10 @@
 		47D3C30018983ED300BB4E33 /* EAGLEDrawablePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePad.m; sourceTree = "<group>"; };
 		47D3C30218990D7600BB4E33 /* EAGLEDrawableSmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableSmd.h; sourceTree = "<group>"; };
 		47D3C30318990D7600BB4E33 /* EAGLEDrawableSmd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableSmd.m; sourceTree = "<group>"; };
+		47D3C3051899460000BB4E33 /* EAGLEDrawableVia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableVia.h; sourceTree = "<group>"; };
+		47D3C3061899460000BB4E33 /* EAGLEDrawableVia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableVia.m; sourceTree = "<group>"; };
+		47D3C308189947DD00BB4E33 /* EAGLESignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLESignal.h; sourceTree = "<group>"; };
+		47D3C309189947DD00BB4E33 /* EAGLESignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLESignal.m; sourceTree = "<group>"; };
 		47D3CD03184499B600F58240 /* EAGLEAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEAttribute.h; sourceTree = "<group>"; };
 		47D3CD04184499B600F58240 /* EAGLEAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEAttribute.m; sourceTree = "<group>"; };
 		47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableJunction.h; sourceTree = "<group>"; };
@@ -391,6 +397,10 @@
 				473903441840E9430092D025 /* EAGLESchematic.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
+				47D3C3051899460000BB4E33 /* EAGLEDrawableVia.h */,
+				47D3C3061899460000BB4E33 /* EAGLEDrawableVia.m */,
+				47D3C308189947DD00BB4E33 /* EAGLESignal.h */,
+				47D3C309189947DD00BB4E33 /* EAGLESignal.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -680,6 +690,7 @@
 				47D3C30418990D7600BB4E33 /* EAGLEDrawableSmd.m in Sources */,
 				4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */,
 				47C5ABCC18574EBE00A1D530 /* UIView+AnchorPoint.m in Sources */,
+				47D3C30A189947DD00BB4E33 /* EAGLESignal.m in Sources */,
 				47C5ABC61857243800A1D530 /* SSZipArchive.m in Sources */,
 				47D3C2FB1898051700BB4E33 /* LayersViewController.m in Sources */,
 				4782AB7018439E190022F660 /* EAGLEPart.m in Sources */,
@@ -692,6 +703,7 @@
 				4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */,
 				473902EA1840DD070092D025 /* GPCoreDataController.m in Sources */,
 				4739034B18411D1A0092D025 /* EAGLESymbol.m in Sources */,
+				47D3C3071899460000BB4E33 /* EAGLEDrawableVia.m in Sources */,
 				47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */,
 				473903481840ED650092D025 /* EAGLELibrary.m in Sources */,
 				47D3C2FE1898096200BB4E33 /* UIImage+Color.m in Sources */,

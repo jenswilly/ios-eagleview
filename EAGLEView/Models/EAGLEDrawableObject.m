@@ -19,6 +19,7 @@
 #import "EAGLEDrawableFrame.h"
 #import "EAGLEDrawablePad.h"
 #import "EAGLEDrawableSmd.h"
+#import "EAGLEDrawableVia.h"
 
 #import "DDXML.h"
 
@@ -67,6 +68,9 @@
 
 	if( [elementName isEqualToString:@"smd"] )
 		return [[EAGLEDrawableSmd alloc] initFromXMLElement:element inFile:file];
+
+	if( [elementName isEqualToString:@"via"] )
+		return [[EAGLEDrawableVia alloc] initFromXMLElement:element inFile:file];
 
 	// Unknown element name
 	DEBUG_LOG( @"Unknown drawable element: %@", elementName );

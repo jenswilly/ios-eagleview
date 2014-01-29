@@ -14,6 +14,7 @@
 #import "EAGLENet.h"
 #import "EAGLESchematic.h"
 #import "EAGLEBoard.h"
+#import "EAGLESignal.h"
 
 static const CGFloat kViewPadding = 5;
 
@@ -111,6 +112,27 @@ static const CGFloat kViewPadding = 5;
 		}
 	}
 
+	// Board-only objects
+	else if( [self.file isMemberOfClass:[EAGLEBoard class]] )
+	{
+		EAGLEBoard *board = (EAGLEBoard*)self.file;
+		for( id<EAGLEDrawable> drawable in board.elements )
+		{
+			maxX = MAX( maxX, [drawable maxX] );
+			maxY = MAX( maxY, [drawable maxY] );
+			minX = MIN( minX, [drawable minX] );
+			minY = MIN( minY, [drawable minY] );
+		}
+
+		for( id<EAGLEDrawable> drawable in board.signals )
+		{
+			maxX = MAX( maxX, [drawable maxX] );
+			maxY = MAX( maxY, [drawable maxY] );
+			minX = MIN( minX, [drawable minX] );
+			minY = MIN( minY, [drawable minY] );
+		}
+	}
+
 	// Adjust for negative origin
 	maxX -= minX;
 	maxY -= minY;
@@ -188,9 +210,13 @@ static const CGFloat kViewPadding = 5;
 	{
 		EAGLEBoard *board = (EAGLEBoard*)self.file;
 
-		// Instances
+		// Elements
 		for( id<EAGLEDrawable> drawable in board.elements )
 			[drawable drawInContext:context];
+
+		// Signals
+		for( EAGLESignal *signal in board.signals )
+			[signal drawInContext:context];
 	}
 }
 
@@ -263,8 +289,13 @@ static const CGFloat kViewPadding = 5;
 			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
 				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
-	}
 
+		// Signals
+		for( EAGLESignal *signal in board.signals )
+		{
+			/// TODO
+		}
+	}
 
 	// Sort the objects by distance
 	NSArray *sortedKeys = [[objectsAtCoordinate allKeys] sortedArrayUsingSelector:@selector(compare:)];

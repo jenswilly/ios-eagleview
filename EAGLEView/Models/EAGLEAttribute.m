@@ -72,7 +72,8 @@
 
 	// Rotate if necessary
 	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
-	dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
+	if( self.rotation != Rotation_Mirror_MR0 )
+		dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
 	return self.point.x + dummyView.bounds.size.width;
 }
@@ -84,7 +85,8 @@
 
 	// Rotate if necessary
 	UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, textSize.width, textSize.height )];
-	dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
+	if( self.rotation != Rotation_Mirror_MR0 )
+		dummyView.transform = CGAffineTransformMakeRotation( [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
 	return self.point.y + dummyView.bounds.size.height;
 }

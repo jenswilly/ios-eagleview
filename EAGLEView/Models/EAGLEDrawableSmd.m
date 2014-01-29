@@ -30,7 +30,6 @@
 
 		NSString *rotationString = [[element attributeForName:@"rot"] stringValue];
 		_rotation = [EAGLEDrawableObject rotationForString:rotationString];
-
 	}
 
 	return self;
