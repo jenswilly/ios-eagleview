@@ -49,6 +49,9 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 		// Visible pin/pad text
 		NSString *visible = [[element attributeForName:@"visible"] stringValue];
 		_pinVisible = ( [visible isEqualToString:@"pin"] || [visible isEqualToString:@"both"] || visible == nil );	// NB: if no "visible" property, show the name
+
+		// Hardcoded layer
+		_layerNumber = @93;
 	}
 
 	return self;
@@ -81,9 +84,7 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
 
-	// Pin is drawn with same color as the "symbols" layer (layer 94)
-	CGColorRef pinColor = ((EAGLELayer*)self.file.layers[ @94 ]).color.CGColor;
-	CGContextSetStrokeColorWithColor( context, pinColor );
+	[super setStrokeColorFromLayerInContext:context];
 
 	// Rotate
 	CGContextSaveGState( context );
