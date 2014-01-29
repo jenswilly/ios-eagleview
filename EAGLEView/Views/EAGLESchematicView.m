@@ -36,6 +36,17 @@ static const CGFloat kViewPadding = 5;
     return self;
 }
 
+- (void)setFile:(EAGLEFile *)file
+{
+	_file = file;
+
+	// Set background based on type of file
+	if( [file isMemberOfClass:[EAGLESchematic class]] )
+		self.backgroundColor = [UIColor whiteColor];
+	else if( [file isMemberOfClass:[EAGLEBoard class]] )
+		self.backgroundColor = [UIColor blackColor];
+}
+
 - (void)setZoomFactor:(CGFloat)zoomFactor
 {
 	_zoomFactor = zoomFactor;
@@ -116,6 +127,7 @@ static const CGFloat kViewPadding = 5;
 	else if( [self.file isMemberOfClass:[EAGLEBoard class]] )
 	{
 		EAGLEBoard *board = (EAGLEBoard*)self.file;
+		
 		for( id<EAGLEDrawable> drawable in board.elements )
 		{
 			maxX = MAX( maxX, [drawable maxX] );
@@ -198,11 +210,13 @@ static const CGFloat kViewPadding = 5;
 	{
 		EAGLESchematic *schematic = (EAGLESchematic*)self.file;
 
-		for( id<EAGLEDrawable> drawable in schematic.instances )
-			[drawable drawInContext:context];
 		for( id<EAGLEDrawable> drawable in schematic.nets )
 			[drawable drawInContext:context];
+
 		for( id<EAGLEDrawable> drawable in schematic.busses )
+			[drawable drawInContext:context];
+
+		for( id<EAGLEDrawable> drawable in schematic.instances )
 			[drawable drawInContext:context];
 	}
 	// Board-only objects
@@ -210,13 +224,13 @@ static const CGFloat kViewPadding = 5;
 	{
 		EAGLEBoard *board = (EAGLEBoard*)self.file;
 
-		// Elements
-		for( id<EAGLEDrawable> drawable in board.elements )
-			[drawable drawInContext:context];
-
 		// Signals
 		for( EAGLESignal *signal in board.signals )
 			[signal drawInContext:context];
+
+		// Elements
+		for( id<EAGLEDrawable> drawable in board.elements )
+			[drawable drawInContext:context];
 	}
 }
 

@@ -6,16 +6,15 @@
 - Hit test for nets/busses
 - Search for components
 - Layers: icon, show/hide selector
-- Drawable: description
-- Boards: signals
 - Fill patterns for layers (fill property on <layer>)
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
+- Fix order of drawing (first signals/nets, then elements)
 
 
-~ Drawable: via
-
-
+√ Drawable: description (nope, this is info only, not a drawable)
+√ Boards: signals
+√ Drawable: via
 √ Drawable: smd
 √ Use bottom layers (place, name, value, stop, keepout, restrict etc.) for mirrored elements
 √ Drawable: pad

@@ -50,7 +50,6 @@
 	_radius = fabsf( (a/2) / sinf( alpha/2 ));
 
 	// 2. Offset points, so P1 is at (0,0)
-//	CGPoint P1 = CGPointMake( 0, 0 );
 	CGPoint P2 = CGPointMake( _point2.x - _point1.x, _point2.y - _point1.y );
 
 	// 3. Find angle A from P1 to P2
@@ -127,22 +126,22 @@
 
 - (CGFloat)maxX
 {
-	return _center.x + _radius;
+	return MAX( _point1.x, _point2.x );
 }
 
 - (CGFloat)maxY
 {
-	return _center.y + _radius;
+	return MAX( _point1.y, _point2.y );
 }
 
 - (CGFloat)minX
 {
-	return _center.x - _radius;
+	return MIN( _point1.x, _point2.x );
 }
 
 - (CGFloat)minY
 {
-	return _center.y - _radius;
+	return MIN( _point1.y, _point2.y );
 }
 
 - (CGPoint)origin

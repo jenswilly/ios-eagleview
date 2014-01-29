@@ -10,6 +10,7 @@
 #import "EAGLEAttribute.h"
 #import "EAGLEPackage.h"
 #import "EAGLEBoard.h"
+#import "EAGLEDrawableText.h"
 #import "DDXML.h"
 
 @implementation EAGLEElement
@@ -92,6 +93,11 @@
 	return self;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Element %@ - value: %@", _name, _value];
+}
+
 - (void)drawInContext:(CGContextRef)context
 {
 	// Rotate if necessary. First offset coordinate system to origin point then rotate. State is pushed/popped.
@@ -119,44 +125,44 @@
 
 - (CGFloat)maxX
 {
-	CGFloat maxX = [self.package maxX];
-
-	if( _smashedAttributes )
-		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
-			maxX = MAX( maxX, [attribute maxX] );
+	CGFloat maxX = -MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.package.components )
+		// Skip text elements for smashed elements
+		if( !(self.smashed && [drawable isKindOfClass:[EAGLEDrawableText class]]) )
+			maxX = MAX( maxX, [drawable maxX] );
 
 	return maxX + self.point.x;
 }
 
 - (CGFloat)maxY
 {
-	CGFloat maxY = [self.package maxY];
-
-	if( _smashedAttributes )
-		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
-			maxY = MAX( maxY, [attribute maxY] );
+	CGFloat maxY = -MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.package.components )
+		// Skip text elements for smashed elements
+		if( !(self.smashed && [drawable isKindOfClass:[EAGLEDrawableText class]]) )
+			maxY = MAX( maxY, [drawable maxY] );
 
 	return maxY + self.point.y;
 }
 
 - (CGFloat)minX
 {
-	CGFloat minX = [self.package minX];
-
-	if( _smashedAttributes )
-		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
-			minX = MIN( minX, [attribute minX] );
-
+	CGFloat minX = MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.package.components )
+		// Skip text elements for smashed elements
+		if( !(self.smashed && [drawable isKindOfClass:[EAGLEDrawableText class]]) )
+			minX = MIN( minX, [drawable minX] );
+	
 	return minX + self.point.x;
 }
 
 - (CGFloat)minY
 {
-	CGFloat minY = [self.package minY];
-
-	if( _smashedAttributes )
-		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
-			minY = MAX( minY, [attribute minY] );
+	CGFloat minY = MAXFLOAT;
+	for( EAGLEDrawableObject *drawable in self.package.components )
+		// Skip text elements for smashed elements
+		if( !(self.smashed && [drawable isKindOfClass:[EAGLEDrawableText class]]) )
+			minY = MIN( minY, [drawable minY] );
 
 	return minY + self.point.y;
 }

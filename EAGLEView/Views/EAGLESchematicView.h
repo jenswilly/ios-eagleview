@@ -11,7 +11,7 @@
 
 @interface EAGLESchematicView : UIView
 
-@property (strong) EAGLEFile *file;
+@property (strong, nonatomic) EAGLEFile *file;
 @property (nonatomic, assign) CGFloat zoomFactor;
 @property (assign) CGFloat minZoomFactor;
 @property (assign) CGFloat maxZoomFactor;
