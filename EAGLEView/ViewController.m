@@ -149,8 +149,21 @@
 	}
 	else
 	{
-		// iPhone: show modal
-		[self presentViewController:layersViewController animated:YES completion:nil];
+		// Place at bottom
+		CGRect frame = layersViewController.view.frame;
+		frame.origin.y = self.view.bounds.size.height;
+		layersViewController.view.frame = frame;
+
+		// Add view controller
+		[self addChildViewController:layersViewController];
+		[self.view addSubview:layersViewController.view];
+		[layersViewController didMoveToParentViewController:self];
+
+		// Animate to top
+		frame.origin.y = 0;
+		[UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+			layersViewController.view.frame = frame;
+		} completion:nil];
 	}
 }
 

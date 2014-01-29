@@ -42,6 +42,24 @@
 	[self.table reloadData];
 }
 
+- (IBAction)dismiss:(id)sender
+{
+	CGRect frame = self.view.frame;
+	frame.origin.y = self.view.bounds.size.height;
+
+	[UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+
+		self.view.frame = frame;
+
+	} completion:^(BOOL finished) {
+
+		[self willMoveToParentViewController:nil];
+		[self.view removeFromSuperview];
+		[self removeFromParentViewController];
+
+	}];
+}
+
 #pragma mark - Table view methods
 
 // Customize the number of rows in the table view.
