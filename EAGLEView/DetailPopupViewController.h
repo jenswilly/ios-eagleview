@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "EAGLEInstance.h"
+#import "EAGLEElement.h"
 
 @interface DetailPopupViewController : UIViewController
 
 @property (assign) CGSize size;
-@property (strong, nonatomic) EAGLEInstance *instance;
+@property (strong, nonatomic) EAGLEInstance *instance;	// For schematics
+@property (strong, nonatomic) EAGLEElement *element;	// For boards
 
 - (void)showAddedToViewController:(UIViewController*)parentViewController;
 - (IBAction)dismiss;

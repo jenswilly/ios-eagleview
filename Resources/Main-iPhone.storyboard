@@ -308,6 +308,7 @@ line 2 is rather long</string>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="deviceLabel" destination="iEY-et-MfM" id="Ry1-AK-ia1"/>
+                        <outlet property="deviceTitleLabel" destination="qrV-AU-j2h" id="kE5-MG-Xnk"/>
                         <outlet property="libraryLabel" destination="mXN-0g-IqB" id="ih8-7Y-neF"/>
                         <outlet property="nameLabel" destination="q1g-ys-ZVd" id="K1Q-Hz-vk0"/>
                         <outlet property="typeLabel" destination="tah-n2-PHc" id="MzF-Ug-gUt"/>

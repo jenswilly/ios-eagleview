@@ -34,7 +34,7 @@
 {
 	__block UIPopoverController *_popover;
 	NSString *_lastDropboxPath;		// Used to remember which Dropbox path the user was in last
-	EAGLEFile *_eagleFile;
+	__block EAGLEFile *_eagleFile;
 }
 
 - (void)viewDidLoad
@@ -42,8 +42,8 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-//	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
-	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
+	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+//	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self.schematicView setRelativeZoomFactor:0.1];
@@ -68,6 +68,12 @@
 		{
 			DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
 			detailPopupViewController.instance = clickedObject;
+			[detailPopupViewController showAddedToViewController:self];
+		}
+		else if( [clickedObject isKindOfClass:[EAGLEElement class]] )
+		{
+			DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
+			detailPopupViewController.element = clickedObject;
 			[detailPopupViewController showAddedToViewController:self];
 		}
 	}
@@ -242,20 +248,19 @@
 		if( success )
 		{
 			NSError *error;
-			EAGLEFile *eagleFile;
 
 			// Schematic or board?
 			if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"sch"] )
-				eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
+				_eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
 			else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
-				eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
+				_eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
 
 			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
-			eagleFile.fileName = fileName;
-			eagleFile.fileDate = fileDate;
+			_eagleFile.fileName = fileName;
+			_eagleFile.fileDate = fileDate;
 
-			self.schematicView.file = eagleFile;
+			self.schematicView.file = _eagleFile;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 				[MBProgressHUD hideHUDForView:self.view animated:YES];

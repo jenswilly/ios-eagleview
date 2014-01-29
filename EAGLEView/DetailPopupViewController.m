@@ -8,6 +8,7 @@
 
 #import "DetailPopupViewController.h"
 #import "EAGLEPart.h"
+#import "EAGLEPackage.h"
 #import "EAGLESchematic.h"
 #import "EAGLEInstanceView.h"
 
@@ -22,6 +23,7 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 @property (weak, nonatomic) IBOutlet UILabel *deviceLabel;
 @property (weak, nonatomic) IBOutlet EAGLEInstanceView *instanceView;
 @property (weak, nonatomic) IBOutlet UILabel *libraryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deviceTitleLabel;	// So we can show either "Device" or "Package"
 
 @end
 
@@ -112,6 +114,23 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 	else
 		deviceString = part.deviceset_name;
 	self.deviceLabel.text = deviceString;
+
+	self.deviceTitleLabel.text = @"Device";
 }
 
+- (void)setElement:(EAGLEElement *)element
+{
+	// Make sure the view and IBOutlets are loaded
+	[self view];
+
+	self.typeLabel.text = [NSString stringWithFormat:@"%@ – %@", element.name, element.value];
+	self.nameLabel.text = element.name;
+	self.valueLabel.text = element.value;
+	self.libraryLabel.text = element.library_name;
+
+	EAGLEPackage *package = element.package;
+	self.deviceLabel.text = package.name;
+
+	self.deviceTitleLabel.text = @"Package";
+}
 @end

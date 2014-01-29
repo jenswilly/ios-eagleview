@@ -29,7 +29,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"Layer %@: %@", self.number, self.name];
+	return [NSString stringWithFormat:@"Layer %@: %@, visible: %d", self.number, self.name, self.visible];
 }
 
 - (UIColor *)color

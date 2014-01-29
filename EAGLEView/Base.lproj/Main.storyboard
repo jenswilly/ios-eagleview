@@ -349,6 +349,7 @@ line 2 is rather long</string>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="deviceLabel" destination="HKL-d6-Gi7" id="6ok-Dq-K2F"/>
+                        <outlet property="deviceTitleLabel" destination="dra-ma-oQN" id="rTk-NN-5QQ"/>
                         <outlet property="libraryLabel" destination="NYu-o0-30d" id="fK6-qB-cyE"/>
                         <outlet property="nameLabel" destination="K51-ck-tjR" id="ata-D0-kMT"/>
                         <outlet property="typeLabel" destination="6Hs-tz-Ux8" id="aWn-iw-lZc"/>
