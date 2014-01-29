@@ -9,6 +9,7 @@
 #import "EAGLEDrawableObject.h"
 
 extern const CGFloat kFontSizeFactor;
+extern const CGFloat kTextYPadding;
 
 @interface EAGLEDrawableText : EAGLEDrawableObject
 

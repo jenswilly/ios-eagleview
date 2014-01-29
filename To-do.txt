@@ -6,7 +6,7 @@
 - Hit test for nets/busses
 - Search for components
 - Layers: icon, show/hide selector
-- Fill patterns for layers (fill property on <layer>)
+- Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Fix order of drawing (first signals/nets, then elements)

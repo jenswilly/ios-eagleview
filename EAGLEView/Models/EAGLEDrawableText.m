@@ -12,7 +12,7 @@
 #import "EAGLELayer.h"
 
 const CGFloat kFontSizeFactor = 1.30;	// Font size is multiplied by this factor to get the point size
-static const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted by this much
+const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted by this much
 
 @implementation EAGLEDrawableText
 

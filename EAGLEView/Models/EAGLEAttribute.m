@@ -12,6 +12,8 @@
 #import "EAGLELayer.h"
 #import "EAGLEFile.h"
 
+static const CGFloat kAttributeTextYPadding = -0.4f;
+
 @implementation EAGLEAttribute
 
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
@@ -41,7 +43,7 @@
 - (void)drawInContext:(CGContextRef)context
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
-	
+
 	// Flip and translate coordinate system for text drawing
 	CGContextSaveGState( context );
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
@@ -52,14 +54,30 @@
 	else
 		CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );
 
-	CGContextTranslateCTM( context, 0, self.size * kFontSizeFactor );
+	// Set color
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
+
+	// Set font properties
+	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	paragraphStyle.lineSpacing = 0;
+
+	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
+								  NSForegroundColorAttributeName: currentLayer.color,
+								  NSParagraphStyleAttributeName: paragraphStyle };
+
+	// Calculate text size and offset coordinate system
+	CGSize textSize = [self.text sizeWithAttributes:attributes];
+	CGContextTranslateCTM( context, 0, textSize.height + kAttributeTextYPadding );
 	CGContextScaleCTM( context, 1, -1 );
 
-	// Set font and color
-	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
-	NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:self.size * kFontSizeFactor],
-								  NSForegroundColorAttributeName: currentLayer.color };
+	if( _rotation == Rotation_R180 || _rotation == Rotation_R225 )
+	{
+		CGContextTranslateCTM( context, textSize.width, textSize.height );
+		CGContextScaleCTM( context, -1, -1 );
+	}
 
+	// Draw string
 	[self.text drawAtPoint:CGPointZero withAttributes:attributes];
 
 	CGContextRestoreGState( context );
