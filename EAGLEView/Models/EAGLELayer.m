@@ -20,6 +20,7 @@
 	{
 		_name = [[element attributeForName:@"name"] stringValue];
 		_number = @( [[[element attributeForName:@"number"] stringValue] intValue] );
+		_fillPatternNumber = @( [[[element attributeForName:@"fill"] stringValue] intValue] );
 		_color = [EAGLELayer colorForColorString:[[element attributeForName:@"color"] stringValue]];	// Translate color index to color
 		_visible = YES;	// All layers visible by default
 	}

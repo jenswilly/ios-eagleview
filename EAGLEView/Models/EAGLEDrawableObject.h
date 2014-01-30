@@ -43,6 +43,8 @@ typedef enum
 	NSNumber *_layerNumber;
 }
 
+typedef void(*PatternFncPtr)(void*,CGContextRef);
+
 @property (nonatomic, readonly) NSNumber *layerNumber;
 
 + (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile*)file;
@@ -51,6 +53,8 @@ typedef enum
 
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context;
 - (void)setFillColorFromLayerInContext:(CGContextRef)context;
+- (PatternFncPtr)patternFunctionForLayer;
+
 + (CGFloat)radiansForRotation:(Rotation)rotation;
 + (Rotation)rotationForString:(NSString*)rotationString;
 + (BOOL)rotationIsMirrored:(Rotation)rotation;

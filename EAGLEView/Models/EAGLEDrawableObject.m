@@ -157,6 +157,33 @@
 		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
 }
 
+- (PatternFncPtr)patternFunctionForLayer
+{
+	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
+	switch( [currentLayer.fillPatternNumber intValue] )
+	{
+		case 10:
+			return &fillPattern10Function;
+
+		default:
+			return nil;
+	}
+}
+
+void fillPattern10Function (void *info, CGContextRef context)
+{
+	UIColor *color = (__bridge UIColor*)info;
+
+	CGContextSetFillColorWithColor( context, color.CGColor );
+    CGContextAddArc( context, 3, 3, 4, 0, 2*M_PI, 0 );
+    CGContextFillPath( context );
+
+    CGContextAddArc( context, 16, 16, 4, 0, 2*M_PI, 0 );
+    CGContextFillPath( context );
+}
+
+
+
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context
 {
 	// Set color to layer's color
