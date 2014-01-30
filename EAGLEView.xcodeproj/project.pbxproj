@@ -183,6 +183,7 @@
 		4739035C184343610092D025 /* EAGLEDrawablePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePolygon.h; sourceTree = "<group>"; };
 		4739035D184343610092D025 /* EAGLEDrawablePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePolygon.m; sourceTree = "<group>"; };
 		473903601843557A0092D025 /* Application.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Application.xcassets; sourceTree = "<group>"; };
+		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
 		4782AB6618438B120022F660 /* EAGLEInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstance.m; sourceTree = "<group>"; };
 		4782AB6818438C6D0022F660 /* EAGLEGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEGate.h; sourceTree = "<group>"; };
@@ -282,6 +283,7 @@
 		4739027D1840D9930092D025 = {
 			isa = PBXGroup;
 			children = (
+				4762BAF4189A667300B818F1 /* Limitations.md */,
 				471E51EE18959BE700FC3B95 /* Default-568h@2x.png */,
 				47FF32CC1847382F00E711C7 /* To-do.txt */,
 				4739035518414C8E0092D025 /* Views */,

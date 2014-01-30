@@ -12,6 +12,7 @@
 - Add show/hide top/bottom layers from layers chooser view controller
 
 
+√ Auto-diameter for pads
 √ Fix order of drawing on boards: bottom signals, bottom elements, top signals, top elements
 √ Drawable: description (nope, this is info only, not a drawable)
 √ Boards: signals

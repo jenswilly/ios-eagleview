@@ -9,6 +9,10 @@
 #import "EAGLEDrawablePad.h"
 #import "DDXML.h"
 
+static const CGFloat kPadRestringFactor = 0.25;	// Specify as percentage value (i.e. 0.0 - 1.0)
+static const CGFloat kPadRestringMin = 0.254;	// Specify min restring in mm
+static const CGFloat kPadRestringMax = 0.508;	// Specify max restring in mm
+
 @implementation EAGLEDrawablePad
 
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
@@ -16,7 +20,22 @@
 	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
 		_drill = [[[element attributeForName:@"drill"] stringValue] floatValue];
-		_diameter = [[[element attributeForName:@"diameter"] stringValue] floatValue];
+
+		if( [element attributeForName:@"diameter"] )
+			// Use specificed diamter
+			_diameter = [[[element attributeForName:@"diameter"] stringValue] floatValue];
+		else
+		{
+			// Calculate auto diameter if no diameter is specified. NOTE: we currenyly use fixed values for restring of 10mil, 25%, 20mil. These should properly be takes from the design rules instead.
+
+			CGFloat autoWidth = kPadRestringFactor * _drill;
+			if( autoWidth < kPadRestringMin )
+				autoWidth = kPadRestringMin;
+			else if( autoWidth > kPadRestringMax )
+				autoWidth = kPadRestringMax;
+
+			_diameter = _drill + autoWidth*2;	// * 2 since restring values are radius values and this is a diameter
+		}
 
 		CGFloat x = [[[element attributeForName:@"x"] stringValue] floatValue];
 		CGFloat y = [[[element attributeForName:@"y"] stringValue] floatValue];
