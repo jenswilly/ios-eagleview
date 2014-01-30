@@ -87,10 +87,16 @@
 
 	// Is layer currently visible?
 	if( layer.visible )
+	{
+		cell.accessoryView = nil;
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
 	else
+	{
 		// Not visible: add an empty view to align the detail labels in the cells
+		cell.accessoryType = UITableViewCellAccessoryNone;
 		cell.accessoryView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, 24, 24 )];
+	}
 
     return cell;
 }
