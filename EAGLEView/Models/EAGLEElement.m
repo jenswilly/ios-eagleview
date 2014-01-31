@@ -43,7 +43,7 @@
 			// The instance is smashed so extract individual attributes and remember positions
 
 			NSError *error = nil;
-			NSArray *attributes = [element nodesForXPath:@"attribute" error:&error];
+			NSArray *attributes = [element nodesForXPath:@"attribute[ not( @display = \"off\") ]" error:&error];
 			EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 
 			NSMutableDictionary *tmpSmashedAttributes = [[NSMutableDictionary alloc] init];

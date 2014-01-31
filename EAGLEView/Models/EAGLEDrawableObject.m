@@ -117,7 +117,7 @@
 		return Rotation_0;
 	else if( [rotationString isEqualToString:@"R45"] )
 		return Rotation_R45;
-	else if( [rotationString isEqualToString:@"R90"] )
+	else if( [rotationString isEqualToString:@"R90"] || [rotationString isEqualToString:@"SR90"] )
 		return Rotation_R90;
 	else if( [rotationString isEqualToString:@"R225"] )
 		return Rotation_R225;

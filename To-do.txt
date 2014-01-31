@@ -9,7 +9,8 @@
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Add show/hide top/bottom layers from layers chooser view controller
-
+- Polygon signals
+- Maybe fix layer order drawing completely?
 
 √ Layers: icon, show/hide selector
 √ Auto-diameter for pads
