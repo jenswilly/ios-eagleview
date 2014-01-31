@@ -46,13 +46,27 @@
 	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Thermometer" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
-	if( [_eagleFile isKindOfClass:[EAGLESchematic class]] )
-		self.scrollView.backgroundColor = [UIColor whiteColor];
-	else
-		self.scrollView.backgroundColor = [UIColor blackColor];
+	[self updateBackgroundAndStatusBar];
 
 	[self.schematicView setRelativeZoomFactor:0.1];
 	self.schematicView.file = _eagleFile;
+}
+
+- (void)updateBackgroundAndStatusBar
+{
+	// Set background colors and status bar style based on the type of file
+	if( [_eagleFile isKindOfClass:[EAGLEBoard class]] )
+	{
+		self.view.backgroundColor = [UIColor blackColor];
+		self.scrollView.backgroundColor = [UIColor blackColor];
+		[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+	}
+	else
+	{
+		self.view.backgroundColor = [UIColor whiteColor];
+		self.scrollView.backgroundColor = [UIColor whiteColor];
+		[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+	}
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
@@ -269,16 +283,12 @@
 
 			// Schematic or board?
 			if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"sch"] )
-			{
 				_eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
-				self.scrollView.backgroundColor = [UIColor whiteColor];
-			}
 			else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
-			{
 				_eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
-				self.scrollView.backgroundColor = [UIColor blackColor];
-			}
 
+			[self updateBackgroundAndStatusBar];
+			
 			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 			_eagleFile.fileName = fileName;
