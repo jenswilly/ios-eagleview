@@ -43,7 +43,7 @@
 
 	NSError *error = nil;
 //	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
-	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
+	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Thermometer" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	if( [_eagleFile isKindOfClass:[EAGLESchematic class]] )

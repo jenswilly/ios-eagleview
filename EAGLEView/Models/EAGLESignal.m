@@ -8,6 +8,7 @@
 
 #import "EAGLESignal.h"
 #import "EAGLEDrawableVia.h"
+#import "EAGLEDrawablePolygon.h"
 #import "DDXML.h"
 
 @implementation EAGLESignal
@@ -41,7 +42,19 @@
 				[tmpElements addObject:via];
 		}
 		_vias = [NSArray arrayWithArray:tmpElements];
-	}
+
+		// Get vias
+		elements = [element nodesForXPath:@"polygon" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLEDrawablePolygon *polygon = [[EAGLEDrawablePolygon alloc] initFromXMLElement:childElement inFile:file];
+			if( polygon )
+				[tmpElements addObject:polygon];
+		}
+		_polygons = [NSArray arrayWithArray:tmpElements];
+}
 
 	return self;
 }
@@ -63,8 +76,11 @@
 	for( EAGLEDrawableObject *drawable in activeWires )
 		[drawable drawInContext:context];
 
-	for( EAGLEDrawableVia *via in self.vias )
-		[via drawInContext:context];
+	for( id<EAGLEDrawable> drawable in self.vias )
+		[drawable drawInContext:context];
+
+//	for( id<EAGLEDrawable> drawable in self.polygons )
+//		[drawable drawInContext:context];
 }
 
 - (CGFloat)maxX

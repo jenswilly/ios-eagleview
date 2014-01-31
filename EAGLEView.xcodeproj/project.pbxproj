@@ -54,6 +54,7 @@
 		4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035A184155530092D025 /* EAGLEDrawablePin.m */; };
 		4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035D184343610092D025 /* EAGLEDrawablePolygon.m */; };
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
+		475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */ = {isa = PBXBuildFile; fileRef = 475B851A189C44CD00E4ABC6 /* Thermometer.brd */; };
 		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
 		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
@@ -183,6 +184,7 @@
 		4739035C184343610092D025 /* EAGLEDrawablePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePolygon.h; sourceTree = "<group>"; };
 		4739035D184343610092D025 /* EAGLEDrawablePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePolygon.m; sourceTree = "<group>"; };
 		473903601843557A0092D025 /* Application.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Application.xcassets; sourceTree = "<group>"; };
+		475B851A189C44CD00E4ABC6 /* Thermometer.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.brd; sourceTree = "<group>"; };
 		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
 		4782AB6618438B120022F660 /* EAGLEInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstance.m; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				475B851A189C44CD00E4ABC6 /* Thermometer.brd */,
 				4738814B1899BAF6003340FB /* Gift card.brd */,
 				4738814C1899BAF6003340FB /* Gift card.sch */,
 				47A474921846B21C00C9FDFD /* iBeacon.sch */,
@@ -672,6 +675,7 @@
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
 				4738814D1899BAF6003340FB /* Gift card.brd in Resources */,
 				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
+				475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */,
 				47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
