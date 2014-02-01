@@ -83,18 +83,32 @@
 		id clickedObject = objects[ 0 ];
 //		DEBUG_LOG( @"Clicked %@", clickedObject );
 
+		CGPoint pointInView = [_schematicView eagleCoordinateToViewCoordinate:((EAGLEInstance*)clickedObject).origin];
+		DEBUG_LOG( @"Touched %@ - origin %@ – converted %@", NSStringFromCGPoint( [recognizer locationInView:self.schematicView] ), NSStringFromCGPoint( ((EAGLEInstance*)clickedObject).origin ), NSStringFromCGPoint( pointInView ) );
+
+		// Instantiate detail view controller and set current object property
+		DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
+
 		if( [clickedObject isKindOfClass:[EAGLEInstance class]] )
-		{
-			DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
 			detailPopupViewController.instance = clickedObject;
-			[detailPopupViewController showAddedToViewController:self];
-		}
 		else if( [clickedObject isKindOfClass:[EAGLEElement class]] )
-		{
-			DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
 			detailPopupViewController.element = clickedObject;
+
+		// iPhone or iPad?
+		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+		{
+			// iPad: show popover
+			if( _popover )
+				[_popover dismissPopoverAnimated:YES];
+			_popover = [[UIPopoverController alloc] initWithContentViewController:detailPopupViewController];
+			[_popover presentPopoverFromRect:CGRectMake( pointInView.x, pointInView.y, 2, 2) inView:self.schematicView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+		}
+		else
+		{
+			// iPhone: show modal
 			[detailPopupViewController showAddedToViewController:self];
 		}
+
 	}
 }
 

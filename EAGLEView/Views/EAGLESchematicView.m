@@ -258,24 +258,9 @@ static const CGFloat kViewPadding = 5;
 	// <junction x="5.08" y="60.96"/>
 	// - padding Coordinate: {5.1012878, 60.886848}
 	// + padding Coordinate: {5.2144775, 60.996956}
-	
-	// Adjust coordinate for zoom factor, origin and padding
 
-	// Flip Y axis
-	CGPoint coordinate = point;
-	coordinate.y = self.frame.size.height - point.y;
-
-	// De-pad
-	coordinate.x -= kViewPadding/2;
-	coordinate.y -= kViewPadding/2;
-
-	// Scale
-	coordinate.x /= self.zoomFactor;
-	coordinate.y /= self.zoomFactor;
-
-	// Adjust for offset origin
-	coordinate.x += _origin.x;
-	coordinate.y += _origin.y;
+	// Convert to EAGLE coordinate
+	CGPoint coordinate = [self viewCoordinateToEagleCoordinate:point];
 
 	// Iterate all objects and find those with rect that encompass the point. Use the distance form the touch point to the center of the object as the key so we can sort by distance
 	NSMutableDictionary *objectsAtCoordinate = [NSMutableDictionary dictionary];
@@ -349,5 +334,47 @@ NSNumber* distance( id<EAGLEDrawable> drawable, CGPoint coordinate )
 	return @( distance );
 }
 
+- (CGPoint)eagleCoordinateToViewCoordinate:(CGPoint)point
+{
+	// Adjust for offset origin
+	CGPoint coordinate = point;
+
+	coordinate.x -= _origin.x;
+	coordinate.y -= _origin.y;
+
+	// Scale
+	coordinate.x *= self.zoomFactor;
+	coordinate.y *= self.zoomFactor;
+
+	// De-pad
+	coordinate.x += kViewPadding/2;
+	coordinate.y += kViewPadding/2;
+
+	// Flip Y axis
+	coordinate.y = self.frame.size.height - coordinate.y;
+
+	return coordinate;
+}
+
+- (CGPoint)viewCoordinateToEagleCoordinate:(CGPoint)point
+{
+	// Flip Y axis
+	CGPoint coordinate = point;
+	coordinate.y = self.frame.size.height - point.y;
+
+	// De-pad
+	coordinate.x -= kViewPadding/2;
+	coordinate.y -= kViewPadding/2;
+
+	// Scale
+	coordinate.x /= self.zoomFactor;
+	coordinate.y /= self.zoomFactor;
+
+	// Adjust for offset origin
+	coordinate.x += _origin.x;
+	coordinate.y += _origin.y;
+
+	return coordinate;
+}
 
 @end

@@ -21,5 +21,7 @@
 
 - (void)zoomToFitSize:(CGSize)fitSize animated:(BOOL)animated;
 - (id)objectsAtPoint:(CGPoint)point;
+- (CGPoint)eagleCoordinateToViewCoordinate:(CGPoint)eagleCoordinate;
+- (CGPoint)viewCoordinateToEagleCoordinate:(CGPoint)viewCoordinate;
 
 @end

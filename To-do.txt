@@ -13,6 +13,8 @@
 
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 
+√ iPad: part popup from component
+--- b5
 √ Layers: icon, show/hide selector
 √ Auto-diameter for pads
 √ Fix order of drawing on boards: bottom signals, bottom elements, top signals, top elements

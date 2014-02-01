@@ -24,6 +24,7 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 @property (weak, nonatomic) IBOutlet EAGLEInstanceView *instanceView;
 @property (weak, nonatomic) IBOutlet UILabel *libraryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deviceTitleLabel;	// So we can show either "Device" or "Package"
+@property (weak, nonatomic) IBOutlet UIButton *okBtn;
 
 @end
 
@@ -31,6 +32,18 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 {
 	__weak UIViewController *_parentViewController;
 	__weak UIView *_grayView;
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+	{
+		// iPad: remove OK button. The preferred content size is set as a runtime attribute in the storyboard file.
+		[self.okBtn removeFromSuperview];
+	}
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -77,6 +90,7 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 
 - (void)dismiss
 {
+	// Note: this happens only on iPhone. On iPad, this view controller is presented as in a popover and the OK button is removed.
 	[UIView animateWithDuration:kSettingsAnimationDuration animations:^{
 
 		// Fade out views
