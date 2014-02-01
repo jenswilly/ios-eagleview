@@ -7,12 +7,12 @@
 - Search for components
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
-- Add show/hide top/bottom layers from layers chooser view controller
 - Polygon signals fill – yikes :|
 - Maybe fix layer order drawing completely?
-
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 
+
+√ Add show/hide top/bottom layers from layers chooser view controller
 √ iPad: part popup from component
 --- b5
 √ Layers: icon, show/hide selector

@@ -8,6 +8,7 @@
 
 #import "EAGLEFile.h"
 #import "EAGLELibrary.h"
+#import "EAGLELayer.h"
 
 @implementation EAGLEFile
 
@@ -37,4 +38,27 @@
 	return [dateFormatter stringFromDate:self.fileDate];
 }
 
+- (BOOL)allTopLayersVisible
+{
+	NSPredicate *relevantLayersFilter = [NSPredicate predicateWithFormat:@"number IN %@", TOP_LAYERS];
+	NSArray *relevantLayers = [[self.layers allValues] filteredArrayUsingPredicate:relevantLayersFilter];
+	for( EAGLELayer *layer in relevantLayers )
+		if( !layer.visible )
+			return NO;
+
+	// Fall-through: all layers are visible
+	return YES;
+}
+
+- (BOOL)allBottomLayersVisible
+{
+	NSPredicate *relevantLayersFilter = [NSPredicate predicateWithFormat:@"number IN %@", BOTTOM_LAYERS];
+	NSArray *relevantLayers = [[self.layers allValues] filteredArrayUsingPredicate:relevantLayersFilter];
+	for( EAGLELayer *layer in relevantLayers )
+		if( !layer.visible )
+			return NO;
+
+	// Fall-through: all layers are visible
+	return YES;
+}
 @end

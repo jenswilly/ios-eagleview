@@ -9,6 +9,9 @@
 #import "EAGLEObject.h"
 @class EAGLELibrary;
 
+#define TOP_LAYERS    @[  @1, @21, @23, @25, @27, @29, @31, @33, @35, @37, @39, @41, @51 ]
+#define BOTTOM_LAYERS @[ @16, @22, @24, @26, @28, @30, @32, @34, @36, @38, @40, @42, @52 ]
+
 @interface EAGLEFile : EAGLEObject
 {
 	NSArray *_libraries;
@@ -23,5 +26,7 @@
 
 - (EAGLELibrary*)libraryWithName:(NSString*)name;
 - (NSString*)dateString;
+- (BOOL)allTopLayersVisible;
+- (BOOL)allBottomLayersVisible;
 
 @end

@@ -62,10 +62,18 @@
 
 #pragma mark - Table view methods
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_sortedLayerKeys count];
+	if( section == 0 )
+		return 2;	// Always 2 cells in first section
+	else
+		return [_sortedLayerKeys count];
 }
 
 // Customize the appearance of table view cells.
@@ -76,26 +84,47 @@
     // Dequeue or create a new cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-    // Get the corresponding data object
-	NSNumber *layerNumber = _sortedLayerKeys[ indexPath.row ];
-	EAGLELayer *layer = self.eagleFile.layers[ layerNumber ];
-
-    // Configure the cell
-    cell.textLabel.text = layer.name;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", layer.number];
-	cell.imageView.image = [UIImage imageWithColor:layer.color size:CGSizeMake( 30, 30 )];
-
-	// Is layer currently visible?
-	if( layer.visible )
+	// For section 0, we have two hardcoded cells
+	if( indexPath.section == 0 )
 	{
+		cell.detailTextLabel.text = nil;
+		cell.imageView.image = nil;
 		cell.accessoryView = nil;
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		if( indexPath.row == 0 )
+		{
+			cell.textLabel.text = @"All top layers";
+			cell.accessoryType = ( [self.eagleFile allTopLayersVisible] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone );
+		}
+		else if( indexPath.row == 1 )
+		{
+			cell.textLabel.text = @"All bottom layers";
+			cell.accessoryType = ( [self.eagleFile allBottomLayersVisible] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone );
+		}
 	}
 	else
 	{
-		// Not visible: add an empty view to align the detail labels in the cells
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		cell.accessoryView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, 24, 24 )];
+		// Get the corresponding data object
+		NSNumber *layerNumber = _sortedLayerKeys[ indexPath.row ];
+		EAGLELayer *layer = self.eagleFile.layers[ layerNumber ];
+
+		// Configure the cell
+		cell.textLabel.text = layer.name;
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", layer.number];
+		cell.imageView.image = [UIImage imageWithColor:layer.color size:CGSizeMake( 30, 30 )];
+
+		// Is layer currently visible?
+		if( layer.visible )
+		{
+			cell.accessoryView = nil;
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		}
+		else
+		{
+			// Not visible: add an empty view to align the detail labels in the cells
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			cell.accessoryView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, 24, 24 )];
+		}
 	}
 
     return cell;
@@ -103,15 +132,59 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	/// TODO: select/deselect layer
-	NSNumber *layerNumber = _sortedLayerKeys[ indexPath.row ];
-	EAGLELayer *layer = self.eagleFile.layers[ layerNumber ];
-	layer.visible = !layer.visible;
+	// Special case for section 0 which is all top/all bottom
+	if( indexPath.section == 0 )
+	{
+		// Make an array of all relevant layers
+		NSMutableArray *indexPaths = [NSMutableArray arrayWithObject:indexPath];
 
-	// Reload cell
-	[_table reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+		if( indexPath.row == 0 )
+		{
+			// Top layers. Toggle visiblilty
+			BOOL visible = ![self.eagleFile allTopLayersVisible];
 
-	// Redraw
+			// Set on all relevant layers
+			for( NSNumber *layerNumber in TOP_LAYERS )
+			{
+				((EAGLELayer*)self.eagleFile.layers[ layerNumber ]).visible = visible;
+
+				// Add index path
+				int index = [_sortedLayerKeys indexOfObject:layerNumber];
+				[indexPaths addObject:[NSIndexPath indexPathForItem:index inSection:1]];
+			}
+		}
+		else if( indexPath.row == 1 )
+		{
+			// Bottom layers. Toggle visiblilty
+			BOOL visible = ![self.eagleFile allBottomLayersVisible];
+
+			// Set on all relevant layers
+			for( NSNumber *layerNumber in BOTTOM_LAYERS )
+			{
+				((EAGLELayer*)self.eagleFile.layers[ layerNumber ]).visible = visible;
+
+				// Add index path
+				int index = [_sortedLayerKeys indexOfObject:layerNumber];
+				[indexPaths addObject:[NSIndexPath indexPathForItem:index inSection:1]];
+			}
+		}
+
+		[_table reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+	else
+	{
+		// Section 1: individual layers
+		NSNumber *layerNumber = _sortedLayerKeys[ indexPath.row ];
+		EAGLELayer *layer = self.eagleFile.layers[ layerNumber ];
+		layer.visible = !layer.visible;
+
+		// Reload cell and section 0 cells
+		[_table reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForItem:0 inSection:0],
+										  [NSIndexPath indexPathForItem:1 inSection:0],
+										  indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+
+	// Redraw file
 	[_fileView setNeedsDisplay];
 }
 
