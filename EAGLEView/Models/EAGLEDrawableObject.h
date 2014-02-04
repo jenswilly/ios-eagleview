@@ -50,6 +50,7 @@ typedef enum
 + (EAGLEDrawableObject*)drawableFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile*)file;
 - (void)drawInContext:(CGContextRef)context;
 - (void)drawOnBottomInContext:(CGContextRef)context;
+- (NSNumber*)mirroredLayerNumber;
 
 - (void)setStrokeColorFromLayerInContext:(CGContextRef)context;
 - (void)setFillColorFromLayerInContext:(CGContextRef)context;

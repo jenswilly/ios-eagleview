@@ -206,7 +206,7 @@ static const CGFloat kViewPadding = 5;
 	///
 
 	// Iterate active layers
-	for( NSNumber *layerNumber in [self.file.drawablesInLayers allKeys] )
+	for( NSNumber *layerNumber in self.file.orderedLayerKeys )
 	{
 		for( id<EAGLEDrawable> drawable in self.file.drawablesInLayers[ layerNumber ] )
 			[drawable drawInContext:context];

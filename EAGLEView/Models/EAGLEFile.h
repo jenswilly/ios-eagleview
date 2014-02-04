@@ -17,6 +17,7 @@
 	NSArray *_libraries;
 	NSArray *_plainObjects;
 	NSDictionary *_drawablesInLayers;
+	NSArray *_orderedLayerKeys;
 }
 
 @property (strong) NSDictionary *layers;
@@ -25,6 +26,7 @@
 @property (copy) NSString *fileName;
 @property (copy) NSDate *fileDate;
 @property (readonly, strong) NSDictionary *drawablesInLayers;	// Layer number is key and the value is an NSArray of drawables
+@property (readonly, strong) NSArray *orderedLayerKeys;
 
 - (EAGLELibrary*)libraryWithName:(NSString*)name;
 - (NSString*)dateString;

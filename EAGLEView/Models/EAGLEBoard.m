@@ -117,6 +117,8 @@
 		}
 		_plainObjects = [NSArray arrayWithArray:tmpElements];
 
+
+		///
 		// Extract drawables for each layer
 		NSMutableDictionary *tmpDrawablesForLayers = [NSMutableDictionary dictionary];
 
@@ -152,6 +154,17 @@
 				tmpDrawablesForLayers[ @(layer) ] = [NSArray arrayWithArray:tmpDrawablesForLayer];
 		}
 		_drawablesInLayers = [NSDictionary dictionaryWithDictionary:tmpDrawablesForLayers];
+
+		// Sort layer keys. The .orderedLayerKeys now contains an ordered list of used layer numbers.
+		NSArray *keysForOrdering = [BOTTOM_LAYERS arrayByAddingObjectsFromArray:TOP_LAYERS];	// First bottom layers, then top layers
+		_orderedLayerKeys = [[_drawablesInLayers allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+
+			// If obj1 < obj2, then ascending
+			if( [keysForOrdering indexOfObject:obj1] < [keysForOrdering indexOfObject:obj2] )
+				return NSOrderedAscending;
+			else
+				return NSOrderedDescending;
+		}];
 	}
 
 	return self;

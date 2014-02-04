@@ -49,7 +49,7 @@
 	for( EAGLEDrawableObject *drawable in self.components )
 	{
 		// Skip if not correct layer number
-		if( ![drawable.layerNumber isEqual:layerNumber] )
+		if( ![(mirrored ? [drawable mirroredLayerNumber] : drawable.layerNumber) isEqual:layerNumber] )
 			continue;
 
 		// If it's a text, check to see if we should set custom value

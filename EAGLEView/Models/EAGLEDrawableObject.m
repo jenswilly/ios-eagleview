@@ -235,6 +235,24 @@ void fillPattern10Function (void *info, CGContextRef context)
 	_layerNumber = @( layer );
 }
 
+// Returns the corresponding layer number for a mirrored layer number (e.g. 16 for layer 1 and 30 for layer 29)
+- (NSNumber*)mirroredLayerNumber
+{
+	// Normal layer number
+	int layer = [self.layerNumber intValue];
+	NSNumber *mirroredLayerNumber = @( layer );
+
+	// Switch Top to Bottom layer
+	if( layer == 1 )
+		mirroredLayerNumber = @16;
+	else if( layer == 21 || layer == 23 || layer == 25 || layer == 27 || layer == 29 || layer == 31 || layer == 33 || layer == 35 || layer == 37 || layer == 39 || layer == 41 || layer == 51 || layer == 105 || layer == 121 || layer == 123 || layer == 131 )
+		// "top" layers prefixed by "t"
+		mirroredLayerNumber = @( layer + 1 );
+
+	NSAssert( mirroredLayerNumber, @"mirroredLayerNumber called for an unmirrored layer." );
+	return mirroredLayerNumber;
+}
+
 - (CGFloat)maxX
 {
 	ABSTRACTION_ERROR;

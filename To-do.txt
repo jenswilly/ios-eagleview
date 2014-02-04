@@ -6,12 +6,14 @@
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
-- Maybe fix layer order drawing completely? (draw by hardcoded layer order)
 ~ Fix patterened (not filled) rectangles (ROV TSC)
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Add file title label
 - Dropbox caching/remember last used path
 - Fix down-left jump when ending zoom
+
+
+~ Maybe fix layer order drawing completely? (draw by hardcoded layer order)
 
 
 √ Fix texts on schematic elements

@@ -36,6 +36,8 @@
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
 
+	[super setStrokeColorFromLayerInContext:context];
+	
 	// Holes have hairline path (i.e. 1 px regardless of zoom level) like dimensions
 	CGAffineTransform transform = CGContextGetCTM( context );
 	CGFloat scale = sqrt( transform.a * transform.a + transform.c * transform.c );
