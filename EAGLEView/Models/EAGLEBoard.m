@@ -28,7 +28,7 @@
 		return nil;
 	}
 
-	DDXMLDocument *xmlDocument = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:error];
+	DDXMLDocument *xmlDocument = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:&err];
 	if( err )
 	{
 		*error = err;
@@ -36,7 +36,7 @@
 	}
 
 	// Get board
-	NSArray *boards = [xmlDocument nodesForXPath:@"/eagle/drawing/board" error:error];
+	NSArray *boards = [xmlDocument nodesForXPath:@"/eagle/drawing/board" error:&err];
 	if( err )
 	{
 		*error = err;
@@ -49,28 +49,9 @@
 	else
 	{
 		// Set reference to error
-		if( error )
-			*error = [NSError errorWithDomain:@"dk.greenerpastures.EAGLE" code:0 userInfo:@{ NSLocalizedDescriptionKey: @"No board element found in file" }];
+		*error = [NSError errorWithDomain:@"dk.greenerpastures.EAGLE" code:0 userInfo:@{ NSLocalizedDescriptionKey: @"No board element found in file" }];
 		return nil;
 	}
-
-	// Get layers
-	NSArray *layers = [xmlDocument nodesForXPath:@"/eagle/drawing/layers/layer[ @active=\"yes\" ]" error:error];
-	if( err )
-	{
-		*error = err;
-		return nil;
-	}
-
-	// Iterate and initialize objects
-	NSMutableDictionary *tmpLayers = [[NSMutableDictionary alloc] initWithCapacity:[layers count]];
-	for( DDXMLElement *element in layers )
-	{
-		EAGLELayer *layer = [[EAGLELayer alloc] initFromXMLElement:element inFile:board];
-		if( layer )
-			tmpLayers[ layer.number ] = layer;
-	}
-	board.layers = [NSDictionary dictionaryWithDictionary:tmpLayers];
 
 	return board;
 }
@@ -83,7 +64,7 @@
 
 - (id)initFromXMLElement:(DDXMLElement *)element
 {
-	if( (self = [super init]) )
+	if( (self = [super initFromXMLElement:element]) )
 	{
 		NSError *error = nil;
 
@@ -149,6 +130,9 @@
 				[tmpElements addObject:drawable];
 		}
 		_plainObjects = [NSArray arrayWithArray:tmpElements];
+
+		// Extract drawables for each layer
+		
 
 	}
 

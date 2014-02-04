@@ -1,4 +1,3 @@
-- Fix patterened (not filled) rectangles (ROV TSC)
 - Find out why there are memory warnings when picking files from Dropbox
 - New board file icon
 - Nets/busses details popup
@@ -7,16 +6,16 @@
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
-- Maybe fix layer order drawing completely?
+- Maybe fix layer order drawing completely? (draw by hardcoded layer order)
+~ Fix patterened (not filled) rectangles (ROV TSC)
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
-- Fix texts on schematic elements
 - Add file title label
 - Dropbox caching/remember last used path
 - Fix down-left jump when ending zoom
 
-- Drawable: hole
 
-
+√ Fix texts on schematic elements
+√ Drawable: hole
 √ Layers: read visibility from file
 --- b6
 √ Fix text rotation for compound rotations (e.g. Thermometer schematic's L1 and L2)

@@ -28,7 +28,7 @@
 		return nil;
 	}
 
-	DDXMLDocument *xmlDocument = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:error];
+	DDXMLDocument *xmlDocument = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:&err];
 	if( err )
 	{
 		*error = err;
@@ -36,7 +36,7 @@
 	}
 
 	// Get schematic
-	NSArray *schematics = [xmlDocument nodesForXPath:@"/eagle/drawing/schematic" error:error];
+	NSArray *schematics = [xmlDocument nodesForXPath:@"/eagle/drawing/schematic" error:&err];
 	if( err )
 	{
 		*error = err;
@@ -49,28 +49,9 @@
 	else
 	{
 		// Set reference to error
-		if( error )
-			*error = [NSError errorWithDomain:@"dk.greenerpastures.EAGLE" code:0 userInfo:@{ NSLocalizedDescriptionKey: @"No schematic element found in file" }];
+		*error = [NSError errorWithDomain:@"dk.greenerpastures.EAGLE" code:0 userInfo:@{ NSLocalizedDescriptionKey: @"No schematic element found in file" }];
 		return nil;
 	}
-
-	// Get layers
-	NSArray *layers = [xmlDocument nodesForXPath:@"/eagle/drawing/layers/layer[ @active=\"yes\" ]" error:error];
-	if( err )
-	{
-		*error = err;
-		return nil;
-	}
-
-	// Iterate and initialize objects
-	NSMutableDictionary *tmpLayers = [[NSMutableDictionary alloc] initWithCapacity:[layers count]];
-	for( DDXMLElement *element in layers )
-	{
-		EAGLELayer *layer = [[EAGLELayer alloc] initFromXMLElement:element inFile:schematic];
-		if( layer )
-			tmpLayers[ layer.number ] = layer;
-	}
-	schematic.layers = [NSDictionary dictionaryWithDictionary:tmpLayers];
 
 	return schematic;
 }
@@ -83,7 +64,7 @@
 
 - (id)initFromXMLElement:(DDXMLElement *)element
 {
-	if( (self = [super init]) )
+	if( (self = [super initFromXMLElement:element]) )
 	{
 		NSError *error = nil;
 

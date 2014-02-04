@@ -9,8 +9,34 @@
 #import "EAGLEFile.h"
 #import "EAGLELibrary.h"
 #import "EAGLELayer.h"
+#import "DDXML.h"
 
 @implementation EAGLEFile
+
+- (id)initFromXMLElement:(DDXMLElement *)element
+{
+	if( (self = [super init]) )
+	{
+		// Get layers
+		NSError *error = nil;
+		NSArray *layers = [element nodesForXPath:@"../layers/layer[ @active=\"yes\" ]" error:&error];
+		if( error )
+			return nil;
+
+		// Iterate and initialize objects
+		NSMutableDictionary *tmpLayers = [[NSMutableDictionary alloc] initWithCapacity:[layers count]];
+		for( DDXMLElement *element in layers )
+		{
+			EAGLELayer *layer = [[EAGLELayer alloc] initFromXMLElement:element inFile:self];
+			if( layer )
+				tmpLayers[ layer.number ] = layer;
+		}
+		_layers = [NSDictionary dictionaryWithDictionary:tmpLayers];
+
+	}
+
+	return self;
+}
 
 - (EAGLELibrary *)libraryWithName:(NSString *)name
 {
@@ -61,4 +87,5 @@
 	// Fall-through: all layers are visible
 	return YES;
 }
+
 @end
