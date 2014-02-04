@@ -1,12 +1,12 @@
 //
-//  EAGLESchematicView.m
+//  EAGLEFileView.m
 //  EAGLEView
 //
 //  Created by Jens Willy Johannsen on 23/11/13.
 //  Copyright (c) 2013 Greener Pastures. All rights reserved.
 //
 
-#import "EAGLESchematicView.h"
+#import "EAGLEFileView.h"
 #import "EAGLESymbol.h"
 #import "EAGLELibrary.h"
 #import "EAGLEDrawableObject.h"
@@ -19,7 +19,7 @@
 
 static const CGFloat kViewPadding = 5;
 
-@implementation EAGLESchematicView
+@implementation EAGLEFileView
 {
 	BOOL _needsCalculateIntrinsicContentSize;
 }
@@ -202,6 +202,28 @@ static const CGFloat kViewPadding = 5;
 	// Adjust for origin (minimum coordinates)
 	CGContextTranslateCTM( context, -_origin.x, -_origin.y );
 
+
+	///
+
+	// Iterate active layers
+	for( NSNumber *layerNumber in [self.file.drawablesInLayers allKeys] )
+	{
+		for( id<EAGLEDrawable> drawable in self.file.drawablesInLayers[ layerNumber ] )
+			[drawable drawInContext:context];
+
+		// For boards, also draw elements for this layer
+		if( [self.file isMemberOfClass:[EAGLEBoard class]] )
+		{
+			EAGLEBoard *board = (EAGLEBoard*)self.file;
+			for( EAGLEElement *element in board.elements )
+				[element drawInContext:context layerNumber:layerNumber];
+		}
+	}
+
+	///
+
+	
+	/*
 	// Draw all instances, nets, busses and plain objects
 	for( id<EAGLEDrawable> drawable in self.file.plainObjects )
 		[drawable drawInContext:context];
@@ -251,6 +273,7 @@ static const CGFloat kViewPadding = 5;
 			if( ![EAGLEDrawableObject rotationIsMirrored:drawable.rotation] )
 				[drawable drawInContext:context];
 	}
+	 */
 }
 
 - (NSArray*)objectsAtPoint:(CGPoint)point

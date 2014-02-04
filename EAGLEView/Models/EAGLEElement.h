@@ -19,5 +19,8 @@
 @property (readonly) Rotation rotation;
 @property (readonly, strong) NSString *library_name;
 @property (readonly, strong) EAGLEPackage *package;
+@property (readonly, strong) NSDictionary *smashedAttributes;
+
+- (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber;
 
 @end

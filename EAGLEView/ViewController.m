@@ -13,7 +13,7 @@
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
 #import "EAGLEBoard.h"
-#import "EAGLESchematicView.h"
+#import "EAGLEFileView.h"
 #import "EAGLEInstance.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
@@ -25,7 +25,7 @@
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet EAGLESchematicView *schematicView;
+@property (weak, nonatomic) IBOutlet EAGLEFileView *fileView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
 
@@ -50,15 +50,15 @@
 
 	[self updateBackgroundAndStatusBar];
 
-	[self.schematicView setRelativeZoomFactor:0.1];
-	self.schematicView.file = _eagleFile;
+	[self.fileView setRelativeZoomFactor:0.1];
+	self.fileView.file = _eagleFile;
 
 	// For iPhone: add gesture recognizer to enter/leave fullscreen mode
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
 	{
 		// Get the normal tap recognizer
-		UITapGestureRecognizer *singleTapRecognizer = self.schematicView.gestureRecognizers[0];
+		UITapGestureRecognizer *singleTapRecognizer = self.fileView.gestureRecognizers[0];
 
 		UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleFullscreenTapGesture:)];
 		doubleTapRecognizer.numberOfTapsRequired = 2;
@@ -111,7 +111,7 @@
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
 		// Find instance/net from schematic
-		NSArray *objects = [self.schematicView objectsAtPoint:[recognizer locationInView:self.schematicView]];
+		NSArray *objects = [self.fileView objectsAtPoint:[recognizer locationInView:self.fileView]];
 		DEBUG_LOG( @"Touched %@", objects );
 
 		if( [objects count] == 0 )
@@ -120,8 +120,8 @@
 		id clickedObject = objects[ 0 ];
 //		DEBUG_LOG( @"Clicked %@", clickedObject );
 
-		CGPoint pointInView = [_schematicView eagleCoordinateToViewCoordinate:((EAGLEInstance*)clickedObject).origin];
-		DEBUG_LOG( @"Touched %@ - origin %@ – converted %@", NSStringFromCGPoint( [recognizer locationInView:self.schematicView] ), NSStringFromCGPoint( ((EAGLEInstance*)clickedObject).origin ), NSStringFromCGPoint( pointInView ) );
+		CGPoint pointInView = [_fileView eagleCoordinateToViewCoordinate:((EAGLEInstance*)clickedObject).origin];
+		DEBUG_LOG( @"Touched %@ - origin %@ – converted %@", NSStringFromCGPoint( [recognizer locationInView:self.fileView] ), NSStringFromCGPoint( ((EAGLEInstance*)clickedObject).origin ), NSStringFromCGPoint( pointInView ) );
 
 		// Instantiate detail view controller and set current object property
 		DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
@@ -138,7 +138,7 @@
 			if( _popover )
 				[_popover dismissPopoverAnimated:YES];
 			_popover = [[UIPopoverController alloc] initWithContentViewController:detailPopupViewController];
-			[_popover presentPopoverFromRect:CGRectMake( pointInView.x, pointInView.y, 2, 2) inView:self.schematicView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+			[_popover presentPopoverFromRect:CGRectMake( pointInView.x, pointInView.y, 2, 2) inView:self.fileView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 		}
 		else
 		{
@@ -158,11 +158,11 @@
 	// Remember schematic view's zoom factor when we begin zooming
 	if( recognizer.state == UIGestureRecognizerStateBegan )
 	{
-		initialZoom = self.schematicView.zoomFactor;
+		initialZoom = self.fileView.zoomFactor;
 
 		// Get coordinate in schematic view and convert to relative location (from 0-1 on both axes)
-		CGPoint touchPoint = [recognizer locationInView:self.schematicView];
-		relativeTouchInContent = CGPointMake( touchPoint.x / self.schematicView.bounds.size.width, touchPoint.y / self.schematicView.bounds.size.height);
+		CGPoint touchPoint = [recognizer locationInView:self.fileView];
+		relativeTouchInContent = CGPointMake( touchPoint.x / self.fileView.bounds.size.width, touchPoint.y / self.fileView.bounds.size.height);
 
 		// Also remember pinch point in scroll view so we can set correct content offset when zooming ends
 		touchPoint = [recognizer locationInView:self.scrollView];
@@ -171,23 +171,23 @@
 		relativeTouchInScrollView = CGPointMake( touchPoint.x / self.scrollView.bounds.size.width, touchPoint.y / self.scrollView.bounds.size.height );
 
 		// Set layer's origin so scale transforms occur from this point
-		[self.schematicView setAnchorPoint:relativeTouchInContent];
+		[self.fileView setAnchorPoint:relativeTouchInContent];
 	}
 
 	// Scale layer without recalculating or redrawing
-	self.schematicView.layer.transform = CATransform3DMakeScale( recognizer.scale, recognizer.scale, 1 );
+	self.fileView.layer.transform = CATransform3DMakeScale( recognizer.scale, recognizer.scale, 1 );
 
 	// When pinch ends, multiply initial zoom factor by the gesture's scale to get final scale
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
 		CGFloat finalZoom = initialZoom * recognizer.scale;
 
-		[self.schematicView setAnchorPoint:CGPointMake( 0.5, 0.5 )];
-		self.schematicView.layer.transform = CATransform3DIdentity;	// Reset transform since we're now changing the zoom factor to make a pretty redraw
-		[self.schematicView setZoomFactor:finalZoom];				// And set new zoom factor
+		[self.fileView setAnchorPoint:CGPointMake( 0.5, 0.5 )];
+		self.fileView.layer.transform = CATransform3DIdentity;	// Reset transform since we're now changing the zoom factor to make a pretty redraw
+		[self.fileView setZoomFactor:finalZoom];				// And set new zoom factor
 
 		// Adjust content offset
-		CGSize contentSize = [self.schematicView intrinsicContentSize];
+		CGSize contentSize = [self.fileView intrinsicContentSize];
 		CGPoint contentPoint = CGPointMake( relativeTouchInContent.x * contentSize.width, relativeTouchInContent.y * contentSize.height );
 		CGPoint scrollPoint = CGPointMake( relativeTouchInScrollView.x * self.scrollView.bounds.size.width, relativeTouchInScrollView.y * self.scrollView.bounds.size.height );
 		CGPoint contentOffset = CGPointMake( contentPoint.x - scrollPoint.x, contentPoint.y - scrollPoint.y );
@@ -205,7 +205,7 @@
 {
 	LayersViewController *layersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LayersViewController"];
 	layersViewController.eagleFile = _eagleFile;
-	layersViewController.fileView = self.schematicView;
+	layersViewController.fileView = self.fileView;
 	
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
@@ -271,9 +271,9 @@
 
 - (IBAction)zoomToFitAction:(id)sender
 {
-	self.schematicView.layer.transform = CATransform3DIdentity;
+	self.fileView.layer.transform = CATransform3DIdentity;
 	[UIView animateWithDuration:0.3 animations:^{
-		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[self.view layoutIfNeeded];
 	}];
 }
@@ -289,18 +289,18 @@
 	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&error];
 	NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
 
-	self.schematicView.file = schematic;
+	self.fileView.file = schematic;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
 	});
 }
 
 - (void)openSchematic:(EAGLESchematic*)schematic
 {
-	self.schematicView.file = schematic;
+	self.fileView.file = schematic;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
 	});
 }
@@ -345,9 +345,9 @@
 			_eagleFile.fileName = fileName;
 			_eagleFile.fileDate = fileDate;
 
-			self.schematicView.file = _eagleFile;
+			self.fileView.file = _eagleFile;
 			dispatch_async(dispatch_get_main_queue(), ^{
-				[self.schematicView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+				[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 				[MBProgressHUD hideHUDForView:self.view animated:YES];
 			});
 		}

@@ -12,17 +12,7 @@
 
 #define RETURN_IF_NOT_LAYER_VISIBLE if( !((EAGLELayer*)self.file.layers[ self.layerNumber ]).visible ) return
 
-@protocol EAGLEDrawable <NSObject>
-
-- (void)drawInContext:(CGContextRef)context;
-- (CGFloat)maxX;
-- (CGFloat)maxY;
-- (CGFloat)minX;
-- (CGFloat)minY;
-- (CGPoint)origin;
-- (CGRect)boundingRect;
-
-@end
+typedef void(*PatternFncPtr)(void*,CGContextRef);
 
 typedef enum
 {
@@ -38,12 +28,22 @@ typedef enum
 	Rotation_Mirror_MR270
 } Rotation;
 
+@protocol EAGLEDrawable <NSObject>
+
+- (void)drawInContext:(CGContextRef)context;
+- (CGFloat)maxX;
+- (CGFloat)maxY;
+- (CGFloat)minX;
+- (CGFloat)minY;
+- (CGPoint)origin;
+- (CGRect)boundingRect;
+
+@end
+
 @interface EAGLEDrawableObject : EAGLEObject  <EAGLEDrawable>
 {
 	NSNumber *_layerNumber;
 }
-
-typedef void(*PatternFncPtr)(void*,CGContextRef);
 
 @property (nonatomic, readonly) NSNumber *layerNumber;
 

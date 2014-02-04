@@ -50,7 +50,7 @@
 		4739034E18411D5E0092D025 /* EAGLEDrawableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739034D18411D5E0092D025 /* EAGLEDrawableObject.m */; };
 		4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035018411D7E0092D025 /* EAGLEDrawableWire.m */; };
 		4739035418411D8C0092D025 /* EAGLEDrawableText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035318411D8C0092D025 /* EAGLEDrawableText.m */; };
-		4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035718414CB60092D025 /* EAGLESchematicView.m */; };
+		4739035818414CB60092D025 /* EAGLEFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035718414CB60092D025 /* EAGLEFileView.m */; };
 		4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035A184155530092D025 /* EAGLEDrawablePin.m */; };
 		4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035D184343610092D025 /* EAGLEDrawablePolygon.m */; };
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
@@ -179,8 +179,8 @@
 		4739035018411D7E0092D025 /* EAGLEDrawableWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableWire.m; sourceTree = "<group>"; };
 		4739035218411D8C0092D025 /* EAGLEDrawableText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableText.h; sourceTree = "<group>"; };
 		4739035318411D8C0092D025 /* EAGLEDrawableText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableText.m; sourceTree = "<group>"; };
-		4739035618414CB60092D025 /* EAGLESchematicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLESchematicView.h; sourceTree = "<group>"; };
-		4739035718414CB60092D025 /* EAGLESchematicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLESchematicView.m; sourceTree = "<group>"; };
+		4739035618414CB60092D025 /* EAGLEFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEFileView.h; sourceTree = "<group>"; };
+		4739035718414CB60092D025 /* EAGLEFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEFileView.m; sourceTree = "<group>"; };
 		47390359184155530092D025 /* EAGLEDrawablePin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePin.h; sourceTree = "<group>"; };
 		4739035A184155530092D025 /* EAGLEDrawablePin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePin.m; sourceTree = "<group>"; };
 		4739035C184343610092D025 /* EAGLEDrawablePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePolygon.h; sourceTree = "<group>"; };
@@ -554,8 +554,8 @@
 			children = (
 				47112068184E009D00BAB3B2 /* MBProgressHUD.h */,
 				47112069184E009D00BAB3B2 /* MBProgressHUD.m */,
-				4739035618414CB60092D025 /* EAGLESchematicView.h */,
-				4739035718414CB60092D025 /* EAGLESchematicView.m */,
+				4739035618414CB60092D025 /* EAGLEFileView.h */,
+				4739035718414CB60092D025 /* EAGLEFileView.m */,
 				4783686C1893F33A0031977E /* EAGLEInstanceView.h */,
 				4783686D1893F33A0031977E /* EAGLEInstanceView.m */,
 			);
@@ -738,7 +738,7 @@
 				47C5ABC21857243800A1D530 /* ioapi.c in Sources */,
 				4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */,
 				47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */,
-				4739035818414CB60092D025 /* EAGLESchematicView.m in Sources */,
+				4739035818414CB60092D025 /* EAGLEFileView.m in Sources */,
 				4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */,
 				4782C77D1896A50F00704F10 /* EAGLEFile.m in Sources */,
 				4739033C1840E2590092D025 /* DDXMLElement.m in Sources */,

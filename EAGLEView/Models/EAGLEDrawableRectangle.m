@@ -58,7 +58,6 @@
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
 
-	CGContextSaveGState( context );
 	[super setStrokeColorFromLayerInContext:context];
 	[super setFillColorFromLayerInContext:context];
 
@@ -70,8 +69,6 @@
 
 	CGContextSetLineWidth( context, self.width );
 	CGContextFillRect( context, rect );
-
-	CGContextRestoreGState( context );
 }
 
 - (CGFloat)maxX

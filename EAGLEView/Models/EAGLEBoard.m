@@ -80,7 +80,7 @@
 				[tmpElements addObject:element];
 		}
 
-		// Sort elements
+		// Sort elements so bottom elements are first. A mirrored object is considered a bottom element.
 		[tmpElements sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
 			if( [EAGLEDrawableObject rotationIsMirrored:((EAGLEElement*)obj1).rotation] && ![EAGLEDrawableObject rotationIsMirrored:((EAGLEElement*)obj2).rotation] )
 				return NSOrderedAscending;
@@ -118,8 +118,40 @@
 		_plainObjects = [NSArray arrayWithArray:tmpElements];
 
 		// Extract drawables for each layer
-		
+		NSMutableDictionary *tmpDrawablesForLayers = [NSMutableDictionary dictionary];
 
+		for( int layer = 0; layer < 255; layer++ )
+		{
+			BOOL hasElementDrawables = NO;
+
+			NSMutableArray *tmpDrawablesForLayer = [NSMutableArray array];
+			NSPredicate *layerPredicate = [NSPredicate predicateWithFormat:@"layerNumber = %@", @( layer )];
+
+			// Signals contain both wires, polygons and vias
+			for( EAGLESignal *signal in _signals )
+			{
+				[tmpDrawablesForLayer addObjectsFromArray:[signal.wires filteredArrayUsingPredicate:layerPredicate]];
+				[tmpDrawablesForLayer addObjectsFromArray:[signal.vias filteredArrayUsingPredicate:layerPredicate]];
+				[tmpDrawablesForLayer addObjectsFromArray:[signal.polygons filteredArrayUsingPredicate:layerPredicate]];
+			}
+
+			// Elements
+			for( EAGLEElement *element in _elements )
+			{
+				// If any element has components or smashed attributes on this layer we'll set the Boolean so we are sure to add an entry in the dictionary so we know what layer are "active"
+				if( [[element.package.components filteredArrayUsingPredicate:layerPredicate] count] > 0 ||
+				    [[[element.smashedAttributes allValues] filteredArrayUsingPredicate:layerPredicate] count] > 0 )
+					hasElementDrawables = YES;
+			}
+
+			// Plain objects
+			[tmpDrawablesForLayer addObjectsFromArray:[_plainObjects filteredArrayUsingPredicate:layerPredicate]];
+
+			// Add objects if there are any (no need to have a bunch of empty arrays)
+			if( [tmpDrawablesForLayer count] > 0 || hasElementDrawables )
+				tmpDrawablesForLayers[ @(layer) ] = [NSArray arrayWithArray:tmpDrawablesForLayer];
+		}
+		_drawablesInLayers = [NSDictionary dictionaryWithDictionary:tmpDrawablesForLayers];
 	}
 
 	return self;

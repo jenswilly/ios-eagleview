@@ -14,9 +14,6 @@
 #import "DDXML.h"
 
 @implementation EAGLEElement
-{
-	NSDictionary *_smashedAttributes;
-}
 
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
@@ -96,6 +93,27 @@
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"Element %@ - value: %@", _name, _value];
+}
+
+- (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber
+{
+	// Rotate if necessary. First offset coordinate system to origin point then rotate. State is pushed/popped.
+	CGContextSaveGState( context );
+	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
+	[EAGLEDrawableObject transformContext:context forRotation:self.rotation];
+
+	[self.package drawInContext:context smashed:self.smashed mirrored:[EAGLEDrawableObject rotationIsMirrored:self.rotation] layerNumber:layerNumber];
+
+	CGContextRestoreGState( context );
+
+	// Do we need to draw any smashed attributes?
+	if( _smashedAttributes )
+	{
+		// Yes: let's do it. NOTE: coordinates are absolute and the coordinate system has been restored so we're good to go.
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			if( [attribute.layerNumber isEqual:layerNumber] )
+				[attribute drawInContext:context];
+	}
 }
 
 - (void)drawInContext:(CGContextRef)context

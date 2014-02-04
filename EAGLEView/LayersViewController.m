@@ -11,7 +11,7 @@
 #import "EAGLELayer.h"
 #import "AppDelegate.h"
 #import "UIImage+Color.h"
-#import "EAGLESchematicView.h"
+#import "EAGLEFileView.h"
 
 @interface LayersViewController ()
 

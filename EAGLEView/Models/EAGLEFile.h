@@ -16,6 +16,7 @@
 {
 	NSArray *_libraries;
 	NSArray *_plainObjects;
+	NSDictionary *_drawablesInLayers;
 }
 
 @property (strong) NSDictionary *layers;
@@ -23,6 +24,7 @@
 @property (readonly, strong) NSArray *plainObjects;	// Contains id<EAGLEDrawable> objects. This represents "plain" objects like texts or lines
 @property (copy) NSString *fileName;
 @property (copy) NSDate *fileDate;
+@property (readonly, strong) NSDictionary *drawablesInLayers;	// Layer number is key and the value is an NSArray of drawables
 
 - (EAGLELibrary*)libraryWithName:(NSString*)name;
 - (NSString*)dateString;

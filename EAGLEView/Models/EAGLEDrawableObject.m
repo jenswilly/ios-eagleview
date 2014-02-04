@@ -29,7 +29,9 @@
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
 {
 	if( (self = [super initFromXMLElement:element inFile:file]) )
+	{
 		_layerNumber = @( [[[element attributeForName:@"layer"] stringValue] intValue] );
+	}
 
 	return self;
 }

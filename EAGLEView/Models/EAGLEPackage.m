@@ -43,10 +43,15 @@
 	return [NSString stringWithFormat:@"Package %@ - %d components", _name, (int)[_components count]];
 }
 
-- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored
+- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored layerNumber:(NSNumber *)layerNumber
 {
 	// Iterate and draw all components
 	for( EAGLEDrawableObject *drawable in self.components )
+	{
+		// Skip if not correct layer number
+		if( ![drawable.layerNumber isEqual:layerNumber] )
+			continue;
+
 		// If it's a text, check to see if we should set custom value
 		if( [drawable isKindOfClass:[EAGLEDrawableText class]] )
 		{
@@ -73,6 +78,41 @@
 			else
 				[drawable drawInContext:context];
 		}
+	}
+}
+
+- (void)drawInContext:(CGContextRef)context smashed:(BOOL)smashed mirrored:(BOOL)mirrored
+{
+	// Iterate and draw all components
+	for( EAGLEDrawableObject *drawable in self.components )
+	{
+		// If it's a text, check to see if we should set custom value
+		if( [drawable isKindOfClass:[EAGLEDrawableText class]] )
+		{
+			NSString *placeholder = ((EAGLEDrawableText*)drawable).text;
+
+			// Should this text be skipped (because it is smashed and the symbol object will draw it)?
+			if( [self.placeholdersToSkip containsObject:placeholder] || smashed )
+				// Yes: ignore this element
+				continue;
+
+			// Do we have a custom value for this text?
+			if( self.textsForPlaceholders[ placeholder ] != nil )
+				// Yes: set it
+				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
+
+			// We need to call a special method since the text might need to be flipped
+			[(EAGLEDrawableText*)drawable drawInContext:context flipText:NO isMirrored:NO];
+		}
+		else
+		{
+			// Draw it
+			if( mirrored )
+				[drawable drawOnBottomInContext:context];
+			else
+				[drawable drawInContext:context];
+		}
+	}
 }
 
 - (void)drawAtPoint:(CGPoint)origin context:(CGContextRef)context

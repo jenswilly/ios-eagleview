@@ -1,5 +1,5 @@
 //
-//  EAGLESchematicView.h
+//  EAGLEFileView.h
 //  EAGLEView
 //
 //  Created by Jens Willy Johannsen on 23/11/13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EAGLEFile.h"
 
-@interface EAGLESchematicView : UIView
+@interface EAGLEFileView : UIView
 
 @property (strong, nonatomic) EAGLEFile *file;
 @property (nonatomic, assign) CGFloat zoomFactor;

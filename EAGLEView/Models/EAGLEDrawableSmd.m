@@ -41,6 +41,7 @@
 
 	// Translate coordinate system for text drawing
 	CGContextSaveGState( context );
+	
 	CGContextTranslateCTM( context, self.point.x, self.point.y );
 	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 

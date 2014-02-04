@@ -146,16 +146,12 @@
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
 
-	CGContextSaveGState( context );	///
-
 	[super setStrokeColorFromLayerInContext:context];
 	CGContextSetLineWidth( context, self.width );
 
 	CGContextBeginPath( context );
 	CGContextAddArc( context, _center.x, _center.y, _radius, _startAngle, _endAngle, (self.curve < 0 ? 1 : 0) );
 	CGContextDrawPath( context, kCGPathStroke );
-
-	CGContextRestoreGState( context );	///
 }
 
 - (CGFloat)maxX
