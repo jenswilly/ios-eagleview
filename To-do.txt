@@ -12,6 +12,7 @@
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 
 
+√ iPhone: full-screen view
 √ Add show/hide top/bottom layers from layers chooser view controller
 √ iPad: part popup from component
 --- b5

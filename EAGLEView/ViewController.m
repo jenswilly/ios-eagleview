@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet EAGLESchematicView *schematicView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
 
 @end
 
@@ -35,6 +36,7 @@
 	__block UIPopoverController *_popover;
 	NSString *_lastDropboxPath;		// Used to remember which Dropbox path the user was in last
 	__block EAGLEFile *_eagleFile;
+	BOOL _fullScreen;
 }
 
 - (void)viewDidLoad
@@ -50,6 +52,20 @@
 
 	[self.schematicView setRelativeZoomFactor:0.1];
 	self.schematicView.file = _eagleFile;
+
+	// For iPhone: add gesture recognizer to enter/leave fullscreen mode
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+	{
+		// Get the normal tap recognizer
+		UITapGestureRecognizer *singleTapRecognizer = self.schematicView.gestureRecognizers[0];
+
+		UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleFullscreenTapGesture:)];
+		doubleTapRecognizer.numberOfTapsRequired = 2;
+		[self.view addGestureRecognizer:doubleTapRecognizer];
+
+		[singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
+	}
 }
 
 - (void)updateBackgroundAndStatusBar
@@ -67,6 +83,27 @@
 		self.scrollView.backgroundColor = [UIColor whiteColor];
 		[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 	}
+}
+
+- (IBAction)handleFullscreenTapGesture:(UITapGestureRecognizer*)recognizer
+{
+	DEBUG_POSITION;
+
+	// Toggle mode
+	_fullScreen = !_fullScreen;
+	[[UIApplication sharedApplication] setStatusBarHidden:_fullScreen withAnimation:UIStatusBarAnimationSlide];		// Show/hide status bar
+
+	if( _fullScreen )
+	{
+		self.toolbarBottomSpacingConstraint.constant = 0;
+	}
+	else
+	{
+		self.toolbarBottomSpacingConstraint.constant = 44;
+	}
+	[UIView animateWithDuration:0.3 animations:^{
+		[self.view layoutIfNeeded];
+	}];
 }
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer

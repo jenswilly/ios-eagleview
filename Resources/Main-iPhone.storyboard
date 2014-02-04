@@ -157,8 +157,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OqY-kb-utd" secondAttribute="trailing" id="6aX-dP-c76"/>
                             <constraint firstItem="OqY-kb-utd" firstAttribute="leading" secondItem="Sl4-za-Bnh" secondAttribute="leading" id="7NU-Ar-nxK"/>
-                            <constraint firstItem="y7z-4h-2JG" firstAttribute="top" secondItem="OqY-kb-utd" secondAttribute="bottom" id="K50-pM-aoB"/>
                             <constraint firstItem="Uwo-qd-4qN" firstAttribute="leading" secondItem="Sl4-za-Bnh" secondAttribute="leading" id="URa-zR-bwg"/>
+                            <constraint firstItem="OqY-kb-utd" firstAttribute="top" secondItem="Uwo-qd-4qN" secondAttribute="bottom" id="cMr-Zr-pJr"/>
                             <constraint firstAttribute="trailing" secondItem="Uwo-qd-4qN" secondAttribute="trailing" id="i9w-Qc-Wyu"/>
                             <constraint firstItem="Uwo-qd-4qN" firstAttribute="top" secondItem="Sl4-za-Bnh" secondAttribute="top" id="lZz-y0-jVl"/>
                             <constraint firstItem="y7z-4h-2JG" firstAttribute="top" secondItem="Uwo-qd-4qN" secondAttribute="bottom" constant="44" id="tBR-kc-GBV"/>
@@ -167,6 +167,7 @@
                     <connections>
                         <outlet property="schematicView" destination="82F-1s-pQf" id="AM3-JJ-YL8"/>
                         <outlet property="scrollView" destination="Uwo-qd-4qN" id="3fo-4j-aHC"/>
+                        <outlet property="toolbarBottomSpacingConstraint" destination="tBR-kc-GBV" id="QUD-26-Bdv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRA-cR-bFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
