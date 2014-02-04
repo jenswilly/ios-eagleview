@@ -44,8 +44,8 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-//	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
-	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Thermometer" error:&error];
+	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"Thermometer" error:&error];
+//	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Thermometer" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self updateBackgroundAndStatusBar];

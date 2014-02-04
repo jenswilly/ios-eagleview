@@ -72,6 +72,10 @@
 	if( [elementName isEqualToString:@"via"] )
 		return [[EAGLEDrawableVia alloc] initFromXMLElement:element inFile:file];
 
+	if( [elementName isEqualToString:@"description"] )
+		// Ignore description elements
+		return nil;
+	
 	// Unknown element name
 	DEBUG_LOG( @"Unknown drawable element: %@", elementName );
 	return nil;

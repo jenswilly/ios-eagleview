@@ -68,7 +68,12 @@ const CGFloat kTextYPadding = -0.8;		// Texts' Y coords will be adjusted by this
 	CGContextTranslateCTM( context, 0, textSize.height + kTextYPadding );
 	CGContextScaleCTM( context, 1, -1 );
 
-	if( _rotation == Rotation_R180 || flipText )
+	// Get current compound rotation angle
+	CGAffineTransform transform = CGContextGetCTM( context );
+	CGFloat rotation = atan2(transform.b, transform.a);
+	BOOL rotationIs180 = (fabs( M_PI - rotation ) < 0.00001);	// Because rotation might not be exactly 3.14159265358979323846264338327950288
+
+	if( _rotation == Rotation_R180 || flipText || rotationIs180 )
 	{
 		CGContextTranslateCTM( context, textSize.width, textSize.height );
 		CGContextScaleCTM( context, -1, -1 );

@@ -44,7 +44,15 @@
 	CGFloat alpha;
 	CGFloat a;
 
-	// 1. Calculate alpha, a and R
+	/*
+	 * a		Distance between start and end points
+	 * alpha	Angle i radians
+	 * _radius	Radius
+	 * A
+	 * Px
+	 */
+
+	// 1. Calculate alpha, a and radius
 	a = sqrtf( powf( (_point2.x-_point1.x),2 ) + powf( (_point2.y-_point1.y), 2 ));
 	alpha = M_PI * _curve/180;
 	_radius = fabsf( (a/2) / sinf( alpha/2 ));
@@ -81,20 +89,42 @@
 	center.x = a/2;
 	center.y = cosf( asinf( a / (2 * _radius ))) * _radius;
 
+	// Rotate the center point back into position. We might also need to move the center Y coord below the X axis. This – and the rotation direction – depends on the curve direction and whether P2.y is > or < 0.
+	BOOL rotateClockwise = NO;
+
+	if( P2.y < 0 && _curve < 0 )
+	{
+		center.y *= -1;
+		rotateClockwise = (A < 0);
+	}
+	else if( P2.y >= 0 && _curve < 0 )
+	{
+		center.y *= -1;
+		rotateClockwise = (A > 0);
+	}
+	else if( P2.y < 0 && _curve >= 0 )
+	{
+		rotateClockwise = (A > 0);
+	}
+	else if( P2.y >= 0 && _curve >= 0 )
+	{
+		rotateClockwise = (A > 0);
+	}
+
 	// 6. Rotate center point by A
 	CGPoint center2;
-	if( A < 0 )
-	{
-		// Counter-clockwise
-		CGFloat x = center.x * cosf( A ) - center.y * sinf( A );
-		CGFloat y = center.x * sinf( A ) + center.y * cosf( A );
-		center2 = CGPointMake( x, y );
-	}
-	else
+	if( !rotateClockwise )
 	{
 		// Clockwise
 		CGFloat x = center.x * cosf( A ) + center.y * sinf( A );
 		CGFloat y = -center.x * sinf( A ) + center.y * cosf( A );
+		center2 = CGPointMake( x, y );
+	}
+	else
+	{
+		// Counter-clockwise
+		CGFloat x = center.x * cosf( A ) - center.y * sinf( A );
+		CGFloat y = center.x * sinf( A ) + center.y * cosf( A );
 		center2 = CGPointMake( x, y );
 	}
 
@@ -115,13 +145,17 @@
 - (void)drawInContext:(CGContextRef)context
 {
 	RETURN_IF_NOT_LAYER_VISIBLE;
-	
+
+	CGContextSaveGState( context );	///
+
 	[super setStrokeColorFromLayerInContext:context];
 	CGContextSetLineWidth( context, self.width );
 
 	CGContextBeginPath( context );
 	CGContextAddArc( context, _center.x, _center.y, _radius, _startAngle, _endAngle, (self.curve < 0 ? 1 : 0) );
 	CGContextDrawPath( context, kCGPathStroke );
+
+	CGContextRestoreGState( context );	///
 }
 
 - (CGFloat)maxX

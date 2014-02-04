@@ -149,7 +149,7 @@
 				((EAGLELayer*)self.eagleFile.layers[ layerNumber ]).visible = visible;
 
 				// Add index path
-				int index = [_sortedLayerKeys indexOfObject:layerNumber];
+				NSUInteger index = [_sortedLayerKeys indexOfObject:layerNumber];
 				[indexPaths addObject:[NSIndexPath indexPathForItem:index inSection:1]];
 			}
 		}
@@ -164,7 +164,7 @@
 				((EAGLELayer*)self.eagleFile.layers[ layerNumber ]).visible = visible;
 
 				// Add index path
-				int index = [_sortedLayerKeys indexOfObject:layerNumber];
+				NSUInteger index = [_sortedLayerKeys indexOfObject:layerNumber];
 				[indexPaths addObject:[NSIndexPath indexPathForItem:index inSection:1]];
 			}
 		}
