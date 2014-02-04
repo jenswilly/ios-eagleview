@@ -20,6 +20,7 @@
 #import "EAGLEDrawablePad.h"
 #import "EAGLEDrawableSmd.h"
 #import "EAGLEDrawableVia.h"
+#import "EAGLEDrawableHole.h"
 
 #import "DDXML.h"
 
@@ -71,6 +72,9 @@
 
 	if( [elementName isEqualToString:@"via"] )
 		return [[EAGLEDrawableVia alloc] initFromXMLElement:element inFile:file];
+
+	if( [elementName isEqualToString:@"hole"] )
+		return [[EAGLEDrawableHole alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"description"] )
 		// Ignore description elements
@@ -204,7 +208,7 @@ void fillPattern10Function (void *info, CGContextRef context)
 
 - (void)drawInContext:(CGContextRef)context
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 }
 
 /**
@@ -231,37 +235,37 @@ void fillPattern10Function (void *info, CGContextRef context)
 
 - (CGFloat)maxX
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return 0;
 }
 
 - (CGFloat)maxY
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return 0;
 }
 
 - (CGFloat)minX
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return 0;
 }
 
 - (CGFloat)minY
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return 0;
 }
 
 - (CGPoint)origin
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return CGPointZero;
 }
 
 - (CGRect)boundingRect
 {
-	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+	ABSTRACTION_ERROR;
 	return CGRectZero;
 }
 

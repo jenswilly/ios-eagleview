@@ -16,6 +16,8 @@
 #endif
 
 
+#define ABSTRACTION_ERROR 	[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )]
+
 //#import "AppDelegate.h"
 
 #if !defined( DEBUG_LOG ) && defined( DEBUG )

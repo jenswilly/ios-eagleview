@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -7793,15 +7793,7 @@ http://cache.freescale.com/files/sensors/doc/app_note/AN4077.pdf</description>
 <wire x1="1.5" y1="1.5" x2="0.8432" y2="1.5" width="0.1778" layer="21"/>
 <wire x1="-1.5" y1="-1.5" x2="-0.8432" y2="-1.5" width="0.1778" layer="21"/>
 <wire x1="1.5" y1="-1.5" x2="0.8432" y2="-1.5" width="0.1778" layer="21"/>
-<wire x1="0.346" y1="-0.473" x2="0.092" y2="-0.473" width="0.0508" layer="51"/>
-<wire x1="0.092" y1="-0.473" x2="0.219" y2="-0.6" width="0.0508" layer="51"/>
-<wire x1="0.092" y1="-0.473" x2="0.219" y2="-0.346" width="0.0508" layer="51"/>
-<wire x1="0.181" y1="0.173" x2="0.181" y2="-0.081" width="0.0508" layer="51"/>
-<wire x1="0.181" y1="-0.081" x2="0.308" y2="0.046" width="0.0508" layer="51"/>
-<wire x1="0.181" y1="-0.081" x2="0.054" y2="0.046" width="0.0508" layer="51"/>
-<circle x="-0.6" y="0.6" radius="0.1" width="0.127" layer="21"/>
-<circle x="0.154" y="0.554" radius="0.127" width="0.0508" layer="51"/>
-<circle x="0.154" y="0.554" radius="0.0254" width="0.0508" layer="51"/>
+<circle x="-1.87" y="1.87" radius="0.1" width="0.127" layer="21"/>
 <smd name="15" x="0" y="1.275" dx="0.3" dy="0.8" layer="1" rot="R180"/>
 <smd name="14" x="0.5" y="1.275" dx="0.3" dy="0.8" layer="1" rot="R180"/>
 <smd name="13" x="1.275" y="1" dx="0.3" dy="0.8" layer="1" rot="R90"/>
@@ -7818,11 +7810,8 @@ http://cache.freescale.com/files/sensors/doc/app_note/AN4077.pdf</description>
 <smd name="1" x="-1.275" y="1" dx="0.3" dy="0.8" layer="1" rot="R270"/>
 <smd name="4" x="-1.275" y="-0.5" dx="0.3" dy="0.8" layer="1" rot="R270"/>
 <smd name="5" x="-1.275" y="-1" dx="0.3" dy="0.8" layer="1" rot="R270"/>
-<text x="-1.45" y="1.9" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-0.18" y="1.9" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-1.4516" y="-2.3634" size="0.4064" layer="27">&gt;VALUE</text>
-<text x="-0.3" y="-0.6" size="0.3048" layer="51" ratio="15">X</text>
-<text x="-0.3" y="-0.1" size="0.3048" layer="51" ratio="15">Y</text>
-<text x="-0.3" y="0.4" size="0.3048" layer="51" ratio="15">Z</text>
 <rectangle x1="-0.125" y1="-1.4" x2="0.125" y2="-0.933" layer="51"/>
 <rectangle x1="0.375" y1="-1.4" x2="0.625" y2="-0.933" layer="51"/>
 <rectangle x1="-0.625" y1="-1.4" x2="-0.375" y2="-0.933" layer="51"/>
@@ -8125,7 +8114,7 @@ Standard 150mA LDO voltage regulator in SOT-23 layout. Micrel part MIC5205. BP (
 <instance part="C7" gate="G$1" x="175.26" y="121.92" rot="R90"/>
 <instance part="C8" gate="G$1" x="175.26" y="114.3" rot="R90"/>
 <instance part="GND5" gate="1" x="-78.74" y="45.72"/>
-<instance part="U$1" gate="G$1" x="-17.78" y="134.62"/>
+<instance part="U$1" gate="G$1" x="-17.78" y="137.16"/>
 <instance part="GND6" gate="1" x="129.54" y="116.84"/>
 <instance part="S1" gate="G$1" x="-78.74" y="91.44" rot="R90"/>
 <instance part="J2" gate="G$1" x="-45.72" y="76.2"/>
@@ -8363,7 +8352,7 @@ Standard 150mA LDO voltage regulator in SOT-23 layout. Micrel part MIC5205. BP (
 <wire x1="-17.78" y1="127" x2="-17.78" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="3.3V"/>
 <wire x1="-17.78" y1="124.46" x2="-17.78" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="127" x2="-17.78" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="127" x2="-17.78" y2="134.62" width="0.1524" layer="91"/>
 <junction x="-17.78" y="127"/>
 <pinref part="U1" gate="G$1" pin="VDD@2"/>
 <pinref part="C2" gate="G$1" pin="1"/>

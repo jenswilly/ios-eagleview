@@ -70,6 +70,7 @@
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */; };
+		47A5D9AE18A190E300F2D920 /* EAGLEDrawableHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */; };
 		47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */; };
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
 		47C3F8C2188C91CE00705CF9 /* EAGLEDrawableFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C3F8C1188C91CE00705CF9 /* EAGLEDrawableFrame.m */; };
@@ -213,6 +214,8 @@
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.sch; sourceTree = "<group>"; };
+		47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableHole.h; sourceTree = "<group>"; };
+		47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableHole.m; sourceTree = "<group>"; };
 		47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FileIcons.xcassets; sourceTree = "<group>"; };
 		47AEE46E184792ED007D5F7D /* EAGLEDrawableRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableRectangle.h; sourceTree = "<group>"; };
 		47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableRectangle.m; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				47D3C309189947DD00BB4E33 /* EAGLESignal.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
+				47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */,
+				47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -745,6 +750,7 @@
 				4739033D1840E2590092D025 /* DDXMLNode.m in Sources */,
 				4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */,
 				473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */,
+				47A5D9AE18A190E300F2D920 /* EAGLEDrawableHole.m in Sources */,
 				473903421840E4F10092D025 /* EAGLELayer.m in Sources */,
 				4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */,
 				473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */,

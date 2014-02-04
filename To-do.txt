@@ -10,9 +10,14 @@
 - Maybe fix layer order drawing completely?
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Fix texts on schematic elements
+- Add file title label
+- Dropbox caching/remember last used path
+- Fix down-left jump when ending zoom
+
+- Drawable: hole
 
 
-
+√ Layers: read visibility from file
 --- b6
 √ Fix text rotation for compound rotations (e.g. Thermometer schematic's L1 and L2)
 √ Fix arcs: e.g. US polarized caps (e.g. Thermometer)

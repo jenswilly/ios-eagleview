@@ -21,7 +21,7 @@
 		[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in subclass.", NSStringFromSelector( _cmd )];
 	else
 		// Exception is calling initFromXMLElement: from subclass where method is not overridden.
-		[NSException raise:@"Abstraction error" format:@"The method '%@' must be overridden in class '%@'.", NSStringFromSelector( _cmd ), NSStringFromClass( [self class] )];
+		ABSTRACTION_ERROR;
 
 	return nil;
 }
