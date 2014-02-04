@@ -50,8 +50,8 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 		NSString *visible = [[element attributeForName:@"visible"] stringValue];
 		_pinVisible = ( [visible isEqualToString:@"pin"] || [visible isEqualToString:@"both"] || visible == nil );	// NB: if no "visible" property, show the name
 
-		// Hardcoded layer
-		_layerNumber = @93;
+		// Hardcoded layer: same as nets
+		_layerNumber = @91;
 	}
 
 	return self;
