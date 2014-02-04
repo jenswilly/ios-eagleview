@@ -23,7 +23,7 @@
 		if( error )
 			return nil;
 
-		// Iterate and initialize objects
+		// Iterate and initialize layers
 		NSMutableDictionary *tmpLayers = [[NSMutableDictionary alloc] initWithCapacity:[layers count]];
 		for( DDXMLElement *element in layers )
 		{
@@ -33,7 +33,21 @@
 		}
 		_layers = [NSDictionary dictionaryWithDictionary:tmpLayers];
 
-	}
+		// Libraries
+		NSArray *elements = [element nodesForXPath:@"libraries/library" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+
+		// Iterate and initialize objects
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inFile:self];
+			if( library )
+				[tmpElements addObject:library];
+		}
+		_libraries = [NSArray arrayWithArray:tmpElements];
+		
+}
 
 	return self;
 }

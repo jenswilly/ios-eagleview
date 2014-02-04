@@ -68,24 +68,10 @@
 	{
 		NSError *error = nil;
 
-		// Libraries
-		NSArray *elements = [element nodesForXPath:@"libraries/library" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-
-		// Iterate and initialize objects
-		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inFile:self];
-			if( library )
-				[tmpElements addObject:library];
-		}
-		_libraries = [NSArray arrayWithArray:tmpElements];
-
 		// Elements
-		elements = [element nodesForXPath:@"elements/element" error:&error];
+		NSArray *elements = [element nodesForXPath:@"elements/element" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
 			// Drawable

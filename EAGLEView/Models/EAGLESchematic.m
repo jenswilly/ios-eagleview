@@ -68,24 +68,10 @@
 	{
 		NSError *error = nil;
 
-		// Libraries
-		NSArray *elements = [element nodesForXPath:@"libraries/library" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-
-		// Iterate and initialize objects
-		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			EAGLELibrary *library = [[EAGLELibrary alloc] initFromXMLElement:childElement inFile:self];
-			if( library )
-				[tmpElements addObject:library];
-		}
-		_libraries = [NSArray arrayWithArray:tmpElements];
-
 		// Parts
-		elements = [element nodesForXPath:@"parts/part" error:&error];
+		NSArray *elements = [element nodesForXPath:@"parts/part" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
 			EAGLEPart *part = [[EAGLEPart alloc] initFromXMLElement:childElement inFile:self];
@@ -153,8 +139,7 @@
 				[tmpElements addObject:drawable];
 		}
 		_plainObjects = [NSArray arrayWithArray:tmpElements];
-
-}
+	}
 
 	return self;
 }
