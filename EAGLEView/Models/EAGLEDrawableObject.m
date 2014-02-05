@@ -219,20 +219,24 @@ void fillPattern10Function (void *info, CGContextRef context)
  */
 - (void)drawOnBottomInContext:(CGContextRef)context
 {
-	// Override layer if necessary
-	int layer = [self.layerNumber intValue];
+	// If we don't synchronize this, we might get a "double free" memory error
+//	@synchronized( self )
+//	{
+		// Override layer if necessary
+		int layer = [self.layerNumber intValue];
 
-	// Switch Top to Bottom layer
-	if( layer == 1 )
-		_layerNumber = @16;
-	else if( layer == 21 || layer == 23 || layer == 25 || layer == 27 || layer == 29 || layer == 31 || layer == 33 || layer == 35 || layer == 37 || layer == 39 || layer == 41 || layer == 51 || layer == 105 || layer == 121 || layer == 123 || layer == 131 )
-		// "top" layers prefixed by "t"
-		_layerNumber = @( layer + 1 );
+		// Switch Top to Bottom layer
+		if( layer == 1 )
+			_layerNumber = @16;
+		else if( layer == 21 || layer == 23 || layer == 25 || layer == 27 || layer == 29 || layer == 31 || layer == 33 || layer == 35 || layer == 37 || layer == 39 || layer == 41 || layer == 51 || layer == 105 || layer == 121 || layer == 123 || layer == 131 )
+			// "top" layers prefixed by "t"
+			_layerNumber = @( layer + 1 );
 
-	[self drawInContext:context];
+		[self drawInContext:context];
 
-	// Reset layer
-	_layerNumber = @( layer );
+		// Reset layer
+		_layerNumber = @( layer );
+//	}
 }
 
 // Returns the corresponding layer number for a mirrored layer number (e.g. 16 for layer 1 and 30 for layer 29)

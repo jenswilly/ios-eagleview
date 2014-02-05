@@ -22,12 +22,14 @@
 #import "UIView+AnchorPoint.h"
 #import "DetailPopupViewController.h"
 #import "LayersViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet EAGLEFileView *fileView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *fileNameLabel;
 
 @end
 
@@ -66,6 +68,11 @@
 
 		[singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
 	}
+	else
+	{
+		// iPad only: Configure file name label
+		self.fileNameLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
+	}
 }
 
 - (void)updateBackgroundAndStatusBar
@@ -83,6 +90,9 @@
 		self.scrollView.backgroundColor = [UIColor whiteColor];
 		[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 	}
+
+	// Set file name label (iPad only)
+	self.fileNameLabel.text = _eagleFile.fileName;
 }
 
 - (IBAction)handleFullscreenTapGesture:(UITapGestureRecognizer*)recognizer
@@ -180,6 +190,11 @@
 	// When pinch ends, multiply initial zoom factor by the gesture's scale to get final scale
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
+		// These two lines prevent the "jumping" of the view that is probably caused by timing issues when changing the view's layer's transform, its zoom and the scroll view's content offset. But it *will* make a "flash".
+		// From http://stackoverflow.com/questions/5198155/not-all-tiles-redrawn-after-catiledlayer-setneedsdisplay
+		self.fileView.layer.contents = nil;
+		[self.fileView.layer setNeedsDisplayInRect:self.fileView.layer.bounds];
+
 		CGFloat finalZoom = initialZoom * recognizer.scale;
 
 		[self.fileView setAnchorPoint:CGPointMake( 0.5, 0.5 )];
@@ -338,12 +353,12 @@
 			else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
 				_eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&error];
 
+			_eagleFile.fileName = fileName;
+			_eagleFile.fileDate = fileDate;
+
 			[self updateBackgroundAndStatusBar];
 			
 			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
-
-			_eagleFile.fileName = fileName;
-			_eagleFile.fileDate = fileDate;
 
 			self.fileView.file = _eagleFile;
 			dispatch_async(dispatch_get_main_queue(), ^{

@@ -8,14 +8,14 @@
 - Polygon signals fill – yikes :|
 ~ Fix patterened (not filled) rectangles (ROV TSC)
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
-- Add file title label
 - Dropbox caching/remember last used path
-- Fix down-left jump when ending zoom
-- Semi-transparent signals (color)
 - Add Google Drive
 
 
 
+√ Add file title label
+÷ Semi-transparent signals (color)
+√ Fix down-left jump when ending zoom
 √ Maybe fix layer order drawing completely? (draw by hardcoded layer order)
 √ Change to CATiledLayer to prevent memory issues when zooming in
 √ Fix texts on schematic elements

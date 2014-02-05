@@ -19,6 +19,7 @@
 #import "FastTiledLayer.h"
 
 static const CGFloat kViewPadding = 5;
+static const int kTileSize = 2048;
 
 @implementation EAGLEFileView
 {
@@ -34,7 +35,7 @@ static const CGFloat kViewPadding = 5;
 		_maxZoomFactor = 100;
 		self.zoomFactor = 15;	// Default zoom factor
 
-		((FastTiledLayer*)self.layer).tileSize = CGSizeMake( 2048, 2048 );
+		((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );
     }
 
     return self;
@@ -64,7 +65,7 @@ static const CGFloat kViewPadding = 5;
 	_maxZoomFactor = 100;
 	self.zoomFactor = 15;
 
-	((FastTiledLayer*)self.layer).tileSize = CGSizeMake( 800, 800 );
+	((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );
 }
 
 - (CGFloat)relativeZoomFactor

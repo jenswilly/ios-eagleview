@@ -94,7 +94,7 @@
 			return RGBHEX( 0xb4b4b4 );
 
 		default:
-			DEBUG_LOG( @"Color not specified for layer %d", color );
+			DEBUG_LOG( @"Color not specified for layer %d", (int)color );
 			return RGBHEX( 0x000000 );	// Default color is black
 	}
 }
