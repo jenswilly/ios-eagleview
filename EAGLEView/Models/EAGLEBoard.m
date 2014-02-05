@@ -15,6 +15,8 @@
 #import "EAGLEElement.h"
 #import "EAGLESignal.h"
 
+#define ORDERED_BOARD_LAYERS @[ @22, @24, @26, @28, @30, @32, @34, @36, @38, @40, @42, @52, @16, @1, @21, @23, @25, @27, @29, @31, @33, @35, @37, @39, @41, @51 ]
+
 @implementation EAGLEBoard
 
 + (instancetype)boardFromBoardFileAtPath:(NSString*)path error:(NSError *__autoreleasing *)error
@@ -156,7 +158,7 @@
 		_drawablesInLayers = [NSDictionary dictionaryWithDictionary:tmpDrawablesForLayers];
 
 		// Sort layer keys. The .orderedLayerKeys now contains an ordered list of used layer numbers.
-		NSArray *keysForOrdering = [BOTTOM_LAYERS arrayByAddingObjectsFromArray:TOP_LAYERS];	// First bottom layers, then top layers
+		NSArray *keysForOrdering = ORDERED_BOARD_LAYERS;	// First bottom layers, then top layers
 		_orderedLayerKeys = [[_drawablesInLayers allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
 
 			// If obj1 < obj2, then ascending

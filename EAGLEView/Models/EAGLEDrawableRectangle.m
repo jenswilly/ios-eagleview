@@ -64,8 +64,8 @@
 	CGRect rect = CGRectMake( self.point1.x, self.point1.y, self.point2.x - self.point1.x, self.point2.y - self.point1.y );
 
 	/// Patterns
-	if( [super patternFunctionForLayer] != nil )
-		[self setFillPatternFromLayerInContext:context rect:rect];
+//	if( [super patternFunctionForLayer] != nil )
+//		[self setFillPatternFromLayerInContext:context rect:rect];
 
 	CGContextSetLineWidth( context, self.width );
 	CGContextFillRect( context, rect );

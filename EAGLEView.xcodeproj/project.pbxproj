@@ -68,6 +68,7 @@
 		4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686D1893F33A0031977E /* EAGLEInstanceView.m */; };
 		4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4783686F18958CE70031977E /* Main-iPhone.storyboard */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
+		478889A618A27220008F8CF2 /* FastTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 478889A518A27220008F8CF2 /* FastTiledLayer.m */; };
 		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
 		47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */; };
 		47A5D9AE18A190E300F2D920 /* EAGLEDrawableHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */; };
@@ -212,6 +213,8 @@
 		4783686F18958CE70031977E /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPhone.storyboard"; sourceTree = "<group>"; };
 		4784FF041843FE000005C290 /* EAGLENet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLENet.h; sourceTree = "<group>"; };
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
+		478889A418A27220008F8CF2 /* FastTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastTiledLayer.h; sourceTree = "<group>"; };
+		478889A518A27220008F8CF2 /* FastTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastTiledLayer.m; sourceTree = "<group>"; };
 		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
 		47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.sch; sourceTree = "<group>"; };
 		47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableHole.h; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */,
 				47C3F8C0188C91CE00705CF9 /* EAGLEDrawableFrame.h */,
 				47C3F8C1188C91CE00705CF9 /* EAGLEDrawableFrame.m */,
+				47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */,
+				47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */,
 				47D3CD061844C17100F58240 /* EAGLEDrawableJunction.h */,
 				47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */,
 				4739034C18411D5E0092D025 /* EAGLEDrawableObject.h */,
@@ -414,8 +419,6 @@
 				47D3C309189947DD00BB4E33 /* EAGLESignal.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
-				47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */,
-				47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -558,6 +561,8 @@
 				4739035718414CB60092D025 /* EAGLEFileView.m */,
 				4783686C1893F33A0031977E /* EAGLEInstanceView.h */,
 				4783686D1893F33A0031977E /* EAGLEInstanceView.m */,
+				478889A418A27220008F8CF2 /* FastTiledLayer.h */,
+				478889A518A27220008F8CF2 /* FastTiledLayer.m */,
 			);
 			name = Views;
 			path = EAGLEView/Views;
@@ -700,6 +705,7 @@
 				47C5ABC41857243800A1D530 /* unzip.c in Sources */,
 				473902EE1840DD070092D025 /* GPNetworkIndicator.m in Sources */,
 				47C3F8C2188C91CE00705CF9 /* EAGLEDrawableFrame.m in Sources */,
+				478889A618A27220008F8CF2 /* FastTiledLayer.m in Sources */,
 				4739034E18411D5E0092D025 /* EAGLEDrawableObject.m in Sources */,
 				4739035418411D8C0092D025 /* EAGLEDrawableText.m in Sources */,
 				473902C11840DA180092D025 /* EAGLEObject.m in Sources */,
@@ -803,6 +809,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -878,6 +885,7 @@
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "03905EEF-CF9D-46A1-9FC8-0EB352FB6449";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

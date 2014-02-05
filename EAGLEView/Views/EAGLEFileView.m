@@ -16,6 +16,7 @@
 #import "EAGLEBoard.h"
 #import "EAGLESignal.h"
 #import "EAGLEElement.h"
+#import "FastTiledLayer.h"
 
 static const CGFloat kViewPadding = 5;
 
@@ -32,6 +33,8 @@ static const CGFloat kViewPadding = 5;
 		_minZoomFactor = 1;
 		_maxZoomFactor = 100;
 		self.zoomFactor = 15;	// Default zoom factor
+
+		((FastTiledLayer*)self.layer).tileSize = CGSizeMake( 2048, 2048 );
     }
 
     return self;
@@ -60,6 +63,8 @@ static const CGFloat kViewPadding = 5;
 	_minZoomFactor = 1;
 	_maxZoomFactor = 100;
 	self.zoomFactor = 15;
+
+	((FastTiledLayer*)self.layer).tileSize = CGSizeMake( 800, 800 );
 }
 
 - (CGFloat)relativeZoomFactor
@@ -186,6 +191,11 @@ static const CGFloat kViewPadding = 5;
 	}
 }
 
++ layerClass
+{
+	return [FastTiledLayer class];
+}
+
 - (void)drawRect:(CGRect)rect
 {
 	// Fix the coordinate system so 0,0 is at bottom-left
@@ -208,6 +218,11 @@ static const CGFloat kViewPadding = 5;
 	// Iterate active layers
 	for( NSNumber *layerNumber in self.file.orderedLayerKeys )
 	{
+		// Skip if layer not visible
+		EAGLELayer *layer = self.file.layers[ layerNumber ];
+		if( !layer.visible )
+			continue;
+		
 		for( id<EAGLEDrawable> drawable in self.file.drawablesInLayers[ layerNumber ] )
 			[drawable drawInContext:context];
 
@@ -217,6 +232,14 @@ static const CGFloat kViewPadding = 5;
 			EAGLEBoard *board = (EAGLEBoard*)self.file;
 			for( EAGLEElement *element in board.elements )
 				[element drawInContext:context layerNumber:layerNumber];
+		}
+
+		// For schematics, draw instances for this layer
+		else if( [self.file isMemberOfClass:[EAGLESchematic class]] )
+		{
+			EAGLESchematic *schematic = (EAGLESchematic*)self.file;
+			for( EAGLEInstance *instance in schematic.instances )
+				[instance drawInContext:context layerNumber:layerNumber];
 		}
 	}
 

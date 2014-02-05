@@ -18,7 +18,12 @@
 
 @implementation EAGLEInstance
 {
-	NSDictionary *_smashedAttributes;
+	EAGLESymbol *_symbol;
+	EAGLEPart *_part;
+	EAGLEDeviceset *_deviceset;
+	EAGLELibrary *_library;
+	EAGLEGate *_gate;
+	NSString *_valueText;
 }
 
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
@@ -90,54 +95,92 @@
  */
 - (NSString*)valueText
 {
-	// Get part
-	EAGLEPart *part = [self.schematic partWithName:self.part_name];
-
-	// Library
-	EAGLELibrary *library = [self.file libraryWithName:part.library_name];
-
-	// Deviceset
-	EAGLEDeviceset *deviceset = [library devicesetWithName:part.deviceset_name];
-
-	// For the value string, check if value is empty. If so _and_ part' prefix matches the deviceset's prefix, use the deviceset's name. If not empty, use the value
-	NSString *valueText;
-	if( [part.value length] == 0  )
+	if( _valueText == nil )
 	{
-		valueText = deviceset.name;
+		// For the value string, check if value is empty. If so _and_ part' prefix matches the deviceset's prefix, use the deviceset's name. If not empty, use the value
+		if( [[self part].value length] == 0  )
+		{
+			_valueText = [self deviceset].name;
+		}
+		else
+			_valueText = [self part].value;
 	}
-	else
-		valueText = part.value;
-	
-	return valueText;
+
+	return _valueText;
+}
+
+- (EAGLEPart*)part
+{
+	if( _part == nil )
+		_part = [self.schematic partWithName:self.part_name];
+
+	return _part;
+}
+
+- (EAGLELibrary*)library
+{
+	if( _library == nil )
+		_library = [self.file libraryWithName:[self part].library_name];
+
+	return _library;
+}
+
+- (EAGLEDeviceset*)deviceset
+{
+	if( _deviceset == nil )
+		_deviceset = [[self library] devicesetWithName:[self part].deviceset_name];
+
+	return _deviceset;
+}
+
+- (EAGLEGate*)gate
+{
+	if( _gate == nil )
+		_gate = [[self deviceset] gateWithName:self.gate_name];
+
+	return _gate;
 }
 
 - (EAGLESymbol *)symbol
 {
-	// Get part
-	EAGLEPart *part = [self.schematic partWithName:self.part_name];
-
-	// Library
-	EAGLELibrary *library = [self.file libraryWithName:part.library_name];
-
-	// Deviceset
-	EAGLEDeviceset *deviceset = [library devicesetWithName:part.deviceset_name];
-
-	// Gate
-	EAGLEGate *gate = [deviceset gateWithName:self.gate_name];
-
 	// Symbol
-	EAGLESymbol *symbol = [library symbolWithName:gate.symbol_name];
-	symbol.textsForPlaceholders = @{ @">NAME": part.name,
-									 @">Name": part.name,
-									 @">VALUE": [self valueText],
-									 @">Value": [self valueText],
-									 @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
-									 @">LAST_DATE_TIME": [self.file dateString] };
+	if( _symbol == nil )
+	{
+		_symbol = [[self library] symbolWithName:[self gate].symbol_name];
 
-	// Set list of smashed attributes which should _not_ be drawn by the symbol
-	symbol.placeholdersToSkip = [_smashedAttributes allKeys];
+		_symbol.textsForPlaceholders = @{ @">NAME": [self part].name,
+										 @">Name": [self part].name,
+										 @">VALUE": [self valueText],
+										 @">Value": [self valueText],
+										 @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
+										 @">LAST_DATE_TIME": [self.file dateString] };
+
+		// Set list of smashed attributes which should _not_ be drawn by the symbol
+		_symbol.placeholdersToSkip = [_smashedAttributes allKeys];
+	}
 	
-	return symbol;
+	return _symbol;
+}
+
+- (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber
+{
+	// Rotate if necessary. First offset coordinate system to origin point then rotate. State is pushed/popped.
+	CGContextSaveGState( context );
+	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
+	[EAGLEDrawableObject transformContext:context forRotation:self.rotation];
+
+	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:[EAGLEDrawableObject rotationIsMirrored:self.rotation] smashed:self.smashed layerNumber:layerNumber];		// Draw at point 0,0 since coordinate system has been moved to point
+
+	CGContextRestoreGState( context );
+
+	// Do we need to draw any smashed attributes?
+	if( _smashedAttributes )
+	{
+		// Yes: let's do it. NOTE: coordinates are absolute and the coordinate system has been restored so we're good to go.
+		for( EAGLEAttribute *attribute in [_smashedAttributes allValues] )
+			if( [attribute.layerNumber isEqual:layerNumber] )
+				[attribute drawInContext:context];
+	}
 }
 
 - (void)drawInContext:(CGContextRef)context

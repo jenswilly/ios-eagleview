@@ -17,8 +17,10 @@
 @property (readonly) CGPoint point;
 @property (readonly) BOOL smashed;
 @property (readonly) Rotation rotation;
+@property (readonly, strong) NSDictionary *smashedAttributes;
 
 - (EAGLESymbol*)symbol;
 - (NSString*)valueText;
+- (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber;
 
 @end

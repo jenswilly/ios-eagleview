@@ -10,7 +10,8 @@
 #import "EAGLELayer.h"
 #import "EAGLEFile.h"
 
-#define RETURN_IF_NOT_LAYER_VISIBLE if( !((EAGLELayer*)self.file.layers[ self.layerNumber ]).visible ) return
+#define RETURN_IF_NOT_LAYER_VISIBLE
+//if( !((EAGLELayer*)self.file.layers[ self.layerNumber ]).visible ) return
 
 typedef void(*PatternFncPtr)(void*,CGContextRef);
 

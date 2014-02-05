@@ -11,11 +11,13 @@
 - Add file title label
 - Dropbox caching/remember last used path
 - Fix down-left jump when ending zoom
+- Semi-transparent signals (color)
+- Add Google Drive
 
 
-~ Maybe fix layer order drawing completely? (draw by hardcoded layer order)
 
-
+√ Maybe fix layer order drawing completely? (draw by hardcoded layer order)
+√ Change to CATiledLayer to prevent memory issues when zooming in
 √ Fix texts on schematic elements
 √ Drawable: hole
 √ Layers: read visibility from file
