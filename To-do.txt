@@ -8,11 +8,12 @@
 - Polygon signals fill – yikes :|
 ~ Fix patterened (not filled) rectangles (ROV TSC)
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
-- Dropbox caching/remember last used path
 - Add Google Drive
+- Improve single vs. double tap on iPhone
+- Alternative to polygon fills: polygons on/off setting
 
 
-
+√ Dropbox caching/remember last used path
 √ Add file title label
 ÷ Semi-transparent signals (color)
 √ Fix down-left jump when ending zoom

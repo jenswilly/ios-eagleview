@@ -13,6 +13,8 @@
 #define DROPBOX_APP_SECRET @"pgvi4d7y3gt2lx0"
 #define GLOBAL_TINT_COLOR 0xe25454 // 0xff8d3a //0x9b3aff
 
+extern NSString *const kUserDefaults_lastDropboxPath;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

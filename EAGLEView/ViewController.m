@@ -265,7 +265,9 @@
 	UINavigationController *navController = [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentChooserNavController"];
 	DocumentChooserViewController *documentChooserViewController = (DocumentChooserViewController*)navController.topViewController;
 	documentChooserViewController.delegate = self;
-	[documentChooserViewController setInitialPath:(_lastDropboxPath ? _lastDropboxPath : @"/" )];
+
+	// NOTE: _lastDropboxPath may be nil, in which case the DocumentChooserViewController will attempt to get path from user defaults
+	[documentChooserViewController setInitialPath:_lastDropboxPath];
 
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

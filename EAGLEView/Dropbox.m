@@ -137,6 +137,14 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
 {
+	// If the folder is deleted, we'll consider it non-existing
+	if( metadata.isDeleted )
+	{
+		_completionBlock( NO, nil );
+		_isBusy = NO;
+		return;
+	}
+	
 	// Set contents
 	_contents[ [metadata.path lowercaseString] ] = metadata.contents;
 

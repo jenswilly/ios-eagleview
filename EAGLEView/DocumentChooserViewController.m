@@ -113,7 +113,21 @@
 
 - (void)setPath:(NSString *)path
 {
+	BOOL usingPathFromUserDefaults = NO;
+
 	_path = path;
+
+	// If nil path, try to get from user defaults
+	if( !path )
+	{
+		_path = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaults_lastDropboxPath];
+
+		if( _path )
+			usingPathFromUserDefaults = YES;
+		else
+			// Still nil: use /
+			_path = @"/";
+	}
 
 	// Make sure view has been loaded
 	[self view];
@@ -136,6 +150,16 @@
 		// Remove HUD (whether it is there or not) and set title (possibly again)
 		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 		self.navigationItem.title = _path;
+
+		// If we got an error while using a saved path, reset to / and try again
+		if( !success && usingPathFromUserDefaults )
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				self.path = @"/";
+			});
+
+			return ;
+		}
 
 		if( success )
 		{
@@ -257,6 +281,9 @@
 	{
 		// File: pass metadata back to view controller
 		[_delegate documentChooserPickedDropboxFile:metadata lastPath:[metadata.path stringByDeletingLastPathComponent]];
+
+		// Remember path in user defaults
+		[[NSUserDefaults standardUserDefaults] setObject:[metadata.path stringByDeletingLastPathComponent] forKey:kUserDefaults_lastDropboxPath];
 
 		// iPhone or iPad?
 		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
