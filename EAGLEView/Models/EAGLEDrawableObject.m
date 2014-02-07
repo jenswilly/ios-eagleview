@@ -172,24 +172,54 @@
 	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	switch( [currentLayer.fillPatternNumber intValue] )
 	{
+		case 1:
+			return nil;	// Solid color for pattern 1
+
 		case 10:
 			return &fillPattern10Function;
 
+		case 4:
+			return &fillPattern4Function;
+
 		default:
+			DEBUG_LOG( @"Un-inplemented fill pattern for pattern %@", currentLayer.fillPatternNumber );
 			return nil;
 	}
 }
 
+#pragma mark - Pattern functions. The pattern is 12 x 12 px
 void fillPattern10Function (void *info, CGContextRef context)
 {
 	UIColor *color = (__bridge UIColor*)info;
 
 	CGContextSetFillColorWithColor( context, color.CGColor );
-    CGContextAddArc( context, 3, 3, 4, 0, 2*M_PI, 0 );
+    CGContextAddArc( context, 3, 3, 2, 0, 2*M_PI, 0 );
     CGContextFillPath( context );
 
-    CGContextAddArc( context, 16, 16, 4, 0, 2*M_PI, 0 );
+    CGContextAddArc( context, 9, 9, 2, 0, 2*M_PI, 0 );
     CGContextFillPath( context );
+}
+
+void fillPattern4Function (void *info, CGContextRef context)
+{
+	UIColor *color = (__bridge UIColor*)info;
+
+	CGContextSetLineWidth( context, 0.7 );
+	CGContextSetLineCap( context, kCGLineCapSquare );
+	CGContextSetStrokeColorWithColor( context, color.CGColor );
+	CGContextSetShouldAntialias( context, false);	// No anti-aliasing to avoid problems with tiling/overlapping lines
+
+	CGContextMoveToPoint( context, -1, 6 );
+	CGContextAddLineToPoint( context, 6, -1 );
+	CGContextStrokePath( context );
+
+	CGContextMoveToPoint( context, 0, 11 );
+	CGContextAddLineToPoint( context, 12, -1 );
+	CGContextStrokePath( context );
+
+	CGContextMoveToPoint( context, 6, 11 );
+	CGContextAddLineToPoint( context, 11, 6 );
+	CGContextStrokePath( context );
 }
 
 
@@ -220,8 +250,8 @@ void fillPattern10Function (void *info, CGContextRef context)
 - (void)drawOnBottomInContext:(CGContextRef)context
 {
 	// If we don't synchronize this, we might get a "double free" memory error
-//	@synchronized( self )
-//	{
+	@synchronized( self )
+	{
 		// Override layer if necessary
 		int layer = [self.layerNumber intValue];
 
@@ -236,7 +266,7 @@ void fillPattern10Function (void *info, CGContextRef context)
 
 		// Reset layer
 		_layerNumber = @( layer );
-//	}
+	}
 }
 
 // Returns the corresponding layer number for a mirrored layer number (e.g. 16 for layer 1 and 30 for layer 29)

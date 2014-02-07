@@ -46,8 +46,8 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"Thermometer" error:&error];
-//	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Thermometer" error:&error];
+//	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"iBeacon" error:&error];
+	_eagleFile = [EAGLEBoard boardFromBoardFile:@"iBeacon" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 	[self updateBackgroundAndStatusBar];
@@ -128,10 +128,6 @@
 			return;
 		
 		id clickedObject = objects[ 0 ];
-//		DEBUG_LOG( @"Clicked %@", clickedObject );
-
-		CGPoint pointInView = [_fileView eagleCoordinateToViewCoordinate:((EAGLEInstance*)clickedObject).origin];
-		DEBUG_LOG( @"Touched %@ - origin %@ – converted %@", NSStringFromCGPoint( [recognizer locationInView:self.fileView] ), NSStringFromCGPoint( ((EAGLEInstance*)clickedObject).origin ), NSStringFromCGPoint( pointInView ) );
 
 		// Instantiate detail view controller and set current object property
 		DetailPopupViewController *detailPopupViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailPopupViewController"];
@@ -145,6 +141,8 @@
 		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 		{
 			// iPad: show popover
+			CGPoint pointInView = [_fileView eagleCoordinateToViewCoordinate:((EAGLEInstance*)clickedObject).origin];
+
 			if( _popover )
 				[_popover dismissPopoverAnimated:YES];
 			_popover = [[UIPopoverController alloc] initWithContentViewController:detailPopupViewController];

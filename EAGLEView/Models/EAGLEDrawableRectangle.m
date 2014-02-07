@@ -47,7 +47,7 @@
 
 	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	_patternColor = currentLayer.color;
-    CGPatternRef pattern = CGPatternCreate( (__bridge void *)(_patternColor), rect, CGAffineTransformIdentity, 24, 24, kCGPatternTilingConstantSpacing, YES, &callbacks );
+    CGPatternRef pattern = CGPatternCreate( (__bridge void *)(_patternColor), rect, CGAffineTransformIdentity, 12, 12, kCGPatternTilingConstantSpacing, YES, &callbacks );
 
     CGFloat alpha = 1.0;
     CGContextSetFillPattern( context, pattern, &alpha );
@@ -64,8 +64,8 @@
 	CGRect rect = CGRectMake( self.point1.x, self.point1.y, self.point2.x - self.point1.x, self.point2.y - self.point1.y );
 
 	/// Patterns
-//	if( [super patternFunctionForLayer] != nil )
-//		[self setFillPatternFromLayerInContext:context rect:rect];
+	if( [super patternFunctionForLayer] != nil )
+		[self setFillPatternFromLayerInContext:context rect:rect];
 
 	CGContextSetLineWidth( context, self.width );
 	CGContextFillRect( context, rect );
