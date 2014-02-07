@@ -214,6 +214,11 @@
 {
 }
 
+- (IBAction)searchAction:(id)sender
+{
+	[self.fileView highlightPartWithName:@"D1"];
+}
+
 - (IBAction)showLayersAction:(UIBarButtonItem*)sender
 {
 	LayersViewController *layersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LayersViewController"];

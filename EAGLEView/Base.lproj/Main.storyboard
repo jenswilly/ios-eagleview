@@ -85,6 +85,11 @@
                                         </view>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="X4b-XP-3kd"/>
+                                    <barButtonItem systemItem="search" id="FWk-kg-cy9">
+                                        <connections>
+                                            <action selector="searchAction:" destination="BYZ-38-t0r" id="tID-MR-RC8"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem image="ico_layers" id="BYg-R1-gy9">
                                         <connections>
                                             <action selector="showLayersAction:" destination="BYZ-38-t0r" id="vBd-Fu-ssa"/>

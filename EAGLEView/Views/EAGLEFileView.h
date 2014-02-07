@@ -23,5 +23,6 @@
 - (id)objectsAtPoint:(CGPoint)point;
 - (CGPoint)eagleCoordinateToViewCoordinate:(CGPoint)eagleCoordinate;
 - (CGPoint)viewCoordinateToEagleCoordinate:(CGPoint)viewCoordinate;
+- (void)highlightPartWithName:(NSString*)name;
 
 @end

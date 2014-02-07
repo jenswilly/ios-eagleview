@@ -191,7 +191,7 @@
 	CGPoint point1 = CGPointMake( [self minX] - self.point.x, [self minY] - self.point.y );
 	CGPoint point2 = CGPointMake( [self maxX] - self.point.x, [self maxY] - self.point.y );
 
-	if( self.rotation == Rotation_Mirror_MR0 )
+	if( [EAGLEDrawableObject rotationIsMirrored:self.rotation] )
 	{
 		// Mirrored: swap X coordinates
 		CGFloat tmp = point1.x;
@@ -215,5 +215,12 @@
 	return boundingRect;
 }
 
+- (BOOL)isEqual:(id)object
+{
+	if( ![object isKindOfClass:[self class]] )
+		return NO;	// Wrong class
+
+	return [((EAGLEElement*)object).name isEqualToString:self.name];
+}
 
 @end

@@ -24,6 +24,7 @@ static const int kTileSize = 2048;
 @implementation EAGLEFileView
 {
 	BOOL _needsCalculateIntrinsicContentSize;
+	NSArray *_highlightedComponents;	// Contains either EAGLEElements or EAGLEInstances
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -66,6 +67,18 @@ static const int kTileSize = 2048;
 	self.zoomFactor = 15;
 
 	((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );
+}
+
+- (void)highlightPartWithName:(NSString *)name
+{
+	NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name = %@", name];
+
+	if( [self.file isKindOfClass:[EAGLEBoard class]] )
+	{
+		// Board: find a matching element
+		_highlightedComponents = [((EAGLEBoard*)self.file).elements filteredArrayUsingPredicate:findByName];
+		[self setNeedsDisplay];	/// Change to only relevant rect
+	}
 }
 
 - (CGFloat)relativeZoomFactor
@@ -244,60 +257,13 @@ static const int kTileSize = 2048;
 		}
 	}
 
-	///
-
-	
-	/*
-	// Draw all instances, nets, busses and plain objects
-	for( id<EAGLEDrawable> drawable in self.file.plainObjects )
-		[drawable drawInContext:context];
-
-	// Schematic-only objects
-	if( [self.file isMemberOfClass:[EAGLESchematic class]] )
+	// Highlighted components
+	for( EAGLEElement *element in _highlightedComponents )
 	{
-		EAGLESchematic *schematic = (EAGLESchematic*)self.file;
-
-		for( id<EAGLEDrawable> drawable in schematic.nets )
-			[drawable drawInContext:context];
-
-		for( id<EAGLEDrawable> drawable in schematic.busses )
-			[drawable drawInContext:context];
-
-		for( id<EAGLEDrawable> drawable in schematic.instances )
-			[drawable drawInContext:context];
+		CGContextSetStrokeColorWithColor( context, [UIColor yellowColor].CGColor );
+		CGContextSetLineWidth( context, 1 );
+		CGContextStrokeRect( context, [element boundingRect] );
 	}
-	// Board-only objects
-	else if( [self.file isMemberOfClass:[EAGLEBoard class]] )
-	{
-		EAGLEBoard *board = (EAGLEBoard*)self.file;
-
-		// First bottom signals and elements
-		NSPredicate *bottomPredicate = [NSPredicate predicateWithFormat:@"layerNumber = 16"];
-		for( EAGLESignal *signal in board.signals )
-		{
-			signal.filterPredicateForDrawing = bottomPredicate;
-			[signal drawInContext:context];
-		}
-
-		// Bottom elements
-		for( EAGLEElement *drawable in board.elements )
-			if( [EAGLEDrawableObject rotationIsMirrored:drawable.rotation] )
-				[drawable drawInContext:context];
-
-		// Then top signals
-		NSPredicate *topPredicate = [NSPredicate predicateWithFormat:@"layerNumber = 1"];
-		for( EAGLESignal *signal in board.signals )
-		{
-			signal.filterPredicateForDrawing = topPredicate;
-			[signal drawInContext:context];
-		}
-
-		// Top elements
-		for( EAGLEElement *drawable in board.elements )
-			if( ![EAGLEDrawableObject rotationIsMirrored:drawable.rotation] )
-				[drawable drawInContext:context];
-	}
-	 */
 }
 
 - (NSArray*)objectsAtPoint:(CGPoint)point
