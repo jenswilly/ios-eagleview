@@ -55,17 +55,17 @@
 		// If it's a text, check to see if we should set custom value
 		if( [drawable isKindOfClass:[EAGLEDrawableText class]] )
 		{
-			NSString *placeholder = ((EAGLEDrawableText*)drawable).text;
+			NSString *textString = ((EAGLEDrawableText*)drawable).text;
 
 			// Should this text be skipped (because it is smashed and the symbol object will draw it)?
-			if( [self.placeholdersToSkip containsObject:placeholder] || smashed )
+			if( [self.placeholdersToSkip containsObject:textString] || (smashed && [textString hasPrefix:@">"]) )
 				// Yes: ignore this element
 				continue;
 
 			// Do we have a custom value for this text?
-			if( self.textsForPlaceholders[ placeholder ] != nil )
+			if( self.textsForPlaceholders[ textString ] != nil )
 				// Yes: set it
-				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ placeholder ]];
+				[(EAGLEDrawableText*)drawable setValueText:self.textsForPlaceholders[ textString ]];
 
 			// We need to call a special method since the text might need to be flipped
 			[(EAGLEDrawableText*)drawable drawInContext:context flipText:NO isMirrored:NO];

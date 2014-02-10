@@ -160,6 +160,11 @@
 		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
 		CGContextScaleCTM( context, 1, -1 );
 	}
+	else if( rotation == Rotation_Mirror_MR270 )
+	{
+		CGContextRotateCTM( context, [self radiansForRotation:rotation] );
+		CGContextScaleCTM( context, -1, 1 );
+	}
 	else if( [self rotationIsMirrored:rotation] )
 		// Mirror, not rotate
 		CGContextScaleCTM( context, -1, 1 );

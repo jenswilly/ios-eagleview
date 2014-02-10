@@ -750,19 +750,19 @@ TS-003</description>
 <wire x1="74.2" y1="0" x2="74.2" y2="25.2" width="0.127" layer="21"/>
 <wire x1="74.2" y1="25.2" x2="0" y2="25.2" width="0.127" layer="21"/>
 <wire x1="0" y1="25.2" x2="0" y2="0" width="0.127" layer="21"/>
-<pad name="P$1" x="29.655" y="1.1" drill="0.5" first="yes"/>
-<pad name="P$2" x="30.925" y="1.1" drill="0.5"/>
-<pad name="P$3" x="32.195" y="1.1" drill="0.5"/>
-<pad name="P$4" x="33.465" y="1.1" drill="0.5"/>
-<pad name="P$5" x="34.735" y="1.1" drill="0.5"/>
-<pad name="P$6" x="36.005" y="1.1" drill="0.5"/>
-<pad name="P$7" x="37.275" y="1.1" drill="0.5"/>
-<pad name="P$8" x="38.545" y="1.1" drill="0.5"/>
-<pad name="A" x="73.05" y="3.9" drill="2.2"/>
-<pad name="K" x="73.05" y="18.9" drill="2.2"/>
+<pad name="P$1" x="29.655" y="1.1" drill="0.55" first="yes"/>
+<pad name="P$2" x="30.925" y="1.1" drill="0.55"/>
+<pad name="P$3" x="32.195" y="1.1" drill="0.55"/>
+<pad name="P$4" x="33.465" y="1.1" drill="0.55"/>
+<pad name="P$5" x="34.735" y="1.1" drill="0.55"/>
+<pad name="P$6" x="36.005" y="1.1" drill="0.55"/>
+<pad name="P$7" x="37.275" y="1.1" drill="0.55"/>
+<pad name="P$8" x="38.545" y="1.1" drill="0.55"/>
+<pad name="A" x="73.05" y="5" drill="2.2"/>
+<pad name="K" x="73.05" y="20" drill="2.2"/>
 <text x="27.94" y="0.635" size="1.27" layer="21">1</text>
-<text x="72.39" y="6.35" size="1.27" layer="21">A</text>
-<text x="72.39" y="15.24" size="1.27" layer="21">K</text>
+<text x="72.39" y="7.45" size="1.27" layer="21">A</text>
+<text x="72.39" y="16.24" size="1.27" layer="21">K</text>
 </package>
 <package name="SOT23-3">
 <wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
@@ -785,13 +785,13 @@ TS-003</description>
 <wire x1="0" y1="4" x2="0" y2="0" width="0.127" layer="21"/>
 <hole x="0" y="0" drill="0.9"/>
 <hole x="6.8" y="0" drill="0.9"/>
-<smd name="P$1" x="0.9" y="2.75" dx="1.2" dy="2.5" layer="1"/>
-<smd name="P$2" x="3.4" y="2.75" dx="1.2" dy="2.5" layer="1"/>
-<smd name="P$3" x="5.9" y="2.75" dx="1.2" dy="2.5" layer="1"/>
+<smd name="P$1" x="0.9" y="3.25" dx="1.2" dy="3.5" layer="1"/>
+<smd name="P$2" x="3.4" y="3.25" dx="1.2" dy="3.5" layer="1"/>
+<smd name="P$3" x="5.9" y="3.25" dx="1.2" dy="3.5" layer="1"/>
 <wire x1="2.65" y1="0" x2="2.65" y2="-2" width="0.127" layer="51"/>
 <wire x1="2.65" y1="-2" x2="4.15" y2="-2" width="0.127" layer="51"/>
 <wire x1="4.15" y1="-2" x2="4.15" y2="0" width="0.127" layer="51"/>
-<text x="0.635" y="4.445" size="1.27" layer="25">&gt;NAME</text>
+<text x="0.635" y="5.715" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="LPC_SWD_PINS">
 <pad name="VCC" x="-5.08" y="0" drill="0.65" diameter="1.4224" shape="square"/>
