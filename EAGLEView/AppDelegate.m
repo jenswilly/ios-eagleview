@@ -13,8 +13,14 @@
 #import "EAGLESchematic.h"
 
 NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath";
+NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 
 @implementation AppDelegate
+
++ (void)initialize
+{
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ kUserDefaults_settingsKeepAlive: @YES }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -130,6 +136,14 @@ NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath"
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	// Enable or disable idle timer
+	BOOL keepAwake = [[NSUserDefaults standardUserDefaults] boolForKey:kUserDefaults_settingsKeepAlive];
+	[UIApplication sharedApplication].idleTimerDisabled = keepAwake;
+	DEBUG_LOG( @"Idle timer %@", (keepAwake ? @"disabled" : @"enabled"));
 }
 
 - (void)setAppearance

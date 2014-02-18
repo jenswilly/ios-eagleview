@@ -99,6 +99,7 @@
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
 		47D3CD0E1845375B00F58240 /* EAGLEDrawableArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */; };
+		47EF39A218B3512400F653DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A118B3512400F653DD /* Settings.bundle */; };
 		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -267,6 +268,7 @@
 		47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableCircle.m; sourceTree = "<group>"; };
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
 		47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableArc.m; sourceTree = "<group>"; };
+		47EF39A118B3512400F653DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47FF32CC1847382F00E711C7 /* To-do.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To-do.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -453,6 +455,7 @@
 				473903261840DED90092D025 /* LED_resistor.sch */,
 				473902C41840DC9E0092D025 /* XIB */,
 				4739035F184355570092D025 /* Images */,
+				47EF39A118B3512400F653DD /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
+				47EF39A218B3512400F653DD /* Settings.bundle in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
 				4738814D1899BAF6003340FB /* Gift card.brd in Resources */,

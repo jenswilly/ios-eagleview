@@ -2,7 +2,6 @@
 - New board file icon
 - Nets/busses details popup
 - Hit test for nets/busses
-- Search for components
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
@@ -11,9 +10,12 @@
 - Add Google Drive
 - Improve single vs. double tap on iPhone
 - Alternative to polygon fills: polygons on/off setting
-- Settings switch to prevent sleep
 
 
+~ Search for components
+
+
+√ Settings switch to prevent sleep (app settings bundle)
 √ Fix rotated attributes (Gift card SWD header) - turned out to be problem with 1) MR270 rotations and 2) not drawing non-attribute texts for smashed elements
 √ Dropbox caching/remember last used path
 √ Add file title label
