@@ -100,6 +100,8 @@
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
 		47D3CD0E1845375B00F58240 /* EAGLEDrawableArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */; };
 		47EF39A218B3512400F653DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A118B3512400F653DD /* Settings.bundle */; };
+		47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */; };
+		47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A618B3A3E100F653DD /* ComponentCell.xib */; };
 		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +271,9 @@
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
 		47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableArc.m; sourceTree = "<group>"; };
 		47EF39A118B3512400F653DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		47EF39A318B39F3200F653DD /* ComponentSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSearchViewController.h; sourceTree = "<group>"; };
+		47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSearchViewController.m; sourceTree = "<group>"; };
+		47EF39A618B3A3E100F653DD /* ComponentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentCell.xib; sourceTree = "<group>"; };
 		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47FF32CC1847382F00E711C7 /* To-do.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To-do.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -429,14 +434,16 @@
 		473902C21840DC5C0092D025 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4739029E1840D9930092D025 /* ViewController.h */,
-				4739029F1840D9930092D025 /* ViewController.m */,
-				47C73B6618493B3B0041C4C4 /* DocumentChooserViewController.h */,
-				47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */,
+				47EF39A318B39F3200F653DD /* ComponentSearchViewController.h */,
+				47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */,
 				478368691893E83D0031977E /* DetailPopupViewController.h */,
 				4783686A1893E83D0031977E /* DetailPopupViewController.m */,
+				47C73B6618493B3B0041C4C4 /* DocumentChooserViewController.h */,
+				47C73B6718493B3B0041C4C4 /* DocumentChooserViewController.m */,
 				47D3C2F91898051700BB4E33 /* LayersViewController.h */,
 				47D3C2FA1898051700BB4E33 /* LayersViewController.m */,
+				4739029E1840D9930092D025 /* ViewController.h */,
+				4739029F1840D9930092D025 /* ViewController.m */,
 			);
 			name = "View Controllers";
 			path = EAGLEView;
@@ -465,6 +472,7 @@
 			children = (
 				4739029B1840D9930092D025 /* Main.storyboard */,
 				4783686F18958CE70031977E /* Main-iPhone.storyboard */,
+				47EF39A618B3A3E100F653DD /* ComponentCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -683,6 +691,7 @@
 				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
+				47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
 				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
@@ -747,6 +756,7 @@
 				473902F01840DD070092D025 /* GPPodsManagedObject.m in Sources */,
 				47C5ABC21857243800A1D530 /* ioapi.c in Sources */,
 				4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */,
+				47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */,
 				47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */,
 				4739035818414CB60092D025 /* EAGLEFileView.m in Sources */,
 				4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */,

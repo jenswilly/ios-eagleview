@@ -23,6 +23,7 @@
 - (id)objectsAtPoint:(CGPoint)point;
 - (CGPoint)eagleCoordinateToViewCoordinate:(CGPoint)eagleCoordinate;
 - (CGPoint)viewCoordinateToEagleCoordinate:(CGPoint)viewCoordinate;
-- (void)highlightPartWithName:(NSString*)name;
+- (NSUInteger)highlightPartWithName:(NSString *)name;
+- (void)highlightElements:(NSArray*)elements;	// Array of EAGLEElement objects
 
 @end

@@ -131,6 +131,50 @@
                 </tapGestureRecognizer>
             </objects>
         </scene>
+        <!--Component Search View Controller-->
+        <scene sceneID="VqX-fN-Heu">
+            <objects>
+                <tableViewController storyboardIdentifier="ComponentSearchViewController" id="Ig0-GP-cFL" customClass="ComponentSearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kGi-mM-6AR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="cDe-eW-nep">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Ig0-GP-cFL" id="Whe-s4-g0O"/>
+                            </connections>
+                        </searchBar>
+                        <connections>
+                            <outlet property="dataSource" destination="Ig0-GP-cFL" id="5oq-XS-Erw"/>
+                            <outlet property="delegate" destination="Ig0-GP-cFL" id="JvQ-jD-DUM"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="WTe-tx-Buh" id="aQe-rh-HKV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlS-jB-EPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="WTe-tx-Buh">
+                    <connections>
+                        <outlet property="delegate" destination="Ig0-GP-cFL" id="Ng7-WD-Eqy"/>
+                        <outlet property="searchBar" destination="cDe-eW-nep" id="KLc-om-PNa"/>
+                        <outlet property="searchContentsController" destination="Ig0-GP-cFL" id="saC-LL-LKR"/>
+                        <outlet property="searchResultsDataSource" destination="Ig0-GP-cFL" id="Jk8-xX-fCS"/>
+                        <outlet property="searchResultsDelegate" destination="Ig0-GP-cFL" id="FTj-Oz-jw5"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="162" y="980"/>
+        </scene>
         <!--Layers View Controller-->
         <scene sceneID="Cau-HZ-XqC">
             <objects>

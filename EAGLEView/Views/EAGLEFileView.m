@@ -20,6 +20,8 @@
 
 static const CGFloat kViewPadding = 5;
 static const int kTileSize = 2048;
+static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of frame around highlighted components
+#define HIGHLIGHT_COLOR [UIColor yellowColor]	// UIColor to use for highlight frame
 
 @implementation EAGLEFileView
 {
@@ -36,7 +38,7 @@ static const int kTileSize = 2048;
 		_maxZoomFactor = 100;
 		self.zoomFactor = 15;	// Default zoom factor
 
-		((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );
+		((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );	// Set tile size
     }
 
     return self;
@@ -69,16 +71,27 @@ static const int kTileSize = 2048;
 	((FastTiledLayer*)self.layer).tileSize = CGSizeMake( kTileSize, kTileSize );
 }
 
-- (void)highlightPartWithName:(NSString *)name
+- (NSUInteger)highlightPartWithName:(NSString *)name
 {
 	NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name = %@", name];
+	NSArray *found;
 
 	if( [self.file isKindOfClass:[EAGLEBoard class]] )
 	{
 		// Board: find a matching element
-		_highlightedComponents = [((EAGLEBoard*)self.file).elements filteredArrayUsingPredicate:findByName];
+		found = [((EAGLEBoard*)self.file).elements filteredArrayUsingPredicate:findByName];
+		_highlightedComponents = found;
 		[self setNeedsDisplay];	/// Change to only relevant rect
 	}
+
+	// Return number of matching components
+	return [found count];
+}
+
+- (void)highlightElements:(NSArray*)elements
+{
+	_highlightedComponents = elements;
+	[self setNeedsDisplay];	/// Change to only relevant rect
 }
 
 - (CGFloat)relativeZoomFactor
@@ -260,8 +273,8 @@ static const int kTileSize = 2048;
 	// Highlighted components
 	for( EAGLEElement *element in _highlightedComponents )
 	{
-		CGContextSetStrokeColorWithColor( context, [UIColor yellowColor].CGColor );
-		CGContextSetLineWidth( context, 1 );
+		CGContextSetStrokeColorWithColor( context, HIGHLIGHT_COLOR.CGColor );
+		CGContextSetLineWidth( context, kHighlightLineWidth );
 		CGContextStrokeRect( context, [element boundingRect] );
 	}
 }

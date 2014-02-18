@@ -23,6 +23,7 @@
 #import "DetailPopupViewController.h"
 #import "LayersViewController.h"
 #import "AppDelegate.h"
+#import "ComponentSearchViewController.h"
 
 @interface ViewController ()
 
@@ -216,7 +217,21 @@
 
 - (IBAction)searchAction:(id)sender
 {
-	[self.fileView highlightPartWithName:@"D1"];
+	ComponentSearchViewController *componentSearchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ComponentSearchViewController"];
+	componentSearchViewController.fileView = self.fileView;
+
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+	{
+		// iPad: show as popover
+		if( _popover )
+			[_popover dismissPopoverAnimated:YES];
+
+		_popover = [[UIPopoverController alloc] initWithContentViewController:componentSearchViewController];
+		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else
+		[NSException raise:@"Not implemented" format:nil];
 }
 
 - (IBAction)showLayersAction:(UIBarButtonItem*)sender
