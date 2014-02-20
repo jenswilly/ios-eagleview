@@ -252,8 +252,9 @@
 	}
 	else
 	{
+		// iPhone: we'add it manually so we can use a transparent background.
 		// Place at bottom
-		CGRect frame = layersViewController.view.frame;
+		CGRect frame = self.view.bounds;
 		frame.origin.y = self.view.bounds.size.height;
 		layersViewController.view.frame = frame;
 

@@ -60,6 +60,16 @@
 	}];
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+	{
+		// iPhone: adjust view size when rotating (why doesn't this happen automatically? Probably because the view has been added manually as a subview)
+		self.view.frame = self.parentViewController.view.bounds;
+	}
+}
+
 #pragma mark - Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
