@@ -71,6 +71,8 @@
 	{
 		cell.textLabel.text = ((EAGLEElement*)object).name;
 		cell.detailTextLabel.text = ((EAGLEElement*)object).value;
+		cell.selected = ([self.selectedParts containsObject:object]);
+		cell.accessoryType = ( [self.selectedParts containsObject:object] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	}
     
     return cell;
@@ -97,7 +99,7 @@
 			[selectedIndexSet addIndex:indexPath.row];
 
 		NSArray *selectedElements = [DATAARRAY_IN_USE objectsAtIndexes:selectedIndexSet];
-		[self.fileView highlightElements:selectedElements];
+		self.fileView.highlightedElements = selectedElements;
 	}
 }
 

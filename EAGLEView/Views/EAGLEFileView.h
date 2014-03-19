@@ -18,12 +18,13 @@
 @property (readonly) CGSize calculatedContentSize;	// Returns the value from the last time instrinsicContentSize was called.
 @property (assign, nonatomic) CGFloat relativeZoomFactor;	// Relative zoom between 0 and 1
 @property (readonly) CGPoint origin;
+@property (strong, nonatomic) NSArray *highlightedElements;	// Array of EAGLEElement objects
 
 - (void)zoomToFitSize:(CGSize)fitSize animated:(BOOL)animated;
 - (id)objectsAtPoint:(CGPoint)point;
 - (CGPoint)eagleCoordinateToViewCoordinate:(CGPoint)eagleCoordinate;
 - (CGPoint)viewCoordinateToEagleCoordinate:(CGPoint)viewCoordinate;
 - (NSUInteger)highlightPartWithName:(NSString *)name;
-- (void)highlightElements:(NSArray*)elements;	// Array of EAGLEElement objects
+//- (void)highlightElements:(NSArray*)elements;	// Array of EAGLEElement objects
 
 @end

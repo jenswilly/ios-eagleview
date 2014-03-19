@@ -88,12 +88,24 @@ static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of
 	return [found count];
 }
 
+- (void)setHighlightedElements:(NSArray *)highlightedElements
+{
+	_highlightedComponents = highlightedElements;
+	[self setNeedsDisplay];
+}
+
+- (NSArray *)highlightedElements
+{
+	return _highlightedComponents;
+}
+
+/*
 - (void)highlightElements:(NSArray*)elements
 {
 	_highlightedComponents = elements;
 	[self setNeedsDisplay];	/// Change to only relevant rect
 }
-
+*/
 - (CGFloat)relativeZoomFactor
 {
 	CGFloat span = _maxZoomFactor - _minZoomFactor;
