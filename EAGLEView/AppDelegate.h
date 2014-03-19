@@ -15,7 +15,7 @@
 
 extern NSString *const kUserDefaults_lastDropboxPath;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly, strong) ViewController *viewController;

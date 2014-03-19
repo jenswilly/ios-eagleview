@@ -103,6 +103,8 @@
 		47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */; };
 		47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A618B3A3E100F653DD /* ComponentCell.xib */; };
 		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
+		47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC175F18D9C25C008BBDB5 /* ico_board-320.png */; };
+		47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC176018D9C25C008BBDB5 /* ico_board-64.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -275,6 +277,8 @@
 		47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSearchViewController.m; sourceTree = "<group>"; };
 		47EF39A618B3A3E100F653DD /* ComponentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentCell.xib; sourceTree = "<group>"; };
 		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		47FC175F18D9C25C008BBDB5 /* ico_board-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-320.png"; sourceTree = "<group>"; };
+		47FC176018D9C25C008BBDB5 /* ico_board-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-64.png"; sourceTree = "<group>"; };
 		47FF32CC1847382F00E711C7 /* To-do.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To-do.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -582,6 +586,8 @@
 		4739035F184355570092D025 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				47FC175F18D9C25C008BBDB5 /* ico_board-320.png */,
+				47FC176018D9C25C008BBDB5 /* ico_board-64.png */,
 				47C5ABB118571A0700A1D530 /* ico_schematic-64.png */,
 				47C5ABB218571A0700A1D530 /* ico_schematic-320.png */,
 				473903601843557A0092D025 /* Application.xcassets */,
@@ -686,6 +692,7 @@
 				473902E61840DD070092D025 /* .gitignore in Resources */,
 				4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */,
 				4738814E1899BAF6003340FB /* Gift card.sch in Resources */,
+				47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */,
 				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
@@ -703,6 +710,7 @@
 				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
 				475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */,
 				47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */,
+				47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */,
 				47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

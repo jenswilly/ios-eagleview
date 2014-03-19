@@ -333,9 +333,12 @@
 	});
 }
 
-- (void)openSchematic:(EAGLESchematic*)schematic
+- (void)openFile:(EAGLEFile*)file
 {
-	self.fileView.file = schematic;
+	_eagleFile = file;
+	[self updateBackgroundAndStatusBar];
+	self.fileView.file = file;
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];

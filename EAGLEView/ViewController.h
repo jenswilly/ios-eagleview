@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DocumentChooserViewController.h"
-@class EAGLESchematic;
+@class EAGLEFile;
 
 @interface ViewController : UIViewController <UIScrollViewDelegate, DocumentChooserDelegate>
 
 - (void)openFileFromURL:(NSURL*)fileURL;
-- (void)openSchematic:(EAGLESchematic*)schematic;
+- (void)openFile:(EAGLEFile*)file;
 
 @end

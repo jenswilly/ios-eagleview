@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "SSZipArchive.h"
 #import "EAGLESchematic.h"
+#import "EAGLEBoard.h"
 
 NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath";
 NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
@@ -66,10 +67,14 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 {
 	NSURL *fileURLToOpen = nil;
 	NSString *destinationPath = nil;
+	NSError *error = nil;
 
 	// Is it a .sch file?
 	if( [[[fileURL pathExtension] lowercaseString] isEqualToString:@"sch"] )
 		// Yes: open it directly
+		fileURLToOpen = fileURL;
+	else if( [[[fileURL pathExtension] lowercaseString] isEqualToString:@"brd"] )
+		// Board file: open it directly
 		fileURLToOpen = fileURL;
 	else if( [[[fileURL pathExtension] lowercaseString] isEqualToString:@"zip"] )
 	{
@@ -88,26 +93,63 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 			return;
 		}
 
+		NSMutableArray *acceptableFiles = [NSMutableArray arrayWithCapacity:[files count]];
 		for( NSString *file in files )
 		{
-			if( [[file.pathExtension lowercaseString] isEqualToString:@"sch"] )
-			{
-				// Found one: open it (if there are more than one, the rest will be ignored)
-				fileURLToOpen = [NSURL fileURLWithPath:[destinationPath stringByAppendingPathComponent:file]];
-				break;
-			}
+			if( [[file.pathExtension lowercaseString] isEqualToString:@"sch"] || [[file.pathExtension lowercaseString] isEqualToString:@"brd"] )
+				[acceptableFiles addObject:file];
 		}
 
+		// If we found only one acceptable file, we'll use that
+		if( [acceptableFiles count] == 1 )
+			fileURLToOpen = [NSURL fileURLWithPath:[destinationPath stringByAppendingPathComponent:acceptableFiles[0]]];
+
+		// If we found more then one, show action sheet and let user select
+		else if( [acceptableFiles count] > 0 )
+		{
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose file" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+			actionSheet.delegate = self;
+			for( NSString *file in acceptableFiles )
+				[actionSheet addButtonWithTitle:file];
+
+			// Add cancel button last and set cancel btn index
+			[actionSheet addButtonWithTitle:@"Cancel"];
+			actionSheet.cancelButtonIndex = [acceptableFiles count];
+
+			[actionSheet showInView:_viewController.view];
+		}
 	}
 
-	// Read schematic
-	NSError *error = nil;
-	EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:[fileURLToOpen path] error:&error];
-	if( error )
+	// Which kind of file is it?
+	if( [[[fileURLToOpen pathExtension] lowercaseString] isEqualToString:@"sch"] )
 	{
-		NSLog( @"Error reading schematic from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open schematic file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-		[alert show];
+		// Read schematic
+		EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:[fileURLToOpen path] error:&error];
+		if( error )
+		{
+			NSLog( @"Error reading schematic from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open schematic file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+
+		// Show the schematic
+		if( schematic )
+			[self.viewController openFile:schematic];
+	}
+	else if( [[[fileURLToOpen pathExtension] lowercaseString] isEqualToString:@"brd"] )
+	{
+		// Read board
+		EAGLEBoard *board = [EAGLEBoard boardFromBoardFileAtPath:[fileURLToOpen path] error:&error];
+		if( error )
+		{
+			NSLog( @"Error reading board from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open board file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+
+		// Show the schematic
+		if( board )
+			[self.viewController openFile:board];
 	}
 
 	// Delete zip file from inbox
@@ -116,16 +158,14 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 		NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
 
 	// Remove unzipped directory if present
+	/*
 	if( destinationPath )
 	{
 		[[NSFileManager defaultManager] removeItemAtPath:destinationPath error:&error];
 		if( error )
 			NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
 	}
-
-	// Show the schematic
-	if( schematic )
-		[self.viewController openSchematic:schematic];
+	*/
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -153,6 +193,58 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 	// Global tint color
 	self.window.tintColor = RGBHEX( GLOBAL_TINT_COLOR );
 	[[UISwitch appearance] setOnTintColor:RGBHEX( GLOBAL_TINT_COLOR )];
+}
+
+#pragma mark UIActionSheet delegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	// Return immediately if it was the cancel button
+	if( buttonIndex == actionSheet.cancelButtonIndex )
+		return;
+
+	// Construct path
+	NSString *fileName = [actionSheet buttonTitleAtIndex:buttonIndex];
+	NSURL *fileURLToOpen = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingString:@"unzip"] stringByAppendingPathComponent:fileName]];
+
+	// Open file
+	NSError *error = nil;
+	if( [[[fileURLToOpen pathExtension] lowercaseString] isEqualToString:@"sch"] )
+	{
+		// Read schematic
+		EAGLESchematic *schematic = [EAGLESchematic schematicFromSchematicAtPath:[fileURLToOpen path] error:&error];
+		if( error )
+		{
+			NSLog( @"Error reading schematic from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open schematic file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+
+		// Show the schematic
+		if( schematic )
+		{
+			schematic.fileName = fileName;
+			[self.viewController openFile:schematic];
+		}
+	}
+	else if( [[[fileURLToOpen pathExtension] lowercaseString] isEqualToString:@"brd"] )
+	{
+		// Read board
+		EAGLEBoard *board = [EAGLEBoard boardFromBoardFileAtPath:[fileURLToOpen path] error:&error];
+		if( error )
+		{
+			NSLog( @"Error reading board from file %@: %@", [fileURLToOpen absoluteString], [error localizedDescription] );
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not open board file. This application can only open EAGLE version 6+ files." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+
+		// Show the schematic
+		if( board )
+		{
+			board.fileName = fileName;
+			[self.viewController openFile:board];
+		}
+	}
 }
 
 
