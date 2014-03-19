@@ -114,6 +114,7 @@
 			return M_PI_2 * 3;
 
 		case Rotation_Mirror_MR0:
+			return 0;
 			[NSException raise:@"Invalid rotation" format:@"This should be mirrored and not rotated!"];
 			
 		default:

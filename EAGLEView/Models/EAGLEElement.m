@@ -188,27 +188,42 @@
 - (CGRect)boundingRect
 {
 	CGRect boundingRect = CGRectMake( [self minX], [self minY], [self maxX]-[self minX], [self maxY]-[self minY] );
+
 	CGPoint point1 = CGPointMake( [self minX] - self.point.x, [self minY] - self.point.y );
 	CGPoint point2 = CGPointMake( [self maxX] - self.point.x, [self maxY] - self.point.y );
 
 	if( [EAGLEDrawableObject rotationIsMirrored:self.rotation] )
 	{
 		// Mirrored: swap X coordinates
-		CGFloat tmp = point1.x;
-		point1.x = point2.x;
-		point2.x = tmp;
+//		CGFloat tmp = point1.x;
+//		point1.x = point2.x;
+//		point2.x = tmp;
+
+		point1.x *= -1;
+		point2.x *= -1;
+
 	}
-	else
+//	else
 	{
 		// Rotatation: rotate points
 		CGFloat alpha = [EAGLEDrawableObject radiansForRotation:self.rotation];
 		CGPoint point1R = CGPointMake( point1.x * cosf( alpha ) - point1.y * sinf( alpha ), point1.x * sinf( alpha ) + point1.y * cosf( alpha ));
 		CGPoint point2R = CGPointMake( point2.x * cosf( alpha ) - point2.y * sinf( alpha ), point2.x * sinf( alpha ) + point2.y * cosf( alpha ));
 
+		if( [EAGLEDrawableObject rotationIsMirrored:self.rotation] )
+		{
+			point1R.x *= -1;
+			point1R.y *= -1;
+
+			point2R.x *= -1;
+			point2R.y *= -1;
+		}
+
 		CGFloat minX = MIN( point1R.x, point2R.x );
 		CGFloat maxX = MAX( point1R.x, point2R.x );
 		CGFloat minY = MIN( point1R.y, point2R.y );
 		CGFloat maxY = MAX( point1R.y, point2R.y );
+
 		boundingRect = CGRectMake( minX + self.point.x, minY + self.point.y, maxX-minX, maxY-minY );
 	}
 
