@@ -16,7 +16,9 @@
 ~ Search for components
 
 
-+ Fixed highlight of MR90 parts
+√ Allow user to choose which file to open from zip archive
+√ Open board files
+√ Fixed highlight of MR90 parts (bounding rect)
 ÷ Add Google Drive
 √ iPhone: Fix layers popup in portrait and when rotating
 √ Settings switch to prevent sleep (app settings bundle)
