@@ -17,6 +17,9 @@ NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath"
 NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 
 @implementation AppDelegate
+{
+	NSMutableDictionary *_filePaths;	// Paths of acceptable files when opening a zip file
+}
 
 + (void)initialize
 {
@@ -82,11 +85,28 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 		NSString *sourceFilePath = [fileURL path];
 		destinationPath = [NSTemporaryDirectory() stringByAppendingString:@"unzip"];
 		DEBUG_LOG( @"Unzipping to %@", destinationPath );
-		[SSZipArchive unzipFileAtPath:sourceFilePath toDestination:destinationPath];
+		BOOL success = [SSZipArchive unzipFileAtPath:sourceFilePath toDestination:destinationPath];
+		if( !success )
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Error unzipping archive." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Darnit", nil];
+			[alert show];
+			goto cleanup;
+		}
 
+		// Get all files recursively
+		NSArray *files = [self recursiveFilesInDirectory:destinationPath];
+		/*
+		for( NSString *item in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:destinationPath error:nil] )
+		{
+			NSError *error = nil;
+			NSString *path = [destinationPath stringByAppendingPathComponent:item];
+			NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&error];
+			NSLog( @"Files: %@", files );
+		}
 		// Iterate files in archive
 		NSError *error;
 		NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:destinationPath error:&error];
+		 */
 		if( files == nil )
 		{
 			NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
@@ -102,21 +122,33 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 
 		// If we found only one acceptable file, we'll use that
 		if( [acceptableFiles count] == 1 )
-			fileURLToOpen = [NSURL fileURLWithPath:[destinationPath stringByAppendingPathComponent:acceptableFiles[0]]];
+			fileURLToOpen = [NSURL fileURLWithPath:[acceptableFiles firstObject]];
 
 		// If we found more then one, show action sheet and let user select
 		else if( [acceptableFiles count] > 0 )
 		{
 			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose file" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 			actionSheet.delegate = self;
-			for( NSString *file in acceptableFiles )
-				[actionSheet addButtonWithTitle:file];
+
+			// Remember file paths and add button titles
+			_filePaths = [NSMutableDictionary dictionary];
+			for( int i = 0; i < [acceptableFiles count]; i++ )
+			{
+				[actionSheet addButtonWithTitle:[acceptableFiles[ i ] lastPathComponent]];
+				_filePaths[ @(i) ] = acceptableFiles[ i ];
+			}
 
 			// Add cancel button last and set cancel btn index
 			[actionSheet addButtonWithTitle:@"Cancel"];
 			actionSheet.cancelButtonIndex = [acceptableFiles count];
 
 			[actionSheet showInView:_viewController.view];
+		}
+		else if( [acceptableFiles count] == 0 )
+		{
+			// No acceptable files: show alert
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No .brd or .sch files found in archive." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Too bad", nil];
+			[alert show];
 		}
 	}
 
@@ -153,6 +185,7 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 	}
 
 	// Delete zip file from inbox
+cleanup:
 	[[NSFileManager defaultManager] removeItemAtPath:[fileURL path] error:&error];
 	if( error )
 		NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
@@ -203,9 +236,9 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 	if( buttonIndex == actionSheet.cancelButtonIndex )
 		return;
 
-	// Construct path
-	NSString *fileName = [actionSheet buttonTitleAtIndex:buttonIndex];
-	NSURL *fileURLToOpen = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingString:@"unzip"] stringByAppendingPathComponent:fileName]];
+	// Get path
+	NSString *path = _filePaths[ @(buttonIndex) ];
+	NSURL *fileURLToOpen = [NSURL fileURLWithPath:path];
 
 	// Open file
 	NSError *error = nil;
@@ -223,7 +256,7 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 		// Show the schematic
 		if( schematic )
 		{
-			schematic.fileName = fileName;
+			schematic.fileName = [path lastPathComponent];
 			[self.viewController openFile:schematic];
 		}
 	}
@@ -241,11 +274,32 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 		// Show the schematic
 		if( board )
 		{
-			board.fileName = fileName;
+			board.fileName = [path lastPathComponent];
 			[self.viewController openFile:board];
 		}
 	}
 }
 
+- (NSArray*)recursiveFilesInDirectory:(NSString*)initialPath
+{
+	NSMutableArray *files = [NSMutableArray array];
+
+	for( NSString *item in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:initialPath error:nil] )
+	{
+		NSString *path = [initialPath stringByAppendingPathComponent:item];
+		BOOL isDirectory = NO;
+		[[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
+
+		// If it is a directory, add contents. Otherwise, add the file
+		if( isDirectory )
+			[files addObjectsFromArray:[self recursiveFilesInDirectory:path]];
+		else
+			[files addObject:path];
+	}
+
+	return [NSArray arrayWithArray:files];
+}
 
 @end
+
+
