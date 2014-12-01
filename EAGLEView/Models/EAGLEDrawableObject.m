@@ -96,6 +96,12 @@
 {
 	switch( rotation )
 	{
+		case Rotation_R30:
+			return 30*M_PI/180;
+
+		case Rotation_R35:
+			return 35*M_PI/180;
+			
 		case Rotation_R45:
 			return M_PI_4;
 
@@ -128,6 +134,10 @@
 		return Rotation_0;
 	else if( [rotationString isEqualToString:@"R45"] )
 		return Rotation_R45;
+	else if( [rotationString isEqualToString:@"R35"] )
+		return Rotation_R35;
+	else if( [rotationString isEqualToString:@"R30"] )
+		return Rotation_R30;
 	else if( [rotationString isEqualToString:@"R90"] || [rotationString isEqualToString:@"SR90"] )
 		return Rotation_R90;
 	else if( [rotationString isEqualToString:@"R225"] )

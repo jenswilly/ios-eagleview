@@ -18,6 +18,8 @@ typedef void(*PatternFncPtr)(void*,CGContextRef);
 typedef enum
 {
 	Rotation_0,
+	Rotation_R30,
+	Rotation_R35,
 	Rotation_R45,
 	Rotation_R90,
 	Rotation_R180,
