@@ -102,6 +102,8 @@
 		47EF39A218B3512400F653DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A118B3512400F653DD /* Settings.bundle */; };
 		47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */; };
 		47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A618B3A3E100F653DD /* ComponentCell.xib */; };
+		47EF3B6D1A2D28FB00744476 /* Energy Shield.brd in Resources */ = {isa = PBXBuildFile; fileRef = 47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */; };
+		47EF3B6E1A2D28FB00744476 /* Energy Shield.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */; };
 		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
 		47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC175F18D9C25C008BBDB5 /* ico_board-320.png */; };
 		47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC176018D9C25C008BBDB5 /* ico_board-64.png */; };
@@ -276,6 +278,8 @@
 		47EF39A318B39F3200F653DD /* ComponentSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSearchViewController.h; sourceTree = "<group>"; };
 		47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSearchViewController.m; sourceTree = "<group>"; };
 		47EF39A618B3A3E100F653DD /* ComponentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentCell.xib; sourceTree = "<group>"; };
+		47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Energy Shield.brd"; sourceTree = "<group>"; };
+		47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Energy Shield.sch"; sourceTree = "<group>"; };
 		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47FC175F18D9C25C008BBDB5 /* ico_board-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-320.png"; sourceTree = "<group>"; };
 		47FC176018D9C25C008BBDB5 /* ico_board-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-64.png"; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */,
+				47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */,
 				47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */,
 				475B851A189C44CD00E4ABC6 /* Thermometer.brd */,
 				4738814B1899BAF6003340FB /* Gift card.brd */,
@@ -688,6 +694,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47EF3B6E1A2D28FB00744476 /* Energy Shield.sch in Resources */,
 				4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */,
 				473902E61840DD070092D025 /* .gitignore in Resources */,
 				4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */,
@@ -703,6 +710,7 @@
 				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
+				47EF3B6D1A2D28FB00744476 /* Energy Shield.brd in Resources */,
 				47EF39A218B3512400F653DD /* Settings.bundle in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
@@ -907,7 +915,6 @@
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03905EEF-CF9D-46A1-9FC8-0EB352FB6449";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -931,7 +938,6 @@
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7724DCF8-0D4F-4203-8990-B46DA4883EF9";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
