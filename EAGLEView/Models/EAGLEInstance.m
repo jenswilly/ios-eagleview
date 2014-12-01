@@ -128,6 +128,11 @@
 	return _part;
 }
 
+- (NSString *)name
+{
+	return [self part].name;
+}
+
 - (EAGLELibrary*)library
 {
 	if( _library == nil )

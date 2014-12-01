@@ -12,6 +12,8 @@
 #import "EAGLEBoard.h"
 #import "EAGLESchematic.h"
 #import "EAGLEElement.h"
+#import "EAGLEInstance.h"
+#import "EAGLEPart.h"
 
 #define DATAARRAY_IN_USE (tableView == self.searchDisplayController.searchResultsTableView ? _filteredComponents : _allComponents)
 
@@ -28,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+	_selectedParts = [NSMutableArray array];
 
 	[self.tableView registerNib:[UINib nibWithNibName:@"ComponentCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 	self.tableView.backgroundColor = [UIColor whiteColor];
@@ -47,7 +51,10 @@
 		_allComponents = [((EAGLEBoard*)self.fileView.file).elements sortedArrayUsingDescriptors:@[ sortByName ]];
 	}
 	else if( [_fileView.file isKindOfClass:[EAGLESchematic class]] )
-		[NSException raise:@"Not implemented" format:nil];	///
+	{
+		NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+		_allComponents = [((EAGLESchematic*)self.fileView.file).instances sortedArrayUsingDescriptors:@[ sortByName ]];
+	}
 
 	[self.tableView reloadData];
 }
@@ -71,36 +78,53 @@
 	{
 		cell.textLabel.text = ((EAGLEElement*)object).name;
 		cell.detailTextLabel.text = ((EAGLEElement*)object).value;
-		cell.selected = ([self.selectedParts containsObject:object]);
+//		cell.selected = ([self.electedParts containsObject:object]);
 		cell.accessoryType = ( [self.selectedParts containsObject:object] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	}
-    
+	else if( [object isKindOfClass:[EAGLEInstance class]] )
+	{
+		cell.textLabel.text = [((EAGLEInstance*)object) name];
+		cell.detailTextLabel.text = [(EAGLEInstance*)object valueText];
+//		cell.selected = ([self.selectedParts containsObject:object]);
+		cell.accessoryType = ( [self.selectedParts containsObject:object] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+	}
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self updateWithSelectedElementsFromTableView:tableView];
+//	[self updateWithSelectedElementsFromTableView:tableView];
+//	[tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self updateWithSelectedElementsFromTableView:tableView];
+	id object = DATAARRAY_IN_USE[ indexPath.row ];
+
+	// Select or deselect?
+	if( [self.selectedParts containsObject:object] )
+		// Already selected: deselect
+		[_selectedParts removeObject:object];
+	else
+		// Select it
+		[_selectedParts addObject:object];
+
+	self.fileView.highlightedElements = _selectedParts;
+	[tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)updateWithSelectedElementsFromTableView:(UITableView*)tableView
+- (void)updateSelectedElements
 {
-	if( [self.fileView.file isKindOfClass:[EAGLEBoard class]] )
-	{
-		// Convert selected index paths to an index set
-		NSArray *selectedIndexes = [tableView indexPathsForSelectedRows];
-		NSMutableIndexSet *selectedIndexSet = [NSMutableIndexSet indexSet];
-		for( NSIndexPath *indexPath in selectedIndexes )
-			[selectedIndexSet addIndex:indexPath.row];
-
-		NSArray *selectedElements = [DATAARRAY_IN_USE objectsAtIndexes:selectedIndexSet];
-		self.fileView.highlightedElements = selectedElements;
-	}
+	// Convert selected index paths to an index set
+//	NSArray *selectedIndexes = [tableView indexPathsForSelectedRows];
+//	NSMutableIndexSet *selectedIndexSet = [NSMutableIndexSet indexSet];
+//	for( NSIndexPath *indexPath in selectedIndexes )
+//		[selectedIndexSet addIndex:indexPath.row];
+//
+//	NSArray *selectedElements = [DATAARRAY_IN_USE objectsAtIndexes:selectedIndexSet];
+//	self.fileView.highlightedElements = _selectedParts;
+//	self.selectedParts = selectedElements;
 }
 
 #pragma mark - Search methods

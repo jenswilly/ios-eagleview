@@ -219,7 +219,8 @@
 {
 	ComponentSearchViewController *componentSearchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ComponentSearchViewController"];
 	componentSearchViewController.fileView = self.fileView;
-	componentSearchViewController.selectedParts = self.fileView.highlightedElements;
+	if( [self.fileView.highlightedElements count] > 0 )
+		componentSearchViewController.selectedParts = [self.fileView.highlightedElements mutableCopy];
 
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

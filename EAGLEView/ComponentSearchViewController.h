@@ -12,6 +12,6 @@
 @interface ComponentSearchViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) EAGLEFileView *fileView;
-@property (strong) NSArray *selectedParts;
+@property (strong) NSMutableArray *selectedParts;
 
 @end

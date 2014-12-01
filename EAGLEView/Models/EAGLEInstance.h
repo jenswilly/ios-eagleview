@@ -9,6 +9,7 @@
 #import "EAGLEObject.h"
 #import "EAGLEDrawableObject.h"
 @class EAGLESymbol;
+@class EAGLEPart;
 
 @interface EAGLEInstance : EAGLEObject <EAGLEDrawable>
 
@@ -20,6 +21,8 @@
 @property (readonly, strong) NSDictionary *smashedAttributes;
 
 - (EAGLESymbol*)symbol;
+- (EAGLEPart*)part;
+- (NSString*)name;	// Return the part's name
 - (NSString*)valueText;
 - (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber;
 
