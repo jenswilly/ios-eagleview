@@ -74,8 +74,10 @@
 		// Set texts for placeholders on the package
 		_package.textsForPlaceholders = @{ @">NAME": _name,
 										   @">Name": _name,
+										   @">name": _name,
 										   @">VALUE": _value,
 										   @">Value": _value,
+										   @">value": _value,
 										   @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
 										   @">LAST_DATE_TIME": [self.file dateString] };
 

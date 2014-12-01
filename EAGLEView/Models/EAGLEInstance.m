@@ -24,6 +24,7 @@
 	EAGLELibrary *_library;
 	EAGLEGate *_gate;
 	NSString *_valueText;
+	NSDictionary *_textsForPlaceholders;	// Placeholder values for this instance
 }
 
 - (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
@@ -74,6 +75,16 @@
 			}
 			_smashedAttributes = [NSDictionary dictionaryWithDictionary:tmpSmashedAttributes];
 		}
+
+		// Get texts for placeholders. These will be set on the symbol when drawing.
+		_textsForPlaceholders = @{ @">NAME": [self part].name,
+										  @">Name": [self part].name,
+										  @">name": [self part].name,
+										  @">VALUE": [self valueText],
+										  @">Value": [self valueText],
+										  @">value": [self valueText],
+										  @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
+										  @">LAST_DATE_TIME": [self.file dateString] };
 
 		// Rotation
 		NSString *rotString = [[element attributeForName:@"rot"] stringValue];
@@ -148,12 +159,16 @@
 	{
 		_symbol = [[self library] symbolWithName:[self gate].symbol_name];
 
+		/*
 		_symbol.textsForPlaceholders = @{ @">NAME": [self part].name,
 										 @">Name": [self part].name,
+										  @">name": [self part].name,
 										 @">VALUE": [self valueText],
 										 @">Value": [self valueText],
+										  @">value": [self valueText],
 										 @">DRAWING_NAME": (self.file.fileName ? self.file.fileName : @""),
 										 @">LAST_DATE_TIME": [self.file dateString] };
+		 */
 
 		// Set list of smashed attributes which should _not_ be drawn by the symbol
 		_symbol.placeholdersToSkip = [_smashedAttributes allKeys];
@@ -169,6 +184,8 @@
 	CGContextTranslateCTM( context, self.point.x, self.point.y );	// Translate so origin point is 0,0
 	[EAGLEDrawableObject transformContext:context forRotation:self.rotation];
 
+	// Set symbol's placeholder texts before drawing. The same symbol might be drawn for several instances so we need to set placeholder texts now.
+	[self symbol].textsForPlaceholders = _textsForPlaceholders;
 	[[self symbol] drawAtPoint:CGPointZero context:context flipTexts:(self.rotation == Rotation_R180 || self.rotation == Rotation_R270 ) isMirrored:[EAGLEDrawableObject rotationIsMirrored:self.rotation] smashed:self.smashed layerNumber:layerNumber];		// Draw at point 0,0 since coordinate system has been moved to point
 
 	CGContextRestoreGState( context );
