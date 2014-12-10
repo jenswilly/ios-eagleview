@@ -19,6 +19,7 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 @implementation AppDelegate
 {
 	NSMutableDictionary *_filePaths;	// Paths of acceptable files when opening a zip file
+	NSString *_unzipDirectoryPath;		// Path of unzip directory
 }
 
 + (void)initialize
@@ -69,7 +70,6 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 - (void)openFileURL:(NSURL*)fileURL
 {
 	NSURL *fileURLToOpen = nil;
-	NSString *destinationPath = nil;
 	NSError *error = nil;
 
 	// Is it a .sch file?
@@ -83,9 +83,9 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 	{
 		// It is a zip file: extract and see if we can find a .sch file in the archive
 		NSString *sourceFilePath = [fileURL path];
-		destinationPath = [NSTemporaryDirectory() stringByAppendingString:@"unzip"];
-		DEBUG_LOG( @"Unzipping to %@", destinationPath );
-		BOOL success = [SSZipArchive unzipFileAtPath:sourceFilePath toDestination:destinationPath];
+		_unzipDirectoryPath = [NSTemporaryDirectory() stringByAppendingString:@"unzip"];
+		DEBUG_LOG( @"Unzipping to %@", _unzipDirectoryPath );
+		BOOL success = [SSZipArchive unzipFileAtPath:sourceFilePath toDestination:_unzipDirectoryPath];
 		if( !success )
 		{
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Error unzipping archive." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Darnit", nil];
@@ -94,19 +94,7 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 		}
 
 		// Get all files recursively
-		NSArray *files = [self recursiveFilesInDirectory:destinationPath];
-		/*
-		for( NSString *item in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:destinationPath error:nil] )
-		{
-			NSError *error = nil;
-			NSString *path = [destinationPath stringByAppendingPathComponent:item];
-			NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&error];
-			NSLog( @"Files: %@", files );
-		}
-		// Iterate files in archive
-		NSError *error;
-		NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:destinationPath error:&error];
-		 */
+		NSArray *files = [self recursiveFilesInDirectory:_unzipDirectoryPath];
 		if( files == nil )
 		{
 			NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
@@ -184,21 +172,21 @@ NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
 			[self.viewController openFile:board];
 	}
 
+	// Remove unzipped directory if present _and_ if we have a file to open
+	if( _unzipDirectoryPath && fileURLToOpen )
+	{
+		[[NSFileManager defaultManager] removeItemAtPath:_unzipDirectoryPath error:&error];
+		if( error )
+			NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
+		_unzipDirectoryPath = nil;
+	}
+
 	// Delete zip file from inbox
 cleanup:
 	[[NSFileManager defaultManager] removeItemAtPath:[fileURL path] error:&error];
 	if( error )
 		NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
 
-	// Remove unzipped directory if present
-	/*
-	if( destinationPath )
-	{
-		[[NSFileManager defaultManager] removeItemAtPath:destinationPath error:&error];
-		if( error )
-			NSLog( @"Error removing file from inbox %@: %@", [fileURL absoluteString], [error localizedDescription] );
-	}
-	*/
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -277,6 +265,15 @@ cleanup:
 			board.fileName = [path lastPathComponent];
 			[self.viewController openFile:board];
 		}
+	}
+
+	// Remove unzipped directory if present
+	if( _unzipDirectoryPath )
+	{
+		[[NSFileManager defaultManager] removeItemAtPath:_unzipDirectoryPath error:&error];
+		if( error )
+			NSLog( @"Error removing file from unzip directory: %@", [error localizedDescription] );
+		_unzipDirectoryPath = nil;
 	}
 }
 
