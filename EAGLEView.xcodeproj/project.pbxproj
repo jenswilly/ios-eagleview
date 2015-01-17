@@ -99,6 +99,9 @@
 		47D3CD081844C17100F58240 /* EAGLEDrawableJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD071844C17100F58240 /* EAGLEDrawableJunction.m */; };
 		47D3CD0B1844C46D00F58240 /* EAGLEDrawableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */; };
 		47D3CD0E1845375B00F58240 /* EAGLEDrawableArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */; };
+		47EB3A091A6B09FE00FCCBFA /* #2014-003_Powerpack.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47EB3A081A6B09FE00FCCBFA /* #2014-003_Powerpack.sch */; };
+		47EB3A0C1A6B0BB100FCCBFA /* EAGLESheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EB3A0B1A6B0BB100FCCBFA /* EAGLESheet.m */; };
+		47EB3A0F1A6B136100FCCBFA /* EAGLEModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EB3A0E1A6B136100FCCBFA /* EAGLEModule.m */; };
 		47EF39A218B3512400F653DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A118B3512400F653DD /* Settings.bundle */; };
 		47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */; };
 		47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A618B3A3E100F653DD /* ComponentCell.xib */; };
@@ -274,6 +277,11 @@
 		47D3CD0A1844C46D00F58240 /* EAGLEDrawableCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableCircle.m; sourceTree = "<group>"; };
 		47D3CD0C1845375B00F58240 /* EAGLEDrawableArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableArc.h; sourceTree = "<group>"; };
 		47D3CD0D1845375B00F58240 /* EAGLEDrawableArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableArc.m; sourceTree = "<group>"; };
+		47EB3A081A6B09FE00FCCBFA /* #2014-003_Powerpack.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "#2014-003_Powerpack.sch"; path = "../../../../Dropbox (Personal)/Electronics/Projects/#2014-003 Powerpack/#2014-003_Powerpack.sch"; sourceTree = "<group>"; };
+		47EB3A0A1A6B0BB100FCCBFA /* EAGLESheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLESheet.h; sourceTree = "<group>"; };
+		47EB3A0B1A6B0BB100FCCBFA /* EAGLESheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLESheet.m; sourceTree = "<group>"; };
+		47EB3A0D1A6B136100FCCBFA /* EAGLEModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEModule.h; sourceTree = "<group>"; };
+		47EB3A0E1A6B136100FCCBFA /* EAGLEModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEModule.m; sourceTree = "<group>"; };
 		47EF39A118B3512400F653DD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		47EF39A318B39F3200F653DD /* ComponentSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSearchViewController.h; sourceTree = "<group>"; };
 		47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSearchViewController.m; sourceTree = "<group>"; };
@@ -434,6 +442,10 @@
 				47D3C309189947DD00BB4E33 /* EAGLESignal.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
+				47EB3A0A1A6B0BB100FCCBFA /* EAGLESheet.h */,
+				47EB3A0B1A6B0BB100FCCBFA /* EAGLESheet.m */,
+				47EB3A0D1A6B136100FCCBFA /* EAGLEModule.h */,
+				47EB3A0E1A6B136100FCCBFA /* EAGLEModule.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -460,6 +472,7 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47EB3A081A6B09FE00FCCBFA /* #2014-003_Powerpack.sch */,
 				47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */,
 				47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */,
 				47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */,
@@ -717,6 +730,7 @@
 				4738814D1899BAF6003340FB /* Gift card.brd in Resources */,
 				473902E71840DD070092D025 /* GP App Icon.xcassets in Resources */,
 				475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */,
+				47EB3A091A6B09FE00FCCBFA /* #2014-003_Powerpack.sch in Resources */,
 				47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */,
 				47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */,
 				47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */,
@@ -742,6 +756,7 @@
 				4739033B1840E2590092D025 /* DDXMLDocument.m in Sources */,
 				473902EB1840DD070092D025 /* GPFileCache.m in Sources */,
 				47D3C30118983ED300BB4E33 /* EAGLEDrawablePad.m in Sources */,
+				47EB3A0F1A6B136100FCCBFA /* EAGLEModule.m in Sources */,
 				4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */,
 				47C5ABC51857243800A1D530 /* zip.c in Sources */,
 				4739029A1840D9930092D025 /* AppDelegate.m in Sources */,
@@ -756,6 +771,7 @@
 				4782C785189701FB00704F10 /* EAGLEElement.m in Sources */,
 				473902E91840DD070092D025 /* GPAsyncURLConnection.m in Sources */,
 				4783686E1893F33A0031977E /* EAGLEInstanceView.m in Sources */,
+				47EB3A0C1A6B0BB100FCCBFA /* EAGLESheet.m in Sources */,
 				473902EF1840DD070092D025 /* GPPods.m in Sources */,
 				47C5ABC31857243800A1D530 /* mztools.c in Sources */,
 				4739035118411D7E0092D025 /* EAGLEDrawableWire.m in Sources */,

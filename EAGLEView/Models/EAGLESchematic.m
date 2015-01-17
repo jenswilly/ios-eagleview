@@ -15,8 +15,8 @@
 #import "EAGLENet.h"
 #import "EAGLEDrawableObject.h"
 #import "EAGLESymbol.h"
-
-#define ORDERED_SCHEMATIC_LAYERS @[ @22, @24, @26, @28, @30, @32, @34, @36, @38, @40, @42, @52, @16, @1, @21, @23, @25, @27, @29, @31, @33, @35, @37, @39, @41, @51 ]
+#import "EAGLESheet.h"
+#import "EAGLEModule.h"
 
 @implementation EAGLESchematic
 
@@ -69,129 +69,35 @@
 {
 	if( (self = [super initFromXMLElement:element]) )
 	{
+		_currentModuleIndex = 0;	// Start at top-level module
 		NSError *error = nil;
 
-		// Parts
-		NSArray *elements = [element nodesForXPath:@"parts/part" error:&error];
+		// Modules. Start with top-level module
+		NSMutableArray *tmpElements = [[NSMutableArray alloc] init];
+		EAGLEModule *module = [[EAGLEModule alloc] initFromXMLElement:element schematic:self name:@"Top-level"];
+		if( module )
+			[tmpElements addObject:module];
+
+		// Other modules
+		NSArray *elements = [element nodesForXPath:@"modules/module" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		NSMutableArray *tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEPart *part = [[EAGLEPart alloc] initFromXMLElement:childElement inFile:self];
-			if( part )
-				[tmpElements addObject:part];
+			EAGLEModule *object = [[EAGLEModule alloc] initFromXMLElement:childElement schematic:self name:nil];	// Pass nil as name to use value from attribute
+			if( object )
+				[tmpElements addObject:object];
 		}
-		_parts = [NSArray arrayWithArray:tmpElements];
 
-		// Instances
-		elements = [element nodesForXPath:@"sheets/sheet/instances/instance" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			EAGLEInstance *instance = [[EAGLEInstance alloc] initFromXMLElement:childElement inFile:self];
-			if( instance )
-				[tmpElements addObject:instance];
-		}
-		_instances = [NSArray arrayWithArray:tmpElements];
-
-		// Nets
-		elements = [element nodesForXPath:@"sheets/sheet/nets/net" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inFile:self];
-			if( net )
-				[tmpElements addObject:net];
-		}
-		_nets = [NSArray arrayWithArray:tmpElements];
-
-		// Busses
-		elements = [element nodesForXPath:@"sheets/sheet/busses/bus" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			EAGLENet *net = [[EAGLENet alloc] initFromXMLElement:childElement inFile:self];
-			if( net )
-				[tmpElements addObject:net];
-		}
-		_busses = [NSArray arrayWithArray:tmpElements];
-
-		// Plain
-		elements = [element nodesForXPath:@"sheets/sheet/plain/*" error:&error];
-		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
-		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
-		for( DDXMLElement *childElement in elements )
-		{
-			// Drawable
-			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inFile:self];
-			if( drawable )
-				[tmpElements addObject:drawable];
-		}
-		_plainObjects = [NSArray arrayWithArray:tmpElements];
-
-
-		///
-		// Extract drawables for each layer
-		NSMutableDictionary *tmpDrawablesForLayers = [NSMutableDictionary dictionary];
-
-		for( int layer = 0; layer < 255; layer++ )
-		{
-			BOOL hasInstanceDrawables = NO;
-
-			NSMutableArray *tmpDrawablesForLayer = [NSMutableArray array];
-			NSPredicate *layerPredicate = [NSPredicate predicateWithFormat:@"layerNumber = %@", @( layer )];
-
-			// Nets contain wires, labels and junctions
-			for( EAGLENet *net in _nets )
-			{
-				[tmpDrawablesForLayer addObjectsFromArray:[net.wires filteredArrayUsingPredicate:layerPredicate]];
-				[tmpDrawablesForLayer addObjectsFromArray:[net.junctions filteredArrayUsingPredicate:layerPredicate]];
-				[tmpDrawablesForLayer addObjectsFromArray:[net.labels filteredArrayUsingPredicate:layerPredicate]];
-			}
-
-			// Busses are also nets and contain wires, labels and junctions
-			for( EAGLENet *bus in _busses )
-			{
-				[tmpDrawablesForLayer addObjectsFromArray:[bus.wires filteredArrayUsingPredicate:layerPredicate]];
-				[tmpDrawablesForLayer addObjectsFromArray:[bus.junctions filteredArrayUsingPredicate:layerPredicate]];
-				[tmpDrawablesForLayer addObjectsFromArray:[bus.labels filteredArrayUsingPredicate:layerPredicate]];
-			}
-
-			// Instances
-			for( EAGLEInstance *instance in _instances )
-			{
-				// If any instance has components or smashed attributes on this layer we'll set the Boolean so we are sure to add an entry in the dictionary so we know what layer are "active"
-
-				if( [[instance.symbol.components filteredArrayUsingPredicate:layerPredicate] count] > 0 ||
-				   [[[instance.smashedAttributes allValues] filteredArrayUsingPredicate:layerPredicate] count] > 0 )
-					hasInstanceDrawables = YES;
-			}
-
-			// Plain objects
-			[tmpDrawablesForLayer addObjectsFromArray:[_plainObjects filteredArrayUsingPredicate:layerPredicate]];
-
-			// Add objects if there are any (no need to have a bunch of empty arrays)
-			if( [tmpDrawablesForLayer count] > 0 || hasInstanceDrawables )
-				tmpDrawablesForLayers[ @(layer) ] = [NSArray arrayWithArray:tmpDrawablesForLayer];
-		}
-		_drawablesInLayers = [NSDictionary dictionaryWithDictionary:tmpDrawablesForLayers];
-
-		// Sort layer keys. The .orderedLayerKeys now contains an ordered list of used layer numbers.
-		NSArray *keysForOrdering = ORDERED_SCHEMATIC_LAYERS;	// First bottom layers, then top layers
-		_orderedLayerKeys = [[_drawablesInLayers allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-
-			// If obj1 < obj2, then ascending
-			if( [keysForOrdering indexOfObject:obj1] < [keysForOrdering indexOfObject:obj2] )
-				return NSOrderedAscending;
-			else
-				return NSOrderedDescending;
-		}];
+		_modules = [NSArray arrayWithArray:tmpElements];
+		DEBUG_LOG( @"Loaded %d module(s).", (int)[_modules count] );
 	}
 
 	return self;
+}
+
+- (EAGLEModule*)activeModule
+{
+	return self.modules[ _currentModuleIndex ];
 }
 
 - (NSString *)description
@@ -199,14 +105,50 @@
 	return [NSString stringWithFormat:@"Schematic: libraries: %@, parts: %@, %d instances, %d nets, %d busses", self.libraries, self.parts, (int)[self.instances count], (int)[self.nets count], (int)[self.busses count]];
 }
 
+#pragma mark - Proxy methods from current sheet
+/* All these methods/properties are expected on an EAGLEFile object.
+ * We simply call the corresponding method/property on the current sheet.
+ */
+
 - (EAGLEPart *)partWithName:(NSString *)name
 {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
-	NSArray *found = [self.parts filteredArrayUsingPredicate:predicate];
-	if( [found count] > 0 )
-		return found[ 0 ];
-	else
-		return nil;
+	// Pass on to active module
+	return [[self activeModule] partWithName:name];
+}
+
+- (NSArray *)parts
+{
+	return [self activeModule].parts;
+}
+
+- (NSArray *)instances
+{
+	return [self activeModule].activeSheet.instances;
+}
+
+- (NSArray *)nets
+{
+	return [self activeModule].activeSheet.nets;
+}
+
+- (NSArray *)busses
+{
+	return [self activeModule].activeSheet.busses;
+}
+
+- (NSArray *)plainObjects
+{
+	return [self activeModule].activeSheet.plainObjects;
+}
+
+- (NSDictionary *)drawablesInLayers
+{
+	return [self activeModule].activeSheet.drawablesInLayers;
+}
+
+- (NSArray *)orderedLayerKeys
+{
+	return [self activeModule].activeSheet.orderedLayerKeys;
 }
 
 @end

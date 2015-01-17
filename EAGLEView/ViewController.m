@@ -47,7 +47,7 @@
     [super viewDidLoad];
 
 	NSError *error = nil;
-	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"Energy Shield" error:&error];
+	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
 //	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
@@ -234,6 +234,15 @@
 	}
 	else
 		[NSException raise:@"Not implemented" format:nil];
+}
+
+- (IBAction)sheetsAction:(id)sender
+{
+	EAGLESchematic *schematic = (EAGLESchematic*)self.fileView.file;
+	schematic.currentModuleIndex = 1;	/// TEMP: select module 1. This can fail in soo many ways...
+
+	// Redraw
+	[self.fileView setNeedsDisplay];
 }
 
 - (IBAction)showLayersAction:(UIBarButtonItem*)sender

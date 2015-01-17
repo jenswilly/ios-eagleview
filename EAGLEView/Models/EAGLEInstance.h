@@ -10,6 +10,7 @@
 #import "EAGLEDrawableObject.h"
 @class EAGLESymbol;
 @class EAGLEPart;
+@class EAGLEModule;
 
 @interface EAGLEInstance : EAGLEObject <EAGLEDrawable>
 
@@ -20,6 +21,7 @@
 @property (readonly) Rotation rotation;
 @property (readonly, strong) NSDictionary *smashedAttributes;
 
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file module:(EAGLEModule*)module;
 - (EAGLESymbol*)symbol;
 - (EAGLEPart*)part;
 - (NSString*)name;	// Return the part's name

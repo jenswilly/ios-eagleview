@@ -15,6 +15,7 @@
 #import "EAGLEGate.h"
 #import "EAGLESymbol.h"
 #import "EAGLEAttribute.h"
+#import "EAGLEModule.h"
 
 @implementation EAGLEInstance
 {
@@ -25,12 +26,14 @@
 	EAGLEGate *_gate;
 	NSString *_valueText;
 	NSDictionary *_textsForPlaceholders;	// Placeholder values for this instance
+	EAGLEModule *_module;
 }
 
-- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file
+- (id)initFromXMLElement:(DDXMLElement *)element inFile:(EAGLEFile *)file module:(EAGLEModule*)module
 {
 	if( (self = [super initFromXMLElement:element inFile:file]) )
 	{
+		_module = module;
 		_part_name = [[element attributeForName:@"part"] stringValue];
 		_gate_name = [[element attributeForName:@"gate"] stringValue];
 
@@ -123,7 +126,12 @@
 - (EAGLEPart*)part
 {
 	if( _part == nil )
-		_part = [self.schematic partWithName:self.part_name];
+	{
+		if( _module )
+			_part = [_module partWithName:self.part_name];
+		else
+			_part = [self.schematic partWithName:self.part_name];
+	}
 
 	return _part;
 }
