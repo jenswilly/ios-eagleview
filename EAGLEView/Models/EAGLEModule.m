@@ -14,17 +14,14 @@
 
 @implementation EAGLEModule
 
-- (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic name:(NSString*)name
+- (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic
 {
 	if( (self = [super init] ))
 	{
 		NSError *error = nil;
 
-		// Set name. If specified as parameter, use that. Otherwise, see if we have a "name" attribute. If might still be nil though.
-		if( name )
-			_name = name;
-		else
-			_name = [[element attributeForName:@"name"] stringValue];
+		// Set name from "name" property. If might still be nil though.
+		_name = [[element attributeForName:@"name"] stringValue];
 
 		// Parts
 		NSArray *elements = [element nodesForXPath:@"parts/part" error:&error];

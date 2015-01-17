@@ -74,7 +74,7 @@
 
 		// Modules. Start with top-level module
 		NSMutableArray *tmpElements = [[NSMutableArray alloc] init];
-		EAGLEModule *module = [[EAGLEModule alloc] initFromXMLElement:element schematic:self name:@"Top-level"];
+		EAGLEModule *module = [[EAGLEModule alloc] initFromXMLElement:element schematic:self];
 		if( module )
 			[tmpElements addObject:module];
 
@@ -83,7 +83,7 @@
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEModule *object = [[EAGLEModule alloc] initFromXMLElement:childElement schematic:self name:nil];	// Pass nil as name to use value from attribute
+			EAGLEModule *object = [[EAGLEModule alloc] initFromXMLElement:childElement schematic:self];
 			if( object )
 				[tmpElements addObject:object];
 		}

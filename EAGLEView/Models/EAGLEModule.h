@@ -19,7 +19,7 @@
 @property (readonly, strong) NSArray *sheets;			// Contains EAGLEModule objects
 @property (readonly, weak) EAGLESheet *activeSheet;		// The currently selected sheet
 
-- (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic name:(NSString*)name;
+- (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic;
 - (EAGLEPart*)partWithName:(NSString *)name;
 
 @end

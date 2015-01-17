@@ -10,6 +10,7 @@
 @class EAGLEPart;
 @class EAGLELibrary;
 @class EAGLENet;
+@class EAGLEModule;
 
 #define ORDERED_SCHEMATIC_LAYERS @[ @22, @24, @26, @28, @30, @32, @34, @36, @38, @40, @42, @52, @16, @1, @21, @23, @25, @27, @29, @31, @33, @35, @37, @39, @41, @51 ]
 
@@ -26,5 +27,6 @@
 + (instancetype)schematicFromSchematicFile:(NSString *)schematicFileName error:(NSError *__autoreleasing *)error;
 + (instancetype)schematicFromSchematicAtPath:(NSString*)path error:(NSError *__autoreleasing *)error;
 - (EAGLEPart*)partWithName:(NSString*)name;
+- (EAGLEModule*)activeModule;
 
 @end
