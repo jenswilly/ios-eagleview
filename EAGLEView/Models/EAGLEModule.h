@@ -15,6 +15,8 @@
 @interface EAGLEModule : NSObject
 
 @property (copy) NSString *name;
+@property (readonly) CGFloat dx;	// Width (why width and height are not set on the module instance I don't know...)
+@property (readonly) CGFloat dy;	// Height
 @property (readonly, strong) NSArray *parts;			// Module: Contains EAGLEPart objects
 @property (readonly, strong) NSArray *sheets;			// Contains EAGLEModule objects
 @property (readonly, weak) EAGLESheet *activeSheet;		// The currently selected sheet

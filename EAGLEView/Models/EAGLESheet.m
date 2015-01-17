@@ -15,11 +15,9 @@
 #import "EAGLEDrawableObject.h"
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
+#import "EAGLEDrawableModuleInstance.h"
 
 @implementation EAGLESheet
-{
-	EAGLEModule *_module;
-}
 
 - (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic module:(EAGLEModule*)module
 {
@@ -77,8 +75,6 @@
 		}
 		_plainObjects = [NSArray arrayWithArray:tmpElements];
 
-
-		///
 		// Extract drawables for each layer
 		NSMutableDictionary *tmpDrawablesForLayers = [NSMutableDictionary dictionary];
 
@@ -122,6 +118,25 @@
 			if( [tmpDrawablesForLayer count] > 0 || hasInstanceDrawables )
 				tmpDrawablesForLayers[ @(layer) ] = [NSArray arrayWithArray:tmpDrawablesForLayer];
 		}
+
+		// Module instances. These do not have layer specified but are hardcoded to layer 90
+		elements = [element nodesForXPath:@"moduleinsts/moduleinst" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			// Drawable
+			EAGLEDrawableObject *drawable = [EAGLEDrawableObject drawableFromXMLElement:childElement inFile:schematic];
+			if( drawable )
+				[tmpElements addObject:drawable];
+		}
+		if( [tmpElements count] > 0 )
+		{
+			_moduleInstances = [NSArray arrayWithArray:tmpElements];
+			tmpDrawablesForLayers[ MODULE_INSTANCE_LAYER ] = _moduleInstances;
+		}
+
+		// Set dictionary of all drawables
 		_drawablesInLayers = [NSDictionary dictionaryWithDictionary:tmpDrawablesForLayers];
 
 		// Sort layer keys. The .orderedLayerKeys now contains an ordered list of used layer numbers.

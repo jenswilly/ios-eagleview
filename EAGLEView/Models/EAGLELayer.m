@@ -60,11 +60,11 @@
 		case 4:	// Symbols
 			return RGB( 165, 75, 75 );
 
-		case 5:
-			RGBHEX( 0x8d008f );
+		case 5: // Module instances
+			return RGB( 148, 46, 150 );
 
 		case 6:
-			RGBHEX( 0x8d9015 );
+			return RGBHEX( 0x8d9015 );
 
 		case 7: // Values
 			return RGB( 165, 165, 165 );

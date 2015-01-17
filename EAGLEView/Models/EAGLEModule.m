@@ -12,6 +12,10 @@
 #import "EAGLESheet.h"
 #import "EAGLEPart.h"
 
+// Default width and height
+const CGFloat kModuleDefaultWidth = 30.48;
+const CGFloat kModuleDefaultHeight = 20.32;
+
 @implementation EAGLEModule
 
 - (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic
@@ -22,6 +26,15 @@
 
 		// Set name from "name" property. If might still be nil though.
 		_name = [[element attributeForName:@"name"] stringValue];
+
+		// Get height and width from properties
+		_dx = [[[element attributeForName:@"dx"] stringValue] floatValue];
+		if( _dx == 0 )
+			_dx = kModuleDefaultWidth;
+
+		_dy = [[[element attributeForName:@"dy"] stringValue] floatValue];
+		if( _dy == 0 )
+			_dy = kModuleDefaultHeight;
 
 		// Parts
 		NSArray *elements = [element nodesForXPath:@"parts/part" error:&error];
@@ -50,6 +63,11 @@
 
 	}
 	return self;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Module %@", self.name];
 }
 
 - (EAGLEPart *)partWithName:(NSString *)name

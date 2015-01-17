@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 47112069184E009D00BAB3B2 /* MBProgressHUD.m */; };
 		471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 471E51EE18959BE700FC3B95 /* Default-568h@2x.png */; };
+		4736ABC91A6B1F970055F863 /* EAGLEDrawableModuleInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */; };
 		4738814D1899BAF6003340FB /* Gift card.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4738814B1899BAF6003340FB /* Gift card.brd */; };
 		4738814E1899BAF6003340FB /* Gift card.sch in Resources */ = {isa = PBXBuildFile; fileRef = 4738814C1899BAF6003340FB /* Gift card.sch */; };
 		4739028A1840D9930092D025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473902891840D9930092D025 /* Foundation.framework */; };
@@ -116,6 +117,8 @@
 		47112068184E009D00BAB3B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		47112069184E009D00BAB3B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		471E51EE18959BE700FC3B95 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4736ABC71A6B1F970055F863 /* EAGLEDrawableModuleInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableModuleInstance.h; sourceTree = "<group>"; };
+		4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableModuleInstance.m; sourceTree = "<group>"; };
 		4738814B1899BAF6003340FB /* Gift card.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.brd"; sourceTree = "<group>"; };
 		4738814C1899BAF6003340FB /* Gift card.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.sch"; sourceTree = "<group>"; };
 		473902861840D9930092D025 /* EAGLEView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAGLEView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -446,6 +449,8 @@
 				47D3C309189947DD00BB4E33 /* EAGLESignal.m */,
 				4739034918411D1A0092D025 /* EAGLESymbol.h */,
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
+				4736ABC71A6B1F970055F863 /* EAGLEDrawableModuleInstance.h */,
+				4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -803,6 +808,7 @@
 				4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */,
 				473902ED1840DD070092D025 /* GPImageDownloadQueue.m in Sources */,
 				47A5D9AE18A190E300F2D920 /* EAGLEDrawableHole.m in Sources */,
+				4736ABC91A6B1F970055F863 /* EAGLEDrawableModuleInstance.m in Sources */,
 				473903421840E4F10092D025 /* EAGLELayer.m in Sources */,
 				4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */,
 				473902F21840DD070092D025 /* GPStorageRoomManagedObject.m in Sources */,

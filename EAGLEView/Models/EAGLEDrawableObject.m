@@ -21,6 +21,7 @@
 #import "EAGLEDrawableSmd.h"
 #import "EAGLEDrawableVia.h"
 #import "EAGLEDrawableHole.h"
+#import "EAGLEDrawableModuleInstance.h"
 
 #import "DDXML.h"
 
@@ -77,6 +78,9 @@
 
 	if( [elementName isEqualToString:@"hole"] )
 		return [[EAGLEDrawableHole alloc] initFromXMLElement:element inFile:file];
+
+	if( [elementName isEqualToString:@"moduleinst"] )
+		return [[EAGLEDrawableModuleInstance alloc] initFromXMLElement:element inFile:file];
 
 	if( [elementName isEqualToString:@"description"] )
 		// Ignore description elements
