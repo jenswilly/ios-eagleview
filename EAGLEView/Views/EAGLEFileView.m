@@ -16,6 +16,9 @@
 #import "EAGLEBoard.h"
 #import "EAGLESignal.h"
 #import "EAGLEElement.h"
+#import "EAGLEDrawableModuleInstance.h"
+#import "EAGLESheet.h"
+#import "EAGLEModule.h"
 #import "FastTiledLayer.h"
 
 static const CGFloat kViewPadding = 5;
@@ -310,6 +313,13 @@ static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of
 
 		// Instances
 		for( id<EAGLEDrawable> drawable in schematic.instances )
+		{
+			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
+				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+		}
+
+		// Module instances
+		for( id<EAGLEDrawable> drawable in schematic.activeModule.activeSheet.moduleInstances  )
 		{
 			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
 				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;

@@ -16,6 +16,7 @@
 #import "EAGLEFileView.h"
 #import "EAGLEInstance.h"
 #import "EAGLEModule.h"
+#import "EAGLEDrawableModuleInstance.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "Dropbox.h"
 #import "DocumentChooserViewController.h"
@@ -140,6 +141,8 @@
 			detailPopupViewController.instance = clickedObject;
 		else if( [clickedObject isKindOfClass:[EAGLEElement class]] )
 			detailPopupViewController.element = clickedObject;
+		else if( [clickedObject isKindOfClass:[EAGLEDrawableModuleInstance class]] )
+			detailPopupViewController.moduleInstance = clickedObject;
 
 		// iPhone or iPad?
 		if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

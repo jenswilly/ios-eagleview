@@ -147,4 +147,18 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 
 	self.deviceTitleLabel.text = @"Package";
 }
+
+- (void)setModuleInstance:(EAGLEDrawableModuleInstance *)moduleInstance
+{
+	// Make sure the view and IBOutlets are loaded
+	[self view];
+
+	self.typeLabel.text = @"Module";
+	self.nameLabel.text = moduleInstance.name;
+	self.valueLabel.text = @"…";
+	self.libraryLabel.text = @"…";
+	self.deviceLabel.text = nil;
+	self.deviceTitleLabel.text = nil;
+}
+
 @end
