@@ -11,7 +11,7 @@
 #import "EAGLESheet.h"
 #import "EAGLEModule.h"
 #import "EAGLEDrawableText.h"
-#import "EAGLEModulePort.h"
+#import "EAGLEDrawableModulePort.h"
 
 #import "DDXML.h"
 
@@ -75,11 +75,11 @@ const CGFloat kModuleInstanceLineWidth = 0.8;
 	CGContextStrokeRect( context, rect );
 
 	// Draw ports
-	for( EAGLEModulePort *port in self.module.ports )
+	for( EAGLEDrawableModulePort *port in self.module.ports )
 		[port drawInContext:context moduleInstance:self];
 	
 	// Draw name label. First set font properties.
-	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
+	EAGLELayer *currentLayer = self.file.layers[ @95 ];	// Use layer 95 (names) for text color
 	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
 	paragraphStyle.lineSpacing = 0;

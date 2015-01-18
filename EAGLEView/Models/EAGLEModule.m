@@ -11,7 +11,7 @@
 #import "EAGLESchematic.h"
 #import "EAGLESheet.h"
 #import "EAGLEPart.h"
-#import "EAGLEModulePort.h"
+#import "EAGLEDrawableModulePort.h"
 
 // Default width and height
 const CGFloat kModuleDefaultWidth = 30.48;
@@ -55,7 +55,7 @@ const CGFloat kModuleDefaultHeight = 20.32;
 		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
 		for( DDXMLElement *childElement in elements )
 		{
-			EAGLEModulePort *object = [[EAGLEModulePort alloc] initFromXMLElement:childElement];
+			EAGLEDrawableModulePort *object = [[EAGLEDrawableModulePort alloc] initFromXMLElement:childElement inFile:schematic];
 			if( object )
 				[tmpElements addObject:object];
 		}

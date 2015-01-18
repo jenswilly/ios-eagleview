@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class DDXMLElement;
 @class EAGLEDrawableModuleInstance;
+@class EAGLEFile;
 
 typedef enum
 {
@@ -24,14 +25,15 @@ typedef enum
 	EAGLEModulePortDirectionOther
 } EAGLEModulePortDirection;
 
-@interface EAGLEModulePort : NSObject
+@interface EAGLEDrawableModulePort : NSObject
 
 @property (readonly, strong) NSString *name;
 @property (readonly) CGFloat position;
+@property (readonly, strong) EAGLEFile *file;
 @property (readonly) EAGLEModulePortSide side;
 @property (readonly) EAGLEModulePortDirection direction;
 
-- (id)initFromXMLElement:(DDXMLElement*)element;
+- (id)initFromXMLElement:(DDXMLElement*)element inFile:(EAGLEFile*)file;
 - (void)drawInContext:(CGContextRef)context moduleInstance:(EAGLEDrawableModuleInstance*)moduleInstance;
 
 @end
