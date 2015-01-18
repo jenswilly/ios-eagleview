@@ -13,6 +13,9 @@ To-do:
 - Alternative to polygon fills: polygons on/off setting
 - Speed up drawing by checking for relevant rect?
 - Hit-test: ignore components on top/bottom if relevant layer not shown
+- Update Dropbox API?
+- Add "Unlink" to Dropbox to sign in as a different user
+- Search: deselect all marked components
 
 
 ------------------------
@@ -20,12 +23,12 @@ In progress/partly done:
 
 ~ Sheets
 ~ Modules
-~ Search for components
 
 
 -----
 Done:
 
+√ Search for components
 √ Allow user to choose which file to open from zip archive
 √ Open board files
 √ Fixed highlight of MR90 parts (bounding rect)
