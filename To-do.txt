@@ -1,3 +1,5 @@
+To-do:
+
 - Find out why there are memory warnings when picking files from Dropbox
 - New board file icon
 - Nets/busses details popup
@@ -5,7 +7,7 @@
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
-~ Fix patterened (not filled) rectangles (ROV TSC)
+~ Fix patterened (not filled) rectangles (e.g. ROV TSC)
 ~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Improve single vs. double tap on iPhone
 - Alternative to polygon fills: polygons on/off setting
@@ -13,8 +15,16 @@
 - Hit-test: ignore components on top/bottom if relevant layer not shown
 
 
+------------------------
+In progress/partly done:
+
+~ Sheets
+~ Modules
 ~ Search for components
 
+
+-----
+Done:
 
 √ Allow user to choose which file to open from zip archive
 √ Open board files

@@ -11,6 +11,7 @@
 #import "EAGLESchematic.h"
 #import "EAGLESheet.h"
 #import "EAGLEPart.h"
+#import "EAGLEModulePort.h"
 
 // Default width and height
 const CGFloat kModuleDefaultWidth = 30.48;
@@ -48,6 +49,18 @@ const CGFloat kModuleDefaultHeight = 20.32;
 		}
 		_parts = [NSArray arrayWithArray:tmpElements];
 
+		// Ports
+		elements = [element nodesForXPath:@"ports/port" error:&error];
+		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
+		tmpElements = [[NSMutableArray alloc] initWithCapacity:[elements count]];
+		for( DDXMLElement *childElement in elements )
+		{
+			EAGLEModulePort *object = [[EAGLEModulePort alloc] initFromXMLElement:childElement];
+			if( object )
+				[tmpElements addObject:object];
+		}
+		_ports = [NSArray arrayWithArray:tmpElements];
+
 		// Sheets
 		elements = [element nodesForXPath:@"sheets/sheet" error:&error];
 		EAGLE_XML_PARSE_ERROR_RETURN_NIL( error );
@@ -59,9 +72,8 @@ const CGFloat kModuleDefaultHeight = 20.32;
 				[tmpElements addObject:object];
 		}
 		_sheets = [NSArray arrayWithArray:tmpElements];
-		DEBUG_LOG( @"Loaded %d sheet(s) in module '%@'.", (int)[_sheets count], self.name );
-
 	}
+
 	return self;
 }
 

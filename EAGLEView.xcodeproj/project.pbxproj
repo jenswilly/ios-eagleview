@@ -10,6 +10,7 @@
 		4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 47112069184E009D00BAB3B2 /* MBProgressHUD.m */; };
 		471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 471E51EE18959BE700FC3B95 /* Default-568h@2x.png */; };
 		4736ABC91A6B1F970055F863 /* EAGLEDrawableModuleInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */; };
+		4736ABCC1A6B2E290055F863 /* EAGLEModulePort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4736ABCB1A6B2E290055F863 /* EAGLEModulePort.m */; };
 		4738814D1899BAF6003340FB /* Gift card.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4738814B1899BAF6003340FB /* Gift card.brd */; };
 		4738814E1899BAF6003340FB /* Gift card.sch in Resources */ = {isa = PBXBuildFile; fileRef = 4738814C1899BAF6003340FB /* Gift card.sch */; };
 		4739028A1840D9930092D025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473902891840D9930092D025 /* Foundation.framework */; };
@@ -114,11 +115,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		47112068184E009D00BAB3B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		47112069184E009D00BAB3B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		47112068184E009D00BAB3B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = EAGLEView/Views/MBProgressHUD.h; sourceTree = "<group>"; };
+		47112069184E009D00BAB3B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = EAGLEView/Views/MBProgressHUD.m; sourceTree = "<group>"; };
 		471E51EE18959BE700FC3B95 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4736ABC71A6B1F970055F863 /* EAGLEDrawableModuleInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableModuleInstance.h; sourceTree = "<group>"; };
 		4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableModuleInstance.m; sourceTree = "<group>"; };
+		4736ABCA1A6B2E290055F863 /* EAGLEModulePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEModulePort.h; sourceTree = "<group>"; };
+		4736ABCB1A6B2E290055F863 /* EAGLEModulePort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEModulePort.m; sourceTree = "<group>"; };
 		4738814B1899BAF6003340FB /* Gift card.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.brd"; sourceTree = "<group>"; };
 		4738814C1899BAF6003340FB /* Gift card.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.sch"; sourceTree = "<group>"; };
 		473902861840D9930092D025 /* EAGLEView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAGLEView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +454,8 @@
 				4739034A18411D1A0092D025 /* EAGLESymbol.m */,
 				4736ABC71A6B1F970055F863 /* EAGLEDrawableModuleInstance.h */,
 				4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */,
+				4736ABCA1A6B2E290055F863 /* EAGLEModulePort.h */,
+				4736ABCB1A6B2E290055F863 /* EAGLEModulePort.m */,
 			);
 			name = Models;
 			path = EAGLEView/Models;
@@ -541,6 +546,8 @@
 		473903241840DD360092D025 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				47112068184E009D00BAB3B2 /* MBProgressHUD.h */,
+				47112069184E009D00BAB3B2 /* MBProgressHUD.m */,
 				47C5ABB51857240A00A1D530 /* SSZipArchive */,
 				473903291840E2590092D025 /* KissXML */,
 				473902C51840DD070092D025 /* ios-library */,
@@ -594,8 +601,6 @@
 		4739035518414C8E0092D025 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				47112068184E009D00BAB3B2 /* MBProgressHUD.h */,
-				47112069184E009D00BAB3B2 /* MBProgressHUD.m */,
 				4739035618414CB60092D025 /* EAGLEFileView.h */,
 				4739035718414CB60092D025 /* EAGLEFileView.m */,
 				4783686C1893F33A0031977E /* EAGLEInstanceView.h */,
@@ -754,6 +759,7 @@
 				473902EE1840DD070092D025 /* GPNetworkIndicator.m in Sources */,
 				47C3F8C2188C91CE00705CF9 /* EAGLEDrawableFrame.m in Sources */,
 				478889A618A27220008F8CF2 /* FastTiledLayer.m in Sources */,
+				4736ABCC1A6B2E290055F863 /* EAGLEModulePort.m in Sources */,
 				4739034E18411D5E0092D025 /* EAGLEDrawableObject.m in Sources */,
 				4739035418411D8C0092D025 /* EAGLEDrawableText.m in Sources */,
 				473902C11840DA180092D025 /* EAGLEObject.m in Sources */,

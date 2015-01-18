@@ -68,15 +68,15 @@ const CGFloat kModuleInstanceLineWidth = 0.8;
 	CGContextTranslateCTM( context, self.center.x, self.center.y );
 	CGContextRotateCTM( context, [EAGLEDrawableObject radiansForRotation:self.rotation] );	// Now rotate. Otherwise, rotation center would be offset
 
-
+	// Stroke frame. (Context is already translated to center point.)
 	CGRect rect = CGRectMake( -self.width/2, -self.height/2, self.width, self.height );
-
 	CGContextSetLineWidth( context, kModuleInstanceLineWidth );
 	CGContextStrokeRect( context, rect );
 
-	// Draw name label
-
-	// Set font properties
+	// Draw ports
+	/// TODO...
+	
+	// Draw name label. First set font properties.
 	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];
 	NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;

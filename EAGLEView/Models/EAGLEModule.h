@@ -19,6 +19,7 @@
 @property (readonly) CGFloat dy;	// Height
 @property (readonly, strong) NSArray *parts;			// Module: Contains EAGLEPart objects
 @property (readonly, strong) NSArray *sheets;			// Contains EAGLEModule objects
+@property (readonly, strong) NSArray *ports;			// Contains EAGLEModulePort objects
 @property (readonly, weak) EAGLESheet *activeSheet;		// The currently selected sheet
 
 - (id)initFromXMLElement:(DDXMLElement*)element schematic:(EAGLESchematic*)schematic;
