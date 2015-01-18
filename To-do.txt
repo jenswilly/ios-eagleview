@@ -16,6 +16,10 @@ To-do:
 - Update Dropbox API?
 - Add "Unlink" to Dropbox to sign in as a different user
 - Search: deselect all marked components
+- Fix content height in Dropbox picker view controller
+- Fix text drawing of R270 rotated instances
+- Fix bounding rect of R270 rotated instances
+- Fix too long texts in detail popup view controller
 
 
 ------------------------
