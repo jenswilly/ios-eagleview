@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class DDXMLElement;
+@class EAGLEDrawableModuleInstance;
 
 typedef enum
 {
@@ -31,6 +32,6 @@ typedef enum
 @property (readonly) EAGLEModulePortDirection direction;
 
 - (id)initFromXMLElement:(DDXMLElement*)element;
-- (void)drawInContext:(CGContextRef)context;
+- (void)drawInContext:(CGContextRef)context moduleInstance:(EAGLEDrawableModuleInstance*)moduleInstance;
 
 @end

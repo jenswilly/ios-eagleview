@@ -11,6 +11,7 @@
 #import "EAGLESheet.h"
 #import "EAGLEModule.h"
 #import "EAGLEDrawableText.h"
+#import "EAGLEModulePort.h"
 
 #import "DDXML.h"
 
@@ -74,7 +75,8 @@ const CGFloat kModuleInstanceLineWidth = 0.8;
 	CGContextStrokeRect( context, rect );
 
 	// Draw ports
-	/// TODO...
+	for( EAGLEModulePort *port in self.module.ports )
+		[port drawInContext:context moduleInstance:self];
 	
 	// Draw name label. First set font properties.
 	EAGLELayer *currentLayer = self.file.layers[ self.layerNumber ];

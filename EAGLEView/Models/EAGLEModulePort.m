@@ -7,6 +7,7 @@
 //
 
 #import "EAGLEModulePort.h"
+#import "EAGLEDrawableModuleInstance.h"
 #import "DDXML.h"
 
 @implementation EAGLEModulePort
@@ -46,9 +47,39 @@
 	return [NSString stringWithFormat:@"Module port %@", self.name];
 }
 
-- (void)drawInContext:(CGContextRef)context
+- (void)drawInContext:(CGContextRef)context moduleInstance:(EAGLEDrawableModuleInstance*)moduleInstance
 {
+	/// TODO: implement drawing of port.
+	CGContextSaveGState( context );
 
+	// Offset context based on side and position
+	switch( self.side )
+	{
+		case EAGLEModulePortSideLeft:
+			CGContextTranslateCTM( context, -moduleInstance.width/2, self.position );
+			break;
+
+		case EAGLEModulePortSideRight:
+			CGContextTranslateCTM( context, moduleInstance.width/2, self.position );
+			break;
+
+		case EAGLEModulePortSideTop:
+			CGContextTranslateCTM( context, self.position, -moduleInstance.height/2 );
+			break;
+
+		case EAGLEModulePortSideBottom:
+			CGContextTranslateCTM( context, self.position, moduleInstance.height/2 );
+			break;
+	}
+
+	/// TEMP: draw circle
+	CGFloat radius = 2.54;
+	CGContextAddArc( context, 0, 0, radius/2, 0, 2*M_PI, 0 );
+	CGContextStrokePath( context );
+
+
+	/// TODO: Draw port name
+	CGContextRestoreGState( context );
 }
 
 @end
