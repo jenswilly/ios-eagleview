@@ -26,10 +26,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
 				<string>ico_board-320.png</string>
@@ -37,20 +33,24 @@
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>CadSoft EAGLE board file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.cadsoft.eagle.brd</string>
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>Archive</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.url</string>
@@ -61,7 +61,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>dk.greenerpastures.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>${BUNDLE_ID}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -82,7 +82,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
