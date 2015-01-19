@@ -7,8 +7,6 @@ To-do:
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
 - Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
-~ Fix patterened (not filled) rectangles (e.g. ROV TSC)
-~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 - Improve single vs. double tap on iPhone
 - Alternative to polygon fills: polygons on/off setting
 - Speed up drawing by checking for relevant rect?
@@ -18,18 +16,24 @@ To-do:
 - Fix bounding rect of R270 rotated instances
 - Fix zoom-to-fit after loading new file
 - Fix too long texts in detail popup view controller
-- Add search btn to iPhone storyboard
+- Implement search UI for iPhone
+- Fix part info popup location on iPhone
+- UI: double tap on module instance -> show module (first sheet)
 
 
 ------------------------
 In progress/partly done:
 
 ~ Sheets
+~ Fix patterened (not filled) rectangles (e.g. ROV TSC)
+~ Fill patterns for layers (fill property on <layer>): http://www.raywenderlich.com/33496/core-graphics-tutorial-patterns
 
 
 -----
 Done:
 
+√ UI: space between search/sheets/layers buttons
+√ Search in instance/element values also
 √ Modules
 --- b7
 √ Update Dropbox API?
