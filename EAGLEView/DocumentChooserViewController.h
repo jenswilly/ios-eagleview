@@ -12,6 +12,7 @@
 @protocol DocumentChooserDelegate <NSObject>
 
 - (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata lastPath:(NSString*)lastPath;
+- (void)documentChooserCancelled;
 
 @end
 

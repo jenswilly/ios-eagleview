@@ -21,4 +21,9 @@ typedef void(^fileCompletionBlock_t)(BOOL success, NSString *filePath);
 - (BOOL)loadFileAtPath:(NSString*)path completion:(fileCompletionBlock_t)completion;
 - (BOOL)hasCachedContentsForFolder:(NSString*)path;
 
+/**
+ Re-initialize REST client and cache.
+ */
+- (void)reset;
+
 @end

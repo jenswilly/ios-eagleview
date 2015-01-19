@@ -39,7 +39,6 @@
 @implementation ViewController
 {
 	__block UIPopoverController *_popover;
-	NSString *_lastDropboxPath;		// Used to remember which Dropbox path the user was in last
 	__block EAGLEFile *_eagleFile;
 	BOOL _fullScreen;
 }
@@ -306,7 +305,7 @@
 	documentChooserViewController.delegate = self;
 
 	// NOTE: _lastDropboxPath may be nil, in which case the DocumentChooserViewController will attempt to get path from user defaults
-	[documentChooserViewController setInitialPath:_lastDropboxPath];
+	[documentChooserViewController setInitialPath:self.lastDropboxPath];
 
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
@@ -375,7 +374,7 @@
 		[_popover dismissPopoverAnimated:YES];
 
 	// Remember last used path
-	_lastDropboxPath = [lastPath copy];
+	self.lastDropboxPath = lastPath;
 
 	// Show HUD and start loading
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -411,6 +410,12 @@
 			});
 		}
 	}];
+}
+
+- (void)documentChooserCancelled
+{
+	// Simply close popover
+	[_popover dismissPopoverAnimated:YES];
 }
 
 @end

@@ -12,6 +12,8 @@
 
 @interface ViewController : UIViewController <UIScrollViewDelegate, DocumentChooserDelegate>
 
+@property (copy) NSString *lastDropboxPath; // Used to remember which Dropbox path the user was in last
+
 - (void)openFileFromURL:(NSURL*)fileURL;
 - (void)openFile:(EAGLEFile*)file;
 

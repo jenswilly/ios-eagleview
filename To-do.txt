@@ -13,14 +13,10 @@ To-do:
 - Alternative to polygon fills: polygons on/off setting
 - Speed up drawing by checking for relevant rect?
 - Hit-test: ignore components on top/bottom if relevant layer not shown
-- Update Dropbox API?
-- Add "Unlink" to Dropbox to sign in as a different user
 - Search: deselect all marked components
-- Fix content height in Dropbox picker view controller
 - Fix text drawing of R270 rotated instances
 - Fix bounding rect of R270 rotated instances
 - Fix too long texts in detail popup view controller
-
 
 ------------------------
 In progress/partly done:
@@ -32,6 +28,10 @@ In progress/partly done:
 -----
 Done:
 
+√ Update Dropbox API?
+√ Add "Unlink" to Dropbox to sign in as a different user
+√ Fix content height in Dropbox picker view controller
+√ Dropbox: fix path when loading last used path from user defaults
 √ Search for components
 √ Allow user to choose which file to open from zip archive
 √ Open board files

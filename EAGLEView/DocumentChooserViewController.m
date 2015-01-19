@@ -11,6 +11,7 @@
 #import "Dropbox.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface DocumentChooserViewController ()
 
@@ -30,6 +31,81 @@
 	// Fix table separator
 	self.table.separatorColor = RGBHEX( GLOBAL_TINT_COLOR );
 	self.table.separatorInset = UIEdgeInsetsMake( 0, 15, 0, 15 );
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	// If we have a valid Dropbox item and no path set, we don't need to load since loading is already in progress (from setItem:).
+	if( _item && !_path )
+	{
+		// Just set path
+		_path = _item.path;
+		return;
+	}
+
+	// Otherwise, load from the path
+	BOOL usingPathFromUserDefaults = NO;
+
+	// If nil path, try to get from user defaults
+	if( !_path )
+	{
+		_path = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaults_lastDropboxPath];
+
+		if( _path )
+			usingPathFromUserDefaults = YES;
+		else
+			// Still nil: use /
+			_path = @"/";
+	}
+
+	// Show HUD if not cached contents
+	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
+	{
+		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+		// Set title to Loading…
+		self.navigationItem.title = @"Loading…";
+	}
+	else
+		// Set title immediately
+		self.navigationItem.title = _path.lastPathComponent;
+
+	// Load from Dropbox
+	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
+
+		// Remove HUD (whether it is there or not) and set title (possibly again)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+		self.navigationItem.title = _path.lastPathComponent;
+
+		// If we got an error while using a saved path, reset to / and try again
+		if( !success && usingPathFromUserDefaults )
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self setInitialPath:@"/"];
+				//				self.path = @"/";
+			});
+
+			return ;
+		}
+
+		if( success )
+		{
+			// Set contents
+			_contents = contents;
+
+			// Reload table on main thread
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_table reloadData];
+			});
+		}
+		else
+		{
+			// Error loading
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			[alert show];
+		}
+	}];
+	[super viewDidAppear:animated];
 }
 
 - (void)setItem:(DBMetadata *)item
@@ -88,6 +164,10 @@
  */
 - (void)setInitialPath:(NSString*)path
 {
+	// If nil path, try to get from user defaults
+	if( !path )
+		path = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaults_lastDropboxPath];
+
 	// Split path into components
 	NSArray *pathComponents = [path pathComponents];
 
@@ -111,73 +191,17 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)setPath:(NSString *)path
+#pragma mark - IBActions
+
+- (IBAction)signOutAction:(id)sender
 {
-	BOOL usingPathFromUserDefaults = NO;
-
-	_path = path;
-
-	// If nil path, try to get from user defaults
-	if( !path )
-	{
-		_path = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaults_lastDropboxPath];
-
-		if( _path )
-			usingPathFromUserDefaults = YES;
-		else
-			// Still nil: use /
-			_path = @"/";
-	}
-
-	// Make sure view has been loaded
-	[self view];
-
-	// Show HUD if not cached contents
-	if( ![[Dropbox sharedInstance] hasCachedContentsForFolder:_path] )
-	{
-		[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-		// Set title to Loading…
-		self.navigationItem.title = @"Loading…";
-	}
-	else
-		// Set title immediately
-		self.navigationItem.title = _path;
-
-	// Load from Dropbox
-	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
-
-		// Remove HUD (whether it is there or not) and set title (possibly again)
-		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-		self.navigationItem.title = _path;
-
-		// If we got an error while using a saved path, reset to / and try again
-		if( !success && usingPathFromUserDefaults )
-		{
-			dispatch_async(dispatch_get_main_queue(), ^{
-				self.path = @"/";
-			});
-
-			return ;
-		}
-
-		if( success )
-		{
-			// Set contents
-			_contents = contents;
-
-			// Reload table on main thread
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[_table reloadData];
-			});
-		}
-		else
-		{
-			// Error loading
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-			[alert show];
-		}
-	}];
+	[[Dropbox sharedInstance] reset];
+	[[DBSession sharedSession] unlinkAll];
+	[[Dropbox sharedInstance] reset];
+	APP.viewController.lastDropboxPath = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaults_lastDropboxPath];
+	
+	[_delegate documentChooserCancelled];
 }
 
 #pragma mark - Table view methods

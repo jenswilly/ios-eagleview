@@ -7,6 +7,7 @@
 //
 
 #import "Dropbox.h"
+#import "AppDelegate.h"
 
 static NSString* const kDropboxFolderName = @"dropbox";
 typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used for both folder and file completion blocks
@@ -14,7 +15,7 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 @implementation Dropbox
 {
 	DBRestClient *_restClient;
-	NSMutableDictionary *_contents;
+	NSMutableDictionary *_contents;	// Cached contents dirctory. Key is the path.
 	BOOL _isBusy;
 	genericBlock_t _completionBlock;
 }
@@ -34,8 +35,8 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	if( (self = [super init]) )
 	{
 		// Initialize restClient
-		_restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-		_restClient.delegate = self;
+//		_restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+//		_restClient.delegate = self;
 
 		// Dictionary for holding files and folders
 		_contents = [[NSMutableDictionary alloc] init];
@@ -44,9 +45,37 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	return self;
 }
 
+- (DBRestClient*)restClient
+{
+	if( _restClient == nil )
+	{
+		DEBUG_LOG( @"Initializing RestClient" );
+		_restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+		_restClient.delegate = self;
+	}
+
+	return _restClient;
+}
+
 - (BOOL)isBusy
 {
 	return _isBusy;
+}
+
+- (void)reset
+{
+	// Clear old content
+	_restClient = nil;
+	_contents = nil;
+
+	// Start new session (for authentication to work properly)
+//	DBSession* dbSession = [[DBSession alloc] initWithAppKey:DROPBOX_APP_KEY appSecret:DROPBOX_APP_SECRET root:kDBRootDropbox];
+//	[DBSession setSharedSession:dbSession];
+
+	// Re-initialize REST client and cache
+//	_restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+//	_restClient.delegate = self;
+	_contents = [[NSMutableDictionary alloc] init];
 }
 
 - (BOOL)hasCachedContentsForFolder:(NSString*)path
@@ -81,7 +110,7 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 
 		// Start loading
 		_isBusy = YES;
-		[_restClient loadMetadata:path];
+		[[self restClient] loadMetadata:path];
 		return YES;
 	}
 }
@@ -115,7 +144,7 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 
 	// Start loading
 	_isBusy = YES;
-	[_restClient loadFile:path intoPath:dropboxFolderPath];
+	[[self restClient] loadFile:path intoPath:dropboxFolderPath];
 	return YES;
 }
 
