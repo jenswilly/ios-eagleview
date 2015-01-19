@@ -87,11 +87,13 @@
                                             <action selector="searchAction:" destination="BYZ-38-t0r" id="tID-MR-RC8"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="mIf-Uu-4OY"/>
                                     <barButtonItem systemItem="bookmarks" id="cEg-kH-cgQ">
                                         <connections>
                                             <action selector="sheetsAction:" destination="BYZ-38-t0r" id="Tl9-HK-HVX"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="UPe-wH-fB4"/>
                                     <barButtonItem image="ico_layers" id="BYg-R1-gy9">
                                         <connections>
                                             <action selector="showLayersAction:" destination="BYZ-38-t0r" id="vBd-Fu-ssa"/>
