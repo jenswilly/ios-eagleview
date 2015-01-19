@@ -17,19 +17,21 @@ To-do:
 - Fix text drawing of R270 rotated instances
 - Fix bounding rect of R270 rotated instances
 - Fix zoom-to-fit after loading new file
-√ Fix too long texts in detail popup view controller
+- Fix too long texts in detail popup view controller
+- Add search btn to iPhone storyboard
 
 
 ------------------------
 In progress/partly done:
 
 ~ Sheets
-~ Modules
 
 
 -----
 Done:
 
+√ Modules
+--- b7
 √ Update Dropbox API?
 √ Add "Unlink" to Dropbox to sign in as a different user
 √ Fix content height in Dropbox picker view controller

@@ -13,7 +13,6 @@
 #import "EAGLESymbol.h"
 #import "EAGLESchematic.h"
 #import "EAGLEBoard.h"
-#import "EAGLEFileView.h"
 #import "EAGLEInstance.h"
 #import "EAGLEModule.h"
 #import "EAGLEDrawableModuleInstance.h"
@@ -26,13 +25,12 @@
 #import "LayersViewController.h"
 #import "AppDelegate.h"
 #import "ComponentSearchViewController.h"
+#import "ModulesViewController.h"
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet EAGLEFileView *fileView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *fileNameLabel;
 
 @end
 
@@ -247,14 +245,38 @@
 
 - (IBAction)sheetsAction:(id)sender
 {
-	EAGLESchematic *schematic = (EAGLESchematic*)self.fileView.file;
-	schematic.currentModuleIndex = 1;	/// TEMP: select module 1. This can fail in soo many ways...
+	ModulesViewController *modulesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ModulesViewController"];
+	modulesViewController.schematic = (EAGLESchematic*)_eagleFile;
 
-	// Update label
-	_fileNameLabel.text = [NSString stringWithFormat:@"%@ – %@", _eagleFile.fileName, [schematic activeModule].name];
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+	{
+		// iPad: show as popover
+		if( _popover )
+			[_popover dismissPopoverAnimated:YES];
 
-	// Redraw
-	[self.fileView setNeedsDisplay];
+		_popover = [[UIPopoverController alloc] initWithContentViewController:modulesViewController];
+		[_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+	else
+	{
+		// iPhone: we'add it manually so we can use a transparent background.
+		// Place at bottom
+		CGRect frame = self.view.bounds;
+		frame.origin.y = self.view.bounds.size.height;
+		modulesViewController.view.frame = frame;
+
+		// Add view controller
+		[self addChildViewController:modulesViewController];
+		[self.view addSubview:modulesViewController.view];
+		[modulesViewController didMoveToParentViewController:self];
+
+		// Animate to top
+		frame.origin.y = 0;
+		[UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+			modulesViewController.view.frame = frame;
+		} completion:nil];
+	}
 }
 
 - (IBAction)showLayersAction:(UIBarButtonItem*)sender

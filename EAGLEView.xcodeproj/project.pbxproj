@@ -56,6 +56,7 @@
 		4739035B184155530092D025 /* EAGLEDrawablePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035A184155530092D025 /* EAGLEDrawablePin.m */; };
 		4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035D184343610092D025 /* EAGLEDrawablePolygon.m */; };
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
+		47452F2A1A6DB1BE00C0049A /* ModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47452F291A6DB1BE00C0049A /* ModulesViewController.m */; };
 		475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */ = {isa = PBXBuildFile; fileRef = 475B851A189C44CD00E4ABC6 /* Thermometer.brd */; };
 		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
@@ -203,6 +204,8 @@
 		4739035C184343610092D025 /* EAGLEDrawablePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawablePolygon.h; sourceTree = "<group>"; };
 		4739035D184343610092D025 /* EAGLEDrawablePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawablePolygon.m; sourceTree = "<group>"; };
 		473903601843557A0092D025 /* Application.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Application.xcassets; sourceTree = "<group>"; };
+		47452F281A6DB1BE00C0049A /* ModulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulesViewController.h; sourceTree = "<group>"; };
+		47452F291A6DB1BE00C0049A /* ModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulesViewController.m; sourceTree = "<group>"; };
 		475B851A189C44CD00E4ABC6 /* Thermometer.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.brd; sourceTree = "<group>"; };
 		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 				47D3C2FA1898051700BB4E33 /* LayersViewController.m */,
 				4739029E1840D9930092D025 /* ViewController.h */,
 				4739029F1840D9930092D025 /* ViewController.m */,
+				47452F281A6DB1BE00C0049A /* ModulesViewController.h */,
+				47452F291A6DB1BE00C0049A /* ModulesViewController.m */,
 			);
 			name = "View Controllers";
 			path = EAGLEView;
@@ -822,6 +827,7 @@
 				47C73B6818493B3B0041C4C4 /* DocumentChooserViewController.m in Sources */,
 				473902F61840DD070092D025 /* UIImage+Scaling.m in Sources */,
 				47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */,
+				47452F2A1A6DB1BE00C0049A /* ModulesViewController.m in Sources */,
 				4739033A1840E2590092D025 /* NSString+DDXML.m in Sources */,
 				473903451840E9430092D025 /* EAGLESchematic.m in Sources */,
 			);
