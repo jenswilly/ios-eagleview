@@ -92,6 +92,11 @@
 	return self;
 }
 
+- (NSString *)valueText
+{
+	return self.value;
+}
+
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"Element %@ - value: %@", _name, _value];

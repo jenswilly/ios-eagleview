@@ -131,7 +131,7 @@
 
 - (void)filterForSearchString:(NSString*)searchString
 {
-	NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchString];
+	NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR valueText CONTAINS[cd] %@", searchString, searchString];
 	_filteredComponents = [_allComponents filteredArrayUsingPredicate:findByName];
 }
 

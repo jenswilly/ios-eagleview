@@ -20,6 +20,7 @@
 @property (readonly, strong) NSString *library_name;
 @property (readonly, strong) EAGLEPackage *package;
 @property (readonly, strong) NSDictionary *smashedAttributes;
+@property (readonly) NSString *valueText;	// Same as value
 
 - (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber;
 

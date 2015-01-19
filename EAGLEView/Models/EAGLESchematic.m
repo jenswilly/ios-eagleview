@@ -89,7 +89,6 @@
 		}
 
 		_modules = [NSArray arrayWithArray:tmpElements];
-		DEBUG_LOG( @"Loaded %d module(s).", (int)[_modules count] );
 	}
 
 	return self;
