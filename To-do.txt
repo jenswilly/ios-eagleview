@@ -16,7 +16,8 @@ To-do:
 - Search: deselect all marked components
 - Fix text drawing of R270 rotated instances
 - Fix bounding rect of R270 rotated instances
-- Fix too long texts in detail popup view controller
+- Fix zoom-to-fit after loading new file
+
 
 ------------------------
 In progress/partly done:
@@ -28,6 +29,7 @@ In progress/partly done:
 -----
 Done:
 
+√ Fix too long texts in detail popup view controller
 √ Update Dropbox API?
 √ Add "Unlink" to Dropbox to sign in as a different user
 √ Fix content height in Dropbox picker view controller

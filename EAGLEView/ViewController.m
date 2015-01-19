@@ -59,6 +59,10 @@
 	[self.fileView setRelativeZoomFactor:0.1];
 	self.fileView.file = _eagleFile;
 
+	dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
+		[self zoomToFitAction:nil];
+	});
+
 	// For iPhone: add gesture recognizer to enter/leave fullscreen mode
 	// iPhone or iPad?
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
