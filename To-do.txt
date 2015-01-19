@@ -16,9 +16,10 @@ To-do:
 - Fix bounding rect of R270 rotated instances
 - Fix zoom-to-fit after loading new file
 - Fix too long texts in detail popup view controller
+- UI: double tap on module instance -> show module (first sheet)
+- UI: launch screen
 - Implement search UI for iPhone
 - Fix part info popup location on iPhone
-- UI: double tap on module instance -> show module (first sheet)
 
 
 ------------------------
@@ -32,6 +33,9 @@ In progress/partly done:
 -----
 Done:
 
+√ UI: table separator widths on iPhone. Weird flickering? (fixed by http://stackoverflow.com/a/26643417)
+√ iOS 8: fix deprecation warnings
+√ Update to deployment target 8.0
 √ UI: space between search/sheets/layers buttons
 √ Search in instance/element values also
 √ Modules

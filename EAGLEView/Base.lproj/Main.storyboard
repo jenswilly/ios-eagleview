@@ -142,6 +142,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="308" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="cDe-eW-nep">
                             <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
@@ -162,6 +163,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="cDe-eW-nep" id="Hn6-DF-Cve"/>
                         <outlet property="searchDisplayController" destination="WTe-tx-Buh" id="aQe-rh-HKV"/>
                     </connections>
                 </tableViewController>

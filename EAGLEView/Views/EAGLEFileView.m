@@ -325,23 +325,19 @@ static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of
 				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
 
+		/*
 		// Nets
 		for( id<EAGLEDrawable> drawable in schematic.nets )
 		{
 			/// TODO
-	//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-	//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-	//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
 
 		// Busses
 		for( id<EAGLEDrawable> drawable in schematic.busses )
 		{
 			/// TODO
-	//		if( [drawable maxX] >= coordinate.x && [drawable minX] <= coordinate.x &&
-	//		    [drawable maxY] >= coordinate.y && [drawable minY] <= coordinate.y )
-	//			objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
+		*/
 	}
 
 	// Board-only objects
@@ -356,11 +352,13 @@ static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of
 				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
 		}
 
+		/*
 		// Signals
 		for( EAGLESignal *signal in board.signals )
 		{
 			/// TODO
 		}
+		*/
 	}
 
 	// Sort the objects by distance

@@ -57,6 +57,7 @@
 		4739035E184343610092D025 /* EAGLEDrawablePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4739035D184343610092D025 /* EAGLEDrawablePolygon.m */; };
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
 		47452F2A1A6DB1BE00C0049A /* ModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47452F291A6DB1BE00C0049A /* ModulesViewController.m */; };
+		47452F2C1A6DC0F200C0049A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47452F2B1A6DC0F200C0049A /* Launch Screen.xib */; };
 		475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */ = {isa = PBXBuildFile; fileRef = 475B851A189C44CD00E4ABC6 /* Thermometer.brd */; };
 		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
@@ -206,6 +207,7 @@
 		473903601843557A0092D025 /* Application.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Application.xcassets; sourceTree = "<group>"; };
 		47452F281A6DB1BE00C0049A /* ModulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulesViewController.h; sourceTree = "<group>"; };
 		47452F291A6DB1BE00C0049A /* ModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulesViewController.m; sourceTree = "<group>"; };
+		47452F2B1A6DC0F200C0049A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		475B851A189C44CD00E4ABC6 /* Thermometer.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.brd; sourceTree = "<group>"; };
 		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				473903601843557A0092D025 /* Application.xcassets */,
 				47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */,
 				47F920F31892A1150025CF70 /* Images.xcassets */,
+				47452F2B1A6DC0F200C0049A /* Launch Screen.xib */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -696,7 +699,7 @@
 		4739027E1840D9930092D025 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Greener Pastures";
 			};
 			buildConfigurationList = 473902811840D9930092D025 /* Build configuration list for PBXProject "EAGLEView" */;
@@ -727,6 +730,7 @@
 				473902E61840DD070092D025 /* .gitignore in Resources */,
 				4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */,
 				4738814E1899BAF6003340FB /* Gift card.sch in Resources */,
+				47452F2C1A6DC0F200C0049A /* Launch Screen.xib in Resources */,
 				47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */,
 				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
@@ -860,7 +864,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -901,7 +904,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -949,6 +951,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -973,6 +976,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -983,7 +987,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1031,6 +1034,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "EAGLEView/EAGLEView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

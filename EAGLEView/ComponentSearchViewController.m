@@ -15,9 +15,11 @@
 #import "EAGLEInstance.h"
 #import "EAGLEPart.h"
 
-#define DATAARRAY_IN_USE (tableView == self.searchDisplayController.searchResultsTableView ? _filteredComponents : _allComponents)
+#define DATAARRAY_IN_USE (_isSearching ? _filteredComponents : _allComponents)
 
 @interface ComponentSearchViewController ()
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -25,6 +27,7 @@
 {
 	NSArray *_filteredComponents;
 	NSArray *_allComponents;
+	BOOL _isSearching;
 }
 
 - (void)viewDidLoad
@@ -34,11 +37,7 @@
 	_selectedParts = [NSMutableArray array];
 
 	[self.tableView registerNib:[UINib nibWithNibName:@"ComponentCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-	self.tableView.backgroundColor = [UIColor whiteColor];
-
-	[self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ComponentCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-	self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor whiteColor];
-	self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
+//	self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setFileView:(EAGLEFileView *)fileView
@@ -78,24 +77,16 @@
 	{
 		cell.textLabel.text = ((EAGLEElement*)object).name;
 		cell.detailTextLabel.text = ((EAGLEElement*)object).value;
-//		cell.selected = ([self.electedParts containsObject:object]);
 		cell.accessoryType = ( [self.selectedParts containsObject:object] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	}
 	else if( [object isKindOfClass:[EAGLEInstance class]] )
 	{
 		cell.textLabel.text = [((EAGLEInstance*)object) name];
 		cell.detailTextLabel.text = [(EAGLEInstance*)object valueText];
-//		cell.selected = ([self.selectedParts containsObject:object]);
 		cell.accessoryType = ( [self.selectedParts containsObject:object] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 	}
 
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//	[self updateWithSelectedElementsFromTableView:tableView];
-//	[tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,31 +105,39 @@
 	[tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)updateSelectedElements
-{
-	// Convert selected index paths to an index set
-//	NSArray *selectedIndexes = [tableView indexPathsForSelectedRows];
-//	NSMutableIndexSet *selectedIndexSet = [NSMutableIndexSet indexSet];
-//	for( NSIndexPath *indexPath in selectedIndexes )
-//		[selectedIndexSet addIndex:indexPath.row];
-//
-//	NSArray *selectedElements = [DATAARRAY_IN_USE objectsAtIndexes:selectedIndexSet];
-//	self.fileView.highlightedElements = _selectedParts;
-//	self.selectedParts = selectedElements;
-}
-
 #pragma mark - Search methods
 
 - (void)filterForSearchString:(NSString*)searchString
 {
-	NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR valueText CONTAINS[cd] %@", searchString, searchString];
-	_filteredComponents = [_allComponents filteredArrayUsingPredicate:findByName];
+	if( [searchString length] == 0 )
+		_filteredComponents = @[];
+	else
+	{
+		NSPredicate *findByName = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR valueText CONTAINS[cd] %@", searchString, searchString];
+		_filteredComponents = [_allComponents filteredArrayUsingPredicate:findByName];
+	}
+
+	// Reload
+	[self.tableView reloadData];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+#pragma mark - UISearchBar delegate methods
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	[self filterForSearchString:searchString];
-	return YES;
+	[self filterForSearchString:searchText];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	_isSearching = YES;
+	[self filterForSearchString:@""];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+	_isSearching = NO;
+	[self.tableView reloadData];
 }
 
 @end

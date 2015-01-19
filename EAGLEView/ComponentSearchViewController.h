@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class EAGLEFileView;
 
-@interface ComponentSearchViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ComponentSearchViewController : UITableViewController <UISearchBarDelegate>
 
 @property (strong, nonatomic) EAGLEFileView *fileView;
 @property (strong) NSMutableArray *selectedParts;
