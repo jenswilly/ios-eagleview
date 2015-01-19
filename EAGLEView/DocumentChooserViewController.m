@@ -200,8 +200,14 @@
 	[[Dropbox sharedInstance] reset];
 	APP.viewController.lastDropboxPath = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaults_lastDropboxPath];
-	
-	[_delegate documentChooserCancelled];
+
+	// iPhone or iPad?
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+		// iPad: dismiss popover
+		[_delegate documentChooserCancelled];
+	else
+		// iPhone: dismiss self
+		[self dismiss:nil];
 }
 
 #pragma mark - Table view methods

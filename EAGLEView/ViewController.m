@@ -440,7 +440,7 @@
 
 - (void)documentChooserCancelled
 {
-	// Simply close popover
+	// Simply close popover (iPad only)
 	[_popover dismissPopoverAnimated:YES];
 }
 
