@@ -47,6 +47,11 @@ const CGFloat kModuleInstanceLineWidth = 0.8;
 	return self;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Module Instance: %@", self.module.name];
+}
+
 - (EAGLEModule*)module
 {
 	if( _module == nil )

@@ -61,22 +61,18 @@
 		[self zoomToFitAction:nil];
 	});
 
-	// For iPhone: add gesture recognizer to enter/leave fullscreen mode
-	// iPhone or iPad?
-	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
-	{
-		// Get the normal tap recognizer
-		UITapGestureRecognizer *singleTapRecognizer = self.fileView.gestureRecognizers[0];
+	// Add double tap recognizer (NB: behaves differently on iPad/iPhone – see the handler method
+	UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGesture:)];
+	doubleTapRecognizer.numberOfTapsRequired = 2;
+	[self.view addGestureRecognizer:doubleTapRecognizer];
 
-		UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleFullscreenTapGesture:)];
-		doubleTapRecognizer.numberOfTapsRequired = 2;
-		[self.view addGestureRecognizer:doubleTapRecognizer];
+	// Coordinate double tap and single tap recognizers
+	UITapGestureRecognizer *singleTapRecognizer = self.fileView.gestureRecognizers[0];
+	[singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
 
-		[singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
-	}
-	else
+	// iPad only: Configure file name label
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 	{
-		// iPad only: Configure file name label
 		self.fileNameLabel.textColor = RGBHEX( GLOBAL_TINT_COLOR );
 	}
 }
@@ -101,9 +97,62 @@
 	self.fileNameLabel.text = _eagleFile.fileName;
 }
 
-- (IBAction)handleFullscreenTapGesture:(UITapGestureRecognizer*)recognizer
+/**
+ This method checks if a double tap is on a module instance and handles it.
+ 
+ @param recognizer	The UITapGestureRecognizer to check
+ @return Returns YES if the double tap was handled; NO if there is no double tap on a module instance.
+ */
+- (BOOL)handleDoubleTapOnModuleInstance:(UITapGestureRecognizer*)recognizer
 {
-	DEBUG_POSITION;
+	if( [self.fileView.file isKindOfClass:[EAGLESchematic class]] )
+	{
+		id<EAGLEDrawable> tappedObject = [[self.fileView objectsAtPoint:[recognizer locationInView:self.fileView]] firstObject];
+		if( [tappedObject isKindOfClass:[EAGLEDrawableModuleInstance class]] )
+		{
+			EAGLESchematic *schematic = (EAGLESchematic*)self.fileView.file;	// Typecast
+			for( int i = 0; i < schematic.modules.count; i++ )
+			{
+				EAGLEModule *module = schematic.modules[ i ];
+				if( [module.name isEqualToString:((EAGLEDrawableModuleInstance*)tappedObject).module.name] )
+				{
+					schematic.currentModuleIndex = i;
+
+					// Update label
+					NSString *name;
+					if( [[schematic activeModule].name length] > 0 )
+						name = [NSString stringWithFormat:@"%@ – %@", schematic.fileName, [schematic activeModule].name];
+					else
+						name = schematic.fileName;
+
+					self.fileNameLabel.text = name;
+
+					// Redraw
+					[self.fileView setNeedsDisplay];
+
+					// Zoom-to-fit
+					dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
+						[self zoomToFitAction:nil];
+					});
+
+					return YES;	// Yes, we have handled the double tap
+				}
+			}
+		}
+	}
+
+	return NO;	// No, we haven't handled it
+}
+
+- (IBAction)handleDoubleTapGesture:(UITapGestureRecognizer*)recognizer
+{
+	// If we're showing a schematic and the user double-tapped on a module instance, then jump to the module instead of toggling fullscreen
+	if( [self handleDoubleTapOnModuleInstance:recognizer] )
+		return;
+
+	// For iPad, do nothing else here
+	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+		return;
 
 	// Toggle mode
 	_fullScreen = !_fullScreen;

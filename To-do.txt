@@ -14,12 +14,12 @@ To-do:
 - Search: deselect all marked components
 - Fix text drawing of R270 rotated instances
 - Fix bounding rect of R270 rotated instances
-- Fix zoom-to-fit after loading new file
 - Fix too long texts in detail popup view controller
-- UI: double tap on module instance -> show module (first sheet)
 - UI: launch screen
 - Implement search UI for iPhone
 - Fix part info popup location on iPhone
+- Add padding to auto-size bounding rect
+- Fix the goddamn zoom-to-fit!
 
 
 ------------------------
@@ -33,6 +33,8 @@ In progress/partly done:
 -----
 Done:
 
+√ UI: double tap on module instance -> show module (first sheet)
+√ New Dropbox and zoom-to-fit icons
 √ UI: table separator widths on iPhone. Weird flickering? (fixed by http://stackoverflow.com/a/26643417)
 √ iOS 8: fix deprecation warnings
 √ Update to deployment target 8.0
