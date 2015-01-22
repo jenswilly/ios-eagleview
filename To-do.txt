@@ -1,3 +1,12 @@
+-------
+Legend:
+	-	Not done
+	√	Done
+	~	In progress or partly done
+	÷	Will not be done
+
+
+------
 To-do:
 
 - Find out why there are memory warnings when picking files from Dropbox
@@ -5,7 +14,6 @@ To-do:
 - Nets/busses details popup
 - Hit test for nets/busses
 - Other pad shapes (incl. rotation/min/max/bounds calculations)
-- Placeholder view when no schematic/board is selected
 - Polygon signals fill – yikes :|
 - Improve single vs. double tap on iPhone
 - Alternative to polygon fills: polygons on/off setting
@@ -33,6 +41,7 @@ In progress/partly done:
 -----
 Done:
 
+√ Placeholder view when no schematic/board is selected
 √ UI: double tap on module instance -> show module (first sheet)
 √ New Dropbox and zoom-to-fit icons
 √ UI: table separator widths on iPhone. Weird flickering? (fixed by http://stackoverflow.com/a/26643417)

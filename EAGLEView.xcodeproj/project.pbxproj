@@ -58,6 +58,8 @@
 		473903611843557A0092D025 /* Application.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473903601843557A0092D025 /* Application.xcassets */; };
 		47452F2A1A6DB1BE00C0049A /* ModulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47452F291A6DB1BE00C0049A /* ModulesViewController.m */; };
 		47452F2C1A6DC0F200C0049A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47452F2B1A6DC0F200C0049A /* Launch Screen.xib */; };
+		4751137B1A71388200275407 /* empty_7.2.0.sch in Resources */ = {isa = PBXBuildFile; fileRef = 4751137A1A71388200275407 /* empty_7.2.0.sch */; };
+		4751137D1A713A9900275407 /* empty_7.2.0.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4751137C1A713A9900275407 /* empty_7.2.0.brd */; };
 		475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */ = {isa = PBXBuildFile; fileRef = 475B851A189C44CD00E4ABC6 /* Thermometer.brd */; };
 		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
@@ -208,6 +210,8 @@
 		47452F281A6DB1BE00C0049A /* ModulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulesViewController.h; sourceTree = "<group>"; };
 		47452F291A6DB1BE00C0049A /* ModulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulesViewController.m; sourceTree = "<group>"; };
 		47452F2B1A6DC0F200C0049A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		4751137A1A71388200275407 /* empty_7.2.0.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = empty_7.2.0.sch; sourceTree = "<group>"; };
+		4751137C1A713A9900275407 /* empty_7.2.0.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = empty_7.2.0.brd; sourceTree = "<group>"; };
 		475B851A189C44CD00E4ABC6 /* Thermometer.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.brd; sourceTree = "<group>"; };
 		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 		473902C31840DC890092D025 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4751137C1A713A9900275407 /* empty_7.2.0.brd */,
+				4751137A1A71388200275407 /* empty_7.2.0.sch */,
 				47EB3A081A6B09FE00FCCBFA /* #2014-003_Powerpack.sch */,
 				47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */,
 				47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */,
@@ -737,8 +743,10 @@
 				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
 				473903271840DED90092D025 /* LED_resistor.brd in Resources */,
+				4751137D1A713A9900275407 /* empty_7.2.0.brd in Resources */,
 				47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
+				4751137B1A71388200275407 /* empty_7.2.0.sch in Resources */,
 				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,

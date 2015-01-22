@@ -31,6 +31,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderImageView;
 
 @end
 
@@ -45,21 +46,28 @@
 {
     [super viewDidLoad];
 
+	// Show placeholder image
+	self.placeholderImageView.hidden = NO;
+
+	// Initialize file view. We have to initialize with a valid file. Otherwise the drawing context is messed up (for some reason).
 	NSError *error = nil;
-	_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
-	_eagleFile.fileName = @"#2014-003_Powerpack";
+
+	_eagleFile = [EAGLEBoard boardFromBoardFile:@"" error:&error];	// Empty board
+	//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"" error:&error];	// Empty schematic
+	//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
+	//_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:nil];
+
+	_eagleFile.fileName = @"";
 	_eagleFile.fileDate = [NSDate date];
-//	_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:&error];
 	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
-
-	[self updateBackgroundAndStatusBar];
-
 	[self.fileView setRelativeZoomFactor:0.1];
 	self.fileView.file = _eagleFile;
 
 	dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
 		[self zoomToFitAction:nil];
 	});
+
+	[self updateBackgroundAndStatusBar];
 
 	// Add double tap recognizer (NB: behaves differently on iPad/iPhone – see the handler method
 	UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGesture:)];
@@ -94,7 +102,15 @@
 	}
 
 	// Set file name label (iPad only)
-	self.fileNameLabel.text = _eagleFile.fileName;
+	NSString *name = self.fileView.file.fileName;	// Default name is the file name. If it is a schematic, see if we need to show module name
+	if( [self.fileView.file isKindOfClass:[EAGLESchematic class]] )
+	{
+		EAGLESchematic *schematic = (EAGLESchematic*)self.fileView.file;
+		if( [[schematic activeModule].name length] > 0 )
+			name = [NSString stringWithFormat:@"%@ – %@", schematic.fileName, [schematic activeModule].name];
+	}
+
+	self.fileNameLabel.text = name;
 }
 
 /**
@@ -420,6 +436,8 @@
 	NSAssert( error == nil, @"Error loading schematic: %@", [error localizedDescription] );
 
 	self.fileView.file = schematic;
+	self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -431,7 +449,8 @@
 	_eagleFile = file;
 	[self updateBackgroundAndStatusBar];
 	self.fileView.file = file;
-
+	self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -479,6 +498,8 @@
 			NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 
 			self.fileView.file = _eagleFile;
+			self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 				[MBProgressHUD hideHUDForView:self.view animated:YES];

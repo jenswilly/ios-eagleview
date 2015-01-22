@@ -46,7 +46,10 @@
                                     <outletCollection property="gestureRecognizers" destination="jpc-YY-LeP" appends="YES" id="6xs-sJ-Bph"/>
                                 </connections>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNm-ko-trm">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="placeholder_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="zQO-Oz-Y8m" userLabel="Placeholder image view">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="704"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNm-ko-trm">
                                 <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <items>
                                     <barButtonItem image="ico_dropbox" id="1oy-AO-dmp">
@@ -107,8 +110,12 @@
                             <constraint firstItem="G4r-WP-cBd" firstAttribute="top" secondItem="QNm-ko-trm" secondAttribute="bottom" id="Egc-1A-aC1"/>
                             <constraint firstAttribute="trailing" secondItem="vWF-Sb-KVW" secondAttribute="trailing" id="R4e-xc-jF5"/>
                             <constraint firstItem="QNm-ko-trm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Trd-Gh-mF3"/>
+                            <constraint firstItem="zQO-Oz-Y8m" firstAttribute="top" secondItem="jUu-hd-ewM" secondAttribute="bottom" id="Zis-gT-Rmq"/>
                             <constraint firstAttribute="trailing" secondItem="QNm-ko-trm" secondAttribute="trailing" id="ces-c2-uXo"/>
+                            <constraint firstItem="QNm-ko-trm" firstAttribute="top" secondItem="zQO-Oz-Y8m" secondAttribute="bottom" id="dPT-tH-8Yl"/>
+                            <constraint firstItem="zQO-Oz-Y8m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="epF-IH-ERr"/>
                             <constraint firstItem="vWF-Sb-KVW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gd3-rg-WUe"/>
+                            <constraint firstAttribute="trailing" secondItem="zQO-Oz-Y8m" secondAttribute="trailing" id="mdc-qr-zp0"/>
                             <constraint firstItem="G4r-WP-cBd" firstAttribute="top" secondItem="vWF-Sb-KVW" secondAttribute="bottom" constant="44" id="mtI-hI-AS5"/>
                             <constraint firstItem="vWF-Sb-KVW" firstAttribute="top" secondItem="jUu-hd-ewM" secondAttribute="bottom" id="oZh-MD-Rcn"/>
                         </constraints>
@@ -117,6 +124,7 @@
                     <connections>
                         <outlet property="fileNameLabel" destination="AST-RF-Avw" id="hgz-vu-VbC"/>
                         <outlet property="fileView" destination="7OV-iT-9LS" id="i5Q-C3-N6q"/>
+                        <outlet property="placeholderImageView" destination="zQO-Oz-Y8m" id="dZ3-qh-6Pb"/>
                         <outlet property="scrollView" destination="vWF-Sb-KVW" id="bTi-Ag-J4O"/>
                     </connections>
                 </viewController>
@@ -525,6 +533,7 @@ line 2 is rather long</string>
         <image name="ico_dropbox" width="40" height="40"/>
         <image name="ico_fit" width="40" height="40"/>
         <image name="ico_layers" width="40" height="40"/>
+        <image name="placeholder_ipad" width="1024" height="768"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
