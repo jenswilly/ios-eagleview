@@ -170,6 +170,10 @@
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 		return;
 
+	// If placeholder image is visible, do nothing
+	if( !self.placeholderImageView.hidden )
+		return;
+	
 	// Toggle mode
 	_fullScreen = !_fullScreen;
 	[[UIApplication sharedApplication] setStatusBarHidden:_fullScreen withAnimation:UIStatusBarAnimationSlide];		// Show/hide status bar
