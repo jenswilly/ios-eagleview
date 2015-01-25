@@ -189,6 +189,7 @@
                         <outlet property="fileView" destination="82F-1s-pQf" id="nCG-MR-jtY"/>
                         <outlet property="placeholderImageView" destination="GKa-PY-ccy" id="EuN-lb-Htf"/>
                         <outlet property="scrollView" destination="Uwo-qd-4qN" id="3fo-4j-aHC"/>
+                        <outlet property="sheetsPopupButton" destination="ZSc-Zc-hTB" id="4s9-3w-V5f"/>
                         <outlet property="toolbarBottomSpacingConstraint" destination="tBR-kc-GBV" id="QUD-26-Bdv"/>
                     </connections>
                 </viewController>
@@ -339,7 +340,7 @@ line 2 is rather long</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20L-Qc-aYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2415" y="971"/>
+            <point key="canvasLocation" x="1095" y="979"/>
         </scene>
         <!--Layers View Controller-->
         <scene sceneID="3Fx-r8-huD">

@@ -27,7 +27,6 @@ To-do:
 - Implement search UI for iPhone
 - Add padding to auto-size bounding rect
 - Fix the goddamn zoom-to-fit!
-- Disable sheets picker if there is only one sheet/module or if it's a board file
 
 
 ------------------------
@@ -41,6 +40,7 @@ In progress/partly done:
 -----
 Done:
 
+√ Disable sheets picker if there is only one sheet/module or if it's a board file
 √ Fix part info popup location on iPhone
 √ Automatically open last file
 √ Placeholder view when no schematic/board is selected

@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderImageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sheetsPopupButton;
 
 @end
 
@@ -79,6 +80,9 @@
 		_eagleFile.fileDate = [NSDate date];
 		NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 		self.fileView.file = _eagleFile;
+
+		// Enable of disable the sheets popup button
+		self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
 
 		dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
 			[self zoomToFitAction:nil];
@@ -474,7 +478,10 @@
 	[self updateBackgroundAndStatusBar];
 	self.fileView.file = file;
 	self.placeholderImageView.hidden = YES;	// Hide initial placeholder
-	
+
+	// Enable of disable the sheets popup button
+	self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 0 );
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -508,6 +515,9 @@
 
 	self.fileView.file = _eagleFile;
 	self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
+	// Enable of disable the sheets popup button
+	self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
 
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
@@ -559,6 +569,9 @@
 
 			self.fileView.file = _eagleFile;
 			self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
+			// Enable of disable the sheets popup button
+			self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
 
 			// Save path in user defaults. This path is relative to the app's documents directory.
 			[[NSUserDefaults standardUserDefaults] setObject:metadata.path forKey:kUserDefaults_lastFilePath];
