@@ -686,6 +686,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 473902B81840D9930092D025 /* Build configuration list for PBXNativeTarget "EAGLEView" */;
 			buildPhases = (
+				47EE1AF61A756356001A9F70 /* ShellScript */,
 				473902821840D9930092D025 /* Sources */,
 				473902831840D9930092D025 /* Frameworks */,
 				473902841840D9930092D025 /* Resources */,
@@ -765,6 +766,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47EE1AF61A756356001A9F70 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${PROJECT_DIR}\"\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\necho \"Number of commits: ${buildNumber}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		473902821840D9930092D025 /* Sources */ = {

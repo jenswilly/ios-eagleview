@@ -40,6 +40,7 @@ In progress/partly done:
 -----
 Done:
 
+--- b142
 √ Disable sheets picker if there is only one sheet/module or if it's a board file
 √ Fix part info popup location on iPhone
 √ Automatically open last file
