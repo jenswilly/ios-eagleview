@@ -25,7 +25,6 @@ To-do:
 - Fix too long texts in detail popup view controller
 - UI: launch screen
 - Implement search UI for iPhone
-- Fix part info popup location on iPhone
 - Add padding to auto-size bounding rect
 - Fix the goddamn zoom-to-fit!
 - Disable sheets picker if there is only one sheet/module or if it's a board file
@@ -42,6 +41,7 @@ In progress/partly done:
 -----
 Done:
 
+√ Fix part info popup location on iPhone
 √ Automatically open last file
 √ Placeholder view when no schematic/board is selected
 √ UI: double tap on module instance -> show module (first sheet)

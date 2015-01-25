@@ -25,6 +25,7 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 @property (weak, nonatomic) IBOutlet UILabel *libraryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deviceTitleLabel;	// So we can show either "Device" or "Package"
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+@property (assign) IBInspectable CGSize popupSize;	// IBInspectable property. Used only on iPhone where it should be set to the view's size in IB.
 
 @end
 
@@ -32,6 +33,7 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 {
 	__weak UIViewController *_parentViewController;
 	__weak UIView *_grayView;
+	__weak UIView *_blurView;
 }
 
 - (void)viewDidLoad
@@ -53,38 +55,47 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 
 - (void)showAddedToViewController:(UIViewController*)parentViewController
 {
-	// Remember parent view controller
+	// Remember parent view controller and delegate
 	_parentViewController = parentViewController;
 
-	// Move self to parent view controller
-	self.view.frame = parentViewController.view.bounds;	// Adjust own frame to match parent view controller's
-	[parentViewController addChildViewController:self];
-	[self didMoveToParentViewController:parentViewController];
-	[parentViewController.view addSubview:self.view];
+	// Instantiate blur view
+	UIVisualEffect *blurEffect;
+	blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 
-	// Add gray view below own view
-	UIView *grayView = [[UIView alloc] initWithFrame:self.view.bounds];
-	grayView.backgroundColor = [UIColor blackColor];
-	grayView.alpha = 0;
-	[parentViewController.view insertSubview:grayView belowSubview:self.view];
-	_grayView = grayView;
+	UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+	visualEffectView.frame = _parentViewController.view.bounds;
 
-	// Add round corners
+	_blurView = visualEffectView;
+
 	self.view.layer.cornerRadius = 8;
-	self.view.alpha = 0;
+	_blurView.alpha = 0;
+
+	// Add effect view to parent view controller's view
+	[_parentViewController addChildViewController:self];
+	[_parentViewController.view addSubview:visualEffectView];
+
+	// Move self to parent view controller
+	NSAssert( self.popupSize.width != 0 && self.popupSize.height != 0, @"Popup size *must* be set in IB. Use the same size as the view's freeform size." );
+	self.view.frame = CGRectMake( 0, 0, self.popupSize.width, self.popupSize.height );
+	self.view.center = visualEffectView.center;
+
+	[visualEffectView.contentView addSubview:self.view];
+	[self didMoveToParentViewController:self];
 
 	// Constraints to set fixed size and centered X and Y to superview
-	// The size is taken from the property size. This can be set in IB by using a "User Defined Runtime Attribute" named "size"
+	/*
 	self.view.translatesAutoresizingMaskIntoConstraints = NO;
-	NSDictionary *views = @{ @"self": self.view };
-	NSDictionary *metrics = @{ @"width": @( self.size.width ), @"height": @( self.size.height ) };
-	[parentViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[self(width)]" options:NSLayoutFormatAlignAllCenterX metrics:metrics views:views]];
-	[parentViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[self(height)]" options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
+	NSDictionary *views = @{ @"settings": self.view };
+	NSAssert( self.popupSize.width != 0 && self.popupSize.height != 0, @"Popup size *must* be set in IB. Use the same size as the view's freeform size." );
+	NSDictionary *metrics = @{ @"width": @( self.popupSize.width ), @"height": @( self.popupSize.height ) };
+	[_parentViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[settings(width)]" options:0 metrics:metrics views:views]];
+	[_parentViewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[settings(height)]" options:0 metrics:metrics views:views]];
+	[_parentViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_parentViewController.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+	[_parentViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_parentViewController.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+	*/
 
-	// Fade in views
 	[UIView animateWithDuration:kSettingsAnimationDuration animations:^{
-		self.view.alpha = 1;
-		_grayView.alpha = kSettingsGrayAlpha;
+		_blurView.alpha = 1;
 	}];
 }
 
@@ -94,13 +105,12 @@ static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay 
 	[UIView animateWithDuration:kSettingsAnimationDuration animations:^{
 
 		// Fade out views
-		_grayView.alpha = 0;
-		self.view.alpha = 0;
+		_blurView.alpha = 0;
 
 	} completion:^(BOOL finished) {
 
 		// Remove the gray view
-		[_grayView removeFromSuperview];
+		[_blurView removeFromSuperview];
 
 		// Remove self
 		[self willMoveToParentViewController:nil];
