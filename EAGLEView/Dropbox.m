@@ -9,8 +9,8 @@
 #import "Dropbox.h"
 #import "AppDelegate.h"
 
-static NSString* const kDropboxFolderName = @"dropbox";
-typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used for both folder and file completion blocks
+NSString* const kDropboxFolderName = @"dropbox";
+typedef void(^genericBlock_t)(BOOL success, id contents, DBMetadata *metadata);	// This can be used for both folder and file completion blocks
 
 @implementation Dropbox
 {
@@ -97,7 +97,7 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 		if( _contents[ [path lowercaseString] ] )
 		{
 			// Yes: return it immediately in the completion block
-			completion( YES, _contents[ [path lowercaseString] ] );
+			completion( YES, _contents[ [path lowercaseString] ], nil );
 			return YES;
 		}
 		
@@ -142,6 +142,8 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 		NSAssert( error == nil, @"Error creating documents folder: %@", [error localizedDescription] );
 	}
 
+	// Re-append last path component so the loaded file doesn't have the name of its parent directory.
+	dropboxFolderPath = [dropboxFolderPath stringByAppendingPathComponent:[path lastPathComponent]];
 	// Start loading
 	_isBusy = YES;
 	[[self restClient] loadFile:path intoPath:dropboxFolderPath];
@@ -153,14 +155,14 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath contentType:(NSString*)contentType metadata:(DBMetadata*)metadata
 {
 	DEBUG_LOG( @"File loaded into path: %@", localPath );
-	_completionBlock( YES, localPath );
+	_completionBlock( YES, localPath, metadata );
 	_isBusy = NO;
 }
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
 {
 	DEBUG_LOG( @"There was an error loading the file - %@", [error localizedDescription] );
-	_completionBlock( NO, nil );
+	_completionBlock( NO, nil, nil );
 	_isBusy = NO;
 }
 
@@ -169,7 +171,7 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	// If the folder is deleted, we'll consider it non-existing
 	if( metadata.isDeleted )
 	{
-		_completionBlock( NO, nil );
+		_completionBlock( NO, nil, nil );
 		_isBusy = NO;
 		return;
 	}
@@ -178,14 +180,14 @@ typedef void(^genericBlock_t)(BOOL success, id contents);	// This can be used fo
 	_contents[ [metadata.path lowercaseString] ] = metadata.contents;
 
 	// Call completion block
-	_completionBlock( YES, metadata.contents );
+	_completionBlock( YES, metadata.contents, metadata );
 	_isBusy = NO;
 }
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
 {
 	DEBUG_LOG( @"Error loading metadata: %@", [error localizedDescription] );
-	_completionBlock( NO, nil );
+	_completionBlock( NO, nil, nil );
 	_isBusy = NO;
 }
 

@@ -21,4 +21,13 @@
 - (void)openFile:(EAGLEFile*)file;
 - (IBAction)zoomToFitAction:(id)sender;
 
+/**
+ Opens a schematic or board file from the specified local path.
+ 
+ @return Returns YES if the operation was successful; NO otherwise
+ @param filePath The full path to the file to open.
+ @param error Error handle
+*/
+- (BOOL)openFileAtPath:(NSString*)filePath error:(NSError**)error;
+
 @end

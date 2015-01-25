@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
 
-typedef void(^foldercompletionBlock_t)(BOOL success, NSArray *contents);
-typedef void(^fileCompletionBlock_t)(BOOL success, NSString *filePath);
+// Extern definition of the Dropbox folder name (in case it is needed in some other file)
+extern NSString* const kDropboxFolderName;
+
+typedef void(^foldercompletionBlock_t)(BOOL success, NSArray *contents, DBMetadata *metadata);
+typedef void(^fileCompletionBlock_t)(BOOL success, NSString *filePath, DBMetadata *metadata);
 
 
 @interface Dropbox : NSObject <DBRestClientDelegate>

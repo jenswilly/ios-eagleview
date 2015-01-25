@@ -15,6 +15,7 @@
 
 NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath";
 NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
+NSString *const kUserDefaults_lastFilePath = @"lastFilePath";
 
 @implementation AppDelegate
 {

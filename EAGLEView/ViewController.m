@@ -48,26 +48,44 @@
 
 	// Show placeholder image
 	self.placeholderImageView.hidden = NO;
-
-	// Initialize file view. We have to initialize with a valid file. Otherwise the drawing context is messed up (for some reason).
-	NSError *error = nil;
-
-	_eagleFile = [EAGLEBoard boardFromBoardFile:@"" error:&error];	// Empty board
-	//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"" error:&error];	// Empty schematic
-	//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
-	//_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:nil];
-
-	_eagleFile.fileName = @"";
-	_eagleFile.fileDate = [NSDate date];
-	NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 	[self.fileView setRelativeZoomFactor:0.1];
-	self.fileView.file = _eagleFile;
 
-	dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
-		[self zoomToFitAction:nil];
-	});
+	// If we have a local file path saved in user defaults, attempt to open that
+	NSError *error = nil;
+	BOOL hasLoadedLastFile = NO;
+	NSString *lastUsedFilePath = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaults_lastFilePath];
+	if( [lastUsedFilePath length] > 0 )
+	{
+		// Construct full path. Value in user defaults is relative to the app's dropbox folder in the documents folder.
+		NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+		NSString *documentsFolder = paths[0];
+		NSString *fullPath = [[documentsFolder stringByAppendingPathComponent:kDropboxFolderName] stringByAppendingPathComponent:lastUsedFilePath];
 
-	[self updateBackgroundAndStatusBar];
+		DEBUG_LOG( @"Opening last used file: %@", fullPath );
+		hasLoadedLastFile = [self openFileAtPath:fullPath error:&error];
+		if( error )
+			NSLog( @"Error loading last used file: %@", error );
+	}
+	if( !hasLoadedLastFile )
+	{
+		// Initialize file view. We have to initialize with a valid file. Otherwise the drawing context is messed up (for some reason).
+		error = nil;
+		_eagleFile = [EAGLEBoard boardFromBoardFile:@"" error:&error];	// Empty board
+		//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"" error:&error];	// Empty schematic
+		//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
+		//_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:nil];
+
+		_eagleFile.fileName = @"";
+		_eagleFile.fileDate = [NSDate date];
+		NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
+		self.fileView.file = _eagleFile;
+
+		dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
+			[self zoomToFitAction:nil];
+		});
+
+		[self updateBackgroundAndStatusBar];
+	}
 
 	// Add double tap recognizer (NB: behaves differently on iPad/iPhone – see the handler method
 	UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGesture:)];
@@ -431,6 +449,8 @@
 - (void)openFileFromURL:(NSURL*)fileURL
 {
 	// Make sure it's a file URL
+	[NSException raise:@"Possibly wrong method." format:@"This method seems to load only schematics. Are you sure that's right?"];
+
 	if( ![fileURL isFileURL] )
 		[NSException raise:@"Invalid URL" format:@"Expected file URL: %@", [fileURL absoluteString]];
 
@@ -461,6 +481,42 @@
 	});
 }
 
+- (BOOL)openFileAtPath:(NSString*)filePath error:(NSError**)error
+{
+	NSError *err;
+
+	// Schematic or board?
+	NSString *fileName = [filePath lastPathComponent];
+
+	if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"sch"] )
+		_eagleFile = [EAGLESchematic schematicFromSchematicAtPath:filePath error:&err];
+	else if( [[[fileName pathExtension] lowercaseString] isEqualToString:@"brd"] )
+		_eagleFile = [EAGLEBoard boardFromBoardFileAtPath:filePath error:&err];
+
+	// Pass back error and return NO if we have an error
+	if( err != nil )
+	{
+		if( error )
+			*error = err;
+		return NO;
+	}
+
+	_eagleFile.fileName = fileName;
+//	_eagleFile.fileDate = fileDate;	/// TODO: date?
+
+	[self updateBackgroundAndStatusBar];
+
+	self.fileView.file = _eagleFile;
+	self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
+		[MBProgressHUD hideHUDForView:self.view animated:YES];
+	});
+
+	return YES;
+}
+
 #pragma mark - Document Chooser Delegate methods
 
 - (void)documentChooserPickedDropboxFile:(DBMetadata *)metadata lastPath:(NSString*)lastPath
@@ -482,7 +538,7 @@
 	// Remember file data
 	NSDate *fileDate = metadata.lastModifiedDate;
 	NSString *fileName = [metadata.path lastPathComponent];
-	[[Dropbox sharedInstance] loadFileAtPath:metadata.path completion:^(BOOL success, NSString *filePath) {
+	[[Dropbox sharedInstance] loadFileAtPath:metadata.path completion:^(BOOL success, NSString *filePath, DBMetadata *metadata) {
 
 		if( success )
 		{
@@ -503,6 +559,10 @@
 
 			self.fileView.file = _eagleFile;
 			self.placeholderImageView.hidden = YES;	// Hide initial placeholder
+
+			// Save path in user defaults. This path is relative to the app's documents directory.
+			[[NSUserDefaults standardUserDefaults] setObject:metadata.path forKey:kUserDefaults_lastFilePath];
+			[[NSUserDefaults standardUserDefaults] synchronize];
 
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];

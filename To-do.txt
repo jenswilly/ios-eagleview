@@ -28,6 +28,7 @@ To-do:
 - Fix part info popup location on iPhone
 - Add padding to auto-size bounding rect
 - Fix the goddamn zoom-to-fit!
+- Disable sheets picker if there is only one sheet/module or if it's a board file
 
 
 ------------------------
@@ -41,6 +42,7 @@ In progress/partly done:
 -----
 Done:
 
+√ Automatically open last file
 √ Placeholder view when no schematic/board is selected
 √ UI: double tap on module instance -> show module (first sheet)
 √ New Dropbox and zoom-to-fit icons

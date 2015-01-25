@@ -71,7 +71,7 @@
 		self.navigationItem.title = _path.lastPathComponent;
 
 	// Load from Dropbox
-	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents) {
+	[[Dropbox sharedInstance] loadContentsForFolder:_path completion:^(BOOL success, NSArray *contents, DBMetadata *metadata) {
 
 		// Remove HUD (whether it is there or not) and set title (possibly again)
 		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -128,7 +128,7 @@
 		self.navigationItem.title = _item.filename;
 
 	// Load from Dropbox
-	[[Dropbox sharedInstance] loadContentsForFolder:_item.path completion:^(BOOL success, NSArray *contents) {
+	[[Dropbox sharedInstance] loadContentsForFolder:_item.path completion:^(BOOL success, NSArray *contents, DBMetadata *metadata) {
 
 		// Remove HUD (whether it is there or not) and set title (possibly again)
 		[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -147,7 +147,7 @@
 		else
 		{
 			// Error loading
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error loading contents from Dropbox" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
 			[alert show];
 		}
 	}];
