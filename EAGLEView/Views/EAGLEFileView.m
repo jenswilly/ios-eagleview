@@ -346,10 +346,14 @@ static const CGFloat kHighlightLineWidth = 0.6;	// Width (not zoom dependant) of
 		EAGLEBoard *board = (EAGLEBoard*)self.file;
 
 		// Instances
-		for( id<EAGLEDrawable> drawable in board.elements )
+		for( EAGLEElement *element in board.elements )
 		{
-			if( CGRectContainsPoint( [drawable boundingRect], coordinate ))
-				objectsAtCoordinate[ distance( drawable, coordinate ) ] = drawable;
+			// Ignore this element if it is on the top layer and layer 1 (top) is hidden or it is on bottom and the bottom layer (16) is hidden
+			if( ([element isOnTopLayer] && !((EAGLELayer*)self.file.layers[ @1 ]).visible) || ([element isOnBottomLayer] && !((EAGLELayer*)self.file.layers[ @16 ]).visible) )
+				continue;
+
+			if( CGRectContainsPoint( [element boundingRect], coordinate ))
+				objectsAtCoordinate[ distance( element, coordinate ) ] = element;
 		}
 
 		/*

@@ -103,8 +103,6 @@
 		}
 		_signals = [NSArray arrayWithArray:tmpElements];
 
-		/// ...
-
 
 		// Plain
 		elements = [element nodesForXPath:@"plain/*" error:&error];

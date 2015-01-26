@@ -102,6 +102,17 @@
 	return [NSString stringWithFormat:@"Element %@ - value: %@", _name, _value];
 }
 
+- (BOOL)isOnBottomLayer
+{
+	// A mirrored object is considered a bottom element.
+	return [EAGLEDrawableObject rotationIsMirrored:_rotation];
+}
+
+- (BOOL)isOnTopLayer
+{
+	return ![self isOnBottomLayer];
+}
+
 - (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber
 {
 	// Rotate if necessary. First offset coordinate system to origin point then rotate. State is pushed/popped.

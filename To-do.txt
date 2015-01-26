@@ -18,7 +18,6 @@ To-do:
 - Improve single vs. double tap on iPhone
 - Alternative to polygon fills: polygons on/off setting
 - Speed up drawing by checking for relevant rect?
-- Hit-test: ignore components on top/bottom if relevant layer not shown
 - Search: deselect all marked components
 - Fix text drawing of R270 rotated instances
 - Fix bounding rect of R270 rotated instances
@@ -40,6 +39,8 @@ In progress/partly done:
 -----
 Done:
 
+√ Hit-test: ignore components on top/bottom if relevant layer not shown
+√ Fixed initial state of toolbar buttons
 √ Fixed initial file loading
 --- b142
 √ Disable sheets picker if there is only one sheet/module or if it's a board file

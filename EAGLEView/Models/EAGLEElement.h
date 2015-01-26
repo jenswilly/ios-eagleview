@@ -23,5 +23,7 @@
 @property (readonly) NSString *valueText;	// Same as value
 
 - (void)drawInContext:(CGContextRef)context layerNumber:(NSNumber*)layerNumber;
+- (BOOL)isOnBottomLayer;
+- (BOOL)isOnTopLayer;
 
 @end
