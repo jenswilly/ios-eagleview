@@ -33,6 +33,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomSpacingConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *placeholderImageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sheetsPopupButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *layersPopupButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchPopupButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *zoomToFitButton;
 
 @end
 
@@ -71,8 +74,11 @@
 	{
 		// Initialize file view. We have to initialize with a valid file. Otherwise the drawing context is messed up (for some reason).
 		error = nil;
-		_eagleFile = [EAGLEBoard boardFromBoardFile:@"" error:&error];	// Empty board
-		//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"" error:&error];	// Empty schematic
+		_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"empty_7.2.0" error:&error];	// Empty file
+		BOOL usingInitialFile = NO;
+
+		// Next lines are for debugging purposes so we can open a specific board/schematic file without having to load it from Dropbox
+		//usingInitialFile = YES;
 		//_eagleFile = [EAGLESchematic schematicFromSchematicFile:@"#2014-003_Powerpack" error:&error];
 		//_eagleFile = [EAGLEBoard boardFromBoardFile:@"Gift card" error:nil];
 
@@ -81,12 +87,21 @@
 		NSAssert( error == nil, @"Error loading file: %@", [error localizedDescription] );
 		self.fileView.file = _eagleFile;
 
-		// Enable of disable the sheets popup button
-		self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
+		// Enable or disable the sheets popup button
+		self.sheetsPopupButton.enabled = ( usingInitialFile && [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
 
-		dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
-			[self zoomToFitAction:nil];
-		});
+		// Check to see if we have a "real" file or just an empty one and enable/disable toolbar buttons as appropriate
+		self.searchPopupButton.enabled = usingInitialFile;
+		self.zoomToFitButton.enabled = usingInitialFile;
+		self.layersPopupButton.enabled = usingInitialFile;
+
+		// Only zoom to fit if we have a real file
+		if( YES )
+		{
+			dispatch_after( dispatch_time( DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
+				[self zoomToFitAction:nil];
+			});
+		}
 
 		[self updateBackgroundAndStatusBar];
 	}
@@ -482,6 +497,12 @@
 	// Enable of disable the sheets popup button
 	self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 0 );
 
+	// Check to see if we have a "real" file or just an empty one and enable/disable toolbar buttons as appropriate
+	BOOL hasRealFile = [[_eagleFile drawablesInLayers] count] > 0;
+	self.searchPopupButton.enabled = hasRealFile;
+	self.zoomToFitButton.enabled = hasRealFile;
+	self.layersPopupButton.enabled = hasRealFile;
+
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -518,6 +539,12 @@
 
 	// Enable of disable the sheets popup button
 	self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
+
+	// Check to see if we have a "real" file or just an empty one and enable/disable toolbar buttons as appropriate
+	BOOL hasRealFile = [[_eagleFile drawablesInLayers] count] > 0;
+	self.searchPopupButton.enabled = hasRealFile;
+	self.zoomToFitButton.enabled = hasRealFile;
+	self.layersPopupButton.enabled = hasRealFile;
 
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.fileView zoomToFitSize:self.scrollView.bounds.size animated:YES];
@@ -572,6 +599,12 @@
 
 			// Enable of disable the sheets popup button
 			self.sheetsPopupButton.enabled = ( [_eagleFile isKindOfClass:[EAGLESchematic class]] && [((EAGLESchematic*)_eagleFile).modules count] > 1 );
+
+			// Check to see if we have a "real" file or just an empty one and enable/disable toolbar buttons as appropriate
+			BOOL hasRealFile = [[_eagleFile drawablesInLayers] count] > 0;
+			self.searchPopupButton.enabled = hasRealFile;
+			self.zoomToFitButton.enabled = hasRealFile;
+			self.layersPopupButton.enabled = hasRealFile;
 
 			// Save path in user defaults. This path is relative to the app's documents directory.
 			[[NSUserDefaults standardUserDefaults] setObject:metadata.path forKey:kUserDefaults_lastFilePath];
