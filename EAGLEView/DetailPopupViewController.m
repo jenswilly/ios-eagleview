@@ -12,7 +12,6 @@
 #import "EAGLESchematic.h"
 #import "EAGLEInstanceView.h"
 
-static const CGFloat kSettingsGrayAlpha = 0.2;	// Alpha of gray overlay view
 static const CGFloat kSettingsAnimationDuration = 0.3;	// Alpha of gray overlay view
 
 @interface DetailPopupViewController ()

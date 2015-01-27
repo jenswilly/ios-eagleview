@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4711206A184E009D00BAB3B2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 47112069184E009D00BAB3B2 /* MBProgressHUD.m */; };
-		471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 471E51EE18959BE700FC3B95 /* Default-568h@2x.png */; };
 		4736ABC91A6B1F970055F863 /* EAGLEDrawableModuleInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */; };
 		4736ABCC1A6B2E290055F863 /* EAGLEDrawableModulePort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4736ABCB1A6B2E290055F863 /* EAGLEDrawableModulePort.m */; };
-		4738814D1899BAF6003340FB /* Gift card.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4738814B1899BAF6003340FB /* Gift card.brd */; };
-		4738814E1899BAF6003340FB /* Gift card.sch in Resources */ = {isa = PBXBuildFile; fileRef = 4738814C1899BAF6003340FB /* Gift card.sch */; };
 		4739028A1840D9930092D025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473902891840D9930092D025 /* Foundation.framework */; };
 		4739028C1840D9930092D025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4739028B1840D9930092D025 /* CoreGraphics.framework */; };
 		4739028E1840D9930092D025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4739028D1840D9930092D025 /* UIKit.framework */; };
@@ -46,14 +43,12 @@
 		47452F2C1A6DC0F200C0049A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47452F2B1A6DC0F200C0049A /* Launch Screen.xib */; };
 		4751137B1A71388200275407 /* empty_7.2.0.sch in Resources */ = {isa = PBXBuildFile; fileRef = 4751137A1A71388200275407 /* empty_7.2.0.sch */; };
 		4751137D1A713A9900275407 /* empty_7.2.0.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4751137C1A713A9900275407 /* empty_7.2.0.brd */; };
-		475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */ = {isa = PBXBuildFile; fileRef = 475B851A189C44CD00E4ABC6 /* Thermometer.brd */; };
 		4782AB6718438B120022F660 /* EAGLEInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6618438B120022F660 /* EAGLEInstance.m */; };
 		4782AB6A18438C6D0022F660 /* EAGLEGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6918438C6D0022F660 /* EAGLEGate.m */; };
 		4782AB6D18438D100022F660 /* EAGLEDeviceset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6C18438D100022F660 /* EAGLEDeviceset.m */; };
 		4782AB7018439E190022F660 /* EAGLEPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782AB6F18439E190022F660 /* EAGLEPart.m */; };
 		4782C77D1896A50F00704F10 /* EAGLEFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C77C1896A50F00704F10 /* EAGLEFile.m */; };
 		4782C7801896A87900704F10 /* EAGLEBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C77F1896A87900704F10 /* EAGLEBoard.m */; };
-		4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */ = {isa = PBXBuildFile; fileRef = 4782C7811896FF9F00704F10 /* iBeacon.brd */; };
 		4782C785189701FB00704F10 /* EAGLEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C784189701FB00704F10 /* EAGLEElement.m */; };
 		4782C7881897039D00704F10 /* EAGLEPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4782C7871897039D00704F10 /* EAGLEPackage.m */; };
 		4783686B1893E83D0031977E /* DetailPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4783686A1893E83D0031977E /* DetailPopupViewController.m */; };
@@ -61,8 +56,6 @@
 		4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4783686F18958CE70031977E /* Main-iPhone.storyboard */; };
 		4784FF061843FE000005C290 /* EAGLENet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4784FF051843FE000005C290 /* EAGLENet.m */; };
 		478889A618A27220008F8CF2 /* FastTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 478889A518A27220008F8CF2 /* FastTiledLayer.m */; };
-		47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A474921846B21C00C9FDFD /* iBeacon.sch */; };
-		47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */; };
 		47A5D9AE18A190E300F2D920 /* EAGLEDrawableHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */; };
 		47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */; };
 		47AEE470184792ED007D5F7D /* EAGLEDrawableRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE46F184792ED007D5F7D /* EAGLEDrawableRectangle.m */; };
@@ -98,8 +91,6 @@
 		47EF39A218B3512400F653DD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A118B3512400F653DD /* Settings.bundle */; };
 		47EF39A518B39F3200F653DD /* ComponentSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */; };
 		47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EF39A618B3A3E100F653DD /* ComponentCell.xib */; };
-		47EF3B6D1A2D28FB00744476 /* Energy Shield.brd in Resources */ = {isa = PBXBuildFile; fileRef = 47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */; };
-		47EF3B6E1A2D28FB00744476 /* Energy Shield.sch in Resources */ = {isa = PBXBuildFile; fileRef = 47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */; };
 		47F920F41892A1150025CF70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F920F31892A1150025CF70 /* Images.xcassets */; };
 		47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC175F18D9C25C008BBDB5 /* ico_board-320.png */; };
 		47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 47FC176018D9C25C008BBDB5 /* ico_board-64.png */; };
@@ -108,13 +99,10 @@
 /* Begin PBXFileReference section */
 		47112068184E009D00BAB3B2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = EAGLEView/Views/MBProgressHUD.h; sourceTree = "<group>"; };
 		47112069184E009D00BAB3B2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = EAGLEView/Views/MBProgressHUD.m; sourceTree = "<group>"; };
-		471E51EE18959BE700FC3B95 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4736ABC71A6B1F970055F863 /* EAGLEDrawableModuleInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableModuleInstance.h; sourceTree = "<group>"; };
 		4736ABC81A6B1F970055F863 /* EAGLEDrawableModuleInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableModuleInstance.m; sourceTree = "<group>"; };
 		4736ABCA1A6B2E290055F863 /* EAGLEDrawableModulePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableModulePort.h; sourceTree = "<group>"; };
 		4736ABCB1A6B2E290055F863 /* EAGLEDrawableModulePort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableModulePort.m; sourceTree = "<group>"; };
-		4738814B1899BAF6003340FB /* Gift card.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.brd"; sourceTree = "<group>"; };
-		4738814C1899BAF6003340FB /* Gift card.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gift card.sch"; sourceTree = "<group>"; };
 		473902861840D9930092D025 /* EAGLEView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAGLEView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473902891840D9930092D025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4739028B1840D9930092D025 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,7 +161,6 @@
 		47452F2B1A6DC0F200C0049A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		4751137A1A71388200275407 /* empty_7.2.0.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = empty_7.2.0.sch; sourceTree = "<group>"; };
 		4751137C1A713A9900275407 /* empty_7.2.0.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = empty_7.2.0.brd; sourceTree = "<group>"; };
-		475B851A189C44CD00E4ABC6 /* Thermometer.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.brd; sourceTree = "<group>"; };
 		4762BAF4189A667300B818F1 /* Limitations.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Limitations.md; sourceTree = "<group>"; };
 		4782AB6518438B120022F660 /* EAGLEInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEInstance.h; sourceTree = "<group>"; };
 		4782AB6618438B120022F660 /* EAGLEInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEInstance.m; sourceTree = "<group>"; };
@@ -187,7 +174,6 @@
 		4782C77C1896A50F00704F10 /* EAGLEFile.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEFile.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; wrapsLines = 1; };
 		4782C77E1896A87900704F10 /* EAGLEBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEBoard.h; sourceTree = "<group>"; };
 		4782C77F1896A87900704F10 /* EAGLEBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEBoard.m; sourceTree = "<group>"; };
-		4782C7811896FF9F00704F10 /* iBeacon.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.brd; sourceTree = "<group>"; };
 		4782C783189701FB00704F10 /* EAGLEElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEElement.h; sourceTree = "<group>"; };
 		4782C784189701FB00704F10 /* EAGLEElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEElement.m; sourceTree = "<group>"; };
 		4782C7861897039D00704F10 /* EAGLEPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEPackage.h; sourceTree = "<group>"; };
@@ -201,8 +187,6 @@
 		4784FF051843FE000005C290 /* EAGLENet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLENet.m; sourceTree = "<group>"; };
 		478889A418A27220008F8CF2 /* FastTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastTiledLayer.h; sourceTree = "<group>"; };
 		478889A518A27220008F8CF2 /* FastTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastTiledLayer.m; sourceTree = "<group>"; };
-		47A474921846B21C00C9FDFD /* iBeacon.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iBeacon.sch; sourceTree = "<group>"; };
-		47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Thermometer.sch; sourceTree = "<group>"; };
 		47A5D9AC18A190E300F2D920 /* EAGLEDrawableHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLEDrawableHole.h; sourceTree = "<group>"; };
 		47A5D9AD18A190E300F2D920 /* EAGLEDrawableHole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLEDrawableHole.m; sourceTree = "<group>"; };
 		47AE2DD4186C5C13003054E8 /* FileIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FileIcons.xcassets; sourceTree = "<group>"; };
@@ -264,8 +248,6 @@
 		47EF39A318B39F3200F653DD /* ComponentSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSearchViewController.h; sourceTree = "<group>"; };
 		47EF39A418B39F3200F653DD /* ComponentSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSearchViewController.m; sourceTree = "<group>"; };
 		47EF39A618B3A3E100F653DD /* ComponentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentCell.xib; sourceTree = "<group>"; };
-		47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Energy Shield.brd"; sourceTree = "<group>"; };
-		47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Energy Shield.sch"; sourceTree = "<group>"; };
 		47F920F31892A1150025CF70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47FC175F18D9C25C008BBDB5 /* ico_board-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-320.png"; sourceTree = "<group>"; };
 		47FC176018D9C25C008BBDB5 /* ico_board-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_board-64.png"; sourceTree = "<group>"; };
@@ -295,7 +277,6 @@
 			isa = PBXGroup;
 			children = (
 				4762BAF4189A667300B818F1 /* Limitations.md */,
-				471E51EE18959BE700FC3B95 /* Default-568h@2x.png */,
 				47FF32CC1847382F00E711C7 /* To-do.txt */,
 				4739035518414C8E0092D025 /* Views */,
 				473903241840DD360092D025 /* External */,
@@ -459,14 +440,6 @@
 				4751137C1A713A9900275407 /* empty_7.2.0.brd */,
 				4751137A1A71388200275407 /* empty_7.2.0.sch */,
 				47EB3A081A6B09FE00FCCBFA /* #2014-003_Powerpack.sch */,
-				47EF3B6B1A2D28FB00744476 /* Energy Shield.brd */,
-				47EF3B6C1A2D28FB00744476 /* Energy Shield.sch */,
-				47A5D9AA18A12D4E00F2D920 /* Thermometer.sch */,
-				475B851A189C44CD00E4ABC6 /* Thermometer.brd */,
-				4738814B1899BAF6003340FB /* Gift card.brd */,
-				4738814C1899BAF6003340FB /* Gift card.sch */,
-				47A474921846B21C00C9FDFD /* iBeacon.sch */,
-				4782C7811896FF9F00704F10 /* iBeacon.brd */,
 				473903251840DED90092D025 /* LED_resistor.brd */,
 				473903261840DED90092D025 /* LED_resistor.sch */,
 				473902C41840DC9E0092D025 /* XIB */,
@@ -671,13 +644,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47EF3B6E1A2D28FB00744476 /* Energy Shield.sch in Resources */,
 				4783687018958CE70031977E /* Main-iPhone.storyboard in Resources */,
-				4782C7821896FF9F00704F10 /* iBeacon.brd in Resources */,
-				4738814E1899BAF6003340FB /* Gift card.sch in Resources */,
 				47452F2C1A6DC0F200C0049A /* Launch Screen.xib in Resources */,
 				47FC176218D9C25C008BBDB5 /* ico_board-64.png in Resources */,
-				47A474931846B21C00C9FDFD /* iBeacon.sch in Resources */,
 				473902A21840D9930092D025 /* Images.xcassets in Resources */,
 				47F920F41892A1150025CF70 /* Images.xcassets in Resources */,
 				473902941840D9930092D025 /* InfoPlist.strings in Resources */,
@@ -686,19 +655,14 @@
 				47EF39A718B3A3E100F653DD /* ComponentCell.xib in Resources */,
 				47C5ABB418571A0700A1D530 /* ico_schematic-320.png in Resources */,
 				4751137B1A71388200275407 /* empty_7.2.0.sch in Resources */,
-				471E51EF18959BE700FC3B95 /* Default-568h@2x.png in Resources */,
 				47AE2DD5186C5C13003054E8 /* FileIcons.xcassets in Resources */,
 				473903611843557A0092D025 /* Application.xcassets in Resources */,
-				47EF3B6D1A2D28FB00744476 /* Energy Shield.brd in Resources */,
 				47EF39A218B3512400F653DD /* Settings.bundle in Resources */,
 				473903281840DED90092D025 /* LED_resistor.sch in Resources */,
 				4739029D1840D9930092D025 /* Main.storyboard in Resources */,
-				4738814D1899BAF6003340FB /* Gift card.brd in Resources */,
-				475B851B189C44CD00E4ABC6 /* Thermometer.brd in Resources */,
 				47EB3A091A6B09FE00FCCBFA /* #2014-003_Powerpack.sch in Resources */,
 				47C5ABB318571A0700A1D530 /* ico_schematic-64.png in Resources */,
 				47FC176118D9C25C008BBDB5 /* ico_board-320.png in Resources */,
-				47A5D9AB18A12D4E00F2D920 /* Thermometer.sch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,7 +855,6 @@
 				BUNDLE_ID = dk.greenerpastures.eagleview;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
 					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -916,7 +879,6 @@
 				BUNDLE_ID = dk.greenerpastures.eagleview;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
 					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -974,7 +936,6 @@
 				BUNDLE_ID = dk.greenerpastures.enterprise.eagleview;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView/ios-library/JSONValidator",
 					"/Users/jenswilly/Desktop/Eagle\\ viewer/EAGLEView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
