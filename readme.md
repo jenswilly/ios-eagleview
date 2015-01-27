@@ -45,3 +45,7 @@ Just like any other GitHub project:
 1. Fork the repository.
 2. Make the fix.
 3. Submit a pull request to me.
+
+### More info
+
+I will be posting updates on my website: <http://jenswilly.dk>.
