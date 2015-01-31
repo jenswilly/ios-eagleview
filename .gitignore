@@ -42,3 +42,6 @@ Thumbs.db
 
 # Ignore Icon.png in root folder (for Tower)
 /Icon.png
+
+# Ignore personal config files
+/JWJ_config.xcconfig

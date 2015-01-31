@@ -32,6 +32,7 @@ Remember, the app is read-only. You can't modify the schematics or boards. And i
 
 1. Get the code and open in the most recent Xcode.
 2. Configure the project to use an appropriate bundle ID. You can either change the value directly in the `EAGLEView-Info.plist` file or you can change the value of the custom build setting named `BUNDLE_ID` (Project info -> Build Settings -> scroll down to the bottom).
+3. Use the `Debug` or `Release` build scheme. The `Enterprise` is configured to use Crashlytics and the necessary bundle ID and API keys are external to the project so it will not work.
 3. Run. You do need to be enrolled in Apple's iOS Developer Program in order to run the app on a device.
 
 ### How to contact me

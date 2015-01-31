@@ -82,7 +82,21 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>142</string>
+	<string>152</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>c06a676c3f38a285da5675863e0f230a72be1942</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

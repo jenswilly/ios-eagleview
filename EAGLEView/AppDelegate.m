@@ -12,6 +12,8 @@
 #import "SSZipArchive.h"
 #import "EAGLESchematic.h"
 #import "EAGLEBoard.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 NSString *const kUserDefaults_lastDropboxPath = @"kUserDefaults_lastDropboxPath";
 NSString *const kUserDefaults_settingsKeepAlive = @"keep_awake";
@@ -45,6 +47,12 @@ NSString *const kUserDefaults_lastFilePath = @"lastFilePath";
 		// Yes: open the file
 		[self openFileURL:url];
 
+#ifdef FABRIC_API_KEY
+	[Fabric with:@[CrashlyticsKit]];
+	NSLog( @"Fabric API set" );
+#else
+	NSLog( @"No Fabric API key" );
+#endif
     return YES;
 }
 
