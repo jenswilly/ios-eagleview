@@ -23,11 +23,10 @@ To-do:
 - Fix bounding rect of R270 rotated instances
 - Fix too long texts in detail popup view controller
 - UI: launch screen
-- Implement search UI for iPhone (#2)
+- #2: Implement search UI for iPhone (#2)
 - Add padding to auto-size bounding rect
 - Fix the goddamn zoom-to-fit!
-- Support SPIN=true rotation/flipping (e.g. rotation=SMR270). Maybe add in transformContext:forRotation:
-- #3: don't shot part FRAME1 when no file is loaded
+- #4: Support SPIN=true rotation/flipping (e.g. rotation=SMR270). Maybe add in transformContext:forRotation:
 
 
 ------------------------
@@ -41,6 +40,7 @@ In progress/partly done:
 -----
 Done:
 
+√ #3: don't show part FRAME1 when no file is loaded
 √ Accept <pin> without length property (#1)
 √ Hit-test: ignore components on top/bottom if relevant layer not shown
 √ Fixed initial state of toolbar buttons
