@@ -158,6 +158,11 @@
 		return Rotation_Mirror_MR180;
 	else if( [rotationString isEqualToString:@"MR270"] )
 		return Rotation_Mirror_MR270;
+	else if( [rotationString isEqualToString:@"SMR270"] )
+	{
+		NSLog( @"Note: SPIN=true not yet supported!" );
+		return Rotation_Mirror_MR270;
+	}
 	else
 		[NSException raise:@"Unknown rotation string" format:@"Unknown rotation: %@", rotationString];
 
