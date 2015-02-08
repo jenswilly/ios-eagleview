@@ -230,6 +230,10 @@
 
 - (IBAction)handleTapGesture:(UITapGestureRecognizer*)recognizer
 {
+	// Ignore if no file has been loaded yet.
+	if( !self.placeholderImageView.hidden )
+		return;
+
 	if( recognizer.state == UIGestureRecognizerStateEnded )
 	{
 		// Find instance/net from schematic
@@ -276,6 +280,10 @@
 	static CGFloat initialZoom;					// Static because we need this across several invocations of this method
 	static CGPoint relativeTouchInContent;		// ʺ (that's right: a proper "double prime" character and not just a "straight quote")
 	static CGPoint relativeTouchInScrollView;	// ʺ
+
+	// Ignore if no file has been loaded yet.
+	if( !self.placeholderImageView.hidden )
+		return;
 
 	// Remember schematic view's zoom factor when we begin zooming
 	if( recognizer.state == UIGestureRecognizerStateBegan )
