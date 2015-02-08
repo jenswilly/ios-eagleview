@@ -42,10 +42,11 @@ NSString *const kUserDefaults_lastFilePath = @"lastFilePath";
 	[DBSession setSharedSession:dbSession];
 
 	// Are we opened in response to a "Open in…"?
-	NSURL *url = launchOptions[ UIApplicationLaunchOptionsURLKey ];
-	if( [url isFileURL] )
-		// Yes: open the file
-		[self openFileURL:url];
+	// NOTE: next part has been removed (issue #5) since handleOpenURL: was called too. Regardless of whether the app was active or not. (Maybe this is an iOS 8 thing?)
+//	NSURL *url = launchOptions[ UIApplicationLaunchOptionsURLKey ];
+//	if( [url isFileURL] )
+//		// Yes: open the file
+//		[self openFileURL:url];
 
 #ifdef FABRIC_API_KEY
 	[Fabric with:@[CrashlyticsKit]];
@@ -61,7 +62,7 @@ NSString *const kUserDefaults_lastFilePath = @"lastFilePath";
 {
 	// Is it a file URL?
 	if( [url isFileURL] )
-		// Yes: open schematic file
+		// Yes: open file
 		[self openFileURL:url];
 	else if( [[DBSession sharedSession] handleOpenURL:url] )
 	{
@@ -93,7 +94,7 @@ NSString *const kUserDefaults_lastFilePath = @"lastFilePath";
 		// It is a zip file: extract and see if we can find a .sch file in the archive
 		NSString *sourceFilePath = [fileURL path];
 		_unzipDirectoryPath = [NSTemporaryDirectory() stringByAppendingString:@"unzip"];
-		DEBUG_LOG( @"Unzipping to %@", _unzipDirectoryPath );
+		NSLog( @"Unzipping to %@", _unzipDirectoryPath );
 		BOOL success = [SSZipArchive unzipFileAtPath:sourceFilePath toDestination:_unzipDirectoryPath];
 		if( !success )
 		{
