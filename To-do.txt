@@ -40,6 +40,8 @@ In progress/partly done:
 -----
 Done:
 
+--- b159
+√ #5
 √ #3: don't show part FRAME1 when no file is loaded
 √ Accept <pin> without length property (#1)
 √ Hit-test: ignore components on top/bottom if relevant layer not shown
