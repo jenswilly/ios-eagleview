@@ -877,8 +877,6 @@
 				BUNDLE_ID = dk.greenerpastures.eagleview;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jenswilly/Desktop/Eagle,
-					viewer/EAGLEView,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -904,8 +902,6 @@
 				BUNDLE_ID = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jenswilly/Desktop/Eagle,
-					viewer/EAGLEView,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -966,8 +962,6 @@
 				BUNDLE_ID = "${ENTERPRISE_BUNDLE_ID}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jenswilly/Desktop/Eagle,
-					viewer/EAGLEView,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
