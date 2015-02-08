@@ -37,6 +37,11 @@ static const CGFloat kPinNamePadding = 2.54;	// Space between pin and name
 
 		// Length
 		NSString *lengthString = [[element attributeForName:@"length"] stringValue];
+
+		// If there is no length, default to short (#1)
+		if( !lengthString )
+			lengthString = @"short";
+
 		if( [lengthString isEqualToString:@"short"] )
 			_length = EAGLEDrawablePinLength_Short;
 		else if( [lengthString isEqualToString:@"middle"] )
